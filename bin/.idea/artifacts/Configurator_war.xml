@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Configurator:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>Configurator</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="Configurator-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="Configurator:war exploded" />
+    </root>
+  </artifact>
+</component>
