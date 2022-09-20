@@ -1,126 +1,157 @@
-CREATE TABLE "Article" (
-                           "ArticleId"	TEXT NOT NULL UNIQUE,
-                           "Img"	TEXT,
-                           "Doc"	TEXT,
-                           "Code"	TEXT NOT NULL,
-                           "Name"	TEXT NOT NULL,
-                           "Desc"	TEXT NOT NULL,
-                           "ArticleTypeId"	TEXT NOT NULL,
-                           "BasePrice"	NUMERIC,
-                           PRIMARY KEY("ArticleId"),
-                           FOREIGN KEY("ArticleTypeId") REFERENCES "ArticleType" on delete cascade
+create table ArticleGroupType
+(
+    ArticleGroupTypeId TEXT not null
+        primary key
+        unique,
+    Code               TEXT,
+    Desc               TEXT,
+    ProductionOrder    TEXT
 );
 
-CREATE TABLE "ArticleArticleGroupType" (
-                                           "ArticleArticleGroupTypeId"	TEXT NOT NULL UNIQUE,
-                                           "ArticleGroupTypeId"	TEXT,
-                                           "ArticleId"	TEXT,
-                                           "Qta"	NUMERIC,
-                                           FOREIGN KEY("ArticleId") REFERENCES "Article"("ArticleId") ON  DELETE CASCADE,
-                                           FOREIGN KEY("ArticleGroupTypeId") REFERENCES "ArticleGroupType"("AticleGroupTypeId") ON DELETE CASCADE,
-                                           PRIMARY KEY("ArticleArticleGroupTypeId")
+create table ArticleType
+(
+    ArticleTypeId TEXT    not null
+        primary key
+        unique,
+    Desc          TEXT    not null,
+    Code          TEXT    not null,
+    Year          INTEGER not null
 );
 
-CREATE TABLE "ArticleGroupType" (
-                                    "AticleGroupTypeId"	TEXT NOT NULL UNIQUE,
-                                    "Code"	TEXT,
-                                    "Desc"	TEXT,
-                                    "ProductionOrder"	TEXT,
-                                    PRIMARY KEY("AticleGroupTypeId")
+create table Article
+(
+    ArticleId     TEXT not null
+        primary key
+        unique,
+    Img           TEXT,
+    Doc           TEXT,
+    Code          TEXT not null,
+    Name          TEXT not null,
+    Desc          TEXT not null,
+    ArticleTypeId TEXT not null
+        references ArticleType
+            on delete cascade,
+    BasePrice     NUMERIC
 );
 
-CREATE TABLE "ArticleMachine" (
-                                  "ArticleMachineId"	TEXT NOT NULL UNIQUE,
-                                  "MachineId"	TEXT NOT NULL,
-                                  "ArticleId"	TEXT NOT NULL,
-                                  "Qta"	NUMERIC DEFAULT 1,
-                                  "Note"	TEXT,
-                                  PRIMARY KEY("ArticleMachineId"),
-                                  FOREIGN KEY("MachineId") REFERENCES "Machine"("MachineId") ON DELETE CASCADE,
-                                  FOREIGN KEY("ArticleId") REFERENCES "Article"("ArticleId") ON DELETE CASCADE
+create table ArticleArticleGroupType
+(
+    ArticleArticleGroupTypeId TEXT not null
+        primary key
+        unique,
+    ArticleGroupTypeId        TEXT
+        references ArticleGroupType
+            on delete cascade,
+    ArticleId                 TEXT
+        references Article
+            on delete cascade,
+    Qta                       NUMERIC
 );
 
-CREATE TABLE "ArticleMachineType" (
-                                      "ArticleMachineTypeId"	TEXT NOT NULL UNIQUE,
-                                      "ArticleId"	TEXT NOT NULL,
-                                      "MachineTypeId"	TEXT NOT NULL,
-                                      "Qta"	NUMERIC DEFAULT 1,
-                                      PRIMARY KEY("ArticleMachineTypeId"),
-                                      FOREIGN KEY("MachineTypeId") REFERENCES "MachineType"("MachineTypeId") ON DELETE CASCADE,
-                                      FOREIGN KEY("ArticleId") REFERENCES "Article"("ArticleId") ON DELETE CASCADE
+create table Customer
+(
+    CustomerId TEXT not null
+        primary key
+        unique,
+    Name       TEXT,
+    Code       TEXT
 );
 
-CREATE TABLE "ArticleType" (
-                               "ArticleTypeId"	TEXT NOT NULL UNIQUE,
-                               "Desc"	TEXT NOT NULL,
-                               "Code"	TEXT NOT NULL,
-                               "Year"	INTEGER NOT NULL,
-                               PRIMARY KEY("ArticleTypeId")
+create table Invoice
+(
+    InvoiceId  TEXT not null
+        primary key
+        unique,
+    Dt         TEXT not null,
+    CustomerId TEXT not null
+        references Customer
+            on delete cascade,
+    Total      NUMERIC default 0
 );
 
-CREATE TABLE "Customer" (
-                            "CustomerId"	TEXT NOT NULL UNIQUE,
-                            "Name"	TEXT,
-                            "Code"	TEXT,
-                            PRIMARY KEY("CustomerId")
+create table MachineType
+(
+    MachineTypeId TEXT not null
+        primary key
+        unique,
+    Desc          TEXT,
+    Code          TEXT,
+    Dt            TEXT,
+    Nr            TEXT,
+    Img           TEXT,
+    Axes          INTEGER,
+    Cnc           TEXT,
+    Note          INTEGER,
+    Spindles      INTEGER
 );
 
-CREATE TABLE "Invoice" (
-                           "InvoiceId"	TEXT NOT NULL UNIQUE,
-                           "Dt"	TEXT NOT NULL,
-                           "CustomerId"	TEXT NOT NULL,
-                           "Total"	NUMERIC DEFAULT 0,
-                           FOREIGN KEY("CustomerId") REFERENCES "Customer"("CustomerId") ON DELETE CASCADE,
-                           PRIMARY KEY("InvoiceId")
+create table ArticleMachineType
+(
+    ArticleMachineTypeId TEXT not null
+        primary key
+        unique,
+    ArticleId            TEXT not null
+        references Article
+            on delete cascade,
+    MachineTypeId        TEXT not null
+        references MachineType
+            on delete cascade,
+    Qta                  NUMERIC default 1
 );
 
-CREATE TABLE "InvoiceItem" (
-                               "InvoiceItemId"	TEXT NOT NULL UNIQUE,
-                               "Dt"	TEXT NOT NULL,
-                               "InvoiceId"	TEXT NOT NULL,
-                               "ArticleId"	TEXT,
-                               "MachineId"	TEXT,
-                               "Qta"	NUMERIC DEFAULT 1,
-                               PRIMARY KEY("InvoiceItemId"),
-                               FOREIGN KEY("InvoiceId") REFERENCES "Invoice"("InvoiceId") on delete cascade,
-                               FOREIGN KEY("MachineId") REFERENCES "Machine"("MachineId") on delete cascade,
-                               FOREIGN KEY("ArticleId") REFERENCES "Article"("ArticleId") on delete cascade
+create table Machine
+(
+    MachineId       TEXT    not null
+        primary key
+        unique,
+    Nr              INTEGER not null,
+    Year            INTEGER not null,
+    Code            TEXT    not null,
+    Desc            TEXT,
+    Img             TEXT,
+    Doc             TEXT,
+    MachineTypeId   TEXT    not null
+        references MachineType,
+    BasePrice       NUMERIC,
+    Note            TEXT,
+    ProductionOrder TEXT,
+    Address         TEXT,
+    DtDelivery      TEXT,
+    DtAcceptance    TEXT,
+    DtEndWarranty   TEXT,
+    DtStartWarranty TEXT
 );
 
-CREATE TABLE "Machine" (
-                           "MachineId"	TEXT NOT NULL UNIQUE,
-                           "Nr"	INTEGER NOT NULL,
-                           "Year"	INTEGER NOT NULL,
-                           "Code"	TEXT NOT NULL,
-                           "Desc"	TEXT,
-                           "Img"	TEXT,
-                           "Doc"	TEXT,
-                           "MachineTypeId"	TEXT NOT NULL,
-                           "InvoiceItemId"	TEXT,
-                           "BasePrice"	NUMERIC,
-                           "Note"	TEXT,
-                           "ProductionOrder"	TEXT,
-                           "Address"	TEXT,
-                           "DtDelivery"	TEXT,
-                           "DtAcceptance"	TEXT,
-                           "DtEndWarranty"	TEXT,
-                           "DtStartWarranty"	TEXT,
-                           PRIMARY KEY("MachineId"),
-                           FOREIGN KEY("InvoiceItemId") REFERENCES "Invoice"("InvoiceId") ON DELETE CASCADE,
-                           FOREIGN KEY("MachineTypeId") REFERENCES "MachineType"("MachineTypeId")
+create table ArticleMachine
+(
+    ArticleMachineId TEXT not null
+        primary key
+        unique,
+    MachineId        TEXT not null
+        references Machine
+            on delete cascade,
+    ArticleId        TEXT not null
+        references Article
+            on delete cascade,
+    Qta              NUMERIC default 1,
+    Note             TEXT
 );
 
-CREATE TABLE "MachineType" (
-                               "MachineTypeId"	TEXT NOT NULL UNIQUE,
-                               "Desc"	TEXT,
-                               "Code"	TEXT,
-                               "Dt"	TEXT,
-                               "Nr"	TEXT,
-                               "Img"	TEXT,
-                               "Axes"	INTEGER,
-                               "Cnc"	TEXT,
-                               "Note"	INTEGER,
-                               "Spindles"	INTEGER,
-                               UNIQUE("Code","Dt"),
-                               PRIMARY KEY("MachineTypeId")
+create table InvoiceItem
+(
+    InvoiceItemId TEXT not null
+        primary key
+        unique,
+    Dt            TEXT not null,
+    InvoiceId     TEXT not null
+        references Invoice
+            on delete cascade,
+    ArticleId     TEXT
+        references Article
+            on delete cascade,
+    MachineId     TEXT
+        references Machine
+            on delete cascade,
+    Qta           NUMERIC default 1
 );
+

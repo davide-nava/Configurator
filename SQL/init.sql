@@ -458,7 +458,7 @@ insert into Article (ArticleId, Img, Doc, Code, Name, "Desc", ArticleTypeId, Bas
 
 -- ArticleArticleGroupType
 insert into ArticleArticleGroupType (ArticleArticleGroupTypeId, ArticleGroupTypeId, ArticleId, Qta) values ('8526DBD4-E251-4BF7-8C49-8A26A0E7E15D', '8D4487B6-62F4-40A4-9A6E-F36994B4BBFE', 'D116523F-59A9-4D95-8C5E-5B841CBDF938' , 1);
-insert into ArticleArticleGroupType (ArticleArticleGroupTypeId, ArticleGroupTypeId, ArticleId, Qta) values ('FCE6151A-0209-4422-830B-C47DF64A09E0', 'D8997238-1EB2-4F3F-8EC7-9FC2E29C492B', 'D116523F-59A9-4D95-8C5E-5B841CBDF938' , 1);
+insert into ArticleArticleGroupType (ArticleArticleGroupTypeId, ArticleGroupTypeId, ArticleId, Qta) values ('FCE6151A-0209-4422-830B-C47DF64A09E0', '8D4487B6-62F4-40A4-9A6E-F36994B4BBFE', 'D116523F-59A9-4D95-8C5E-5B841CBDF938' , 1);
 insert into ArticleArticleGroupType (ArticleArticleGroupTypeId, ArticleGroupTypeId, ArticleId, Qta) values ('558C3FA7-C15B-4F50-9D01-B63EC092E852', '4BC968E3-BA37-4F6F-B6E2-F3256054EA3B', 'D116523F-59A9-4D95-8C5E-5B841CBDF938' , 1);
 insert into ArticleArticleGroupType (ArticleArticleGroupTypeId, ArticleGroupTypeId, ArticleId, Qta) values ('4FBEB058-EF71-4558-B72A-7980F55748DC', '43B1B3C5-6C14-4BFE-A37B-23ABEE8282A1', '933D51EB-5C7F-4AB5-BAB3-6EF59425E482' , 1);
 insert into ArticleArticleGroupType (ArticleArticleGroupTypeId, ArticleGroupTypeId, ArticleId, Qta) values ('24AC5BE6-B825-45B6-8DFB-378F47BE663F', '209C9A6F-EBAA-4EDA-ADB2-848764C0CC25', '5F13E111-AA1D-47B8-A1E3-58D75A8F4D6A' , 1);
