@@ -1,15 +1,19 @@
 package com.configurator.Services;
 
+import com.configurator.Interfaces.ICustomerService;
+
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
-public class InvoiceItemService extends BaseService implements IInvoiceItemService{
- 
-    public static int save(User u) throws SQLException{
+public class CustomerService  extends BaseService  implements ICustomerService {
+
+
+    public static int save(User u) {
         int status = 0;
         try {
             Connection con = getConnection();
@@ -20,13 +24,13 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
             ps.setString(4, u.getSex());
             ps.setString(5, u.getCountry());
             status = ps.executeUpdate();
-    } catch (SQLException exception) {
-            printSQLException(exception);
+        } catch (Exception e) {
+            System.out.println(e);
         }
         return status;
     }
 
-    public static int update(User u) throws SQLException{
+    public static int update(User u) {
         int status = 0;
         try {
             Connection con = getConnection();
@@ -38,27 +42,27 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
             ps.setString(5, u.getCountry());
             ps.setInt(6, u.getId());
             status = ps.executeUpdate();
-     } catch (SQLException exception) {
-            printSQLException(exception);
+        } catch (Exception e) {
+            System.out.println(e);
         }
         return status;
     }
 
-    public static int delete(User u)throws SQLException {
+    public static int delete(User u) {
         int status = 0;
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement("delete from register where id=?");
             ps.setInt(1, u.getId());
             status = ps.executeUpdate();
-   } catch (SQLException exception) {
-            printSQLException(exception);
+        } catch (Exception e) {
+            System.out.println(e);
         }
 
         return status;
     }
 
-    public static List<User> getAllRecords()throws SQLException {
+    public static List<User> getAllRecords() {
         List<User> list = new ArrayList<User>();
 
         try {
@@ -75,13 +79,13 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
                 u.setCountry(rs.getString("country"));
                 list.add(u);
             }
-   } catch (SQLException exception) {
-            printSQLException(exception);
+        } catch (Exception e) {
+            System.out.println(e);
         }
         return list;
     }
 
-    public static User getRecordById(int id) throws SQLException{
+    public static User getRecordById(int id) {
         User u = null;
         try {
             Connection con = getConnection();
@@ -97,9 +101,54 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
                 u.setSex(rs.getString("sex"));
                 u.setCountry(rs.getString("country"));
             }
-      } catch (SQLException exception) {
-            printSQLException(exception);
+        } catch (Exception e) {
+            System.out.println(e);
         }
         return u;
+    }
+
+    @Override
+    public ICustomerService set(ICustomerService val) {
+
+
+        Class.forName("org.sqlite.JDBC");
+        Connection conn =
+                DriverManager.getConnection("jdbc:sqlite:/DB/configurator.db");
+        Statement stat = conn.createStatement();
+
+        ResultSet rs = stat.executeQuery("select * from User;");
+
+        while (rs.next()) {
+            out.println("<tr>");
+            out.println("<td>" + rs.getString("UserId") + "</td>");
+            out.println("<td>" + rs.getString("Name") + "</td>");
+            out.println("</tr>");
+        }
+
+        rs.close();
+        conn.close();
+
+
+
+    }
+
+    @Override
+    public List<ICustomerService> get() {
+        return null;
+    }
+
+    @Override
+    public ICustomerService get(UUID id) {
+        return null;
+    }
+
+    @Override
+    public void delete(ICustomerService val) {
+
+    }
+
+    @Override
+    public void delete(UUID id) {
+
     }
 }

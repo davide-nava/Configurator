@@ -1,9 +1,10 @@
 package com.configurator.Entities;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class ArticleGroupTypeEntity {
-
+public class ArticleGroupTypeViewModel implements Serializable{
+private static final long serialVersionUID = 1L;
     private UUID articleGroupTypeId = UUID.randomUUID();
     private String desc = "";
     private String code = "";

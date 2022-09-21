@@ -3,13 +3,16 @@ package com.configurator.Services;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.SQLException;on;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InvoiceItemService extends BaseService implements IInvoiceItemService{
+import com.configurator.Interfaces.IArticleService;
+
+public class ArticleService extends BaseService implements IArticleService {
  
-    public static int save(User u) throws SQLException{
+
+    public static int save(User u)  throws SQLException {
         int status = 0;
         try {
             Connection con = getConnection();
@@ -26,7 +29,7 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
         return status;
     }
 
-    public static int update(User u) throws SQLException{
+    public static int update(User u) throws SQLException  {
         int status = 0;
         try {
             Connection con = getConnection();
@@ -38,13 +41,13 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
             ps.setString(5, u.getCountry());
             ps.setInt(6, u.getId());
             status = ps.executeUpdate();
-     } catch (SQLException exception) {
+   } catch (SQLException exception) {
             printSQLException(exception);
         }
         return status;
     }
 
-    public static int delete(User u)throws SQLException {
+    public static int delete(User u) throws SQLException  {
         int status = 0;
         try {
             Connection con = getConnection();
@@ -58,7 +61,7 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
         return status;
     }
 
-    public static List<User> getAllRecords()throws SQLException {
+    public static List<User> getAllRecords() throws SQLException  {
         List<User> list = new ArrayList<User>();
 
         try {
@@ -81,7 +84,7 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
         return list;
     }
 
-    public static User getRecordById(int id) throws SQLException{
+    public static User getRecordById(int id)  throws SQLException {
         User u = null;
         try {
             Connection con = getConnection();
@@ -97,7 +100,7 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
                 u.setSex(rs.getString("sex"));
                 u.setCountry(rs.getString("country"));
             }
-      } catch (SQLException exception) {
+   } catch (SQLException exception) {
             printSQLException(exception);
         }
         return u;

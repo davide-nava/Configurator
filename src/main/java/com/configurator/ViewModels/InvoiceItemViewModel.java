@@ -1,10 +1,11 @@
 package com.configurator.Entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
-public class InvoiceItemEntity {
-
+public class InvoiceItemViewModel implements Serializable{
+private static final long serialVersionUID = 1L;
     private UUID invoiceItemId = UUID.randomUUID();
     private UUID invoiceId = UUID.randomUUID();
     private UUID articleId = UUID.randomUUID();

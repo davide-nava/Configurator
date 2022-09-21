@@ -1,9 +1,10 @@
 package com.configurator.Entities;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class CustomerEntity {
-
+public class CustomerViewModel implements Serializable {
+private static final long serialVersionUID = 1L;
     private UUID customerId = UUID.randomUUID();
     private String name = "";
     private String code = "";

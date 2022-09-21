@@ -1,10 +1,11 @@
 package com.configurator.Entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
-public class MachineEntity {
-
+public class MachineViewModel implements Serializable{
+private static final long serialVersionUID = 1L;
     private UUID machineId = UUID.randomUUID();
     private UUID machineTypeId = UUID.randomUUID();
     private String code = "";

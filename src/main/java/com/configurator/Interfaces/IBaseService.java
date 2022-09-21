@@ -1,17 +1,8 @@
-package com.configurator.Services;
+package com.configurator.Interfaces;
 
-import java.sql.*; 
-import org.sqlite.*; 
-public class BaseService {
+import java.sql.Connection;
 
-	public static Connection getConnection() {
-		Connection conn = null;
-		try {
-			Class.forName("org.sqlite.JDBC");
-			  conn = DriverManager.getConnection("jdbc:sqlite:/DB/configurator.db");
-		} catch (Exception e) {
-			conn = null;
-		}
-		return conn;
-	}
+public interface  IBaseService {
+
+    public   Connection getConnection() ;
 }

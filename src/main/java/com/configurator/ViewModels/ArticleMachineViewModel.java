@@ -1,9 +1,10 @@
 package com.configurator.Entities;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class ArticleMachineEntity {
-
+public class ArticleMachineViewModel implements Serializable{
+private static final long serialVersionUID = 1L;
     private UUID articleMachineId = UUID.randomUUID();
     private UUID machineId = UUID.randomUUID();
     private UUID articleId = UUID.randomUUID();
