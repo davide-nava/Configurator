@@ -1,6 +1,7 @@
 package com.configurator.Entities;
 
 import java.util.UUID;
+import com.configurator.Interfaces.IBaseEntity;
 
 public class ArticleGroupTypeEntity implements IBaseEntity {
 
@@ -9,15 +10,8 @@ public class ArticleGroupTypeEntity implements IBaseEntity {
     private String code = "";
     private String productionOrder = "";
 
-    @Override
-    public String getPk() {
-        return "ArticleGroupTypeId";
-    }
-
-    @Override
-    public String getTable() {
-        return "ArticleGroupType";
-    }
+    public static   final  String PK =   "ArticleGroupTypeId";
+    public  static final  String TABLE = "ArticleGroupType";
 
     public ArticleGroupTypeEntity(String desc, String code, String productionOrder) {
         this.desc = desc;

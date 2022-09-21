@@ -8,9 +8,11 @@ import java.util.List;
 import java.util.UUID;
 
 import com.configurator.Entites.InvoiceItemEntity;
+import com.configurator.Entities.ArticleArticleGroupTypeEntity;
+import com.configurator.Entities.InvoiceItemEntity;
 import com.configurator.Interfaces.IInvoiceItemService;
 
-public class InvoiceItemService extends BaseService implements IInvoiceItemService, IBaseService {
+public class InvoiceItemService extends BaseService implements IInvoiceItemService {
 
     @Override
     public void set(InvoiceItemEntity val) {
@@ -119,54 +121,12 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
             return result;
         }
     }
-
-    @Override
-    public void delete(InvoiceItemEntity val) {
-
-        try {
-            Connection con = getConnection();
-            PreparedStatement ps = con
-                    .prepareStatement("delete from ArticleArticleGroupType where ArticleArticleGroupTypeId=? ");
-            // PreparedStatement ps = con.prepareStatement("update register set
-            // name=?,password=?,email=?,sex=?,country=? where id=?");
-            ps.setString(1, val.getArticleArticleGroupTypeId().toString());
-
-            ps.executeUpdate();
-
-        } catch (SQLException exception) {
-            printSQLException(exception);
-        } finally {
-            if (rs != null)
-                rs.close();
-
-            if (con != null)
-                con.close();
-
-            return result;
-        }
-    }
-
     @Override
     public void delete(UUID id) {
-
         try {
-            Connection con = getConnection();
-            PreparedStatement ps = con
-                    .prepareStatement("delete from ArticleArticleGroupType where ArticleArticleGroupTypeId=? ");
-            ps.setString(1, id.toString());
-
-            ps.executeUpdate();
-
+            deleteExecute( InvoiceItemEntity.TABLE,InvoiceItemEntity.PK,  id);
         } catch (SQLException exception) {
             printSQLException(exception);
-        } finally {
-            if (rs != null)
-                rs.close();
-
-            if (con != null)
-                con.close();
-
-            return result;
         }
     }
 }

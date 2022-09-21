@@ -1,10 +1,7 @@
-package com.configurator.Entities;
+package com.configurator.Interfaces;
 
 import java.util.UUID;
 
-interface IBaseEntity {
-    public String getPk();
-
-    public String getTable();
+public  interface IBaseEntity {
 
 }

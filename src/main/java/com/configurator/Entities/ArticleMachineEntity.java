@@ -1,6 +1,7 @@
 package com.configurator.Entities;
 
 import java.util.UUID;
+import com.configurator.Interfaces.IBaseEntity;
 
 public class ArticleMachineEntity implements IBaseEntity {
 
@@ -10,15 +11,10 @@ public class ArticleMachineEntity implements IBaseEntity {
     private float qta = 1;
     private String note = "";
 
-    @Override
-    public String getPk() {
-        return "ArticleMachineId";
-    }
+    public static   final  String PK =   "ArticleMachineId";
+    public  static final  String TABLE = "ArticleMachine";
 
-    @Override
-    public String getTable() {
-        return "ArticleMachine";
-    }
+
 
     public ArticleMachineEntity(UUID articleMachineId, UUID machineId, UUID articleId, float qta, String note) {
 

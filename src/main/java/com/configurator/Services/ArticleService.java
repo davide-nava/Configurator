@@ -7,10 +7,11 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
+import com.configurator.Entities.ArticleArticleGroupTypeEntity;
 import com.configurator.Entities.ArticleEntity;
 import com.configurator.Interfaces.IArticleService;
 
-public class ArticleService extends BaseService implements IArticleService, IBaseService {
+public class ArticleService extends BaseService implements IArticleService {
 
     @Override
     public void set(ArticleEntity val) {
@@ -121,46 +122,11 @@ public class ArticleService extends BaseService implements IArticleService, IBas
     }
 
     @Override
-    public void delete(ArticleEntity val) {
-
-        try {
-            Connection con = getConnection();
-            PreparedStatement ps = con.prepareStatement("delete from Article where ArticleId=? ");
-            ps.setString(1, val.getArticleId().toString());
-
-            ps.executeUpdate();
-
-        } finally {
-            if (rs != null)
-                rs.close();
-
-            if (con != null)
-                con.close();
-
-            return result;
-        }
-    }
-
-    @Override
     public void delete(UUID id) {
-
         try {
-            Connection con = getConnection();
-            PreparedStatement ps = con.prepareStatement("delete from Article where ArticleId=? ");
-            ps.setString(1, id.toString());
-
-            ps.executeUpdate();
-
+            deleteExecute( ArticleEntity.TABLE,ArticleEntity.PK,  id);
         } catch (SQLException exception) {
             printSQLException(exception);
-        } finally {
-            if (rs != null)
-                rs.close();
-
-            if (con != null)
-                con.close();
-
-            return result;
         }
     }
 }

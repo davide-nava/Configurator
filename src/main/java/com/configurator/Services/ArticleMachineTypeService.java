@@ -7,9 +7,11 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
+import com.configurator.Entities.ArticleArticleGroupTypeEntity;
+import com.configurator.Entities.ArticleMachineEntity;
 import com.configurator.Entities.ArticleMachineTypeEntity;
 
-public class ArticleMachineTypeService extends BaseService implements IArticleMachineTypeService, IBaseService {
+public class ArticleMachineTypeService extends BaseService implements IArticleMachineTypeService {
 
     @Override
     public void set(ArticleMachineTypeEntity val) {
@@ -119,50 +121,11 @@ public class ArticleMachineTypeService extends BaseService implements IArticleMa
     }
 
     @Override
-    public void delete(ArticleMachineTypeEntity val) {
-
-        try {
-            Connection con = getConnection();
-            PreparedStatement ps = con
-                    .prepareStatement("delete from ArticleArticleGroupType where ArticleArticleGroupTypeId=? ");
-            // PreparedStatement ps = con.prepareStatement("update register set
-            // name=?,password=?,email=?,sex=?,country=? where id=?");
-            ps.setString(1, val.getArticleArticleGroupTypeId().toString());
-
-            ps.executeUpdate();
-
-        } catch (SQLException exception) {
-            printSQLException(exception);
-        } finally {
-            if (rs != null)
-                rs.close();
-
-            if (con != null)
-                con.close();
-
-            return result;
-        }
-    }
-
-    @Override
     public void delete(UUID id) {
-
         try {
-            Connection con = getConnection();
-            PreparedStatement ps = con
-                    .prepareStatement("delete from ArticleArticleGroupType where ArticleArticleGroupTypeId=? ");
-            ps.setString(1, id.toString());
-
-            ps.executeUpdate();
-
+            deleteExecute( ArticleMachineTypeEntity.TABLE,ArticleMachineTypeEntity.PK,  id);
         } catch (SQLException exception) {
             printSQLException(exception);
-        } finally {
-            if (rs != null)
-                rs.close();
-
-            if (con != null)
-                con.close();
         }
     }
 }

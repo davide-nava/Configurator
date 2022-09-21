@@ -9,8 +9,9 @@ import java.util.UUID;
 
 import com.configurator.Entities.ArticleArticleGroupTypeEntity;
 import com.configurator.Entities.ArticleGroupTypeEntity;
+import com.configurator.Entities.ArticleMachineEntity;
 
-public class ArticleMachineService extends BaseService implements IArticleMachineService, IBaseService {
+public class ArticleMachineService extends BaseService implements IArticleMachineService {
 
     @Override
     public void set(ArticleGroupTypeEntity val) {
@@ -119,48 +120,11 @@ public class ArticleMachineService extends BaseService implements IArticleMachin
     }
 
     @Override
-    public void delete(ArticleGroupTypeEntity val) {
-
-        try {
-            Connection con = getConnection();
-            PreparedStatement ps = con
-                    .prepareStatement("delete from ArticleArticleGroupType where ArticleArticleGroupTypeId=? ");
-            // PreparedStatement ps = con.prepareStatement("update register set
-            // name=?,password=?,email=?,sex=?,country=? where id=?");
-            ps.setString(1, val.getArticleArticleGroupTypeId().toString());
-
-            ps.executeUpdate();
-
-        } catch (SQLException exception) {
-            printSQLException(exception);
-        } finally {
-            if (rs != null)
-                rs.close();
-
-            if (con != null)
-                con.close();
-        }
-    }
-
-    @Override
     public void delete(UUID id) {
-
         try {
-            Connection con = getConnection();
-            PreparedStatement ps = con
-                    .prepareStatement("delete from ArticleArticleGroupType where ArticleArticleGroupTypeId=? ");
-            ps.setString(1, id.toString());
-
-            ps.executeUpdate();
-
+            deleteExecute( ArticleMachineEntity.TABLE,ArticleMachineEntity.PK,  id);
         } catch (SQLException exception) {
             printSQLException(exception);
-        } finally {
-            if (rs != null)
-                rs.close();
-
-            if (con != null)
-                con.close();
         }
     }
 }

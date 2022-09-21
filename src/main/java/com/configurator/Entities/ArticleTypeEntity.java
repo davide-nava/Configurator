@@ -1,6 +1,7 @@
 package com.configurator.Entities;
 
 import java.util.UUID;
+import com.configurator.Interfaces.IBaseEntity;
 
 public class ArticleTypeEntity implements IBaseEntity {
 
@@ -9,15 +10,10 @@ public class ArticleTypeEntity implements IBaseEntity {
     private String code = "";
     private int year = 2022;
 
-    @Override
-    public String getPk() {
-        return "ArticleTypeId";
-    }
+    public static   final  String PK =   "ArticleTypeId";
+    public  static final  String TABLE = "ArticleType";
 
-    @Override
-    public String getTable() {
-        return "ArticleType";
-    }
+
 
     public ArticleTypeEntity(UUID articleTypeId, String desc, String code, int year) {
         this.desc = desc;

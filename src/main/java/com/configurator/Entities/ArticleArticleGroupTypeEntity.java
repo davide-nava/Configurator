@@ -1,5 +1,7 @@
 package com.configurator.Entities;
 
+import com.configurator.Interfaces.IBaseEntity;
+
 import java.util.UUID;
 
 public class ArticleArticleGroupTypeEntity implements IBaseEntity {
@@ -9,15 +11,10 @@ public class ArticleArticleGroupTypeEntity implements IBaseEntity {
     private UUID articleId = UUID.randomUUID();
     private float qta = 1;
 
-    @Override
-    public String getPk() {
-        return "ArticleArticleGroupTypeId";
-    }
+    public static   final  String PK =   "ArticleArticleGroupTypeId";
+    public  static final  String TABLE = "ArticleArticleGroupType";
 
-    @Override
-    public String getTable() {
-        return "ArticleArticleGroupType";
-    }
+    public ArticleArticleGroupTypeEntity( ) {}
 
     public ArticleArticleGroupTypeEntity(UUID articleArticleGroupTypeId, UUID articleGroupTypeId, UUID articleId,
             float qta) {

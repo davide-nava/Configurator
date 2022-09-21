@@ -8,10 +8,11 @@ import java.util.List;
 import java.util.UUID;
 
 import com.configurator.Entities.ArticleArticleGroupTypeEntity;
+import com.configurator.Entities.ArticleTypeEntity;
 import com.configurator.Interfaces.IArticleTypeService;
 import com.javatpoint.bean.ArticleTypeEntity;
 
-public class ArticleTypeService extends BaseService implements IArticleTypeService, IBaseService {
+public class ArticleTypeService extends BaseService implements IArticleTypeService {
 
     @Override
     public void set(ArticleTypeEntity val) {
@@ -122,54 +123,11 @@ public class ArticleTypeService extends BaseService implements IArticleTypeServi
     }
 
     @Override
-    public void delete(ArticleTypeEntity val) {
-
-        try {
-            Connection con = getConnection();
-            PreparedStatement ps = con
-                    .prepareStatement("delete from ArticleArticleGroupType where ArticleArticleGroupTypeId=? ");
-            // PreparedStatement ps = con.prepareStatement("update register set
-            // name=?,password=?,email=?,sex=?,country=? where id=?");
-            ps.setString(1, val.getArticleArticleGroupTypeId().toString());
-
-            ps.executeUpdate();
-
-        } catch (SQLException exception) {
-            printSQLException(exception);
-        } finally
-
-        {
-            if (rs != null)
-                rs.close();
-
-            if (con != null)
-                con.close();
-
-            return result;
-        }
-    }
-
-    @Override
     public void delete(UUID id) {
-
         try {
-            Connection con = getConnection();
-            PreparedStatement ps = con
-                    .prepareStatement("delete from ArticleArticleGroupType where ArticleArticleGroupTypeId=? ");
-            ps.setString(1, id.toString());
-
-            ps.executeUpdate();
-
+            deleteExecute( ArticleTypeEntity.TABLE,ArticleTypeEntity.PK,  id);
         } catch (SQLException exception) {
             printSQLException(exception);
-        } finally {
-            if (rs != null)
-                rs.close();
-
-            if (con != null)
-                con.close();
-
-            return result;
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.configurator.Entities;
 
 import java.util.UUID;
+import com.configurator.Interfaces.IBaseEntity;
 
 public class CustomerEntity implements IBaseEntity {
 
@@ -8,15 +9,10 @@ public class CustomerEntity implements IBaseEntity {
     private String name = "";
     private String code = "";
 
-    @Override
-    public String getPk() {
-        return "CustomerId";
-    }
+    public static   final  String PK =   "CustomerId";
+    public  static final  String TABLE = "Customer";
 
-    @Override
-    public String getTable() {
-        return "Customer";
-    }
+
 
     public CustomerEntity(UUID customerId, String code, String name) {
 

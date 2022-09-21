@@ -1,12 +1,12 @@
 package com.configurator.Services;
 
-import com.configurator.Interfaces.IBaseService;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.UUID;
 
-public class BaseService implements IBaseService {
+public abstract class BaseService   {
 
 	private static String connUrl = "jdbc:sqlite:/DB/configurator.db";
 
@@ -26,38 +26,18 @@ public class BaseService implements IBaseService {
 		return conn;
 	}
 
-	protected void updateExecute(String sql, PreparedStatement ps) {
-		Connection con = null;
-		ResultSet rs = null;
 
-		try {
-			con = getConnection();
-
-			ps.executeUpdate();
-
-		} catch (SQLException exception) {
-			printSQLException(exception);
-		} finally {
-			if (rs != null)
-				rs.close();
-
-			if (con != null)
-				con.close();
-		}
-	}
-
-	protected void deleteExecute(String sql, UUID id) {
+	protected void deleteExecute(String table, String pk , UUID id) throws SQLException {
 		Connection con = null;
 
 		try {
 			con = getConnection();
-			PreparedStatement ps = con.prepareStatement(sql);
+			PreparedStatement ps = con.prepareStatement("delete from " + table + " where " + pk	 + "=? ");
 			ps.setString(1, id.toString());
 
 			ps.executeUpdate();
-
-		} catch (SQLException exception) {
-			printSQLException(exception);
+		} catch (SQLException ex) {
+			throw ex;
 		} finally {
 			if (con != null)
 				con.close();
@@ -80,4 +60,5 @@ public class BaseService implements IBaseService {
 		}
 	}
 
+	public abstract void delete(UUID id);
 }

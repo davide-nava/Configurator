@@ -2,6 +2,7 @@ package com.configurator.Entities;
 
 import java.util.Date;
 import java.util.UUID;
+import com.configurator.Interfaces.IBaseEntity;
 
 public class MachineTypeEntity implements IBaseEntity {
 
@@ -17,15 +18,10 @@ public class MachineTypeEntity implements IBaseEntity {
     private String note = "";
     private int spidles = 1;
 
-    @Override
-    public String getPk() {
-        return "MachineTypeId";
-    }
 
-    @Override
-    public String getTable() {
-        return "MachineType";
-    }
+    public static   final  String PK =   "MachineTypeId";
+    public  static final  String TABLE = "MachineType";
+
 
     public MachineTypeEntity(UUID machineTypeId, String name, String desc, String code, String nr, Date dt, String img,
             int axes, String cnc, String note, int spidles) {

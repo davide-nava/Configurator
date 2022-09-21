@@ -9,19 +9,17 @@ import java.util.UUID;
 
 import com.configurator.Entities.ArticleArticleGroupTypeEntity;
 import com.configurator.Interfaces.IArticleArticleGroupTypeService;
-import com.configurator.Interfaces.IBaseService;
 
 public class ArticleArticleGroupTypeService extends BaseService
-        implements IArticleArticleGroupTypeService, IBaseService {
+        implements IArticleArticleGroupTypeService {
 
     @Override
-    public void set(ArticleArticleGroupTypeEntity val) {
+    public void set(ArticleArticleGroupTypeEntity val) throws SQLException {
         Connection con = null;
-        ResultSet rs = null;
 
         try {
-            con = getConnection();
-            ps = con.prepareStatement(
+              con = getConnection();
+            PreparedStatement  ps = con.prepareStatement(
                     "update ArticleArticleGroupType set ArticleArticleGroupTypeId=?, ArticleGroupTypeId=?, ArticleId=?, Qta=? where ArticleArticleGroupTypeId=?");
             ps.setString(1, val.getArticleArticleGroupTypeId().toString());
             ps.setString(2, val.getArticleGroupTypeId().toString());
@@ -34,46 +32,42 @@ public class ArticleArticleGroupTypeService extends BaseService
         } catch (SQLException exception) {
             printSQLException(exception);
         } finally {
-            if (rs != null)
-                rs.close();
-
             if (con != null)
                 con.close();
         }
     }
 
     @Override
-    public ArticleArticleGroupTypeEntity loadFromResultSet(ResultSet val) {
+    public ArticleArticleGroupTypeEntity loadFromResultSet(ResultSet rs) {
         ArticleArticleGroupTypeEntity result = null;
+
         try {
             if (rs.next()) {
                 result = new ArticleArticleGroupTypeEntity(UUID.fromString(rs.getString("articleArticleGroupTypeId")),
                         UUID.fromString(rs.getString("articleGroupTypeId")), UUID.fromString(rs.getString("articleId")),
                         rs.getFloat("qta"));
             }
-
-        } catch (SQLException exception) {
-            printSQLException(exception);
+        } catch (Exception ex) {
+            throw ex;
         } finally {
             return result;
         }
     }
 
     @Override
-    public List<ArticleArticleGroupTypeEntity> get() {
+    public List<ArticleArticleGroupTypeEntity> get() throws SQLException {
         List<ArticleArticleGroupTypeEntity> result = null;
         Connection con = null;
         ResultSet rs = null;
 
         try {
             con = getConnection();
-            PreparedStatement ps = con.prepareStatement(
-                    "select ArticleArticleGroupTypeId, ArticleGroupTypeId, ArticleId, Qta from  ArticleArticleGroupType");
+            PreparedStatement ps = con.prepareStatement(                    "select ArticleArticleGroupTypeId, ArticleGroupTypeId, ArticleId, Qta from  ArticleArticleGroupType");
 
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                loadFromResultSet(res);
+                result.add(loadFromResultSet(rs));
             }
         } catch (SQLException exception) {
             printSQLException(exception);
@@ -89,7 +83,7 @@ public class ArticleArticleGroupTypeService extends BaseService
     }
 
     @Override
-    public ArticleArticleGroupTypeEntity get(UUID id) {
+    public ArticleArticleGroupTypeEntity get(UUID id) throws SQLException {
 
         ArticleArticleGroupTypeEntity result = null;
         Connection con = null;
@@ -104,7 +98,7 @@ public class ArticleArticleGroupTypeService extends BaseService
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                loadFromResultSet(res);
+                result = loadFromResultSet(rs);
             }
 
         } catch (SQLException exception) {
@@ -122,24 +116,10 @@ public class ArticleArticleGroupTypeService extends BaseService
 
     @Override
     public void delete(UUID id) {
-
         try {
-            Connection con = getConnection();
-            PreparedStatement ps = con
-                    .prepareStatement("delete from ArticleArticleGroupType where ArticleArticleGroupTypeId=? ");
-            ps.setString(1, id.toString());
-
-            ps.executeUpdate();
-
+            deleteExecute( ArticleArticleGroupTypeEntity.TABLE,ArticleArticleGroupTypeEntity.PK,  id);
         } catch (SQLException exception) {
             printSQLException(exception);
-        } finally {
-            if (rs != null)
-                rs.close();
-
-            if (con != null)
-                con.close();
         }
     }
-
 }

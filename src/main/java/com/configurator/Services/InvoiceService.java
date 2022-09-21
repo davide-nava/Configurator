@@ -7,9 +7,11 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
+import com.configurator.Entities.ArticleArticleGroupTypeEntity;
+import com.configurator.Entities.InvoiceEntity;
 import com.javatpoint.bean.InvoiceEntity;
 
-public class InvoiceService extends BaseService implements IInvoiceService, IBaseService {
+public class InvoiceService extends BaseService implements IInvoiceService {
 
     @Override
     public void set(InvoiceEntity val) {
@@ -120,52 +122,11 @@ public class InvoiceService extends BaseService implements IInvoiceService, IBas
     }
 
     @Override
-    public void delete(InvoiceEntity val) {
-
-        try {
-            Connection con = getConnection();
-            PreparedStatement ps = con
-                    .prepareStatement("delete from ArticleArticleGroupType where ArticleArticleGroupTypeId=? ");
-            // PreparedStatement ps = con.prepareStatement("update register set
-            // name=?,password=?,email=?,sex=?,country=? where id=?");
-            ps.setString(1, val.getArticleArticleGroupTypeId().toString());
-
-            ps.executeUpdate();
-
-        } catch (SQLException exception) {
-            printSQLException(exception);
-        } finally {
-            if (rs != null)
-                rs.close();
-
-            if (con != null)
-                con.close();
-
-            return result;
-        }
-    }
-
-    @Override
     public void delete(UUID id) {
-
         try {
-            Connection con = getConnection();
-            PreparedStatement ps = con
-                    .prepareStatement("delete from ArticleArticleGroupType where ArticleArticleGroupTypeId=? ");
-            ps.setString(1, id.toString());
-
-            ps.executeUpdate();
-
+            deleteExecute( InvoiceEntity.TABLE,InvoiceEntity.PK,  id);
         } catch (SQLException exception) {
             printSQLException(exception);
-        } finally {
-            if (rs != null)
-                rs.close();
-
-            if (con != null)
-                con.close();
-
-            return result;
         }
     }
 }

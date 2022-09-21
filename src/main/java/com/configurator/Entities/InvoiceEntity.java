@@ -2,6 +2,7 @@ package com.configurator.Entities;
 
 import java.util.Date;
 import java.util.UUID;
+import com.configurator.Interfaces.IBaseEntity;
 
 public class InvoiceEntity implements IBaseEntity {
 
@@ -10,15 +11,11 @@ public class InvoiceEntity implements IBaseEntity {
     private Date dt;
     private float total;
 
-    @Override
-    public String getPk() {
-        return "InvoiceId";
-    }
 
-    @Override
-    public String getTable() {
-        return "Invoice";
-    }
+    public static   final  String PK =   "InvoiceId";
+    public  static final  String TABLE = "Invoice";
+
+
 
     public InvoiceEntity(UUID invoiceId, UUID customerId, Date dt, float total) {
 
