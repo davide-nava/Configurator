@@ -1,28 +1,15 @@
 package com.configurator.Entities;
 
 import java.util.UUID;
-import com.configurator.Interfaces.IBaseEntity;
 
-public class ArticleMachineTypeEntity implements IBaseEntity {
+public class ArticleMachineTypeEntity {
 
+    public static final String PK = "ArticleMachineTypeId";
+    public static final String TABLE = "ArticleMachineType";
     private UUID articleMachineTypeId = UUID.randomUUID();
     private UUID articleId = UUID.randomUUID();
     private UUID machineTypeId = UUID.randomUUID();
     private float qta = 1;
-
-    public static   final  String PK =   "ArticleMachineTypeId";
-    public  static final  String TABLE = "ArticleMachineType";
-
-
-
-
-    public ArticleMachineTypeEntity(UUID articleMachineTypeId, UUID articleId, UUID machineTypeId, float qta) {
-
-        this.articleMachineTypeId = articleMachineTypeId;
-        this.articleId = articleId;
-        this.machineTypeId = machineTypeId;
-        this.qta = qta;
-    }
 
     public UUID getArticleMachineTypeId() {
         return articleMachineTypeId;

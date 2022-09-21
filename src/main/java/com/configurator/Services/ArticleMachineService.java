@@ -1,5 +1,8 @@
 package com.configurator.Services;
 
+import com.configurator.Entities.ArticleMachineEntity;
+import com.configurator.Interfaces.IArticleMachineService;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,45 +10,73 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
-import com.configurator.Entities.ArticleArticleGroupTypeEntity;
-import com.configurator.Entities.ArticleGroupTypeEntity;
-import com.configurator.Entities.ArticleMachineEntity;
-
 public class ArticleMachineService extends BaseService implements IArticleMachineService {
 
     @Override
-    public void set(ArticleGroupTypeEntity val) {
+    public void update(ArticleMachineEntity val) throws SQLException {
+        Connection con = null;
+
         try {
-            Connection con = getConnection();
+            con = getConnection();
+
             PreparedStatement ps = con.prepareStatement(
-                    "update ArticleArticleGroupType set ArticleArticleGroupTypeId=?, ArticleGroupTypeId=?, ArticleId=?, Qta=? where ArticleArticleGroupTypeId=?");
-            ps.setString(1, val.getArticleArticleGroupTypeId().toString());
-            ps.setString(2, val.getArticleGroupTypeId().toString());
-            ps.setString(3, val.getArticleGroupTypeId().toString());
-            ps.setString(4, val.getArticleId().toString());
-            ps.setFloat(5, val.getQta());
+                    "update ArticleMachine set  MachineId=?, ArticleId=?, Qta=?, Note=? where ArticleMachineId=?");
+
+            ps.setString(1, val.getMachineId().toString());
+            ps.setString(2, val.getArticleId().toString());
+            ps.setFloat(3, val.getQta());
+            ps.setString(4, val.getNote());
+
+            ps.setString(5, val.getArticleMachineId().toString());
 
             ps.executeUpdate();
 
         } catch (SQLException exception) {
             printSQLException(exception);
         } finally {
-            if (rs != null)
-                rs.close();
-
             if (con != null)
                 con.close();
         }
     }
 
     @Override
-    public ArticleArticleGroupTypeEntity loadFromResultSet(ResultSet val) {
-        ArticleArticleGroupTypeEntity result = null;
+    public void insert(ArticleMachineEntity val) throws SQLException {
+        Connection con = null;
+
+        try {
+            con = getConnection();
+
+            PreparedStatement ps = con.prepareStatement(
+                    "insert into ArticleMachine (ArticleMachineId, MachineId, ArticleId, Qta, Note) values ( ?, ?,?, ?, ?)");
+
+            ps.setString(1, val.getArticleMachineId().toString());
+            ps.setString(2, val.getMachineId().toString());
+            ps.setString(3, val.getArticleId().toString());
+            ps.setFloat(4, val.getQta());
+            ps.setString(5, val.getNote());
+
+            ps.executeUpdate();
+
+        } catch (SQLException exception) {
+            printSQLException(exception);
+        } finally {
+            if (con != null)
+                con.close();
+        }
+    }
+
+    @Override
+    public ArticleMachineEntity loadFromResultSet(ResultSet rs) {
+        ArticleMachineEntity result = null;
         try {
             if (rs.next()) {
-                result = new ArticleArticleGroupTypeEntity(UUID.fromString(rs.getString("articleArticleGroupTypeId")),
-                        UUID.fromString(rs.getString("articleGroupTypeId")), UUID.fromString(rs.getString("articleId")),
-                        rs.getFloat("qta"));
+                result = new ArticleMachineEntity();
+
+                result.setArticleMachineId(UUID.fromString(rs.getString("ArticleMachineId")));
+                result.setMachineId(UUID.fromString(rs.getString("MachineId")));
+                result.setArticleId(UUID.fromString(rs.getString("ArticleId")));
+                result.setQta(rs.getFloat("Qta"));
+                result.setNote(rs.getString("Note"));
             }
 
         } catch (SQLException exception) {
@@ -56,20 +87,20 @@ public class ArticleMachineService extends BaseService implements IArticleMachin
     }
 
     @Override
-    public List<ArticleGroupTypeEntity> get() {
-        List<ArticleGroupTypeEntity> result = null;
+    public List<ArticleMachineEntity> get() throws SQLException {
+        List<ArticleMachineEntity> result = null;
+        Connection con = null;
+        ResultSet rs = null;
 
         try {
-            Connection con = getConnection();
+            con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "select ArticleArticleGroupTypeId, ArticleGroupTypeId, ArticleId, Qta from  ArticleArticleGroupType");
+                    "select * from  ArticleMachine");
 
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
 
             while (rs.next()) {
-                result.add(new ArticleGroupTypeEntity(UUID.fromString(rs.getString("articleArticleGroupTypeId")),
-                        UUID.fromString(rs.getString("articleGroupTypeId")), UUID.fromString(rs.getString("articleId")),
-                        rs.getFloat("qta")));
+                result.add(loadFromResultSet(rs));
             }
 
         } catch (SQLException exception) {
@@ -86,24 +117,23 @@ public class ArticleMachineService extends BaseService implements IArticleMachin
     }
 
     @Override
-    public ArticleGroupTypeEntity get(UUID id) {
+    public ArticleMachineEntity get(UUID id) throws SQLException {
 
-        ArticleGroupTypeEntity result = null;
+        ArticleMachineEntity result = null;
+        Connection con = null;
+        ResultSet rs = null;
 
         try {
-            Connection con = getConnection();
+            con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "select ArticleArticleGroupTypeId, ArticleGroupTypeId, ArticleId, Qta from  ArticleArticleGroupType where ArticleArticleGroupTypeId=? ");
-            // PreparedStatement ps = con.prepareStatement("update register set
-            // name=?,password=?,email=?,sex=?,country=? where id=?");
+                    "select * from ArticleMachine where ArticleMachineId=? ");
+
             ps.setString(1, id.toString());
 
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
 
             if (rs.next()) {
-                result = new ArticleArticleGroupTypeEntity(UUID.fromString(rs.getString("articleArticleGroupTypeId")),
-                        UUID.fromString(rs.getString("articleGroupTypeId")), UUID.fromString(rs.getString("articleId")),
-                        rs.getFloat("qta"));
+                result = loadFromResultSet(rs);
             }
 
         } catch (SQLException exception) {
@@ -122,7 +152,7 @@ public class ArticleMachineService extends BaseService implements IArticleMachin
     @Override
     public void delete(UUID id) {
         try {
-            deleteExecute( ArticleMachineEntity.TABLE,ArticleMachineEntity.PK,  id);
+            deleteExecute(ArticleMachineEntity.TABLE, ArticleMachineEntity.PK, id);
         } catch (SQLException exception) {
             printSQLException(exception);
         }

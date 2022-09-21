@@ -2,10 +2,11 @@ package com.configurator.Entities;
 
 import java.util.Date;
 import java.util.UUID;
-import com.configurator.Interfaces.IBaseEntity;
 
-public class MachineTypeEntity implements IBaseEntity {
+public class MachineTypeEntity {
 
+    public static final String PK = "MachineTypeId";
+    public static final String TABLE = "MachineType";
     private UUID machineTypeId = UUID.randomUUID();
     private String name = "";
     private String desc = "";
@@ -16,28 +17,7 @@ public class MachineTypeEntity implements IBaseEntity {
     private int axes = 1;
     private String cnc = "";
     private String note = "";
-    private int spidles = 1;
-
-
-    public static   final  String PK =   "MachineTypeId";
-    public  static final  String TABLE = "MachineType";
-
-
-    public MachineTypeEntity(UUID machineTypeId, String name, String desc, String code, String nr, Date dt, String img,
-            int axes, String cnc, String note, int spidles) {
-
-        this.machineTypeId = machineTypeId;
-        this.name = name;
-        this.desc = desc;
-        this.code = code;
-        this.nr = nr;
-        this.dt = dt;
-        this.img = img;
-        this.axes = axes;
-        this.cnc = cnc;
-        this.note = note;
-        this.spidles = spidles;
-    }
+    private int spindles = 1;
 
     public UUID getMachineTypeId() {
         return machineTypeId;
@@ -103,12 +83,12 @@ public class MachineTypeEntity implements IBaseEntity {
         this.cnc = cnc;
     }
 
-    public int getSpidles() {
-        return spidles;
+    public int getSpindles() {
+        return spindles;
     }
 
-    public void setSpidles(int spidles) {
-        this.spidles = spidles;
+    public void setSpindles(int spidles) {
+        this.spindles = spindles;
     }
 
     public int getAxes() {

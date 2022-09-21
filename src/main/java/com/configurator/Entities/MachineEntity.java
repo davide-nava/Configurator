@@ -2,10 +2,11 @@ package com.configurator.Entities;
 
 import java.util.Date;
 import java.util.UUID;
-import com.configurator.Interfaces.IBaseEntity;
 
-public class MachineEntity implements IBaseEntity {
+public class MachineEntity {
 
+    public static final String PK = "MachineId";
+    public static final String TABLE = "Machine";
     private UUID machineId = UUID.randomUUID();
     private UUID machineTypeId = UUID.randomUUID();
     private String code = "";
@@ -22,33 +23,6 @@ public class MachineEntity implements IBaseEntity {
     private int nr = 1;
     private int year = 2022;
     private float basePrice = 1;
-
-
-    public static   final  String PK =   "MachineId";
-    public  static final  String TABLE = "Machine";
-
-
-
-    public MachineEntity(UUID machineId, UUID machineTypeId, String code, String img, String desc, String doc,
-            String note, String productionOrder, String address, Date dtDelivery, Date dtAcceptance, Date dtEndWarranty,
-            Date dtStartWarranty, int nr, int year, float basePrice) {
-
-        this.machineId = machineId;
-        this.machineTypeId = machineTypeId;
-        this.img = img;
-        this.desc = desc;
-        this.doc = doc;
-        this.note = note;
-        this.productionOrder = productionOrder;
-        this.address = address;
-        this.dtDelivery = dtDelivery;
-        this.dtAcceptance = dtAcceptance;
-        this.dtEndWarranty = dtEndWarranty;
-        this.dtStartWarranty = dtStartWarranty;
-        this.nr = nr;
-        this.year = year;
-        this.basePrice = basePrice;
-    }
 
     public UUID getMachineId() {
         return machineId;
@@ -74,7 +48,7 @@ public class MachineEntity implements IBaseEntity {
         this.basePrice = basePrice;
     }
 
-    public int Year() {
+    public int getYear() {
         return year;
     }
 

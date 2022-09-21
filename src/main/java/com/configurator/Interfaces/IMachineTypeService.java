@@ -1,17 +1,21 @@
 package com.configurator.Interfaces;
 
+import com.configurator.Entities.MachineTypeEntity;
+
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
-import com.javatpoint.bean.MachineTypeEntity;
 
 public interface IMachineTypeService {
-    void set(MachineTypeEntity val);
+    void update(MachineTypeEntity val) throws SQLException;
 
-    List<MachineTypeEntity> get();
+    void insert(MachineTypeEntity val) throws SQLException;
 
-    MachineTypeEntity get(UUID id);
+    List<MachineTypeEntity> get() throws SQLException;
+
+    MachineTypeEntity get(UUID id) throws SQLException;
 
     MachineTypeEntity loadFromResultSet(ResultSet val);
 }

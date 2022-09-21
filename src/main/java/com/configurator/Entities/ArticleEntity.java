@@ -1,10 +1,11 @@
 package com.configurator.Entities;
 
 import java.util.UUID;
-import com.configurator.Interfaces.IBaseEntity;
 
-public class ArticleEntity implements IBaseEntity {
+public class ArticleEntity {
 
+    public static final String PK = "ArticleId";
+    public static final String TABLE = "Article";
     private UUID articleId = UUID.randomUUID();
     private UUID articleTypeId = UUID.randomUUID();
     private float basePrice = 1;
@@ -13,22 +14,6 @@ public class ArticleEntity implements IBaseEntity {
     private String name = "";
     private String doc = "";
     private String desc = "";
-
-    public static   final  String PK =   "ArticleId";
-    public  static final  String TABLE = "Article";
-
-    public ArticleEntity(UUID articleId, UUID articleTypeId, float basePrice, String desc, String code, String img,
-            String name, String doc) {
-
-        this.articleId = articleId;
-        this.articleTypeId = articleTypeId;
-        this.basePrice = basePrice;
-        this.desc = desc;
-        this.code = code;
-        this.img = img;
-        this.name = name;
-        this.doc = doc;
-    }
 
     public UUID getArticleId() {
         return articleId;

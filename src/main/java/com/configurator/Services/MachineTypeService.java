@@ -1,5 +1,8 @@
 package com.configurator.Services;
 
+import com.configurator.Entities.MachineTypeEntity;
+import com.configurator.Interfaces.IMachineTypeService;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,47 +10,88 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
-import com.configurator.Entities.ArticleArticleGroupTypeEntity;
-import com.configurator.Entities.MachineTypeEntity;
-import com.javatpoint.bean.MachineTypeEntity;
-
 public class MachineTypeService extends BaseService implements IMachineTypeService {
 
     @Override
-    public void set(MachineTypeEntity val) {
+    public void update(MachineTypeEntity val) throws SQLException {
+        Connection con = null;
+
         try {
-            Connection con = getConnection();
+            con = getConnection();
+
             PreparedStatement ps = con.prepareStatement(
-                    "update ArticleArticleGroupType set ArticleArticleGroupTypeId=?, ArticleGroupTypeId=?, ArticleId=?, Qta=? where ArticleArticleGroupTypeId=?");
-            ps.setString(1, val.getArticleArticleGroupTypeId().toString());
-            ps.setString(2, val.getArticleGroupTypeId().toString());
-            ps.setString(3, val.getArticleGroupTypeId().toString());
-            ps.setString(4, val.getArticleId().toString());
-            ps.setFloat(5, val.getQta());
+                    "update MachineType set   Desc=?, Code=?, Dt=?, Nr=?, Img=?, Axes=?, Cnc=?, Note=?, Spindles=? where MachineTypeId=?");
+
+            ps.setString(1, val.getDesc());
+            ps.setString(2, val.getCode());
+            ps.setDate(3, new java.sql.Date(val.getDt().getTime()));
+            ps.setString(4, val.getNr());
+            ps.setString(5, val.getImg());
+            ps.setInt(6, val.getAxes());
+            ps.setString(7, val.getCnc());
+            ps.setString(8, val.getNote());
+            ps.setInt(9, val.getSpindles());
+
+            ps.setString(10, val.getMachineTypeId().toString());
 
             ps.executeUpdate();
 
         } catch (SQLException exception) {
             printSQLException(exception);
         } finally {
-            if (rs != null)
-                rs.close();
-
             if (con != null)
                 con.close();
-
-            return result;
         }
     }
 
     @Override
-    public ArticleArticleGroupTypeEntity loadFromResultSet(ResultSet val) {
-        ArticleArticleGroupTypeEntity result = null;
+    public void insert(MachineTypeEntity val) throws SQLException {
+        Connection con = null;
+
+        try {
+            con = getConnection();
+
+            PreparedStatement ps = con.prepareStatement(
+                    "insert into MachineType ( MachineTypeId, Desc, Code, Dt, Nr, Img, Axes, Cnc, Note, Spindles) values ( ?, ?, ?,  ?,?,?,?,?,?,?)");
+
+            ps.setString(1, val.getMachineTypeId().toString());
+            ps.setString(2, val.getDesc());
+            ps.setString(3, val.getCode());
+            ps.setDate(4, new java.sql.Date(val.getDt().getTime()));
+            ps.setString(5, val.getNr());
+            ps.setString(6, val.getImg());
+            ps.setInt(7, val.getAxes());
+            ps.setString(8, val.getCnc());
+            ps.setString(9, val.getNote());
+            ps.setInt(10, val.getSpindles());
+
+            ps.executeUpdate();
+
+        } catch (SQLException exception) {
+            printSQLException(exception);
+        } finally {
+            if (con != null)
+                con.close();
+        }
+    }
+
+    @Override
+    public MachineTypeEntity loadFromResultSet(ResultSet rs) {
+        MachineTypeEntity result = null;
         try {
             if (rs.next()) {
-                result = new ArticleArticleGroupTypeEntity(UUID.fromString(rs.getString("articleArticleGroupTypeId")),
-                        UUID.fromString(rs.getString("articleGroupTypeId")), UUID.fromString(rs.getString("articleId")),
-                        rs.getFloat("qta"));
+                result = new MachineTypeEntity();
+
+                result.setMachineTypeId(UUID.fromString(rs.getString("MachineTypeId")));
+                result.setDesc(rs.getString("Desc"));
+                result.setCode(rs.getString("Code"));
+                result.setNr(rs.getString("Nr"));
+                result.setImg(rs.getString("Img"));
+                result.setAxes(rs.getInt("Axes"));
+                result.setSpindles(rs.getInt("Spindles"));
+                result.setCnc(rs.getString("Cnc"));
+                result.setNote(rs.getString("Note"));
+                result.setDt(rs.getDate("Dt"));
             }
 
         } catch (SQLException exception) {
@@ -58,20 +102,20 @@ public class MachineTypeService extends BaseService implements IMachineTypeServi
     }
 
     @Override
-    public List<MachineTypeEntity> get() {
+    public List<MachineTypeEntity> get() throws SQLException {
         List<MachineTypeEntity> result = null;
+        Connection con = null;
+        ResultSet rs = null;
 
         try {
-            Connection con = getConnection();
+            con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "select ArticleArticleGroupTypeId, ArticleGroupTypeId, ArticleId, Qta from  ArticleArticleGroupType");
+                    "select * from  MachineType");
 
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
 
             while (rs.next()) {
-                result.add(new MachineTypeEntity(UUID.fromString(rs.getString("articleArticleGroupTypeId")),
-                        UUID.fromString(rs.getString("articleGroupTypeId")), UUID.fromString(rs.getString("articleId")),
-                        rs.getFloat("qta")));
+                result.add(loadFromResultSet(rs));
             }
 
         } catch (SQLException exception) {
@@ -88,24 +132,23 @@ public class MachineTypeService extends BaseService implements IMachineTypeServi
     }
 
     @Override
-    public MachineTypeEntity get(UUID id) {
+    public MachineTypeEntity get(UUID id) throws SQLException {
 
         MachineTypeEntity result = null;
+        Connection con = null;
+        ResultSet rs = null;
 
         try {
-            Connection con = getConnection();
+            con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "select ArticleArticleGroupTypeId, ArticleGroupTypeId, ArticleId, Qta from  ArticleArticleGroupType where ArticleArticleGroupTypeId=? ");
-            // PreparedStatement ps = con.prepareStatement("update register set
-            // name=?,password=?,email=?,sex=?,country=? where id=?");
+                    "select * from MachineType where MachineTypeId=? ");
+
             ps.setString(1, id.toString());
 
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
 
             if (rs.next()) {
-                result = new MachineTypeEntity(UUID.fromString(rs.getString("articleArticleGroupTypeId")),
-                        UUID.fromString(rs.getString("articleGroupTypeId")), UUID.fromString(rs.getString("articleId")),
-                        rs.getFloat("qta"));
+                result = loadFromResultSet(rs);
             }
 
         } catch (SQLException exception) {
@@ -120,10 +163,11 @@ public class MachineTypeService extends BaseService implements IMachineTypeServi
             return result;
         }
     }
+
     @Override
     public void delete(UUID id) {
         try {
-            deleteExecute( MachineTypeEntity.TABLE,MachineTypeEntity.PK,  id);
+            deleteExecute(MachineTypeEntity.TABLE, MachineTypeEntity.PK, id);
         } catch (SQLException exception) {
             printSQLException(exception);
         }

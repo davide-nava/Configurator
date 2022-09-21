@@ -2,28 +2,15 @@ package com.configurator.Entities;
 
 import java.util.Date;
 import java.util.UUID;
-import com.configurator.Interfaces.IBaseEntity;
 
-public class InvoiceEntity implements IBaseEntity {
+public class InvoiceEntity {
 
+    public static final String PK = "InvoiceId";
+    public static final String TABLE = "Invoice";
     private UUID invoiceId = UUID.randomUUID();
     private UUID customerId = UUID.randomUUID();
     private Date dt;
     private float total;
-
-
-    public static   final  String PK =   "InvoiceId";
-    public  static final  String TABLE = "Invoice";
-
-
-
-    public InvoiceEntity(UUID invoiceId, UUID customerId, Date dt, float total) {
-
-        this.invoiceId = invoiceId;
-        this.customerId = customerId;
-        this.dt = dt;
-        this.total = total;
-    }
 
     public UUID getInvoiceId() {
         return invoiceId;

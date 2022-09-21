@@ -1,5 +1,8 @@
 package com.configurator.Services;
 
+import com.configurator.Entities.InvoiceItemEntity;
+import com.configurator.Interfaces.IInvoiceItemService;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,48 +10,77 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
-import com.configurator.Entites.InvoiceItemEntity;
-import com.configurator.Entities.ArticleArticleGroupTypeEntity;
-import com.configurator.Entities.InvoiceItemEntity;
-import com.configurator.Interfaces.IInvoiceItemService;
-
 public class InvoiceItemService extends BaseService implements IInvoiceItemService {
 
+
     @Override
-    public void set(InvoiceItemEntity val) {
+    public void update(InvoiceItemEntity val) throws SQLException {
+        Connection con = null;
+
         try {
-            Connection con = getConnection();
+            con = getConnection();
+
             PreparedStatement ps = con.prepareStatement(
-                    "update ArticleArticleGroupType set ArticleArticleGroupTypeId=?, ArticleGroupTypeId=?, ArticleId=?, Qta=? where ArticleArticleGroupTypeId=?");
-            ps.setString(1, val.getArticleArticleGroupTypeId().toString());
-            ps.setString(2, val.getArticleGroupTypeId().toString());
-            ps.setString(3, val.getArticleGroupTypeId().toString());
-            ps.setString(4, val.getArticleId().toString());
-            ps.setFloat(5, val.getQta());
+                    "update InvoiceItem set  Dt=?, InvoiceId=?, ArticleId=?, MachineId=?, Qta=? where InvoiceItemId=?");
+
+            ps.setDate(1, new java.sql.Date(val.getDt().getTime()));
+            ps.setString(2, val.getInvoiceId().toString());
+            ps.setString(3, val.getArticleId().toString());
+            ps.setString(3, val.getMachineId().toString());
+            ps.setFloat(3, val.getQta());
+
+            ps.setString(6, val.getInvoiceItemId().toString());
 
             ps.executeUpdate();
 
         } catch (SQLException exception) {
             printSQLException(exception);
         } finally {
-            if (rs != null)
-                rs.close();
-
             if (con != null)
                 con.close();
-
-            return result;
         }
     }
 
     @Override
-    public ArticleArticleGroupTypeEntity loadFromResultSet(ResultSet val) {
-        ArticleArticleGroupTypeEntity result = null;
+    public void insert(InvoiceItemEntity val) throws SQLException {
+        Connection con = null;
+
+        try {
+            con = getConnection();
+
+            PreparedStatement ps = con.prepareStatement(
+                    "insert into InvoiceItem ( InvoiceItemId, Dt, InvoiceId, ArticleId, MachineId, Qta) values ( ?, ?, ?,  ?,?,?)");
+
+            ps.setString(1, val.getInvoiceItemId().toString());
+            ps.setDate(2, new java.sql.Date(val.getDt().getTime()));
+            ps.setString(3, val.getInvoiceId().toString());
+            ps.setString(4, val.getArticleId().toString());
+            ps.setString(5, val.getMachineId().toString());
+            ps.setFloat(6, val.getQta());
+
+            ps.executeUpdate();
+
+        } catch (SQLException exception) {
+            printSQLException(exception);
+        } finally {
+            if (con != null)
+                con.close();
+        }
+    }
+
+    @Override
+    public InvoiceItemEntity loadFromResultSet(ResultSet rs) {
+        InvoiceItemEntity result = null;
         try {
             if (rs.next()) {
-                result = new ArticleArticleGroupTypeEntity(UUID.fromString(rs.getString("articleArticleGroupTypeId")),
-                        UUID.fromString(rs.getString("articleGroupTypeId")), UUID.fromString(rs.getString("articleId")),
-                        rs.getFloat("qta"));
+                result = new InvoiceItemEntity();
+
+                result.setInvoiceItemId(UUID.fromString(rs.getString("InvoiceItemId")));
+                result.setInvoiceId(UUID.fromString(rs.getString("InvoiceId")));
+                result.setArticleId(UUID.fromString(rs.getString("ArticleId")));
+                result.setMachineId(UUID.fromString(rs.getString("MachineId")));
+                result.setQta(rs.getFloat("Qta"));
+                result.setDt(rs.getDate("Dt"));
             }
 
         } catch (SQLException exception) {
@@ -59,20 +91,20 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
     }
 
     @Override
-    public List<InvoiceItemEntity> get() {
+    public List<InvoiceItemEntity> get() throws SQLException {
         List<InvoiceItemEntity> result = null;
+        Connection con = null;
+        ResultSet rs = null;
 
         try {
-            Connection con = getConnection();
+            con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "select ArticleArticleGroupTypeId, ArticleGroupTypeId, ArticleId, Qta from  ArticleArticleGroupType");
+                    "select * from  InvoiceItem");
 
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
 
             while (rs.next()) {
-                result.add(new InvoiceItemEntity(UUID.fromString(rs.getString("articleArticleGroupTypeId")),
-                        UUID.fromString(rs.getString("articleGroupTypeId")), UUID.fromString(rs.getString("articleId")),
-                        rs.getFloat("qta")));
+                result.add(loadFromResultSet(rs));
             }
 
         } catch (SQLException exception) {
@@ -89,24 +121,23 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
     }
 
     @Override
-    public InvoiceItemEntity get(UUID id) {
+    public InvoiceItemEntity get(UUID id) throws SQLException {
 
         InvoiceItemEntity result = null;
+        Connection con = null;
+        ResultSet rs = null;
 
         try {
-            Connection con = getConnection();
+            con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "select ArticleArticleGroupTypeId, ArticleGroupTypeId, ArticleId, Qta from  ArticleArticleGroupType where ArticleArticleGroupTypeId=? ");
-            // PreparedStatement ps = con.prepareStatement("update register set
-            // name=?,password=?,email=?,sex=?,country=? where id=?");
+                    "select * from InvoiceItem where InvoiceItemId=? ");
+
             ps.setString(1, id.toString());
 
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
 
             if (rs.next()) {
-                result = new InvoiceItemEntity(UUID.fromString(rs.getString("articleArticleGroupTypeId")),
-                        UUID.fromString(rs.getString("articleGroupTypeId")), UUID.fromString(rs.getString("articleId")),
-                        rs.getFloat("qta"));
+                result = loadFromResultSet(rs);
             }
 
         } catch (SQLException exception) {
@@ -121,10 +152,11 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
             return result;
         }
     }
+
     @Override
     public void delete(UUID id) {
         try {
-            deleteExecute( InvoiceItemEntity.TABLE,InvoiceItemEntity.PK,  id);
+            deleteExecute(InvoiceItemEntity.TABLE, InvoiceItemEntity.PK, id);
         } catch (SQLException exception) {
             printSQLException(exception);
         }

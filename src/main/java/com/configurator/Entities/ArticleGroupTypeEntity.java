@@ -1,23 +1,15 @@
 package com.configurator.Entities;
 
 import java.util.UUID;
-import com.configurator.Interfaces.IBaseEntity;
 
-public class ArticleGroupTypeEntity implements IBaseEntity {
+public class ArticleGroupTypeEntity {
 
+    public static final String PK = "ArticleGroupTypeId";
+    public static final String TABLE = "ArticleGroupType";
     private UUID articleGroupTypeId = UUID.randomUUID();
     private String desc = "";
     private String code = "";
     private String productionOrder = "";
-
-    public static   final  String PK =   "ArticleGroupTypeId";
-    public  static final  String TABLE = "ArticleGroupType";
-
-    public ArticleGroupTypeEntity(String desc, String code, String productionOrder) {
-        this.desc = desc;
-        this.code = code;
-        this.productionOrder = productionOrder;
-    }
 
     public UUID getArticleGroupTypeId() {
         return articleGroupTypeId;

@@ -1,17 +1,20 @@
 package com.configurator.Interfaces;
 
+import com.configurator.Entities.ArticleEntity;
+
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
-import com.configurator.Entities.ArticleEntity;
-
 public interface IArticleService {
-    void set(ArticleEntity val);
+    void update(ArticleEntity val) throws SQLException;
 
-    List<ArticleEntity> get();
+    void insert(ArticleEntity val) throws SQLException;
 
-    ArticleEntity get(UUID id);
+    List<ArticleEntity> get() throws SQLException;
+
+    ArticleEntity get(UUID id) throws SQLException;
 
     ArticleEntity loadFromResultSet(ResultSet val);
 }

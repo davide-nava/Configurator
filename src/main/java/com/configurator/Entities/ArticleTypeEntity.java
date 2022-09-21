@@ -1,26 +1,15 @@
 package com.configurator.Entities;
 
 import java.util.UUID;
-import com.configurator.Interfaces.IBaseEntity;
 
-public class ArticleTypeEntity implements IBaseEntity {
+public class ArticleTypeEntity {
 
+    public static final String PK = "ArticleTypeId";
+    public static final String TABLE = "ArticleType";
     private UUID articleTypeId = UUID.randomUUID();
     private String desc = "";
     private String code = "";
     private int year = 2022;
-
-    public static   final  String PK =   "ArticleTypeId";
-    public  static final  String TABLE = "ArticleType";
-
-
-
-    public ArticleTypeEntity(UUID articleTypeId, String desc, String code, int year) {
-        this.desc = desc;
-        this.code = code;
-        this.articleTypeId = articleTypeId;
-        this.year = year;
-    }
 
     public UUID getArticleTypeId() {
         return articleTypeId;

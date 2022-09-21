@@ -1,25 +1,14 @@
 package com.configurator.Entities;
 
 import java.util.UUID;
-import com.configurator.Interfaces.IBaseEntity;
 
-public class CustomerEntity implements IBaseEntity {
+public class CustomerEntity {
 
+    public static final String PK = "CustomerId";
+    public static final String TABLE = "Customer";
     private UUID customerId = UUID.randomUUID();
     private String name = "";
     private String code = "";
-
-    public static   final  String PK =   "CustomerId";
-    public  static final  String TABLE = "Customer";
-
-
-
-    public CustomerEntity(UUID customerId, String code, String name) {
-
-        this.name = name;
-        this.code = code;
-        this.customerId = customerId;
-    }
 
     public UUID getCustomerId() {
         return customerId;
