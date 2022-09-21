@@ -9,6 +9,13 @@ public class ArticleArticleGroupTypeEntity {
     private UUID articleId = UUID.randomUUID();
     private float qta = 1;
 
+    public ArticleArticleGroupTypeEntity(UUID articleArticleGroupTypeId, UUID articleGroupTypeId, UUID articleId, float qta) {
+        this.articleArticleGroupTypeId = articleArticleGroupTypeId;
+        this. articleGroupTypeId = articleGroupTypeId;
+        this.articleId = articleId;
+        this.qta = qta;
+    }
+
     public UUID getArticleArticleGroupTypeId() {
         return articleArticleGroupTypeId;
     }

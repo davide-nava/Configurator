@@ -11,6 +11,14 @@ private static final long serialVersionUID = 1L;
     private float qta = 1;
     private String note = "";
 
+    public ArticleMachineViewModel(UUID articleMachineId, UUID machineId , UUID articleId , float qta, String note) {
+        this.articleMachineId = articleMachineId;
+        this.machineId = machineId;
+        this.articleId = articleId;
+        this.note = note;
+        this.qta = qta;
+    }
+    
     public UUID getArticleMachineId() {
         return articleMachineId;
     }

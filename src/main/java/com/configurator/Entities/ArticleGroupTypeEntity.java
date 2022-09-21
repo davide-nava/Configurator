@@ -9,6 +9,11 @@ public class ArticleGroupTypeEntity {
     private String code = "";
     private String productionOrder = "";
 
+    public ArticleGroupTypeEntity(String desc, String code , String productionOrder ) {
+        this.desc = desc;
+        this.code = code;
+        this.productionOrder = productionOrder;
+    }
 
     public UUID getArticleGroupTypeId() {
         return articleGroupTypeId;

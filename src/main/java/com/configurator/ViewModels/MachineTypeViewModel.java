@@ -18,7 +18,20 @@ private static final long serialVersionUID = 1L;
     private String note = "";
     private int spidles = 1;
 
-
+    public MachineTypeViewModel(UUID machineTypeId,  String name, String desc, String code, String nr, Date dt, String img, int axes, String cnc, String note, int spidles  ) {
+        this.machineTypeId = machineTypeId;
+        this.name = name;
+        this.desc = desc;
+        this.code = code;
+        this.nr = nr;
+        this.dt = dt;
+        this.img = img;
+        this.axes = axes;
+        this.cnc = cnc;
+        this.note = note;
+        this.spidles = spidles;
+    }
+    
     public UUID getMachineTypeId() {
         return machineTypeId;
     }

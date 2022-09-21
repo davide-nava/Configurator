@@ -9,6 +9,12 @@ private static final long serialVersionUID = 1L;
     private String name = "";
     private String code = "";
 
+    public CustomerViewModel(UUID customerId, String code , String name ) {
+        this.name = name;
+        this.code = code;
+        this.customerId = customerId;
+    }
+    
     public UUID getCustomerId() {
         return customerId;
     }

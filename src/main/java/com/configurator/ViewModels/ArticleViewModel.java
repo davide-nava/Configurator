@@ -14,6 +14,18 @@ private static final long serialVersionUID = 1L;
     private String doc = "";
     private String desc = "";
 
+    public ArticleViewModel(UUID articleId, UUID articleTypeId , float basePrice, String desc, String code, String img, String name, String doc ) {
+
+        this.articleId = articleId;
+        this.articleTypeId = articleTypeId;
+        this.basePrice = basePrice;
+        this.desc = desc;
+        this.code = code;
+        this.img = img;
+        this.name = name;
+        this.doc = doc;
+    }
+    
     public UUID getArticleId() {
         return articleId;
     }

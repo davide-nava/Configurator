@@ -10,6 +10,13 @@ public class InvoiceEntity {
     private Date dt ;
     private float total ;
 
+    public InvoiceEntity(UUID invoiceId, UUID customerId , Date dt, float total ) {
+        this.invoiceId = invoiceId;
+        this.customerId = customerId;
+        this.dt = dt;
+        this.total = total;
+    }
+
     public UUID getInvoiceId() {
         return invoiceId;
     }

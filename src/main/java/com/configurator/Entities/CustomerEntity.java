@@ -8,6 +8,12 @@ public class CustomerEntity {
     private String name = "";
     private String code = "";
 
+    public CustomerEntity(UUID customerId, String code , String name ) {
+        this.name = name;
+        this.code = code;
+        this.customerId = customerId;
+    }
+
     public UUID getCustomerId() {
         return customerId;
     }

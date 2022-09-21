@@ -22,6 +22,25 @@ public class MachineEntity {
     private int year = 2022;
     private float basePrice = 1;
 
+    public MachineEntity(UUID machineId, UUID machineTypeId,String code, String img,String desc, String doc,String note, String productionOrder,String address, Date dtDelivery,Date dtAcceptance, Date dtEndWarranty , Date dtStartWarranty , int  nr , int  year , float basePrice ) {
+
+        this.machineId = machineId;
+        this.machineTypeId = machineTypeId;
+        this.img = img;
+        this.desc = desc;
+        this.doc = doc;
+        this.note = note;
+        this.productionOrder = productionOrder;
+        this.address = address;
+        this.dtDelivery = dtDelivery;
+        this.dtAcceptance = dtAcceptance;
+        this.dtEndWarranty = dtEndWarranty;
+        this.dtStartWarranty = dtStartWarranty;
+        this.nr = nr;
+        this.year = year;
+        this.basePrice = basePrice;
+    }
+
     public UUID getMachineId() {
         return machineId;
     }

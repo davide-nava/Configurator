@@ -9,13 +9,12 @@ public class ArticleMachineTypeEntity {
     private UUID machineTypeId = UUID.randomUUID();
     private float qta = 1;
 
-    public ArticleMachineTypeEntity(UUID articleMachineTypeId, UUID articleId, UUID machineTypeId, float qta) {
+    public ArticleMachineTypeEntity(UUID articleMachineTypeId, UUID articleId , UUID machineTypeId, float qta ) {
         this.articleMachineTypeId = articleMachineTypeId;
         this.articleId = articleId;
         this.machineTypeId = machineTypeId;
         this.qta = qta;
-}
-
+    }
     public UUID getArticleMachineTypeId() {
         return articleMachineTypeId;
     }

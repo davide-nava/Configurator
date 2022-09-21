@@ -13,6 +13,15 @@ private static final long serialVersionUID = 1L;
     private Date dt;
     private float qta = 1;
 
+    public InvoiceItemViewModel(UUID invoiceItemId, UUID invoiceId , UUID articleId, UUID machineId,  Date dt, float qta ) {
+        this.invoiceItemId = invoiceItemId;
+        this.invoiceId = invoiceId;
+        this.articleId = articleId;
+      this.machineId = machineId;
+        this.dt = dt;
+        this.qta = qta;
+    }
+    
     public UUID getInvoiceItemId() {
         return invoiceItemId;
     }

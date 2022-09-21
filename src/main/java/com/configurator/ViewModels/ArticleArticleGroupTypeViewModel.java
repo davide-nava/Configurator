@@ -10,6 +10,13 @@ private static final long serialVersionUID = 1L;
     private UUID articleId = UUID.randomUUID();
     private float qta = 1;
 
+public ArticleArticleGroupTypeViewModel(UUID articleArticleGroupTypeId, UUID articleGroupTypeId, UUID articleId, float qta) {
+    this.articleArticleGroupTypeId = articleArticleGroupTypeId;
+    this. articleGroupTypeId = articleGroupTypeId;
+    this.articleId = articleId;
+    this.qta = qta;
+}
+
     public UUID getArticleArticleGroupTypeId() {
         return articleArticleGroupTypeId;
     }
