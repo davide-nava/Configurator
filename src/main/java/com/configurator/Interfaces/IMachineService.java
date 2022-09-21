@@ -1,14 +1,16 @@
 package com.configurator.Interfaces;
+import com.configurator.Entities.MachineEntity;
+
 import java.util.*;
 
 public interface  IMachineService {
-          public IMachineService set(IMachineService val);
+          public MachineEntity set(MachineEntity val);
 
-    public List<IMachineService> get();
+    public List<MachineEntity> get();
 
-    public IMachineService get(UUID id);
+    public MachineEntity get(UUID id);
 
-    public void delete(IMachineService val);
+    public void delete(MachineEntity val);
 
     public void delete(UUID id);
 }

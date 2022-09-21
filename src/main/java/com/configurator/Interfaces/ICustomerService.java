@@ -1,15 +1,17 @@
 package com.configurator.Interfaces;
 
+import com.configurator.Entities.CustomerEntity;
+
 import java.util.*;
 
 public interface  ICustomerService {
-                 public ICustomerService set(ICustomerService val);
+                 public CustomerEntity set(CustomerEntity val);
 
-    public List<ICustomerService> get();
+    public List<CustomerEntity> get();
 
-    public ICustomerService get(UUID id);
+    public CustomerEntity get(UUID id);
 
-    public void delete(ICustomerService val);
+    public void delete(CustomerEntity val);
 
     public void delete(UUID id);
 }

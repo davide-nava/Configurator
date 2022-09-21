@@ -40,7 +40,18 @@
 %>
 
                     <br />
-                    <a href="hello-servlet">Hello Servlet</a>
+
+
+
+
+
+
+
+
+                <jsp:include page="/shared/footer.jsp"></jsp:include>
+
+
+
             </body>
 
             </html>

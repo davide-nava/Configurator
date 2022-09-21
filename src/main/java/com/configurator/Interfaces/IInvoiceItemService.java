@@ -1,14 +1,16 @@
 package com.configurator.Interfaces;
+import com.configurator.Entities.InvoiceItemEntity;
+
 import java.util.*;
 
 public interface  IInvoiceItemService {
-               public IInvoiceItemService set(IInvoiceItemService val);
+               public InvoiceItemEntity set(InvoiceItemEntity val);
 
-    public List<IInvoiceItemService> get();
+    public List<InvoiceItemEntity> get();
 
-    public IInvoiceItemService get(UUID id);
+    public InvoiceItemEntity get(UUID id);
 
-    public void delete(IInvoiceItemService val);
+    public void delete(InvoiceItemEntity val);
 
     public void delete(UUID id);
 }

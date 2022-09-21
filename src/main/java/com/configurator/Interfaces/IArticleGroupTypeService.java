@@ -1,15 +1,17 @@
 package com.configurator.Interfaces;
+import com.configurator.Entities.ArticleGroupTypeEntity;
+
 import java.util.*;
 
 
 public interface  IArticleGroupTypeService {
-                           public IArticleGroupTypeService set(IArticleGroupTypeService val);
+                           public ArticleGroupTypeEntity set(ArticleGroupTypeEntity val);
 
-    public List<IArticleGroupTypeService> get();
+    public List<ArticleGroupTypeEntity> get();
 
-    public IArticleGroupTypeService get(UUID id);
+    public ArticleGroupTypeEntity get(UUID id);
 
-    public void delete(IArticleGroupTypeService val);
+    public void delete(ArticleGroupTypeEntity val);
 
     public void delete(UUID id);
 }

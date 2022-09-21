@@ -1,17 +1,19 @@
 package com.configurator.Interfaces;
 
+import com.configurator.Entities.ArticleEntity;
+
 import java.util.List;
 import java.util.UUID;
 
 
 public interface  IArticleService {
-                      public IArticleService set(IArticleService val);
+                      public ArticleEntity set(ArticleEntity val);
 
-    public List<IArticleService> get();
+    public List<ArticleEntity> get();
 
-    public IArticleService get(UUID id);
+    public ArticleEntity get(UUID id);
 
-    public void delete(IArticleService val);
+    public void delete(ArticleEntity val);
 
     public void delete(UUID id);
 }

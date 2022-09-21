@@ -1,15 +1,17 @@
 package com.configurator.Interfaces;
 
+import com.configurator.Entities.MachineTypeEntity;
+
 import java.util.*;
 
 public interface  IMachineTypeService {
-        public IMachineTypeService set(IMachineTypeService val);
+        public MachineTypeEntity set(MachineTypeEntity val);
 
-    public List<IMachineTypeService> get();
+    public List<MachineTypeEntity> get();
 
-    public IMachineTypeService get(UUID id);
+    public MachineTypeEntity get(UUID id);
 
-    public void delete(IMachineTypeService val);
+    public void delete(MachineTypeEntity val);
 
     public void delete(UUID id);
 }
