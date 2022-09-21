@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
-public class MachineTypeViewModel implements Serializable{
-private static final long serialVersionUID = 1L;
+public class MachineTypeViewModel implements Serializable {
+    private static final long serialVersionUID = 1L;
     private UUID machineTypeId = UUID.randomUUID();
     private String name = "";
     private String desc = "";
@@ -18,7 +18,7 @@ private static final long serialVersionUID = 1L;
     private String note = "";
     private int spidles = 1;
 
-    public MachineTypeViewModel(UUID machineTypeId,  String name, String desc, String code, String nr, Date dt, String img, int axes, String cnc, String note, int spidles  ) {
+    public MachineTypeViewModel(UUID machineTypeId, String name, String desc, String code, String nr, Date dt, String img, int axes, String cnc, String note, int spidles) {
         this.machineTypeId = machineTypeId;
         this.name = name;
         this.desc = desc;
@@ -31,7 +31,7 @@ private static final long serialVersionUID = 1L;
         this.note = note;
         this.spidles = spidles;
     }
-    
+
     public UUID getMachineTypeId() {
         return machineTypeId;
     }

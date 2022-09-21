@@ -3,19 +3,19 @@ package com.configurator.Entities;
 import java.io.Serializable;
 import java.util.UUID;
 
-public class ArticleArticleGroupTypeViewModel implements Serializable{
-private static final long serialVersionUID = 1L;
+public class ArticleArticleGroupTypeViewModel implements Serializable {
+    private static final long serialVersionUID = 1L;
     private UUID articleArticleGroupTypeId = UUID.randomUUID();
     private UUID articleGroupTypeId = UUID.randomUUID();
     private UUID articleId = UUID.randomUUID();
     private float qta = 1;
 
-public ArticleArticleGroupTypeViewModel(UUID articleArticleGroupTypeId, UUID articleGroupTypeId, UUID articleId, float qta) {
-    this.articleArticleGroupTypeId = articleArticleGroupTypeId;
-    this. articleGroupTypeId = articleGroupTypeId;
-    this.articleId = articleId;
-    this.qta = qta;
-}
+    public ArticleArticleGroupTypeViewModel(UUID articleArticleGroupTypeId, UUID articleGroupTypeId, UUID articleId, float qta) {
+        this.articleArticleGroupTypeId = articleArticleGroupTypeId;
+        this.articleGroupTypeId = articleGroupTypeId;
+        this.articleId = articleId;
+        this.qta = qta;
+    }
 
     public UUID getArticleArticleGroupTypeId() {
         return articleArticleGroupTypeId;

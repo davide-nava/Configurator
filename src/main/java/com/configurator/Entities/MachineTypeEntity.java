@@ -3,7 +3,7 @@ package com.configurator.Entities;
 import java.util.Date;
 import java.util.UUID;
 
-public class MachineTypeEntity {
+public class MachineTypeEntity implements IBaseEntity {
 
     private UUID machineTypeId = UUID.randomUUID();
     private String name = "";
@@ -17,8 +17,19 @@ public class MachineTypeEntity {
     private String note = "";
     private int spidles = 1;
 
+    @Override
+    public String getPk() {
+        return "MachineTypeId";
+    }
 
-    public MachineTypeEntity(UUID machineTypeId,  String name, String desc, String code, String nr, Date dt, String img, int axes, String cnc, String note, int spidles  ) {
+    @Override
+    public String getTable() {
+        return "MachineType";
+    }
+
+    public MachineTypeEntity(UUID machineTypeId, String name, String desc, String code, String nr, Date dt, String img,
+            int axes, String cnc, String note, int spidles) {
+
         this.machineTypeId = machineTypeId;
         this.name = name;
         this.desc = desc;

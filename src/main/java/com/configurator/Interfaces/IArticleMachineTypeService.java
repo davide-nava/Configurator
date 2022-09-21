@@ -1,18 +1,17 @@
 package com.configurator.Interfaces;
 
+import java.sql.ResultSet;
+import java.util.List;
+import java.util.UUID;
+
 import com.configurator.Entities.ArticleMachineTypeEntity;
 
-import java.util.*;
+public interface IArticleMachineTypeService {
+    void set(ArticleMachineTypeEntity val);
 
+    List<ArticleMachineTypeEntity> get();
 
-public interface  IArticleMachineTypeService {
-                       public ArticleMachineTypeEntity set(ArticleMachineTypeEntity val);
+    ArticleMachineTypeEntity get(UUID id);
 
-    public List<ArticleMachineTypeEntity> get();
-
-    public ArticleMachineTypeEntity get(UUID id);
-
-    public void delete(ArticleMachineTypeEntity val);
-
-    public void delete(UUID id);
+    ArticleMachineTypeEntity loadFromResultSet(ResultSet val);
 }

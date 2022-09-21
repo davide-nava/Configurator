@@ -4,17 +4,17 @@ import java.io.Serializable;
 import java.util.UUID;
 
 public class CustomerViewModel implements Serializable {
-private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
     private UUID customerId = UUID.randomUUID();
     private String name = "";
     private String code = "";
 
-    public CustomerViewModel(UUID customerId, String code , String name ) {
+    public CustomerViewModel(UUID customerId, String code, String name) {
         this.name = name;
         this.code = code;
         this.customerId = customerId;
     }
-    
+
     public UUID getCustomerId() {
         return customerId;
     }

@@ -2,13 +2,24 @@ package com.configurator.Entities;
 
 import java.util.UUID;
 
-public class CustomerEntity {
+public class CustomerEntity implements IBaseEntity {
 
     private UUID customerId = UUID.randomUUID();
     private String name = "";
     private String code = "";
 
-    public CustomerEntity(UUID customerId, String code , String name ) {
+    @Override
+    public String getPk() {
+        return "CustomerId";
+    }
+
+    @Override
+    public String getTable() {
+        return "Customer";
+    }
+
+    public CustomerEntity(UUID customerId, String code, String name) {
+
         this.name = name;
         this.code = code;
         this.customerId = customerId;

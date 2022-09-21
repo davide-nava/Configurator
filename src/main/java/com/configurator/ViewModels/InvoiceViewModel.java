@@ -4,20 +4,20 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
-public class InvoiceViewModel implements Serializable{
-private static final long serialVersionUID = 1L;
+public class InvoiceViewModel implements Serializable {
+    private static final long serialVersionUID = 1L;
     private UUID invoiceId = UUID.randomUUID();
     private UUID customerId = UUID.randomUUID();
-    private Date dt ;
+    private Date dt;
     private float total;
 
-    public InvoiceViewModel(UUID invoiceId, UUID customerId , Date dt, float total ) {
+    public InvoiceViewModel(UUID invoiceId, UUID customerId, Date dt, float total) {
         this.invoiceId = invoiceId;
         this.customerId = customerId;
         this.dt = dt;
         this.total = total;
     }
-    
+
     public UUID getInvoiceId() {
         return invoiceId;
     }

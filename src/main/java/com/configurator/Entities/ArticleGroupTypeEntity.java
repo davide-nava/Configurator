@@ -2,14 +2,24 @@ package com.configurator.Entities;
 
 import java.util.UUID;
 
-public class ArticleGroupTypeEntity {
+public class ArticleGroupTypeEntity implements IBaseEntity {
 
     private UUID articleGroupTypeId = UUID.randomUUID();
     private String desc = "";
     private String code = "";
     private String productionOrder = "";
 
-    public ArticleGroupTypeEntity(String desc, String code , String productionOrder ) {
+    @Override
+    public String getPk() {
+        return "ArticleGroupTypeId";
+    }
+
+    @Override
+    public String getTable() {
+        return "ArticleGroupType";
+    }
+
+    public ArticleGroupTypeEntity(String desc, String code, String productionOrder) {
         this.desc = desc;
         this.code = code;
         this.productionOrder = productionOrder;

@@ -2,14 +2,24 @@ package com.configurator.Entities;
 
 import java.util.UUID;
 
-public class ArticleTypeEntity {
+public class ArticleTypeEntity implements IBaseEntity {
 
     private UUID articleTypeId = UUID.randomUUID();
     private String desc = "";
     private String code = "";
     private int year = 2022;
 
-    public ArticleTypeEntity(UUID articleTypeId, String desc , String code, int year ) {
+    @Override
+    public String getPk() {
+        return "ArticleTypeId";
+    }
+
+    @Override
+    public String getTable() {
+        return "ArticleType";
+    }
+
+    public ArticleTypeEntity(UUID articleTypeId, String desc, String code, int year) {
         this.desc = desc;
         this.code = code;
         this.articleTypeId = articleTypeId;

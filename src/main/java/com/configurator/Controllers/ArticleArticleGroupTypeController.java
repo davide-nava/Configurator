@@ -1,13 +1,13 @@
 package com.configurator;
 
-import java.io.IOException;
-
 import com.configurator.Services.ArticleArticleGroupTypeService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
 
 @WebServlet("/tables/articlearticlegroup")
 public class ArticleArticleGroupTypeController extends HttpServlet {
@@ -19,14 +19,14 @@ public class ArticleArticleGroupTypeController extends HttpServlet {
         service = new ArticleArticleGroupTypeService();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) 			throws ServletException, IOException {
-	//	response.sendRedirect("login/login.jsp");
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //	response.sendRedirect("login/login.jsp");
+    }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
-    
+
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String action = request.getServletPath();
 
@@ -130,7 +130,6 @@ public class ArticleArticleGroupTypeController extends HttpServlet {
         todoDAO.deleteTodo(id);
         response.sendRedirect("list");
     }
-
 
 
     public void destroy() {

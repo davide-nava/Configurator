@@ -3,7 +3,7 @@ package com.configurator.Entities;
 import java.util.Date;
 import java.util.UUID;
 
-public class InvoiceItemEntity {
+public class InvoiceItemEntity implements IBaseEntity {
 
     private UUID invoiceItemId = UUID.randomUUID();
     private UUID invoiceId = UUID.randomUUID();
@@ -12,7 +12,18 @@ public class InvoiceItemEntity {
     private Date dt;
     private float qta = 1;
 
-    public InvoiceItemEntity(UUID invoiceItemId, UUID invoiceId , UUID articleId, UUID machineId,  Date dt, float qta ) {
+    @Override
+    public String getPk() {
+        return "InvoiceItemId";
+    }
+
+    @Override
+    public String getTable() {
+        return "InvoiceItem";
+    }
+
+    public InvoiceItemEntity(UUID invoiceItemId, UUID invoiceId, UUID articleId, UUID machineId, Date dt, float qta) {
+
         this.invoiceItemId = invoiceItemId;
         this.invoiceId = invoiceId;
         this.articleId = articleId;
@@ -20,6 +31,7 @@ public class InvoiceItemEntity {
         this.dt = dt;
         this.qta = qta;
     }
+
     public UUID getInvoiceItemId() {
         return invoiceItemId;
     }

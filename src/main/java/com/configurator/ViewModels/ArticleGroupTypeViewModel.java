@@ -3,14 +3,14 @@ package com.configurator.Entities;
 import java.io.Serializable;
 import java.util.UUID;
 
-public class ArticleGroupTypeViewModel implements Serializable{
-private static final long serialVersionUID = 1L;
+public class ArticleGroupTypeViewModel implements Serializable {
+    private static final long serialVersionUID = 1L;
     private UUID articleGroupTypeId = UUID.randomUUID();
     private String desc = "";
     private String code = "";
     private String productionOrder = "";
 
-    public ArticleGroupTypeViewModel(String desc, String code , String productionOrder ) {
+    public ArticleGroupTypeViewModel(String desc, String code, String productionOrder) {
         this.desc = desc;
         this.code = code;
         this.productionOrder = productionOrder;

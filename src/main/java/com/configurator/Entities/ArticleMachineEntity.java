@@ -2,7 +2,7 @@ package com.configurator.Entities;
 
 import java.util.UUID;
 
-public class ArticleMachineEntity {
+public class ArticleMachineEntity implements IBaseEntity {
 
     private UUID articleMachineId = UUID.randomUUID();
     private UUID machineId = UUID.randomUUID();
@@ -10,7 +10,18 @@ public class ArticleMachineEntity {
     private float qta = 1;
     private String note = "";
 
-    public ArticleMachineEntity(UUID articleMachineId, UUID machineId , UUID articleId , float qta, String note) {
+    @Override
+    public String getPk() {
+        return "ArticleMachineId";
+    }
+
+    @Override
+    public String getTable() {
+        return "ArticleMachine";
+    }
+
+    public ArticleMachineEntity(UUID articleMachineId, UUID machineId, UUID articleId, float qta, String note) {
+
         this.articleMachineId = articleMachineId;
         this.machineId = machineId;
         this.articleId = articleId;
@@ -41,7 +52,6 @@ public class ArticleMachineEntity {
     public void setArticleId(UUID articleId) {
         this.articleId = articleId;
     }
-
 
     public String getNote() {
         return note;

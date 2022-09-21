@@ -2,18 +2,29 @@ package com.configurator.Entities;
 
 import java.util.UUID;
 
-public class ArticleEntity {
+public class ArticleEntity implements IBaseEntity {
 
     private UUID articleId = UUID.randomUUID();
     private UUID articleTypeId = UUID.randomUUID();
-    private float basePrice =1;
+    private float basePrice = 1;
     private String code = "";
     private String img = "";
     private String name = "";
     private String doc = "";
     private String desc = "";
 
-    public ArticleEntity(UUID articleId, UUID articleTypeId , float basePrice, String desc, String code, String img, String name, String doc ) {
+    @Override
+    public String getPk() {
+        return "ArticleId";
+    }
+
+    @Override
+    public String getTable() {
+        return "Article";
+    }
+
+    public ArticleEntity(UUID articleId, UUID articleTypeId, float basePrice, String desc, String code, String img,
+            String name, String doc) {
 
         this.articleId = articleId;
         this.articleTypeId = articleTypeId;

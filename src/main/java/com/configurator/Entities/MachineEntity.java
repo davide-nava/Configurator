@@ -3,7 +3,7 @@ package com.configurator.Entities;
 import java.util.Date;
 import java.util.UUID;
 
-public class MachineEntity {
+public class MachineEntity implements IBaseEntity {
 
     private UUID machineId = UUID.randomUUID();
     private UUID machineTypeId = UUID.randomUUID();
@@ -22,7 +22,19 @@ public class MachineEntity {
     private int year = 2022;
     private float basePrice = 1;
 
-    public MachineEntity(UUID machineId, UUID machineTypeId,String code, String img,String desc, String doc,String note, String productionOrder,String address, Date dtDelivery,Date dtAcceptance, Date dtEndWarranty , Date dtStartWarranty , int  nr , int  year , float basePrice ) {
+    @Override
+    public String getPk() {
+        return "MachineId";
+    }
+
+    @Override
+    public String getTable() {
+        return "Machine";
+    }
+
+    public MachineEntity(UUID machineId, UUID machineTypeId, String code, String img, String desc, String doc,
+            String note, String productionOrder, String address, Date dtDelivery, Date dtAcceptance, Date dtEndWarranty,
+            Date dtStartWarranty, int nr, int year, float basePrice) {
 
         this.machineId = machineId;
         this.machineTypeId = machineTypeId;
@@ -89,7 +101,6 @@ public class MachineEntity {
         this.code = code;
     }
 
-
     public String getImg() {
         return img;
     }
@@ -97,7 +108,6 @@ public class MachineEntity {
     public void setImg(String img) {
         this.img = img;
     }
-
 
     public String getDesc() {
         return desc;
@@ -107,7 +117,6 @@ public class MachineEntity {
         this.desc = desc;
     }
 
-
     public String getDoc() {
         return doc;
     }
@@ -115,7 +124,6 @@ public class MachineEntity {
     public void setDoc(String doc) {
         this.doc = doc;
     }
-
 
     public String getNote() {
         return note;
@@ -125,7 +133,6 @@ public class MachineEntity {
         this.note = note;
     }
 
-
     public String getProductionOrder() {
         return productionOrder;
     }
@@ -133,7 +140,6 @@ public class MachineEntity {
     public void setProductionOrder(String productionOrder) {
         this.productionOrder = productionOrder;
     }
-
 
     public String getAddress() {
         return address;
@@ -143,7 +149,6 @@ public class MachineEntity {
         this.address = address;
     }
 
-
     public Date getDtDelivery() {
         return dtDelivery;
     }
@@ -151,7 +156,6 @@ public class MachineEntity {
     public void setDtDelivery(Date dtDelivery) {
         this.dtDelivery = dtDelivery;
     }
-
 
     public Date getDtAcceptance() {
         return dtAcceptance;
@@ -161,7 +165,6 @@ public class MachineEntity {
         this.dtAcceptance = dtAcceptance;
     }
 
-
     public Date getDtEndWarranty() {
         return dtEndWarranty;
     }
@@ -169,7 +172,6 @@ public class MachineEntity {
     public void setDtEndWarranty(Date dtEndWarranty) {
         this.dtEndWarranty = dtEndWarranty;
     }
-
 
     public Date getDtStartWarranty() {
         return dtStartWarranty;

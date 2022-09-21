@@ -1,17 +1,17 @@
 package com.configurator.Interfaces;
 
+import java.sql.ResultSet;
+import java.util.List;
+import java.util.UUID;
+
 import com.configurator.Entities.CustomerEntity;
 
-import java.util.*;
+public interface ICustomerService {
+    void set(CustomerEntity val);
 
-public interface  ICustomerService {
-                 public CustomerEntity set(CustomerEntity val);
+    List<CustomerEntity> get();
 
-    public List<CustomerEntity> get();
+    CustomerEntity get(UUID id);
 
-    public CustomerEntity get(UUID id);
-
-    public void delete(CustomerEntity val);
-
-    public void delete(UUID id);
+    CustomerEntity loadFromResultSet(ResultSet val);
 }

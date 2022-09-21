@@ -1,16 +1,17 @@
 package com.configurator.Interfaces;
+
+import java.sql.ResultSet;
+import java.util.List;
+import java.util.UUID;
+
 import com.configurator.Entities.InvoiceItemEntity;
 
-import java.util.*;
+public interface IInvoiceItemService {
+    void set(InvoiceItemEntity val);
 
-public interface  IInvoiceItemService {
-               public InvoiceItemEntity set(InvoiceItemEntity val);
+    List<InvoiceItemEntity> get();
 
-    public List<InvoiceItemEntity> get();
+    InvoiceItemEntity get(UUID id);
 
-    public InvoiceItemEntity get(UUID id);
-
-    public void delete(InvoiceItemEntity val);
-
-    public void delete(UUID id);
+    InvoiceItemEntity loadFromResultSet(ResultSet val);
 }

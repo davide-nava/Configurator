@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
-public class MachineViewModel implements Serializable{
-private static final long serialVersionUID = 1L;
+public class MachineViewModel implements Serializable {
+    private static final long serialVersionUID = 1L;
     private UUID machineId = UUID.randomUUID();
     private UUID machineTypeId = UUID.randomUUID();
     private String code = "";
@@ -23,7 +23,7 @@ private static final long serialVersionUID = 1L;
     private int year = 2022;
     private float basePrice = 1;
 
-    public MachineViewModel(UUID machineId, UUID machineTypeId,String code, String img,String desc, String doc,String note, String productionOrder,String address, Date dtDelivery,Date dtAcceptance, Date dtEndWarranty , Date dtStartWarranty , int  nr , int  year , float basePrice ) {
+    public MachineViewModel(UUID machineId, UUID machineTypeId, String code, String img, String desc, String doc, String note, String productionOrder, String address, Date dtDelivery, Date dtAcceptance, Date dtEndWarranty, Date dtStartWarranty, int nr, int year, float basePrice) {
 
         this.machineId = machineId;
         this.machineTypeId = machineTypeId;
@@ -41,7 +41,7 @@ private static final long serialVersionUID = 1L;
         this.year = year;
         this.basePrice = basePrice;
     }
-    
+
     public UUID getMachineId() {
         return machineId;
     }

@@ -3,18 +3,18 @@ package com.configurator.Entities;
 import java.io.Serializable;
 import java.util.UUID;
 
-public class ArticleViewModel implements Serializable{
-private static final long serialVersionUID = 1L;
+public class ArticleViewModel implements Serializable {
+    private static final long serialVersionUID = 1L;
     private UUID articleId = UUID.randomUUID();
     private UUID articleTypeId = UUID.randomUUID();
-    private float basePrice =1;
+    private float basePrice = 1;
     private String code = "";
     private String img = "";
     private String name = "";
     private String doc = "";
     private String desc = "";
 
-    public ArticleViewModel(UUID articleId, UUID articleTypeId , float basePrice, String desc, String code, String img, String name, String doc ) {
+    public ArticleViewModel(UUID articleId, UUID articleTypeId, float basePrice, String desc, String code, String img, String name, String doc) {
 
         this.articleId = articleId;
         this.articleTypeId = articleTypeId;
@@ -25,7 +25,7 @@ private static final long serialVersionUID = 1L;
         this.name = name;
         this.doc = doc;
     }
-    
+
     public UUID getArticleId() {
         return articleId;
     }

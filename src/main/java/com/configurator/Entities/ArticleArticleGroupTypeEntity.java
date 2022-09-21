@@ -2,16 +2,27 @@ package com.configurator.Entities;
 
 import java.util.UUID;
 
-public class ArticleArticleGroupTypeEntity {
+public class ArticleArticleGroupTypeEntity implements IBaseEntity {
 
     private UUID articleArticleGroupTypeId = UUID.randomUUID();
     private UUID articleGroupTypeId = UUID.randomUUID();
     private UUID articleId = UUID.randomUUID();
     private float qta = 1;
 
-    public ArticleArticleGroupTypeEntity(UUID articleArticleGroupTypeId, UUID articleGroupTypeId, UUID articleId, float qta) {
+    @Override
+    public String getPk() {
+        return "ArticleArticleGroupTypeId";
+    }
+
+    @Override
+    public String getTable() {
+        return "ArticleArticleGroupType";
+    }
+
+    public ArticleArticleGroupTypeEntity(UUID articleArticleGroupTypeId, UUID articleGroupTypeId, UUID articleId,
+            float qta) {
         this.articleArticleGroupTypeId = articleArticleGroupTypeId;
-        this. articleGroupTypeId = articleGroupTypeId;
+        this.articleGroupTypeId = articleGroupTypeId;
         this.articleId = articleId;
         this.qta = qta;
     }

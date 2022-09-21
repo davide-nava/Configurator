@@ -3,22 +3,22 @@ package com.configurator.Entities;
 import java.io.Serializable;
 import java.util.UUID;
 
-public class ArticleMachineViewModel implements Serializable{
-private static final long serialVersionUID = 1L;
+public class ArticleMachineViewModel implements Serializable {
+    private static final long serialVersionUID = 1L;
     private UUID articleMachineId = UUID.randomUUID();
     private UUID machineId = UUID.randomUUID();
     private UUID articleId = UUID.randomUUID();
     private float qta = 1;
     private String note = "";
 
-    public ArticleMachineViewModel(UUID articleMachineId, UUID machineId , UUID articleId , float qta, String note) {
+    public ArticleMachineViewModel(UUID articleMachineId, UUID machineId, UUID articleId, float qta, String note) {
         this.articleMachineId = articleMachineId;
         this.machineId = machineId;
         this.articleId = articleId;
         this.note = note;
         this.qta = qta;
     }
-    
+
     public UUID getArticleMachineId() {
         return articleMachineId;
     }

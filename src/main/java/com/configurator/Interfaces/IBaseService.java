@@ -1,8 +1,11 @@
 package com.configurator.Interfaces;
 
 import java.sql.Connection;
+import java.util.UUID;
 
-public interface  IBaseService {
+public interface IBaseService {
 
-    public   Connection getConnection() ;
+      Connection getConnection();
+
+      void dete(UUID id);
 }
