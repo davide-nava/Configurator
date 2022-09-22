@@ -138,7 +138,7 @@ $(document).ready(function () {
     });
 
     $("[data-toggle=popover]")
-        .popover();
+            .popover();
 
     // Add slimscroll to element
     $('.full-height-scroll').slimscroll({
@@ -148,7 +148,7 @@ $(document).ready(function () {
 
 // Minimalize menu when screen is less than 768px
 $(window).bind("resize", function () {
-    if (window.innerWidth  < 769) {
+    if (window.innerWidth < 769) {
         $('body').addClass('body-small')
     } else {
         $('body').removeClass('body-small')
@@ -224,15 +224,15 @@ $(document).ready(function () {
 function animationHover(element, animation) {
     element = $(element);
     element.hover(
-        function () {
-            element.addClass('animated ' + animation);
-        },
-        function () {
-            //wait for animation to finish before removing classes
-            window.setTimeout(function () {
-                element.removeClass('animated ' + animation);
-            }, 2000);
-        });
+            function () {
+                element.addClass('animated ' + animation);
+            },
+            function () {
+                //wait for animation to finish before removing classes
+                window.setTimeout(function () {
+                    element.removeClass('animated ' + animation);
+                }, 2000);
+            });
 }
 
 function SmoothlyMenu() {
@@ -241,15 +241,15 @@ function SmoothlyMenu() {
         $('#side-menu').hide();
         // For smoothly turn on menu
         setTimeout(
-            function () {
-                $('#side-menu').fadeIn(400);
-            }, 200);
+                function () {
+                    $('#side-menu').fadeIn(400);
+                }, 200);
     } else if ($('body').hasClass('fixed-sidebar')) {
         $('#side-menu').hide();
         setTimeout(
-            function () {
-                $('#side-menu').fadeIn(400);
-            }, 100);
+                function () {
+                    $('#side-menu').fadeIn(400);
+                }, 100);
     } else {
         // Remove all inline style from jquery fadeIn function to reset menu state
         $('#side-menu').removeAttr('style');
@@ -262,14 +262,14 @@ function WinMove() {
     var handle = ".ibox-title";
     var connect = "[class*=col]";
     $(element).sortable(
-        {
-            handle: handle,
-            connectWith: connect,
-            tolerance: 'pointer',
-            forcePlaceholderSize: true,
-            opacity: 0.8
-        })
-        .disableSelection();
+            {
+                handle: handle,
+                connectWith: connect,
+                tolerance: 'pointer',
+                forcePlaceholderSize: true,
+                opacity: 0.8
+            })
+            .disableSelection();
 }
 
 

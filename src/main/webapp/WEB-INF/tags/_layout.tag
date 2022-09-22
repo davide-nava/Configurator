@@ -7,44 +7,8 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <meta name="description" content="Configuratore">
-    <meta name="author" content="Davide Nava">
-    <meta property="og:title" content="Configuratore">
-    <meta property="og:type" content="website">
-    <!-- <meta property="og:url" content="https://www.sitepoint.com/a-basic-html5-template/"> -->
-    <meta property="og:description" content="Configuratore">
-    <!-- <meta property="og:image" content="image.png"> -->
-    <link rel="icon" href="/img/favicon.ico">
-    <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-
-    <script src="/js/jquery.min.js"></script>
-
-    <script>window.jQuery || document.write(decodeURIComponent('%3Cscript src="js/jquery.min.js"%3E%3C/script%3E'))</script>
-
-    <link rel="stylesheet" type="text/css" href="/lib/devepress/css/dx.common.css" />
-    <link rel="stylesheet" type="text/css" href="/lib/devepress/css/dx.light.css" />
-
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-
-    <link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
-
-    <link href="js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
-
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
-    <script src="/lib/devepress/js/dx.all.js"></script>
-
-    <link rel="stylesheet" href="/css/configurator.css">
+    <jsp:include page="/shared/head.jsp" />
 
     <title>${title}</title>
 
@@ -193,31 +157,7 @@
         </div>
     </div>
 
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-    <script src="js/plugins/flot/jquery.flot.js"></script>
-    <script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-    <script src="js/plugins/flot/jquery.flot.spline.js"></script>
-    <script src="js/plugins/flot/jquery.flot.resize.js"></script>
-    <script src="js/plugins/flot/jquery.flot.pie.js"></script>
-
-    <script src="js/plugins/peity/jquery.peity.min.js"></script>
-
-    <script src="js/inspinia.js"></script>
-    <script src="js/plugins/pace/pace.min.js"></script>
-
-    <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
-
-    <script src="js/plugins/gritter/jquery.gritter.min.js"></script>
-
-    <script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
-
-    <script src="js/plugins/toastr/toastr.min.js"></script>
-
-<script type="text/javascript" src="/js/configurator.js"></script>
+    <jsp:include page="/shared/js.jsp" />
 
 </body>
 </html>
