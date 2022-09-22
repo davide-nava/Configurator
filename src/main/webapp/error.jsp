@@ -5,6 +5,7 @@
 
         <jsp:include page="/shared/head.jsp" />
 
+        <title>Errore</title>
     </head>
 
     <body class="gray-bg">
