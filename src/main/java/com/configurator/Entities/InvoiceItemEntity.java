@@ -1,9 +1,10 @@
 package com.configurator.Entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
-public class InvoiceItemEntity {
+public class InvoiceItemEntity implements Serializable {
 
     public static final String PK = "InvoiceItemId";
     public static final String TABLE = "InvoiceItem";

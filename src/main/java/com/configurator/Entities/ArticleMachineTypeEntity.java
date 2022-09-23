@@ -1,8 +1,9 @@
 package com.configurator.Entities;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class ArticleMachineTypeEntity {
+public class ArticleMachineTypeEntity implements Serializable {
 
     public static final String PK = "ArticleMachineTypeId";
     public static final String TABLE = "ArticleMachineType";

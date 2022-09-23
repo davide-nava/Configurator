@@ -1,8 +1,9 @@
 package com.configurator.Entities;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class ArticleGroupTypeEntity {
+public class ArticleGroupTypeEntity implements Serializable {
 
     public static final String PK = "ArticleGroupTypeId";
     public static final String TABLE = "ArticleGroupType";

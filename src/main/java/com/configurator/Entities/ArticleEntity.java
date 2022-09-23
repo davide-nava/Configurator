@@ -1,8 +1,9 @@
 package com.configurator.Entities;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class ArticleEntity {
+public class ArticleEntity implements Serializable {
 
     public static final String PK = "ArticleId";
     public static final String TABLE = "Article";

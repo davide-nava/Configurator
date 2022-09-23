@@ -45,7 +45,7 @@
                             dataSource: {
                                 store: {
                                     type: 'odata',
-                                    url: '${pageContext.request.contextPath}/SalesViewer/odata/DaySaleDtoes',
+                                    url: '${pageContext.request.contextPath}/WEB-INF/resources/v1.0/SalesViewer/odata/DaySaleDtoes',
                                     key: 'Id',
                                     beforeSend(request) {
                                         // request.params.startDate = '2020-05-10';
@@ -54,11 +54,11 @@
                                 },
                             },
                             paging: {
-                                pageSize: 10,
+                                pageSize: 20,
                             },
                             pager: {
                                 showPageSizeSelector: true,
-                                allowedPageSizes: [10, 25, 50, 100],
+                                allowedPageSizes: [20, 40, 50, 100],
                             },
                             remoteOperations: false,
                             searchPanel: {
@@ -75,40 +75,19 @@
                             rowAlternationEnabled: true,
                             showBorders: true,
                             columns: [{
-                                dataField: 'Product',
-                                groupIndex: 0,
+                                dataField: 'CustomerId',
+                                caption: 'Id',
+                                dataType: 'string',
+                                visible: false,
                             }, {
-                                dataField: 'Amount',
-                                caption: 'Sale Amount',
-                                dataType: 'number',
-                                format: 'currency',
-                                alignment: 'right',
-                            }, {
-                                dataField: 'Discount',
-                                caption: 'Discount %',
-                                dataType: 'number',
-                                format: 'percent',
-                                alignment: 'right',
-                                allowGrouping: false,
-                                cellTemplate: discountCellTemplate,
-                                cssClass: 'bullet',
-                            }, {
-                                dataField: 'SaleDate',
-                                dataType: 'date',
-                            }, {
-                                dataField: 'Region',
+                                dataField: 'Name',
+                                caption: 'Nome',
                                 dataType: 'string',
                             }, {
-                                dataField: 'Sector',
+                                dataField: 'Code',
+                                caption: 'Codice',
                                 dataType: 'string',
-                            }, {
-                                dataField: 'Channel',
-                                dataType: 'string',
-                            }, {
-                                dataField: 'Customer',
-                                dataType: 'string',
-                                width: 150,
-                            }, ],
+                            }],
                             onContentReady(e) {
                                 if (!collapsed) {
                                     collapsed = true;
@@ -116,39 +95,8 @@
                                 }
                             },
                         });
-                    });?
-                    const discountCellTemplate = function(container, options) {
-                        $('<div/>').dxBullet({
-                            onIncidentOccurred: null,
-                            size: {
-                                width: 150,
-                                height: 35,
-                            },
-                            margin: {
-                                top: 5,
-                                bottom: 0,
-                                left: 5,
-                            },
-                            showTarget: false,
-                            showZeroLevel: true,
-                            value: options.value * 100,
-                            startScaleValue: 0,
-                            endScaleValue: 100,
-                            tooltip: {
-                                enabled: true,
-                                font: {
-                                    size: 18,
-                                },
-                                paddingTopBottom: 2,
-                                customizeTooltip() {
-                                    return {
-                                        text: options.text
-                                    };
-                                },
-                                zIndex: 5,
-                            },
-                        }).appendTo(container);
-                    };?
+                    }); ?
+
                     let collapsed = false;
                 </script>
 

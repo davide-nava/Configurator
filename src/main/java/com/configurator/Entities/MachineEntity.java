@@ -1,9 +1,10 @@
 package com.configurator.Entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
-public class MachineEntity {
+public class MachineEntity implements Serializable {
 
     public static final String PK = "MachineId";
     public static final String TABLE = "Machine";
