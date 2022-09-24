@@ -15,7 +15,12 @@
     <jsp:invoke fragment="head_area"/>
 
 </head>
-<body>
+<body class=" pace-done fixed-nav fixed-sidebar  ">
+<div class="pace  pace-inactive">
+    <div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
+    <div class="pace-progress-inner"></div>
+</div>
+    <div class="pace-activity"></div></div>
 <div id="wrapper">
     <nav class="navbar-default navbar-static-side" role="navigation" id="nabBarSx">
         <div class="sidebar-collapse">
@@ -23,7 +28,7 @@
                 <li class="nav-header">
                     <div class="dropdown profile-element">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="block m-t-xs font-bold">Configuratore</span>
+                            <span class="block m-t-xs font-bold">Configuratore<br/>Nava Davide<br/>Mat 001452422 </span>
                         </a>
                     </div>
                     <div class="logo-element">
@@ -86,34 +91,14 @@
         </div>
     </nav>
 
-    <div id="page-wrapper" class="gray-bg dashbard-1">
-        <div class="row border-bottom">
-            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header">
-                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
-                    </a>
-                </div>
-                <ul class="nav navbar-top-links navbar-right">
-                    <li style="padding: 20px">
-                        <span class="m-r-sm text-muted welcome-message"> .</span>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-
+    <div id="page-wrapper" class="gray-bg  ">
         <div class="wrapper wrapper-content">
             <div class="row">
                 <div class="col-lg-12">
-
                     <jsp:invoke fragment="body_area"/>
-
                 </div>
 
             </div>
-        </div>
-
-        <div class="footer">
-            Copyright Nava Davide &copy; 2022 Mat 001452422
         </div>
     </div>
 </div>

@@ -29,9 +29,8 @@
                                     </a>
                                 </div> -->
                             </div>
-                            <div class="ibox-content no-padding">
-
-                                <div class="row mt-3 mb-3 ">
+                            <div class="ibox-content ">
+                                <div class="row   ">
                                     <div class="col-12">
                                     <div id="gridContainer"></div>
                                     </div>
@@ -42,6 +41,8 @@
                 </div>
 
                 <script>
+                window.jsPDF = window.jspdf.jsPDF;
+
                     $(() => {
                         $('#gridContainer').dxDataGrid({
                             dataSource: {
@@ -55,12 +56,25 @@
                                     },
                                 },
                             },
+                              filterRow: {
+      visible: true,
+      applyFilter: 'auto',
+    },
+    headerFilter: {
+      visible: true,
+    },
+                             sorting: {
+      mode: 'multiple',
+    },
+    //                          selection: {
+    //   mode: 'single',
+    // },
                             paging: {
                                 pageSize: 20,
                             },
                             pager: {
                                 showPageSizeSelector: true,
-                                allowedPageSizes: [20, 40, 50, 100],
+                                allowedPageSizes: [15, 30, 50, 100],
                             },
                             remoteOperations: false,
                             searchPanel: {
@@ -76,12 +90,42 @@
                             allowColumnReordering: true,
                             rowAlternationEnabled: true,
                             showBorders: true,
-                            columns: [{
-                                dataField: 'customerId',
-                                caption: 'Id',
-                                dataType: 'string',
-                                visible: false,
-                            }, {
+    //                             export: {
+    //   enabled: true,
+    //   formats: ['pdf'],
+    //   allowExportSelectedData: true,
+    // },
+    // onExporting(e) {
+    //   const doc = new jsPDF();
+
+    //   DevExpress.pdfExporter.exportDataGrid({
+    //     jsPDFDocument: doc,
+    //     component: e.component,
+    //     indent: 5,
+    //   }).then(() => {
+    //     doc.save('Clienti.pdf');
+    //   });
+    // },
+    //   export: {
+    //   enabled: true,
+    //   allowExportSelectedData: true,
+    // },
+    // onExporting(e) {
+    //   const workbook = new ExcelJS.Workbook();
+    //   const worksheet = workbook.addWorksheet('Clienti');
+
+    //   DevExpress.excelExporter.exportDataGrid({
+    //     component: e.component,
+    //     worksheet,
+    //     autoFilterEnabled: true,
+    //   }).then(() => {
+    //     workbook.xlsx.writeBuffer().then((buffer) => {
+    //       saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'Clienti.xlsx');
+    //     });
+    //   });
+    //   e.cancel = true;
+    // },
+                            columns: [  {
                                 dataField: 'name',
                                 caption: 'Nome',
                                 dataType: 'string',
@@ -89,7 +133,21 @@
                                 dataField: 'code',
                                 caption: 'Codice',
                                 dataType: 'string',
-                            }],
+                            },
+                           {
+                              dataField: 'customerId',
+                                caption: '',
+                                width: 30,
+                                   alignment: 'center',
+      allowFiltering: false,
+      allowSorting: false,      
+      cellTemplate(container, options) {
+        $('<div>')
+          .append($('<a>', { href: '${pageContext.request.contextPath}/tables/customer/read.jsp?id=1'  }))
+          .append($('<i>', { class: 'fa-solid fa-eye ',  }))
+          .appendTo(container);
+      },
+    }, ],
                             onContentReady(e) {
                                 if (!collapsed) {
                                     collapsed = true;

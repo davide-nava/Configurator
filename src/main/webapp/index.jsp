@@ -29,7 +29,7 @@
                                     </a>
                                 </div> -->
                             </div>
-                            <div class="ibox-content no-padding">
+                            <div class="ibox-content ">
                                 <!-- <ul class="list-group">
                                     <li class="list-group-item">
                                         <p><a class="text-info" href="#">@Alan Marry</a> I belive that. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>

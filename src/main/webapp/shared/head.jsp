@@ -31,8 +31,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cldrjs/0.4.4/cldr/unresolved.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/22.1.5/css/dx.common.css" />
 <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/22.1.5/css/dx.light.css" />
-<script src="https://cdn3.devexpress.com/jslib/22.1.5/js/dx.all.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/devexpress-diagram/2.1.63/dx-diagram.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/devexpress-gantt/4.1.32/dx-gantt.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/devextreme-quill/1.5.16/dx-quill.min.js"></script>
+
+<!-- DevExtreme library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/devextreme/22.1.5/js/dx.all.js"></script>
+
+<!-- DevExpress.AspNet.Data -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/devextreme-aspnet-data/2.8.6/dx.aspnet.data.min.js"></script>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 

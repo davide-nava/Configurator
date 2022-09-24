@@ -1,3 +1,7 @@
 #nabBarSx a{
     text-decoration: none;
 }
+
+body.fixed-nav #wrapper .navbar-static-side, body.fixed-nav #wrapper #page-wrapper {
+     margin-top: 0px;
+}
