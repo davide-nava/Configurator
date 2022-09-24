@@ -5,29 +5,28 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.configurator.Entities.ArticleArticleGroupTypeEntity;
-import com.configurator.Entities.ArticleMachineEntity;
-import com.configurator.Services.ArticleArticleGroupTypeService;
+import com.configurator.Entities.ArticleMachineViewModel;
 import com.configurator.Services.ArticleMachineService;
 import com.google.gson.Gson;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
+import jakarta.servlet.http.HttpServlet;
 
 @WebServlet(name = "ArticleMachineServlet", value = "/api/dx/articlemachine")
 public class ArticleMachineServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private ArticleMachineService service = new ArticleMachineService();
-    private Gson gson = new Gson();
+    private final ArticleMachineService service = new ArticleMachineService();
+    private final Gson gson = new Gson();
 
     @Override
-    protected void doGet(jakarta.servlet.http.HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response) throws jakarta.servlet.ServletException, IOException {
+    protected void doGet(jakarta.servlet.http.HttpServletRequest request,
+            jakarta.servlet.http.HttpServletResponse response) throws jakarta.servlet.ServletException, IOException {
 
-        List<ArticleMachineEntity> list = null;
+        List<ArticleMachineViewModel> list = null;
         try {
-            list = service.get();
+            list = service.getViewModal();
 
             String userJsonString = this.gson.toJson(list);
 
@@ -42,7 +41,8 @@ public class ArticleMachineServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(jakarta.servlet.http.HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(jakarta.servlet.http.HttpServletRequest request,
+            jakarta.servlet.http.HttpServletResponse response) throws ServletException, IOException {
 
     }
 }

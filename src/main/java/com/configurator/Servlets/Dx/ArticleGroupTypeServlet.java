@@ -5,25 +5,25 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.configurator.Entities.ArticleArticleGroupTypeEntity;
 import com.configurator.Entities.ArticleGroupTypeEntity;
-import com.configurator.Services.ArticleArticleGroupTypeService;
+import com.configurator.Entities.ArticleGroupTypeViewModel;
 import com.configurator.Services.ArticleGroupTypeService;
 import com.google.gson.Gson;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
+import jakarta.servlet.http.HttpServlet;
 
 @WebServlet(name = "ArticleGroupTypeServlet", value = "/api/dx/articlegrouptype")
 public class ArticleGroupTypeServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private ArticleGroupTypeService service = new ArticleGroupTypeService();
-    private Gson gson = new Gson();
+    private final ArticleGroupTypeService service = new ArticleGroupTypeService();
+    private final Gson gson = new Gson();
 
     @Override
-    protected void doGet(jakarta.servlet.http.HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response) throws jakarta.servlet.ServletException, IOException {
+    protected void doGet(jakarta.servlet.http.HttpServletRequest request,
+            jakarta.servlet.http.HttpServletResponse response) throws jakarta.servlet.ServletException, IOException {
 
         List<ArticleGroupTypeEntity> list = null;
         try {
@@ -42,7 +42,8 @@ public class ArticleGroupTypeServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(jakarta.servlet.http.HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(jakarta.servlet.http.HttpServletRequest request,
+            jakarta.servlet.http.HttpServletResponse response) throws ServletException, IOException {
 
     }
 }

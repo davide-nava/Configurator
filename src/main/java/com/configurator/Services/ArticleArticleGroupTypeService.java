@@ -1,14 +1,16 @@
 package com.configurator.Services;
 
-import com.configurator.Entities.ArticleArticleGroupTypeEntity;
-import com.configurator.Interfaces.IArticleArticleGroupTypeService;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import com.configurator.Entities.ArticleArticleGroupTypeEntity;
+import com.configurator.Entities.ArticleArticleGroupTypeViewModel;
+import com.configurator.Interfaces.IArticleArticleGroupTypeService;
 
 public class ArticleArticleGroupTypeService extends BaseService
         implements IArticleArticleGroupTypeService {
@@ -46,7 +48,6 @@ public class ArticleArticleGroupTypeService extends BaseService
         try {
             con = getConnection();
 
-
             PreparedStatement ps = con.prepareStatement(
                     "insert into ArticleArticleGroupType (ArticleArticleGroupTypeId, ArticleGroupTypeId, ArticleId, Qta) values ( ?, ?,?, ?)");
 
@@ -66,11 +67,11 @@ public class ArticleArticleGroupTypeService extends BaseService
     }
 
     @Override
-    public ArticleArticleGroupTypeEntity loadFromResultSet(ResultSet rs) {
+    public ArticleArticleGroupTypeEntity loadEntityFromResultSet(ResultSet rs) {
         ArticleArticleGroupTypeEntity result = null;
 
         try {
-            if (rs.next()) {
+            if (rs != null) {
                 result = new ArticleArticleGroupTypeEntity();
 
                 result.setArticleGroupTypeId(UUID.fromString(rs.getString("ArticleGroupTypeId")));
@@ -78,6 +79,28 @@ public class ArticleArticleGroupTypeService extends BaseService
                 result.setQta(rs.getFloat("Qta"));
             }
         } catch (Exception ex) {
+            result = null;
+            throw ex;
+        } finally {
+            return result;
+        }
+    }
+    @Override
+    public ArticleArticleGroupTypeViewModel loadViewModelFromResultSet(ResultSet rs) {
+        ArticleArticleGroupTypeViewModel result = null;
+
+        try {
+            if (rs != null) {
+                result = new ArticleArticleGroupTypeViewModel();
+
+                result.setArticleGroupTypeId(UUID.fromString(rs.getString("ArticleGroupTypeId")));
+                result.setArticleId(UUID.fromString(rs.getString("ArticleId")));
+                result.setArticleDesc(rs.getString("ArticleDesc"));
+                result.setArticleGroupTypeDesc(rs.getString("ArticleGroupTypeDesc"));
+                result.setQta(rs.getFloat("Qta"));
+            }
+        } catch (Exception ex) {
+            result = null;
             throw ex;
         } finally {
             return result;
@@ -85,8 +108,37 @@ public class ArticleArticleGroupTypeService extends BaseService
     }
 
     @Override
+    public List<ArticleArticleGroupTypeViewModel> getViewModal() throws SQLException {
+        List<ArticleArticleGroupTypeViewModel> result = new ArrayList<ArticleArticleGroupTypeViewModel>();
+        Connection con = null;
+        ResultSet rs = null;
+
+        try {
+            con = getConnection();
+            PreparedStatement ps = con.prepareStatement(" select ArticleArticleGroupType.*, (Article.Name || ' - ' || Article.Code ) as  'ArticleDesc', ArticleGroupType.Desc as 'ArticleGroupTypeDesc' from ArticleArticleGroupType inner join Article on Article.ArticleId = ArticleArticleGroupType.ArticleId inner join ArticleGroupType on ArticleGroupType.ArticleGroupTypeId = ArticleArticleGroupType.ArticleGroupTypeId  ");
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                result.add(loadViewModelFromResultSet( rs));
+            }
+        } catch (SQLException exception) {
+            result = null;
+            printSQLException(exception);
+        } finally {
+            if (rs != null)
+                rs.close();
+
+            if (con != null)
+                con.close();
+
+            return result;
+        }
+    }
+
+    @Override
     public List<ArticleArticleGroupTypeEntity> get() throws SQLException {
-        List<ArticleArticleGroupTypeEntity> result = null;
+        List<ArticleArticleGroupTypeEntity> result = new ArrayList<ArticleArticleGroupTypeEntity>();
         Connection con = null;
         ResultSet rs = null;
 
@@ -97,9 +149,10 @@ public class ArticleArticleGroupTypeService extends BaseService
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                result.add(loadFromResultSet(rs));
+                result.add(loadEntityFromResultSet(rs));
             }
         } catch (SQLException exception) {
+            result = null;
             printSQLException(exception);
         } finally {
             if (rs != null)
@@ -128,7 +181,7 @@ public class ArticleArticleGroupTypeService extends BaseService
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                result = loadFromResultSet(rs);
+                result = loadEntityFromResultSet(rs);
             }
 
         } catch (SQLException exception) {

@@ -1,14 +1,17 @@
 package com.configurator.Services;
 
-import com.configurator.Entities.ArticleEntity;
-import com.configurator.Interfaces.IArticleService;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import com.configurator.Entities.ArticleEntity;
+import com.configurator.Entities.ArticleMachineTypeEntity;
+import com.configurator.Entities.ArticleViewModel;
+import com.configurator.Interfaces.IArticleService;
 
 public class ArticleService extends BaseService implements IArticleService {
 
@@ -72,10 +75,10 @@ public class ArticleService extends BaseService implements IArticleService {
     }
 
     @Override
-    public ArticleEntity loadFromResultSet(ResultSet rs) {
+    public ArticleEntity loadEntityFromResultSet(ResultSet rs) {
         ArticleEntity result = null;
         try {
-            if (rs.next()) {
+            if (rs != null) {
                 result = new ArticleEntity();
 
                 result.setArticleId(UUID.fromString(rs.getString("ArticleId")));
@@ -96,23 +99,80 @@ public class ArticleService extends BaseService implements IArticleService {
     }
 
     @Override
-    public List<ArticleEntity> get() throws SQLException {
-        List<ArticleEntity> result = null;
+    public ArticleViewModel loadViewModelFromResultSet(ResultSet rs) {
+        ArticleViewModel result = null;
+        try {
+            if (rs != null) {
+                result = new ArticleViewModel();
+
+                result.setArticleId(UUID.fromString(rs.getString("ArticleId")));
+                result.setImg(rs.getString("Img"));
+                result.setDoc(rs.getString("Doc"));
+                result.setCode(rs.getString("Code"));
+                result.setName(rs.getString("Name"));
+                result.setDesc(rs.getString("Desc"));
+                result.setArticleTypeId(UUID.fromString(rs.getString("ArticleTypeId")));
+                result.setArticleTypeDesc(rs.getString("ArticleTypeDesc"));
+                result.setBasePrice(rs.getFloat("BasePrice"));
+            }
+
+        } catch (SQLException exception) {
+            printSQLException(exception);
+        } finally {
+            return result;
+        }
+    }
+
+    @Override
+    public List<ArticleViewModel> getViewModal() throws SQLException {
+        List<ArticleViewModel> result = new ArrayList<ArticleViewModel>();
         Connection con = null;
         ResultSet rs = null;
 
         try {
             con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "select * from  ArticleMachine");
+                    " select Article.*  , ArticleType.Desc as 'ArticleTypeDesc' from Article inner join ArticleType on ArticleType.ArticleTypeId = Article.ArticleTypeId    ");
 
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                result.add(loadFromResultSet(rs));
+                result.add(loadViewModelFromResultSet(rs));
             }
 
         } catch (SQLException exception) {
+            result = null;
+            printSQLException(exception);
+        } finally {
+            if (rs != null)
+                rs.close();
+
+            if (con != null)
+                con.close();
+
+            return result;
+        }
+    }
+
+    @Override
+    public List<ArticleEntity> get() throws SQLException {
+        List<ArticleEntity> result = new ArrayList<ArticleEntity>();
+        Connection con = null;
+        ResultSet rs = null;
+
+        try {
+            con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "select * from  Article");
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                result.add(loadEntityFromResultSet(rs));
+            }
+
+        } catch (SQLException exception) {
+            result = null;
             printSQLException(exception);
         } finally {
             if (rs != null)
@@ -135,14 +195,14 @@ public class ArticleService extends BaseService implements IArticleService {
         try {
             con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "select * from ArticleMachineType where ArticleMachineTypeId=? ");
+                    "select * from Article where ArticleId=? ");
 
             ps.setString(1, id.toString());
 
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                result = loadFromResultSet(rs);
+                result = loadEntityFromResultSet(rs);
             }
 
         } catch (SQLException exception) {
@@ -166,4 +226,5 @@ public class ArticleService extends BaseService implements IArticleService {
             printSQLException(exception);
         }
     }
+
 }

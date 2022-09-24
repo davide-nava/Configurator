@@ -1,14 +1,16 @@
 package com.configurator.Services;
 
-import com.configurator.Entities.ArticleTypeEntity;
-import com.configurator.Interfaces.IArticleTypeService;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import com.configurator.Entities.ArticleTypeEntity;
+import com.configurator.Entities.ArticleTypeViewModel;
+import com.configurator.Interfaces.IArticleTypeService;
 
 public class ArticleTypeService extends BaseService implements IArticleTypeService {
 
@@ -64,10 +66,10 @@ public class ArticleTypeService extends BaseService implements IArticleTypeServi
     }
 
     @Override
-    public ArticleTypeEntity loadFromResultSet(ResultSet rs) {
+    public ArticleTypeEntity loadEntityFromResultSet(ResultSet rs) {
         ArticleTypeEntity result = null;
         try {
-            if (rs.next()) {
+            if (rs != null) {
                 result = new ArticleTypeEntity();
 
                 result.setArticleTypeId(UUID.fromString(rs.getString("ArticleTypeId")));
@@ -85,7 +87,7 @@ public class ArticleTypeService extends BaseService implements IArticleTypeServi
 
     @Override
     public List<ArticleTypeEntity> get() throws SQLException {
-        List<ArticleTypeEntity> result = null;
+        List<ArticleTypeEntity> result = new ArrayList<ArticleTypeEntity>();
         Connection con = null;
         ResultSet rs = null;
 
@@ -97,10 +99,11 @@ public class ArticleTypeService extends BaseService implements IArticleTypeServi
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                result.add(loadFromResultSet(rs));
+                result.add(loadEntityFromResultSet(rs));
             }
 
         } catch (SQLException exception) {
+            result = null;
             printSQLException(exception);
         } finally {
             if (rs != null)
@@ -130,7 +133,7 @@ public class ArticleTypeService extends BaseService implements IArticleTypeServi
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                result = loadFromResultSet(rs);
+                result = loadEntityFromResultSet(rs);
             }
 
         } catch (SQLException exception) {
@@ -154,4 +157,6 @@ public class ArticleTypeService extends BaseService implements IArticleTypeServi
             printSQLException(exception);
         }
     }
+
+
 }

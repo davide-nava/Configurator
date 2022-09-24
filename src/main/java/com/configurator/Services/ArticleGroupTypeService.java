@@ -1,14 +1,16 @@
 package com.configurator.Services;
 
-import com.configurator.Entities.ArticleGroupTypeEntity;
-import com.configurator.Interfaces.IArticleGroupTypeService;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import com.configurator.Entities.ArticleGroupTypeEntity;
+import com.configurator.Entities.ArticleGroupTypeViewModel;
+import com.configurator.Interfaces.IArticleGroupTypeService;
 
 public class ArticleGroupTypeService extends BaseService implements IArticleGroupTypeService {
 
@@ -64,10 +66,10 @@ public class ArticleGroupTypeService extends BaseService implements IArticleGrou
     }
 
     @Override
-    public ArticleGroupTypeEntity loadFromResultSet(ResultSet rs) {
+    public ArticleGroupTypeEntity loadEntityFromResultSet(ResultSet rs) {
         ArticleGroupTypeEntity result = null;
         try {
-            if (rs.next()) {
+            if (rs != null) {
                 result = new ArticleGroupTypeEntity();
 
                 result.setArticleGroupTypeId(UUID.fromString(rs.getString("ArticleGroupTypeId")));
@@ -77,15 +79,18 @@ public class ArticleGroupTypeService extends BaseService implements IArticleGrou
             }
 
         } catch (SQLException exception) {
+            result = null;
             printSQLException(exception);
         } finally {
             return result;
         }
     }
 
+
+
     @Override
     public List<ArticleGroupTypeEntity> get() throws SQLException {
-        List<ArticleGroupTypeEntity> result = null;
+        List<ArticleGroupTypeEntity> result = new ArrayList<ArticleGroupTypeEntity>();; 
         Connection con = null;
         ResultSet rs = null;
 
@@ -97,10 +102,11 @@ public class ArticleGroupTypeService extends BaseService implements IArticleGrou
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                result.add(loadFromResultSet(rs));
+                result.add(loadEntityFromResultSet(rs));
             }
 
         } catch (SQLException exception) {
+            result = null;
             printSQLException(exception);
         } finally {
             if (rs != null)
@@ -116,7 +122,7 @@ public class ArticleGroupTypeService extends BaseService implements IArticleGrou
     @Override
     public ArticleGroupTypeEntity get(UUID id) throws SQLException {
 
-        ArticleGroupTypeEntity result = null;
+        ArticleGroupTypeEntity result = new ArticleGroupTypeEntity();
         Connection con = null;
         ResultSet rs = null;
 
@@ -129,10 +135,11 @@ public class ArticleGroupTypeService extends BaseService implements IArticleGrou
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                result = loadFromResultSet(rs);
+                result = loadEntityFromResultSet(rs);
             }
 
         } catch (SQLException exception) {
+            result = null;
             printSQLException(exception);
         } finally {
             if (rs != null)

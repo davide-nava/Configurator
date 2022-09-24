@@ -1,20 +1,18 @@
 package com.configurator.Interfaces;
 
-import com.configurator.Entities.InvoiceItemEntity;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
-public interface IInvoiceItemService {
-    void update(InvoiceItemEntity val) throws SQLException;
+import com.configurator.Entities.ArticleTypeEntity;
+import com.configurator.Entities.InvoiceItemEntity;
+import com.configurator.Entities.InvoiceItemViewModel;
 
-    void insert(InvoiceItemEntity val) throws SQLException;
+public interface IInvoiceItemService extends IBaseService<InvoiceItemEntity> {
 
-    List<InvoiceItemEntity> get() throws SQLException;
+    List<InvoiceItemViewModel> getViewModal() throws SQLException;
 
-    InvoiceItemEntity get(UUID id) throws SQLException;
+    InvoiceItemViewModel loadViewModelFromResultSet(ResultSet rs);
 
-    InvoiceItemEntity loadFromResultSet(ResultSet val);
 }

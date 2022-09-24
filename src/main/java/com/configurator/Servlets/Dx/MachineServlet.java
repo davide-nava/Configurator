@@ -5,29 +5,28 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.configurator.Entities.ArticleArticleGroupTypeEntity;
-import com.configurator.Entities.MachineEntity;
-import com.configurator.Services.ArticleArticleGroupTypeService;
+import com.configurator.Entities.MachineViewModel;
 import com.configurator.Services.MachineService;
 import com.google.gson.Gson;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
+import jakarta.servlet.http.HttpServlet;
 
 @WebServlet(name = "MachineServlet", value = "/api/dx/machine")
 public class MachineServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private MachineService service = new MachineService();
-    private Gson gson = new Gson();
+    private final MachineService service = new MachineService();
+    private final Gson gson = new Gson();
 
     @Override
-    protected void doGet(jakarta.servlet.http.HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response) throws jakarta.servlet.ServletException, IOException {
+    protected void doGet(jakarta.servlet.http.HttpServletRequest request,
+            jakarta.servlet.http.HttpServletResponse response) throws jakarta.servlet.ServletException, IOException {
 
-        List<MachineEntity> list = null;
+        List<MachineViewModel> list = null;
         try {
-            list = service.get();
+            list = service.getViewModal();
 
             String userJsonString = this.gson.toJson(list);
 
@@ -42,7 +41,8 @@ public class MachineServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(jakarta.servlet.http.HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(jakarta.servlet.http.HttpServletRequest request,
+            jakarta.servlet.http.HttpServletResponse response) throws ServletException, IOException {
 
     }
 }

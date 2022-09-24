@@ -1,14 +1,15 @@
 package com.configurator.Services;
 
-import com.configurator.Entities.CustomerEntity;
-import com.configurator.Interfaces.ICustomerService;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import com.configurator.Entities.CustomerEntity;
+import com.configurator.Interfaces.ICustomerService;
 
 public class CustomerService extends BaseService implements ICustomerService {
 
@@ -62,10 +63,10 @@ public class CustomerService extends BaseService implements ICustomerService {
     }
 
     @Override
-    public CustomerEntity loadFromResultSet(ResultSet rs) {
+    public CustomerEntity loadEntityFromResultSet(ResultSet rs) {
         CustomerEntity result = null;
         try {
-            if (rs.next()) {
+            if (rs != null) {
                 result = new CustomerEntity();
 
                 result.setCustomerId(UUID.fromString(rs.getString("CustomerId")));
@@ -82,7 +83,7 @@ public class CustomerService extends BaseService implements ICustomerService {
 
     @Override
     public List<CustomerEntity> get() throws SQLException {
-        List<CustomerEntity> result = null;
+        List<CustomerEntity> result = new ArrayList<CustomerEntity>();
         Connection con = null;
         ResultSet rs = null;
 
@@ -94,10 +95,11 @@ public class CustomerService extends BaseService implements ICustomerService {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                result.add(loadFromResultSet(rs));
+                result.add(loadEntityFromResultSet(rs));
             }
 
         } catch (SQLException exception) {
+            result = null;
             printSQLException(exception);
         } finally {
             if (rs != null)
@@ -127,7 +129,7 @@ public class CustomerService extends BaseService implements ICustomerService {
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                result = loadFromResultSet(rs);
+                result = loadEntityFromResultSet(rs);
             }
 
         } catch (SQLException exception) {

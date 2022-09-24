@@ -12,6 +12,7 @@ public class InvoiceEntity implements Serializable {
     private UUID customerId = UUID.randomUUID();
     private Date dt;
     private float total;
+    private String  nr;
 
     public UUID getInvoiceId() {
         return invoiceId;
@@ -43,5 +44,13 @@ public class InvoiceEntity implements Serializable {
 
     public void setTotal(Float total) {
         this.total = total;
+    }
+
+    public String getNr() {
+        return nr;
+    }
+
+    public void setNr(String nr) {
+        this.nr = nr;
     }
 }

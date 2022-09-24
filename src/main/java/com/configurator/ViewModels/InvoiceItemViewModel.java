@@ -1,72 +1,44 @@
 package com.configurator.Entities;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.UUID;
 
-public class InvoiceItemViewModel implements Serializable {
-    private static final long serialVersionUID = 1L;
-    private UUID invoiceItemId = UUID.randomUUID();
-    private UUID invoiceId = UUID.randomUUID();
-    private UUID articleId = UUID.randomUUID();
-    private UUID machineId = UUID.randomUUID();
-    private Date dt;
-    private float qta = 1;
+public class InvoiceItemViewModel extends InvoiceItemEntity implements Serializable {
 
-    public InvoiceItemViewModel(UUID invoiceItemId, UUID invoiceId, UUID articleId, UUID machineId, Date dt, float qta) {
-        this.invoiceItemId = invoiceItemId;
-        this.invoiceId = invoiceId;
-        this.articleId = articleId;
-        this.machineId = machineId;
-        this.dt = dt;
-        this.qta = qta;
+    private String invoiceItemDesc = "";
+    private String invoiceDesc = "";
+    private String articleDesc = "";
+    private String machineDesc = "";
+
+    public String getInvoiceItemDesc() {
+        return invoiceItemDesc;
     }
 
-    public UUID getInvoiceItemId() {
-        return invoiceItemId;
+    public void setInvoiceItemDesc(String invoiceItemDesc) {
+        this.invoiceItemDesc = invoiceItemDesc;
     }
 
-    public void setInvoiceItemId(UUID invoiceItemId) {
-        this.invoiceItemId = invoiceItemId;
+    public String getInvoiceDesc() {
+        return invoiceDesc;
     }
 
-    public UUID getInvoiceId() {
-        return invoiceId;
+    public void setInvoiceDesc(String invoiceDesc) {
+        this.invoiceDesc = invoiceDesc;
     }
 
-    public void setInvoiceId(UUID invoiceId) {
-        this.invoiceId = invoiceId;
+    public String getArticleDesc() {
+        return articleDesc;
     }
 
-    public UUID getArticleId() {
-        return articleId;
+    public void setArticleDesc(String articleDesc) {
+        this.articleDesc = articleDesc;
     }
 
-    public void setArticleId(UUID articleId) {
-        this.articleId = articleId;
+    public String getMachineDesc() {
+        return machineDesc;
     }
 
-    public UUID getMachineId() {
-        return machineId;
+    public void setMachineDesc(String machineDesc) {
+        this.machineDesc = machineDesc;
     }
 
-    public void setMachineId(UUID machineId) {
-        this.machineId = machineId;
-    }
-
-    public float getQta() {
-        return qta;
-    }
-
-    public void setQta(float qta) {
-        this.qta = qta;
-    }
-
-    public Date getDt() {
-        return dt;
-    }
-
-    public void setDt(Date dt) {
-        this.dt = dt;
-    }
 }

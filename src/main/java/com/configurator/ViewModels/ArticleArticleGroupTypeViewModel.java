@@ -1,52 +1,26 @@
 package com.configurator.Entities;
 
 import java.io.Serializable;
-import java.util.UUID;
 
-public class ArticleArticleGroupTypeViewModel implements Serializable {
-    private static final long serialVersionUID = 1L;
-    private UUID articleArticleGroupTypeId = UUID.randomUUID();
-    private UUID articleGroupTypeId = UUID.randomUUID();
-    private UUID articleId = UUID.randomUUID();
-    private float qta = 1;
+public class ArticleArticleGroupTypeViewModel extends ArticleArticleGroupTypeEntity implements Serializable {
 
-    public ArticleArticleGroupTypeViewModel(UUID articleArticleGroupTypeId, UUID articleGroupTypeId, UUID articleId, float qta) {
-        this.articleArticleGroupTypeId = articleArticleGroupTypeId;
-        this.articleGroupTypeId = articleGroupTypeId;
-        this.articleId = articleId;
-        this.qta = qta;
+    private String articleGroupTypeDesc = "";
+    private String articleDesc = "";
+
+    public String getArticleGroupTypeDesc() {
+        return articleGroupTypeDesc;
     }
 
-    public UUID getArticleArticleGroupTypeId() {
-        return articleArticleGroupTypeId;
+    public void setArticleGroupTypeDesc(String articleGroupTypeDesc) {
+        this.articleGroupTypeDesc = articleGroupTypeDesc;
     }
 
-    public void setArticleArticleGroupTypeId(UUID articleArticleGroupTypeId) {
-        this.articleArticleGroupTypeId = articleArticleGroupTypeId;
+    public String getArticleDesc() {
+        return articleDesc;
     }
 
-    public UUID getArticleGroupTypeId() {
-        return articleGroupTypeId;
-    }
-
-    public void setArticleGroupTypeId(UUID articleGroupTypeId) {
-        this.articleGroupTypeId = articleGroupTypeId;
-    }
-
-    public UUID getArticleId() {
-        return articleId;
-    }
-
-    public void setArticleId(UUID articleId) {
-        this.articleId = articleId;
-    }
-
-    public float getQta() {
-        return qta;
-    }
-
-    public void setQta(float qta) {
-        this.qta = qta;
+    public void setArticleDesc(String articleDesc) {
+        this.articleDesc = articleDesc;
     }
 
 }

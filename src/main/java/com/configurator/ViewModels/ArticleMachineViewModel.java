@@ -1,62 +1,26 @@
 package com.configurator.Entities;
 
 import java.io.Serializable;
-import java.util.UUID;
 
-public class ArticleMachineViewModel implements Serializable {
-    private static final long serialVersionUID = 1L;
-    private UUID articleMachineId = UUID.randomUUID();
-    private UUID machineId = UUID.randomUUID();
-    private UUID articleId = UUID.randomUUID();
-    private float qta = 1;
-    private String note = "";
+public class ArticleMachineViewModel extends ArticleMachineEntity implements Serializable {
 
-    public ArticleMachineViewModel(UUID articleMachineId, UUID machineId, UUID articleId, float qta, String note) {
-        this.articleMachineId = articleMachineId;
-        this.machineId = machineId;
-        this.articleId = articleId;
-        this.note = note;
-        this.qta = qta;
+    private String articleDesc = "";
+    private String machineDesc = "";
+
+    public String getMachineDesc() {
+        return machineDesc;
     }
 
-    public UUID getArticleMachineId() {
-        return articleMachineId;
+    public void setMachineDesc(String machineDesc) {
+        this.machineDesc = machineDesc;
     }
 
-    public void setArticleMachineId(UUID articleMachineId) {
-        this.articleMachineId = articleMachineId;
+    public String getArticleDesc() {
+        return articleDesc;
     }
 
-    public UUID getMachineId() {
-        return machineId;
+    public void setArticleDesc(String articleDesc) {
+        this.articleDesc = articleDesc;
     }
 
-    public void setMachineId(UUID machineId) {
-        this.machineId = machineId;
-    }
-
-    public UUID getArticleId() {
-        return articleId;
-    }
-
-    public void setArticleId(UUID articleId) {
-        this.articleId = articleId;
-    }
-
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
-
-    public float getQta() {
-        return qta;
-    }
-
-    public void setQta(float qta) {
-        this.qta = qta;
-    }
 }

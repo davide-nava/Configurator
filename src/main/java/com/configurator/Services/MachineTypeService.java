@@ -1,14 +1,16 @@
 package com.configurator.Services;
 
-import com.configurator.Entities.MachineTypeEntity;
-import com.configurator.Interfaces.IMachineTypeService;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import com.configurator.Entities.MachineTypeEntity;
+import com.configurator.Entities.MachineTypeViewModel;
+import com.configurator.Interfaces.IMachineTypeService;
 
 public class MachineTypeService extends BaseService implements IMachineTypeService {
 
@@ -76,10 +78,10 @@ public class MachineTypeService extends BaseService implements IMachineTypeServi
     }
 
     @Override
-    public MachineTypeEntity loadFromResultSet(ResultSet rs) {
+    public MachineTypeEntity loadEntityFromResultSet(ResultSet rs) {
         MachineTypeEntity result = null;
         try {
-            if (rs.next()) {
+            if (rs != null) {
                 result = new MachineTypeEntity();
 
                 result.setMachineTypeId(UUID.fromString(rs.getString("MachineTypeId")));
@@ -103,7 +105,7 @@ public class MachineTypeService extends BaseService implements IMachineTypeServi
 
     @Override
     public List<MachineTypeEntity> get() throws SQLException {
-        List<MachineTypeEntity> result = null;
+        List<MachineTypeEntity> result = new ArrayList<MachineTypeEntity>();
         Connection con = null;
         ResultSet rs = null;
 
@@ -115,10 +117,11 @@ public class MachineTypeService extends BaseService implements IMachineTypeServi
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                result.add(loadFromResultSet(rs));
+                result.add(loadEntityFromResultSet(rs));
             }
 
         } catch (SQLException exception) {
+            result = null;
             printSQLException(exception);
         } finally {
             if (rs != null)
@@ -148,7 +151,7 @@ public class MachineTypeService extends BaseService implements IMachineTypeServi
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                result = loadFromResultSet(rs);
+                result = loadEntityFromResultSet(rs);
             }
 
         } catch (SQLException exception) {
@@ -172,4 +175,6 @@ public class MachineTypeService extends BaseService implements IMachineTypeServi
             printSQLException(exception);
         }
     }
+
+
 }

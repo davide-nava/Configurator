@@ -1,14 +1,16 @@
 package com.configurator.Services;
 
-import com.configurator.Entities.MachineEntity;
-import com.configurator.Interfaces.IMachineService;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import com.configurator.Entities.MachineEntity;
+import com.configurator.Entities.MachineViewModel;
+import com.configurator.Interfaces.IMachineService;
 
 public class MachineService extends BaseService implements IMachineService {
 
@@ -58,7 +60,7 @@ public class MachineService extends BaseService implements IMachineService {
             con = getConnection();
 
             PreparedStatement ps = con.prepareStatement(
-                    "insert into ArticleMachineType ( MachineId, Nr, Year, Code, Desc, Img, Doc, MachineTypeId, BasePrice, Note, ProductionOrder,  Address, DtDelivery, DtAcceptance, DtEndWarranty, DtStartWarranty) values ( ?, ?, ?,  ?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    "insert into Machine ( MachineId, Nr, Year, Code, Desc, Img, Doc, MachineTypeId, BasePrice, Note, ProductionOrder,  Address, DtDelivery, DtAcceptance, DtEndWarranty, DtStartWarranty) values ( ?, ?, ?,  ?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
             ps.setString(1, val.getMachineId().toString());
             ps.setInt(2, val.getNr());
@@ -88,10 +90,10 @@ public class MachineService extends BaseService implements IMachineService {
     }
 
     @Override
-    public MachineEntity loadFromResultSet(ResultSet rs) {
+    public MachineEntity loadEntityFromResultSet(ResultSet rs) {
         MachineEntity result = null;
         try {
-            if (rs.next()) {
+            if (rs != null) {
                 result = new MachineEntity();
 
                 result.setMachineId(UUID.fromString(rs.getString("MachineId")));
@@ -120,8 +122,71 @@ public class MachineService extends BaseService implements IMachineService {
     }
 
     @Override
+    public MachineViewModel loadViewModelFromResultSet(ResultSet rs) {
+        MachineViewModel result = null;
+        try {
+            if (rs != null) {
+                result = new MachineViewModel();
+
+                result.setMachineId(UUID.fromString(rs.getString("MachineId")));
+                result.setMachineTypeId(UUID.fromString(rs.getString("MachineTypeId")));
+                result.setDesc(rs.getString("Desc"));
+                result.setYear(rs.getInt("Year"));
+                result.setDoc(rs.getString("Doc"));
+                result.setImg(rs.getString("Img"));
+                result.setCode(rs.getString("Code"));
+                result.setNr(rs.getInt("Nr"));
+                result.setBasePrice(rs.getFloat("BasePrice"));
+                result.setNote(rs.getString("Note"));
+                result.setProductionOrder(rs.getString("ProductionOrder"));
+                result.setAddress(rs.getString("Address"));
+                result.setDtDelivery(rs.getDate("DtDelivery"));
+                result.setDtAcceptance(rs.getDate("DtAcceptance"));
+                result.setDtEndWarranty(rs.getDate("DtEndWarranty"));
+                result.setDtStartWarranty(rs.getDate("DtStartWarranty"));
+            }
+
+        } catch (SQLException exception) {
+            printSQLException(exception);
+        } finally {
+            return result;
+        }
+    }
+
+
+    @Override
+    public List<MachineViewModel> getViewModal() throws SQLException {
+        List<MachineViewModel> result = new ArrayList<MachineViewModel>();
+        Connection con = null;
+        ResultSet rs = null;
+
+        try {
+            con = getConnection();
+            PreparedStatement ps = con.prepareStatement( "select Machine.*,   MachineType.Desc as 'MachineTypeDesc'  from  Machine inner join MachineType on MachineType.MachineTypeId = Machine.MachineTypeId");
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                result.add(loadViewModelFromResultSet(rs));
+            }
+
+        } catch (SQLException exception) {
+            result = null;
+            printSQLException(exception);
+        } finally {
+            if (rs != null)
+                rs.close();
+
+            if (con != null)
+                con.close();
+
+            return result;
+        }
+    }
+
+    @Override
     public List<MachineEntity> get() throws SQLException {
-        List<MachineEntity> result = null;
+        List<MachineEntity> result = new ArrayList<MachineEntity>();
         Connection con = null;
         ResultSet rs = null;
 
@@ -133,10 +198,11 @@ public class MachineService extends BaseService implements IMachineService {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                result.add(loadFromResultSet(rs));
+                result.add(loadEntityFromResultSet(rs));
             }
 
         } catch (SQLException exception) {
+            result = null;
             printSQLException(exception);
         } finally {
             if (rs != null)
@@ -166,7 +232,7 @@ public class MachineService extends BaseService implements IMachineService {
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                result = loadFromResultSet(rs);
+                result = loadEntityFromResultSet(rs);
             }
 
         } catch (SQLException exception) {
@@ -190,4 +256,6 @@ public class MachineService extends BaseService implements IMachineService {
             printSQLException(exception);
         }
     }
+
+
 }

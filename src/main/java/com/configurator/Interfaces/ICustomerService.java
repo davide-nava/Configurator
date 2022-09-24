@@ -1,20 +1,14 @@
 package com.configurator.Interfaces;
 
-import com.configurator.Entities.CustomerEntity;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
-public interface ICustomerService {
-    void update(CustomerEntity val) throws SQLException;
+import com.configurator.Entities.ArticleTypeEntity;
+import com.configurator.Entities.CustomerEntity;
+import com.configurator.Entities.CustomerViewModel;
 
-    void insert(CustomerEntity val) throws SQLException;
+public interface ICustomerService extends IBaseService<CustomerEntity> {
 
-    List<CustomerEntity> get() throws SQLException;
-
-    CustomerEntity get(UUID id) throws SQLException;
-
-    CustomerEntity loadFromResultSet(ResultSet val);
 }

@@ -5,30 +5,28 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.configurator.Entities.ArticleArticleGroupTypeEntity;
-import com.configurator.Entities.ArticleEntity;
-import com.configurator.Services.ArticleArticleGroupTypeService;
-import com.configurator.Services.ArticleMachineService;
+import com.configurator.Entities.ArticleViewModel;
 import com.configurator.Services.ArticleService;
 import com.google.gson.Gson;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
+import jakarta.servlet.http.HttpServlet;
 
 @WebServlet(name = "ArticleServlet", value = "/api/dx/article")
 public class ArticleServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private ArticleService service = new ArticleService();
-    private Gson gson = new Gson();
+    private final ArticleService service = new ArticleService();
+    private final Gson gson = new Gson();
 
     @Override
-    protected void doGet(jakarta.servlet.http.HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response) throws jakarta.servlet.ServletException, IOException {
+    protected void doGet(jakarta.servlet.http.HttpServletRequest request,
+            jakarta.servlet.http.HttpServletResponse response) throws jakarta.servlet.ServletException, IOException {
 
-        List<ArticleEntity> list = null;
+        List<ArticleViewModel> list = null;
         try {
-            list = service.get();
+            list = service.getViewModal();
 
             String userJsonString = this.gson.toJson(list);
 
@@ -43,7 +41,8 @@ public class ArticleServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(jakarta.servlet.http.HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(jakarta.servlet.http.HttpServletRequest request,
+            jakarta.servlet.http.HttpServletResponse response) throws ServletException, IOException {
 
     }
 }

@@ -1,26 +1,29 @@
 package com.configurator.Servlets.Dx;
 
-import com.configurator.Entities.CustomerEntity;
-import com.configurator.Services.CustomerService;
-import com.google.gson.Gson;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(  name = "CustomerServlet", value = "/api/dx/customer" )
+import com.configurator.Entities.CustomerEntity;
+import com.configurator.Entities.CustomerViewModel;
+import com.configurator.Services.CustomerService;
+import com.google.gson.Gson;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+
+@WebServlet(name = "CustomerServlet", value = "/api/dx/customer")
 public class CustomerServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private CustomerService service = new CustomerService();
-    private Gson gson = new Gson();
+    private final CustomerService service = new CustomerService();
+    private final Gson gson = new Gson();
 
     @Override
-    protected void doGet(jakarta.servlet.http.HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response) throws jakarta.servlet.ServletException, IOException {
+    protected void doGet(jakarta.servlet.http.HttpServletRequest request,
+            jakarta.servlet.http.HttpServletResponse response) throws jakarta.servlet.ServletException, IOException {
 
         List<CustomerEntity> list = null;
         try {
@@ -39,7 +42,8 @@ public class CustomerServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(jakarta.servlet.http.HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(jakarta.servlet.http.HttpServletRequest request,
+            jakarta.servlet.http.HttpServletResponse response) throws ServletException, IOException {
 
     }
 

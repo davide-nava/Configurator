@@ -1,17 +1,18 @@
 package com.configurator.Services;
 
-import com.configurator.Entities.InvoiceItemEntity;
-import com.configurator.Interfaces.IInvoiceItemService;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class InvoiceItemService extends BaseService implements IInvoiceItemService {
+import com.configurator.Entities.InvoiceItemEntity;
+import com.configurator.Entities.InvoiceItemViewModel;
+import com.configurator.Interfaces.IInvoiceItemService;
 
+public class InvoiceItemService extends BaseService implements IInvoiceItemService {
 
     @Override
     public void update(InvoiceItemEntity val) throws SQLException {
@@ -69,10 +70,10 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
     }
 
     @Override
-    public InvoiceItemEntity loadFromResultSet(ResultSet rs) {
+    public InvoiceItemEntity loadEntityFromResultSet(ResultSet rs) {
         InvoiceItemEntity result = null;
         try {
-            if (rs.next()) {
+            if (rs != null) {
                 result = new InvoiceItemEntity();
 
                 result.setInvoiceItemId(UUID.fromString(rs.getString("InvoiceItemId")));
@@ -91,8 +92,63 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
     }
 
     @Override
+    public InvoiceItemViewModel loadViewModelFromResultSet(ResultSet rs) {
+        InvoiceItemViewModel result = null;
+        try {
+            if (rs != null) {
+                result = new InvoiceItemViewModel();
+
+                result.setInvoiceItemId(UUID.fromString(rs.getString("InvoiceItemId")));
+                result.setInvoiceId(UUID.fromString(rs.getString("InvoiceId")));
+                result.setArticleId(UUID.fromString(rs.getString("ArticleId")));
+                result.setMachineId(UUID.fromString(rs.getString("MachineId")));
+                result.setInvoiceDesc(rs.getString("InvoiceDesc"));
+                result.setArticleDesc(rs.getString("ArticleDesc"));
+                result.setMachineDesc(rs.getString("MachineDesc"));
+                result.setQta(rs.getFloat("Qta"));
+                result.setDt(rs.getDate("Dt"));
+            }
+
+        } catch (SQLException exception) {
+            printSQLException(exception);
+        } finally {
+            return result;
+        }
+    }
+
+    @Override
+    public List<InvoiceItemViewModel> getViewModal() throws SQLException {
+        List<InvoiceItemViewModel> result = new ArrayList<InvoiceItemViewModel>();
+        Connection con = null;
+        ResultSet rs = null;
+
+        try {
+            con = getConnection();
+            PreparedStatement ps = con.prepareStatement( "select InvoiceItem.*, (Article.Name || ' - ' || Article.Code ) as  'ArticleDesc', Invoice.Nr as 'InvoiceDesc' , Machine.Desc as 'MachineDesc' from InvoiceItem inner join Invoice on Invoice.InvoiceId = InvoiceItem.InvoiceId inner join Article on Article.ArticleId = InvoiceItem.ArticleId   inner join Machine on Machine.MachineId = InvoiceItem.MachineId ");
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                result.add(loadViewModelFromResultSet(rs));
+            }
+
+        } catch (SQLException exception) {
+            printSQLException(exception);
+        } finally {
+            if (rs != null)
+                rs.close();
+
+            if (con != null)
+                con.close();
+
+            return result;
+        }
+    }
+
+
+    @Override
     public List<InvoiceItemEntity> get() throws SQLException {
-        List<InvoiceItemEntity> result = null;
+        List<InvoiceItemEntity> result = new ArrayList<InvoiceItemEntity>();
         Connection con = null;
         ResultSet rs = null;
 
@@ -104,7 +160,7 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                result.add(loadFromResultSet(rs));
+                result.add(loadEntityFromResultSet(rs));
             }
 
         } catch (SQLException exception) {
@@ -137,7 +193,7 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                result = loadFromResultSet(rs);
+                result = loadEntityFromResultSet(rs);
             }
 
         } catch (SQLException exception) {
@@ -161,4 +217,5 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
             printSQLException(exception);
         }
     }
+
 }

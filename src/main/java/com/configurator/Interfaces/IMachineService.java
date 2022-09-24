@@ -1,20 +1,16 @@
 package com.configurator.Interfaces;
 
-import com.configurator.Entities.MachineEntity;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
-public interface IMachineService {
-    void update(MachineEntity val) throws SQLException;
+import com.configurator.Entities.ArticleTypeEntity;
+import com.configurator.Entities.MachineEntity;
+import com.configurator.Entities.MachineViewModel;
 
-    void insert(MachineEntity val) throws SQLException;
+public interface IMachineService extends IBaseService<MachineEntity> {
+    List<MachineViewModel> getViewModal() throws SQLException;
 
-    List<MachineEntity> get() throws SQLException;
-
-    MachineEntity get(UUID id) throws SQLException;
-
-    MachineEntity loadFromResultSet(ResultSet val);
+    MachineViewModel loadViewModelFromResultSet(ResultSet rs);
 }

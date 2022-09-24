@@ -1,5 +1,6 @@
 package com.configurator.Services;
 
+import jakarta.servlet.jsp.PageContext;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,7 +9,7 @@ import java.util.UUID;
 
 public abstract class BaseService {
 
-    private static final String connUrl = "jdbc:sqlite:/DB/configurator.db";
+    private static final String connUrl = "jdbc:sqlite:C:/dev/Configurator/DB/configurator.db";
 
     public static void printSQLException(SQLException ex) {
         for (Throwable e : ex) {

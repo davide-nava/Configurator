@@ -10,7 +10,7 @@
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="ibox-title">
-                                <h5>Tabelle</h5>
+                                <h5>Clienti</h5>
                                 <!-- <div class="ibox-tools">
                                     <a class="collapse-link" href="">
                                         <i class="fa fa-chevron-up"></i>
@@ -32,7 +32,9 @@
                             <div class="ibox-content no-padding">
 
                                 <div class="row mt-3 mb-3 ">
+                                    <div class="col-12">
                                     <div id="gridContainer"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -45,8 +47,8 @@
                             dataSource: {
                                 store: {
                                     type: 'odata',
-                                    url: '${pageContext.request.contextPath}/WEB-INF/resources/v1.0/SalesViewer/odata/DaySaleDtoes',
-                                    key: 'Id',
+                                    url: '${pageContext.request.contextPath}/api/dx/customer',
+                                    key: 'customerId',
                                     beforeSend(request) {
                                         // request.params.startDate = '2020-05-10';
                                         //  request.params.endDate = '2020-05-15';
@@ -75,16 +77,16 @@
                             rowAlternationEnabled: true,
                             showBorders: true,
                             columns: [{
-                                dataField: 'CustomerId',
+                                dataField: 'customerId',
                                 caption: 'Id',
                                 dataType: 'string',
                                 visible: false,
                             }, {
-                                dataField: 'Name',
+                                dataField: 'name',
                                 caption: 'Nome',
                                 dataType: 'string',
                             }, {
-                                dataField: 'Code',
+                                dataField: 'code',
                                 caption: 'Codice',
                                 dataType: 'string',
                             }],
@@ -95,7 +97,7 @@
                                 }
                             },
                         });
-                    }); ?
+                    });
 
                     let collapsed = false;
                 </script>
