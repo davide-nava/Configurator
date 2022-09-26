@@ -1,5 +1,9 @@
 package com.configurator.Services;
 
+import com.configurator.Entities.MachineEntity;
+import com.configurator.Interfaces.IMachineService;
+import com.configurator.ViewModels.MachineViewModel;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,10 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-import com.configurator.Entities.MachineEntity;
-import com.configurator.Entities.MachineViewModel;
-import com.configurator.Interfaces.IMachineService;
 
 public class MachineService extends BaseService implements IMachineService {
 
@@ -162,7 +162,7 @@ public class MachineService extends BaseService implements IMachineService {
 
         try {
             con = getConnection();
-            PreparedStatement ps = con.prepareStatement( "select Machine.*,   MachineType.Desc as 'MachineTypeDesc'  from  Machine inner join MachineType on MachineType.MachineTypeId = Machine.MachineTypeId");
+            PreparedStatement ps = con.prepareStatement("select Machine.*,   MachineType.Desc as 'MachineTypeDesc'  from  Machine inner join MachineType on MachineType.MachineTypeId = Machine.MachineTypeId");
 
             rs = ps.executeQuery();
 

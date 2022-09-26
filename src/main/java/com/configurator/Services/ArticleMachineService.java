@@ -1,5 +1,9 @@
 package com.configurator.Services;
 
+import com.configurator.Entities.ArticleMachineEntity;
+import com.configurator.Interfaces.IArticleMachineService;
+import com.configurator.ViewModels.ArticleMachineViewModel;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,10 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-import com.configurator.Entities.ArticleMachineEntity;
-import com.configurator.Entities.ArticleMachineViewModel;
-import com.configurator.Interfaces.IArticleMachineService;
 
 public class ArticleMachineService extends BaseService implements IArticleMachineService {
 
@@ -120,7 +120,7 @@ public class ArticleMachineService extends BaseService implements IArticleMachin
 
         try {
             con = getConnection();
-            PreparedStatement ps = con.prepareStatement( "select ArticleMachine.*, (Article.Name || ' - ' || Article.Code ) as  'ArticleDesc', Machine.Desc as 'MachineDesc' from ArticleMachine inner join Machine on Machine.MachineId = ArticleMachine.MachineId inner join Article on Article.ArticleId = ArticleMachine.ArticleId ");
+            PreparedStatement ps = con.prepareStatement("select ArticleMachine.*, (Article.Name || ' - ' || Article.Code ) as  'ArticleDesc', Machine.Desc as 'MachineDesc' from ArticleMachine inner join Machine on Machine.MachineId = ArticleMachine.MachineId inner join Article on Article.ArticleId = ArticleMachine.ArticleId ");
 
             rs = ps.executeQuery();
 
@@ -141,7 +141,6 @@ public class ArticleMachineService extends BaseService implements IArticleMachin
             return result;
         }
     }
-
 
 
     @Override

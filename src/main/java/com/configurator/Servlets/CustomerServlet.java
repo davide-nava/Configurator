@@ -21,7 +21,7 @@ public class CustomerServlet extends HttpServlet {
 
     @Override
     protected void doGet(jakarta.servlet.http.HttpServletRequest request,
-            jakarta.servlet.http.HttpServletResponse response) throws ServletException, IOException {
+                         jakarta.servlet.http.HttpServletResponse response) throws ServletException, IOException {
 
         List<CustomerEntity> list = null;
         try {
@@ -41,7 +41,7 @@ public class CustomerServlet extends HttpServlet {
 
     @Override
     protected void doPost(jakarta.servlet.http.HttpServletRequest request,
-            jakarta.servlet.http.HttpServletResponse response) throws ServletException, IOException {
+                          jakarta.servlet.http.HttpServletResponse response) throws ServletException, IOException {
 
     }
 

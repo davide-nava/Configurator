@@ -11,9 +11,68 @@
   <component name="ChangeListManager">
     <list default="true" id="2efb1195-015b-4db5-a1d8-c7a6c5ca5ba7" name="Changes" comment=" a">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/configurator.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/configurator.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/shared/head.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/shared/head.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/configurator.db" beforeDir="false" afterPath="$PROJECT_DIR$/DB/configurator.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/configurator.sqbpro" beforeDir="false" afterPath="$PROJECT_DIR$/DB/configurator.sqbpro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/ArticleEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/ArticleEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/InvoiceEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/InvoiceEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/InvoiceItemEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/InvoiceItemEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Interfaces/IArticleArticleGroupTypeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Interfaces/IArticleArticleGroupTypeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Interfaces/IArticleGroupTypeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Interfaces/IArticleGroupTypeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Interfaces/IArticleMachineService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Interfaces/IArticleMachineService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Interfaces/IArticleMachineTypeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Interfaces/IArticleMachineTypeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Interfaces/IArticleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Interfaces/IArticleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Interfaces/IArticleTypeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Interfaces/IArticleTypeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Interfaces/ICustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Interfaces/ICustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Interfaces/IInvoiceItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Interfaces/IInvoiceItemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Interfaces/IInvoiceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Interfaces/IInvoiceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Interfaces/IMachineService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Interfaces/IMachineService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Interfaces/IMachineTypeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Interfaces/IMachineTypeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Services/ArticleArticleGroupTypeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Services/ArticleArticleGroupTypeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Services/ArticleGroupTypeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Services/ArticleGroupTypeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Services/ArticleMachineService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Services/ArticleMachineService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Services/ArticleMachineTypeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Services/ArticleMachineTypeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Services/ArticleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Services/ArticleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Services/ArticleTypeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Services/ArticleTypeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Services/BaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Services/BaseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Services/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Services/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Services/InvoiceItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Services/InvoiceItemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Services/InvoiceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Services/InvoiceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Services/MachineService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Services/MachineService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Services/MachineTypeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Services/MachineTypeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/CustomerServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/CustomerServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleArticleGroupTypeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleArticleGroupTypeServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleGroupTypeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleGroupTypeServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleMachineServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleMachineServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleMachineTypeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleMachineTypeServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleTypeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleTypeServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/CustomerServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/CustomerServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/InvoiceItemServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/InvoiceItemServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/InvoiceServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/InvoiceServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/MachineServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/MachineServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/MachineTypeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/MachineTypeServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/ViewModels/ArticleArticleGroupTypeViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/ViewModels/ArticleArticleGroupTypeViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/ViewModels/ArticleGroupTypeViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/ViewModels/ArticleGroupTypeViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/ViewModels/ArticleMachineTypeViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/ViewModels/ArticleMachineTypeViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/ViewModels/ArticleMachineViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/ViewModels/ArticleMachineViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/ViewModels/ArticleTypeViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/ViewModels/ArticleTypeViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/ViewModels/ArticleViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/ViewModels/ArticleViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/ViewModels/CustomerViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/ViewModels/CustomerViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/ViewModels/InvoiceItemViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/ViewModels/InvoiceItemViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/ViewModels/InvoiceViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/ViewModels/InvoiceViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/ViewModels/MachineTypeViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/ViewModels/MachineTypeViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/ViewModels/MachineViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/ViewModels/MachineViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/article/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tables/article/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/articlearticlegrouptype/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tables/articlearticlegrouptype/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/articlegrouptype/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tables/articlegrouptype/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/articlemachine/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tables/articlemachine/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/articlemachinetype/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tables/articlemachinetype/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/articletype/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tables/articletype/list.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/customer/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tables/customer/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/invoice/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tables/invoice/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/invoiceitem/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tables/invoiceitem/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/machine/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tables/machine/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/machinetype/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tables/machinetype/list.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +249,8 @@
       <workItem from="1663936436590" duration="2012000" />
       <workItem from="1663949213821" duration="7575000" />
       <workItem from="1664012313445" duration="18947000" />
-      <workItem from="1664167431197" duration="2317000" />
+      <workItem from="1664167431197" duration="2456000" />
+      <workItem from="1664170531593" duration="4199000" />
     </task>
     <task id="LOCAL-00001" summary="ok">
       <created>1663852213144</created>
@@ -248,7 +308,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664037398171</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary=" a">
+      <created>1664169965952</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1664169965952</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

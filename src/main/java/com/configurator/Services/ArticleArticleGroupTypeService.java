@@ -1,5 +1,9 @@
 package com.configurator.Services;
 
+import com.configurator.Entities.ArticleArticleGroupTypeEntity;
+import com.configurator.ViewModels.ArticleArticleGroupTypeViewModel;
+import com.configurator.Interfaces.IArticleArticleGroupTypeService;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,10 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-import com.configurator.Entities.ArticleArticleGroupTypeEntity;
-import com.configurator.Entities.ArticleArticleGroupTypeViewModel;
-import com.configurator.Interfaces.IArticleArticleGroupTypeService;
 
 public class ArticleArticleGroupTypeService extends BaseService
         implements IArticleArticleGroupTypeService {
@@ -85,6 +85,7 @@ public class ArticleArticleGroupTypeService extends BaseService
             return result;
         }
     }
+
     @Override
     public ArticleArticleGroupTypeViewModel loadViewModelFromResultSet(ResultSet rs) {
         ArticleArticleGroupTypeViewModel result = null;
@@ -120,7 +121,7 @@ public class ArticleArticleGroupTypeService extends BaseService
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                result.add(loadViewModelFromResultSet( rs));
+                result.add(loadViewModelFromResultSet(rs));
             }
         } catch (SQLException exception) {
             result = null;

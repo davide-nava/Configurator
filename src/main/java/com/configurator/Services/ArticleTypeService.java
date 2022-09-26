@@ -1,5 +1,8 @@
 package com.configurator.Services;
 
+import com.configurator.Entities.ArticleTypeEntity;
+import com.configurator.Interfaces.IArticleTypeService;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,10 +10,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-import com.configurator.Entities.ArticleTypeEntity;
-import com.configurator.Entities.ArticleTypeViewModel;
-import com.configurator.Interfaces.IArticleTypeService;
 
 public class ArticleTypeService extends BaseService implements IArticleTypeService {
 

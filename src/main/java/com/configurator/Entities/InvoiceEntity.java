@@ -12,7 +12,7 @@ public class InvoiceEntity implements Serializable {
     private UUID customerId = UUID.randomUUID();
     private Date dt;
     private float total;
-    private String  nr;
+    private String nr;
 
     public UUID getInvoiceId() {
         return invoiceId;

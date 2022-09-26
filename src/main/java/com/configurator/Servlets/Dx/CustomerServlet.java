@@ -1,18 +1,16 @@
 package com.configurator.Servlets.Dx;
 
+import com.configurator.Entities.CustomerEntity;
+import com.configurator.Services.CustomerService;
+import com.google.gson.Gson;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
-
-import com.configurator.Entities.CustomerEntity;
-import com.configurator.Entities.CustomerViewModel;
-import com.configurator.Services.CustomerService;
-import com.google.gson.Gson;
-
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 
 @WebServlet(name = "CustomerServlet", value = "/api/dx/customer")
 public class CustomerServlet extends HttpServlet {
@@ -23,7 +21,7 @@ public class CustomerServlet extends HttpServlet {
 
     @Override
     protected void doGet(jakarta.servlet.http.HttpServletRequest request,
-            jakarta.servlet.http.HttpServletResponse response) throws jakarta.servlet.ServletException, IOException {
+                         jakarta.servlet.http.HttpServletResponse response) throws jakarta.servlet.ServletException, IOException {
 
         List<CustomerEntity> list = null;
         try {
@@ -43,7 +41,7 @@ public class CustomerServlet extends HttpServlet {
 
     @Override
     protected void doPost(jakarta.servlet.http.HttpServletRequest request,
-            jakarta.servlet.http.HttpServletResponse response) throws ServletException, IOException {
+                          jakarta.servlet.http.HttpServletResponse response) throws ServletException, IOException {
 
     }
 

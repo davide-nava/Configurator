@@ -1,5 +1,9 @@
 package com.configurator.Services;
 
+import com.configurator.Entities.InvoiceEntity;
+import com.configurator.Interfaces.IInvoiceService;
+import com.configurator.ViewModels.InvoiceViewModel;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,10 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-import com.configurator.Entities.InvoiceEntity;
-import com.configurator.Entities.InvoiceViewModel;
-import com.configurator.Interfaces.IInvoiceService;
 
 public class InvoiceService extends BaseService implements IInvoiceService {
 
@@ -117,7 +117,7 @@ public class InvoiceService extends BaseService implements IInvoiceService {
 
         try {
             con = getConnection();
-            PreparedStatement ps = con.prepareStatement( "select Invoice.*, (Customer.Name || ' - ' || Customer.Code ) as  'CustomerDesc' from Invoice inner join Customer on Customer.CustomerId = Invoice.CustomerId");
+            PreparedStatement ps = con.prepareStatement("select Invoice.*, (Customer.Name || ' - ' || Customer.Code ) as  'CustomerDesc' from Invoice inner join Customer on Customer.CustomerId = Invoice.CustomerId");
 
             rs = ps.executeQuery();
 

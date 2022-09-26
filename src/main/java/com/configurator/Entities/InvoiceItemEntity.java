@@ -11,7 +11,6 @@ public class InvoiceItemEntity implements Serializable {
     private UUID invoiceItemId = UUID.randomUUID();
     private UUID invoiceId = UUID.randomUUID();
     private UUID articleId = UUID.randomUUID();
-    private UUID machineId = UUID.randomUUID();
     private Date dt;
     private float qta = 1;
 
@@ -39,13 +38,6 @@ public class InvoiceItemEntity implements Serializable {
         this.articleId = articleId;
     }
 
-    public UUID getMachineId() {
-        return machineId;
-    }
-
-    public void setMachineId(UUID machineId) {
-        this.machineId = machineId;
-    }
 
     public float getQta() {
         return qta;

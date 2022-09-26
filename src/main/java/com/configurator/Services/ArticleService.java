@@ -1,5 +1,9 @@
 package com.configurator.Services;
 
+import com.configurator.Entities.ArticleEntity;
+import com.configurator.Interfaces.IArticleService;
+import com.configurator.ViewModels.ArticleViewModel;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,11 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-import com.configurator.Entities.ArticleEntity;
-import com.configurator.Entities.ArticleMachineTypeEntity;
-import com.configurator.Entities.ArticleViewModel;
-import com.configurator.Interfaces.IArticleService;
 
 public class ArticleService extends BaseService implements IArticleService {
 
@@ -23,7 +22,7 @@ public class ArticleService extends BaseService implements IArticleService {
             con = getConnection();
 
             PreparedStatement ps = con.prepareStatement(
-                    "update Article set Img=?, Doc=?, Code=?, Name=?, Desc=?, ArticleTypeId=?, BasePrice=? where ArticleId=?");
+                    "update Article set Img=?, Doc=?, Code=?, Name=?, Desc=?, ArticleTypeId=?, BasePrice=?,IsMachine=? where ArticleId=?");
 
             ps.setString(1, val.getImg());
             ps.setString(2, val.getDoc());
@@ -32,8 +31,9 @@ public class ArticleService extends BaseService implements IArticleService {
             ps.setString(5, val.getDesc());
             ps.setString(6, val.getArticleTypeId().toString());
             ps.setFloat(7, val.getBasePrice());
+            ps.setBoolean(8, val.getIsMachine());
 
-            ps.setString(8, val.getArticleId().toString());
+            ps.setString(9, val.getArticleId().toString());
 
             ps.executeUpdate();
 
@@ -53,7 +53,7 @@ public class ArticleService extends BaseService implements IArticleService {
             con = getConnection();
 
             PreparedStatement ps = con.prepareStatement(
-                    "insert into Article ( ArticleId, Img, Doc, Code, Name, Desc, ArticleTypeId, BasePrice) values ( ?, ?, ?,  ?, ? , ? ,? , ?)");
+                    "insert into Article ( ArticleId, Img, Doc, Code, Name, Desc, ArticleTypeId, BasePrice, IsMachine) values ( ?, ?, ?,  ?, ? , ? ,? , ?, ?)");
 
             ps.setString(1, val.getArticleId().toString());
             ps.setString(2, val.getImg());
@@ -63,6 +63,7 @@ public class ArticleService extends BaseService implements IArticleService {
             ps.setString(6, val.getDesc());
             ps.setString(7, val.getArticleTypeId().toString());
             ps.setFloat(8, val.getBasePrice());
+            ps.setBoolean(9, val.getIsMachine());
 
             ps.executeUpdate();
 
@@ -89,6 +90,8 @@ public class ArticleService extends BaseService implements IArticleService {
                 result.setDesc(rs.getString("Desc"));
                 result.setArticleTypeId(UUID.fromString(rs.getString("ArticleTypeId")));
                 result.setBasePrice(rs.getFloat("BasePrice"));
+                result.setIsMachine(rs.getBoolean("IsMachine"));
+
             }
 
         } catch (SQLException exception) {
@@ -114,6 +117,7 @@ public class ArticleService extends BaseService implements IArticleService {
                 result.setArticleTypeId(UUID.fromString(rs.getString("ArticleTypeId")));
                 result.setArticleTypeDesc(rs.getString("ArticleTypeDesc"));
                 result.setBasePrice(rs.getFloat("BasePrice"));
+                result.setIsMachine(rs.getBoolean("IsMachine"));
             }
 
         } catch (SQLException exception) {

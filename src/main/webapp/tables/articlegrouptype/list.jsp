@@ -2,7 +2,7 @@
 
     <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-        <t:_layout title="Tipo gruppo articolo">
+        <t:_layout title="Cliente">
 
             <jsp:attribute name="body_area">
 
@@ -10,7 +10,7 @@
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="ibox-title">
-                                <h5>Tipo gruppo articoli</h5>
+                                <h5>Tipo gruppo articolo</h5>
                                 <!-- <div class="ibox-tools">
                                     <a class="collapse-link" href="">
                                         <i class="fa fa-chevron-up"></i>
@@ -29,15 +29,131 @@
                                     </a>
                                 </div> -->
                             </div>
-                            <div class="ibox-content no-padding">
-
-                                <div class="row mt-3 mb-3 ">
-
+                            <div class="ibox-content ">
+                                <div class="row   ">
+                                    <div class="col-12">
+                                    <div id="gridContainer"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <script>
+                window.jsPDF = window.jspdf.jsPDF;
+
+                    $(() => {
+                        $('#gridContainer').dxDataGrid({
+                            dataSource: {
+                                store: {
+                                    type: 'odata',
+                                    url: '${pageContext.request.contextPath}/api/dx/articlegrouptype',
+                                    key: 'articleGroupTypeId',
+                                    beforeSend(request) {
+                                        // request.params.startDate = '2020-05-10';
+                                        //  request.params.endDate = '2020-05-15';
+                                    },
+                                },
+                            },
+                              filterRow: {
+      visible: true,
+      applyFilter: 'auto',
+    },
+    headerFilter: {
+      visible: true,
+    },
+                             sorting: {
+      mode: 'multiple',
+    },
+                              selection: {
+       mode: 'single',
+     },
+                            paging: {
+                                pageSize: 20,
+                            },
+                            pager: {
+                                showPageSizeSelector: true,
+                                allowedPageSizes: [15, 30, 50, 100],
+                            },
+                            remoteOperations: false,
+                            searchPanel: {
+                                visible: true,
+                                highlightCaseSensitive: true,
+                            },
+                            groupPanel: {
+                                visible: true
+                            },
+                            grouping: {
+                                autoExpandAll: false,
+                            },
+                            allowColumnReordering: true,
+                            rowAlternationEnabled: true,
+                            showBorders: true,
+                                 export: {
+                               enabled: true,
+       allowExportSelectedData: true,
+     },
+ 
+     onExporting(e) {
+       const workbook = new ExcelJS.Workbook();
+       const worksheet = workbook.addWorksheet('TipoGruppoArticolo');
+
+       DevExpress.excelExporter.exportDataGrid({
+         component: e.component,
+         worksheet,
+         autoFilterEnabled: true,
+       }).then(() => {
+         workbook.xlsx.writeBuffer().then((buffer) => {
+         saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'TipoGruppoArticolo.xlsx');
+         });
+      });
+      e.cancel = true;
+     },
+                            columns: [                                  
+                            {
+                                dataField: 'code',
+                                caption: 'Codice',
+                                dataType: 'string',
+                            },
+                             {
+                                dataField: 'desc',
+                                caption: 'Descrizione',
+                                dataType: 'string',
+                            },
+                             {
+                                dataField: 'productionOrder',
+                                caption: 'Ordine / commessa',
+                                dataType: 'string',
+                            },                             
+                           {
+                              dataField: 'articleGroupTypeId',
+                                caption: '',
+                                width: 40,
+                                   alignment: 'center',
+      allowFiltering: false,
+      allowSorting: false,      
+      cellTemplate(container, options) {
+                                       const link = $("<a>");
+                                       link.attr("href", '${pageContext.request.contextPath}/tables/articlegrouptype/read.jsp?id=' + options.value)
+                                       link.attr("title", 'Apri')
+                                           .append($('<i>', { class: 'fa-solid fa-eye ',  }))
+                                       ;
+                                       return link;
+                                   }
+                               }
+     ],
+                            onContentReady(e) {
+                                if (!collapsed) {
+                                    collapsed = true;
+                                    e.component.expandRow(['EnviroCare']);
+                                }
+                            },
+                        });
+                    });
+
+                    let collapsed = false;
+                </script>
 
             </jsp:attribute>
 

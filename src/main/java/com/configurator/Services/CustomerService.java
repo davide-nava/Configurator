@@ -1,5 +1,8 @@
 package com.configurator.Services;
 
+import com.configurator.Entities.CustomerEntity;
+import com.configurator.Interfaces.ICustomerService;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,9 +10,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-import com.configurator.Entities.CustomerEntity;
-import com.configurator.Interfaces.ICustomerService;
 
 public class CustomerService extends BaseService implements ICustomerService {
 

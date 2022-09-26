@@ -92,24 +92,9 @@
                             showBorders: true,
                                  export: {
                                enabled: true,
-      // formats: ['pdf', 'xls'],
        allowExportSelectedData: true,
      },
-    // onExporting(e) {
-    //   const doc = new jsPDF();
-
-    //   DevExpress.pdfExporter.exportDataGrid({
-    //     jsPDFDocument: doc,
-    //     component: e.component,
-    //     indent: 5,
-    //   }).then(() => {
-    //     doc.save('Clienti.pdf');
-    //   });
-    // },
-    //   export: {
-    //   enabled: true,
-    //   allowExportSelectedData: true,
-    // },
+ 
      onExporting(e) {
        const workbook = new ExcelJS.Workbook();
        const worksheet = workbook.addWorksheet('Clienti');
@@ -142,11 +127,6 @@
       allowFiltering: false,
       allowSorting: false,      
       cellTemplate(container, options) {
-        //$('<div>')
-          //.append($('<a>', { href: '${pageContext.request.contextPath}/tables/customer/read.jsp?id=1'  }))
-          ///.append($('<i>', { class: 'fa-solid fa-eye ',  }))
-        //  .appendTo(container);
-      //},
                                        const link = $("<a>");
                                        link.attr("href", '${pageContext.request.contextPath}/tables/customer/read.jsp?id=' + options.value)
                                        link.attr("title", 'Apri')

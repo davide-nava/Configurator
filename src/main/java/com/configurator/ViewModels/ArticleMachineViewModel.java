@@ -1,4 +1,6 @@
-package com.configurator.Entities;
+package com.configurator.ViewModels;
+
+import com.configurator.Entities.ArticleMachineEntity;
 
 import java.io.Serializable;
 

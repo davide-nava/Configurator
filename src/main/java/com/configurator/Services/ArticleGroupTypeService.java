@@ -1,5 +1,8 @@
 package com.configurator.Services;
 
+import com.configurator.Entities.ArticleGroupTypeEntity;
+import com.configurator.Interfaces.IArticleGroupTypeService;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,10 +10,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-import com.configurator.Entities.ArticleGroupTypeEntity;
-import com.configurator.Entities.ArticleGroupTypeViewModel;
-import com.configurator.Interfaces.IArticleGroupTypeService;
 
 public class ArticleGroupTypeService extends BaseService implements IArticleGroupTypeService {
 
@@ -87,10 +86,9 @@ public class ArticleGroupTypeService extends BaseService implements IArticleGrou
     }
 
 
-
     @Override
     public List<ArticleGroupTypeEntity> get() throws SQLException {
-        List<ArticleGroupTypeEntity> result = new ArrayList<ArticleGroupTypeEntity>();; 
+        List<ArticleGroupTypeEntity> result = new ArrayList<ArticleGroupTypeEntity>();
         Connection con = null;
         ResultSet rs = null;
 

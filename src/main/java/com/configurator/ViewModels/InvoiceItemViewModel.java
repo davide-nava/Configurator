@@ -1,21 +1,13 @@
-package com.configurator.Entities;
+package com.configurator.ViewModels;
+
+import com.configurator.Entities.InvoiceItemEntity;
 
 import java.io.Serializable;
 
 public class InvoiceItemViewModel extends InvoiceItemEntity implements Serializable {
 
-    private String invoiceItemDesc = "";
     private String invoiceDesc = "";
     private String articleDesc = "";
-    private String machineDesc = "";
-
-    public String getInvoiceItemDesc() {
-        return invoiceItemDesc;
-    }
-
-    public void setInvoiceItemDesc(String invoiceItemDesc) {
-        this.invoiceItemDesc = invoiceItemDesc;
-    }
 
     public String getInvoiceDesc() {
         return invoiceDesc;
@@ -33,12 +25,5 @@ public class InvoiceItemViewModel extends InvoiceItemEntity implements Serializa
         this.articleDesc = articleDesc;
     }
 
-    public String getMachineDesc() {
-        return machineDesc;
-    }
-
-    public void setMachineDesc(String machineDesc) {
-        this.machineDesc = machineDesc;
-    }
 
 }

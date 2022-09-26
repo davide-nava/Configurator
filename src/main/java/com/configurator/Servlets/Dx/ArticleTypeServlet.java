@@ -1,18 +1,16 @@
 package com.configurator.Servlets.Dx;
 
+import com.configurator.Entities.ArticleTypeEntity;
+import com.configurator.Services.ArticleTypeService;
+import com.google.gson.Gson;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
-
-import com.configurator.Entities.ArticleTypeEntity;
-import com.configurator.Entities.ArticleTypeViewModel;
-import com.configurator.Services.ArticleTypeService;
-import com.google.gson.Gson;
-
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 
 @WebServlet(name = "ArticleTypeServlet", value = "/api/dx/articletype")
 public class ArticleTypeServlet extends HttpServlet {
@@ -23,7 +21,7 @@ public class ArticleTypeServlet extends HttpServlet {
 
     @Override
     protected void doGet(jakarta.servlet.http.HttpServletRequest request,
-            jakarta.servlet.http.HttpServletResponse response) throws jakarta.servlet.ServletException, IOException {
+                         jakarta.servlet.http.HttpServletResponse response) throws jakarta.servlet.ServletException, IOException {
 
         List<ArticleTypeEntity> list = null;
         try {
@@ -43,7 +41,7 @@ public class ArticleTypeServlet extends HttpServlet {
 
     @Override
     protected void doPost(jakarta.servlet.http.HttpServletRequest request,
-            jakarta.servlet.http.HttpServletResponse response) throws ServletException, IOException {
+                          jakarta.servlet.http.HttpServletResponse response) throws ServletException, IOException {
 
     }
 }

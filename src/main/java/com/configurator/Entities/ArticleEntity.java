@@ -15,6 +15,7 @@ public class ArticleEntity implements Serializable {
     private String name = "";
     private String doc = "";
     private String desc = "";
+    private boolean isMachine = false;
 
     public UUID getArticleId() {
         return articleId;
@@ -62,6 +63,14 @@ public class ArticleEntity implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean getIsMachine() {
+        return isMachine;
+    }
+
+    public void setIsMachine(boolean isMachine) {
+        this.isMachine = isMachine;
     }
 
     public String getDoc() {

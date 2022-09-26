@@ -1,6 +1,5 @@
 package com.configurator.Services;
 
-import jakarta.servlet.jsp.PageContext;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
