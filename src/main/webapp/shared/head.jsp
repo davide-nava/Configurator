@@ -15,6 +15,10 @@
 <link rel="icon" href="${pageContext.request.contextPath}/img/favicon.ico">
 <link rel="apple-touch-icon" href="${pageContext.request.contextPath}/apple-touch-icon.png">
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.10.1/polyfill.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/3.8.0/exceljs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>window.jQuery || document.write(decodeURIComponent('%3Cscript src="js/jquery.min.js"%3E%3C/script%3E'))</script>
 <script src="https://kit.fontawesome.com/6c14c2cec7.js" crossorigin="anonymous"></script>

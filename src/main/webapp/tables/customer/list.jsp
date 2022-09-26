@@ -66,9 +66,9 @@
                              sorting: {
       mode: 'multiple',
     },
-    //                          selection: {
-    //   mode: 'single',
-    // },
+                              selection: {
+       mode: 'single',
+     },
                             paging: {
                                 pageSize: 20,
                             },
@@ -90,11 +90,11 @@
                             allowColumnReordering: true,
                             rowAlternationEnabled: true,
                             showBorders: true,
-    //                             export: {
-    //   enabled: true,
-    //   formats: ['pdf'],
-    //   allowExportSelectedData: true,
-    // },
+                                 export: {
+                               enabled: true,
+      // formats: ['pdf', 'xls'],
+       allowExportSelectedData: true,
+     },
     // onExporting(e) {
     //   const doc = new jsPDF();
 
@@ -110,21 +110,21 @@
     //   enabled: true,
     //   allowExportSelectedData: true,
     // },
-    // onExporting(e) {
-    //   const workbook = new ExcelJS.Workbook();
-    //   const worksheet = workbook.addWorksheet('Clienti');
+     onExporting(e) {
+       const workbook = new ExcelJS.Workbook();
+       const worksheet = workbook.addWorksheet('Clienti');
 
-    //   DevExpress.excelExporter.exportDataGrid({
-    //     component: e.component,
-    //     worksheet,
-    //     autoFilterEnabled: true,
-    //   }).then(() => {
-    //     workbook.xlsx.writeBuffer().then((buffer) => {
-    //       saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'Clienti.xlsx');
-    //     });
-    //   });
-    //   e.cancel = true;
-    // },
+       DevExpress.excelExporter.exportDataGrid({
+         component: e.component,
+         worksheet,
+         autoFilterEnabled: true,
+       }).then(() => {
+         workbook.xlsx.writeBuffer().then((buffer) => {
+         saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'Clienti.xlsx');
+         });
+      });
+      e.cancel = true;
+     },
                             columns: [  {
                                 dataField: 'name',
                                 caption: 'Nome',
@@ -137,17 +137,25 @@
                            {
                               dataField: 'customerId',
                                 caption: '',
-                                width: 30,
+                                width: 40,
                                    alignment: 'center',
       allowFiltering: false,
       allowSorting: false,      
       cellTemplate(container, options) {
-        $('<div>')
-          .append($('<a>', { href: '${pageContext.request.contextPath}/tables/customer/read.jsp?id=1'  }))
-          .append($('<i>', { class: 'fa-solid fa-eye ',  }))
-          .appendTo(container);
-      },
-    }, ],
+        //$('<div>')
+          //.append($('<a>', { href: '${pageContext.request.contextPath}/tables/customer/read.jsp?id=1'  }))
+          ///.append($('<i>', { class: 'fa-solid fa-eye ',  }))
+        //  .appendTo(container);
+      //},
+                                       const link = $("<a>");
+                                       link.attr("href", '${pageContext.request.contextPath}/tables/customer/read.jsp?id=' + options.value)
+                                       link.attr("title", 'Apri')
+                                           .append($('<i>', { class: 'fa-solid fa-eye ',  }))
+                                       ;
+                                       return link;
+                                   }
+                               }
+     ],
                             onContentReady(e) {
                                 if (!collapsed) {
                                     collapsed = true;

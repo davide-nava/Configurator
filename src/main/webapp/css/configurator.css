@@ -5,3 +5,9 @@
 body.fixed-nav #wrapper .navbar-static-side, body.fixed-nav #wrapper #page-wrapper {
      margin-top: 0px;
 }
+
+
+#gridContainer > td[role=columnheader], .dx-datagrid-headers .dx-datagrid-table .dx-row > td
+{
+    text-align: center!important;
+}
