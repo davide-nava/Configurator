@@ -1,7 +1,7 @@
 package com.configurator.Servlets.Dx;
 
-import com.configurator.ViewModels.ArticleMachineViewModel;
 import com.configurator.Services.ArticleMachineService;
+import com.configurator.ViewModels.ArticleMachineViewModel;
 import com.google.gson.Gson;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

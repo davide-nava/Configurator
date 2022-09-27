@@ -1,8 +1,8 @@
 package com.configurator.Services;
 
 import com.configurator.Entities.ArticleArticleGroupTypeEntity;
-import com.configurator.ViewModels.ArticleArticleGroupTypeViewModel;
 import com.configurator.Interfaces.IArticleArticleGroupTypeService;
+import com.configurator.ViewModels.ArticleArticleGroupTypeViewModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

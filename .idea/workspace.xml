@@ -10,14 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2efb1195-015b-4db5-a1d8-c7a6c5ca5ba7" name="Changes" comment=" a">
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/DB.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/path db.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.MD" beforeDir="false" afterPath="$PROJECT_DIR$/README.MD" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SQL/create.sql" beforeDir="false" afterPath="$PROJECT_DIR$/SQL/create.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SQL/init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/SQL/init.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/CustomerServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Services/ArticleArticleGroupTypeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Services/ArticleArticleGroupTypeService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleArticleGroupTypeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleArticleGroupTypeServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleGroupTypeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleGroupTypeServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleMachineServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleMachineServlet.java" afterDir="false" />
@@ -29,53 +23,6 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/InvoiceServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/InvoiceServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/MachineServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/MachineServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/MachineTypeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/MachineTypeServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/article/create.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/article/delete.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/article/read.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/article/update.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/articlearticlegrouptype/create.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/articlearticlegrouptype/delete.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/articlearticlegrouptype/read.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/articlearticlegrouptype/update.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/articlegrouptype/create.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/articlegrouptype/delete.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/articlegrouptype/read.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/articlegrouptype/update.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/articlemachine/create.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/articlemachine/delete.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/articlemachine/read.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/articlemachine/update.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/articlemachinetype/create.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/articlemachinetype/delete.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/articlemachinetype/list.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/articlemachinetype/update.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/articletype/create.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/articletype/delete.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/articletype/read.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/articletype/update.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/customer/create.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/customer/delete.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/customer/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tables/customer/list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/customer/read.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/customer/update.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/invoice/create.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/invoice/delete.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/invoice/read.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/invoice/update.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/invoiceitem/create.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/invoiceitem/delete.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/invoiceitem/read.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/invoiceitem/update.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/machine/create.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/machine/delete.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/machine/read.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/machine/update.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/machinetype/create.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/machinetype/delete.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/machinetype/read.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/machinetype/update.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/tables.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tables/tables.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -267,6 +214,7 @@
       <workItem from="1664187769221" duration="2620000" />
       <workItem from="1664213305949" duration="1164000" />
       <workItem from="1664262320392" duration="1569000" />
+      <workItem from="1664266585289" duration="2247000" />
     </task>
     <task id="LOCAL-00001" summary="ok">
       <created>1663852213144</created>
@@ -338,7 +286,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664180687870</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary=" a">
+      <created>1664266624080</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1664266624084</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

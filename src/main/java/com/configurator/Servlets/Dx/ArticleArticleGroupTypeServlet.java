@@ -1,7 +1,7 @@
 package com.configurator.Servlets.Dx;
 
-import com.configurator.ViewModels.ArticleArticleGroupTypeViewModel;
 import com.configurator.Services.ArticleArticleGroupTypeService;
+import com.configurator.ViewModels.ArticleArticleGroupTypeViewModel;
 import com.google.gson.Gson;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -12,7 +12,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet( "/api/dx/articlearticlegrouptype")
+@WebServlet("/api/dx/articlearticlegrouptype")
 public class ArticleArticleGroupTypeServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
