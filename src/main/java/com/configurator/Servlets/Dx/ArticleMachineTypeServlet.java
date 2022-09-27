@@ -12,7 +12,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name = "ArticleMachineTypeServlet", value = "/api/dx/articlemachinetype")
+@WebServlet( "/api/dx/articlemachinetype")
 public class ArticleMachineTypeServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;

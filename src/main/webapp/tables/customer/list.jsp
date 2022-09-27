@@ -11,8 +11,8 @@
                         <div class="ibox ">
                             <div class="ibox-title">
                                 <h5>Clienti</h5>
-                                <!-- <div class="ibox-tools">
-                                    <a class="collapse-link" href="">
+                                 <div class="ibox-tools">
+                                   <!--  <a class="collapse-link" href="">
                                         <i class="fa fa-chevron-up"></i>
                                     </a>
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -26,8 +26,12 @@
                                     </ul>
                                     <a class="close-link" href="">
                                         <i class="fa fa-times"></i>
+                                    </a> -->
+                                   
+                                    <a class="" href="${pageContext.request.contextPath}/tables/customer/create">
+                                        <i class="fa-solid fa-plus"></i>
                                     </a>
-                                </div> -->
+                                </div> 
                             </div>
                             <div class="ibox-content ">
                                 <div class="row   ">

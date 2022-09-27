@@ -12,7 +12,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name = "CustomerServlet", value = "/api/dx/customer")
+@WebServlet( "/api/dx/customer")
 public class CustomerServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;

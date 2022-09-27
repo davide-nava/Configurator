@@ -28,6 +28,7 @@ create table Article
     Code          TEXT not null,
     Name          TEXT not null,
     Desc          TEXT not null,
+    IsMachine INTEGER  not null  default 0,
     ArticleTypeId TEXT not null
         references ArticleType
             on delete cascade,
@@ -148,9 +149,6 @@ create table InvoiceItem
             on delete cascade,
     ArticleId     TEXT
         references Article
-            on delete cascade,
-    MachineId     TEXT
-        references Machine
             on delete cascade,
     Qta           NUMERIC default 1
 );
