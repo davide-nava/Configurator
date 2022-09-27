@@ -32,58 +32,58 @@
                     <div class="ibox-content no-padding">
 
                         <div class="row mt-3 mb-3 text-center">
-                            <div class="col-4 themed-grid-col">
-                                <a class="btn btn-primary   " style="width: 100%;" href="${pageContext.request.contextPath}/tables/articlearticlegrouptype/list.jsp"><i
+                            <div class="col-4 themed-grid-col d-grid gap-1">
+                                <a class="btn btn-primary   "   href="${pageContext.request.contextPath}/tables/articlearticlegrouptype/list.jsp"><i
                                         class="fa fa-table"></i> Articoli tipo gruppo articolo</a>
                             </div>
-                            <div class="col-4 themed-grid-col">
-                                <a class="btn btn-primary" style="width: 100%;" href="${pageContext.request.contextPath}/tables/article/list.jsp"><i
+                             <div class="col-4 themed-grid-col d-grid gap-1">
+                                <a class="btn btn-primary"   href="${pageContext.request.contextPath}/tables/article/list.jsp"><i
                                         class="fa fa-table"></i> Articoli</a>
                             </div>
-                            <div class="col-4 themed-grid-col">
-                                <a class="btn btn-primary" style="width: 100%;" href="${pageContext.request.contextPath}/tables/articlegrouptype.j/list.jsp"><i
+                             <div class="col-4 themed-grid-col d-grid gap-1">
+                                <a class="btn btn-primary"   href="${pageContext.request.contextPath}/tables/articlegrouptype.j/list.jsp"><i
                                         class="fa fa-table"></i> Articoli gruppo articolo</a>
                             </div>
                         </div>
                         <div class="row mb-3 text-center">
-                            <div class="col-4 themed-grid-col">
-                                <a class="btn btn-primary" style="width: 100%;" href="${pageContext.request.contextPath}/tables/articlemachine/list.jsp"><i
+                             <div class="col-4 themed-grid-col d-grid gap-1">
+                                <a class="btn btn-primary"   href="${pageContext.request.contextPath}/tables/articlemachine/list.jsp"><i
                                         class="fa fa-table"></i> Articoli macchina</a>
                             </div>
-                            <div class="col-4 themed-grid-col">
-                                <a class="btn btn-primary" style="width: 100%;" href="${pageContext.request.contextPath}/tables/articlemachinetype/list.jsp"><i
+                             <div class="col-4 themed-grid-col d-grid gap-1">
+                                <a class="btn btn-primary"   href="${pageContext.request.contextPath}/tables/articlemachinetype/list.jsp"><i
                                         class="fa fa-table"></i> Articoli tipo macchina</a>
                             </div>
-                            <div class="col-4 themed-grid-col">
-                                <a class="btn btn-primary" style="width: 100%;" href="${pageContext.request.contextPath}/tables/articletype/list.jsp">
+                             <div class="col-4 themed-grid-col d-grid gap-1">
+                                <a class="btn btn-primary"   href="${pageContext.request.contextPath}/tables/articletype/list.jsp">
                                     <i class=" fa fa-table "></i> Tipo articoli</a>
                             </div>
                         </div>
                         <div class="row mb-3 text-center">
-                            <div class="col-4 themed-grid-col">
-                                <a class="btn btn-primary" style="width: 100%;" href="${pageContext.request.contextPath}/tables/customer/list.jsp">
+                             <div class="col-4 themed-grid-col d-grid gap-1">
+                                <a class="btn btn-primary"   href="${pageContext.request.contextPath}/tables/customer/list.jsp">
                                     <i class=" fa fa-table "></i> Clienti</a>
                             </div>
-                            <div class="col-4 themed-grid-col">
-                                <a class="btn btn-primary" style="width: 100%;" href="${pageContext.request.contextPath}/tables/invoice/list.jsp"><i
+                             <div class="col-4 themed-grid-col d-grid gap-1">
+                                <a class="btn btn-primary"   href="${pageContext.request.contextPath}/tables/invoice/list.jsp"><i
                                         class=" fa fa-table "></i> Fatture</a>
                             </div>
 
-                            <div class="col-4 themed-grid-col">
-                                <a class="btn btn-primary" style="width: 100%;" href="${pageContext.request.contextPath}/tables/invoiceitem/list.jsp"><i
+                             <div class="col-4 themed-grid-col d-grid gap-1">
+                                <a class="btn btn-primary"   href="${pageContext.request.contextPath}/tables/invoiceitem/list.jsp"><i
                                         class=" fa fa-table "></i> Riga fattura</a>
                             </div>
                         </div>
                         <div class="row mb-3 text-center">
-                            <div class="col-4 themed-grid-col">
-                                <a class="btn btn-primary" style="width: 100%;" href="${pageContext.request.contextPath}/tables/machine/list.jsp">
+                             <div class="col-4 themed-grid-col d-grid gap-1">
+                                <a class="btn btn-primary"   href="${pageContext.request.contextPath}/tables/machine/list.jsp">
                                     <i class=" fa fa-table "></i> Macchine</a>
                             </div>
-                            <div class="col-4 themed-grid-col">
-                                <a class="btn btn-primary" style="width: 100%;" href="${pageContext.request.contextPath}/tables/machinetype/list.jsp"><i
+                             <div class="col-4 themed-grid-col d-grid gap-1">
+                                <a class="btn btn-primary"   href="${pageContext.request.contextPath}/tables/machinetype/list.jsp"><i
                                         class=" fa fa-table "></i> Tipo macchina</a>
                             </div>
-                            <div class="col-4 themed-grid-col">
+                             <div class="col-4 themed-grid-col d-grid gap-1">
                             </div>
 
 

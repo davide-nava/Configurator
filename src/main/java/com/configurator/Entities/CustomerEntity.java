@@ -7,7 +7,7 @@ public class CustomerEntity implements Serializable {
 
     public static final String PK = "CustomerId";
     public static final String TABLE = "Customer";
-    private UUID customerId = UUID.randomUUID();
+    private UUID customerId;
     private String name = "";
     private String code = "";
 

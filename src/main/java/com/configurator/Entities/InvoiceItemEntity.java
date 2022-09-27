@@ -8,9 +8,9 @@ public class InvoiceItemEntity implements Serializable {
 
     public static final String PK = "InvoiceItemId";
     public static final String TABLE = "InvoiceItem";
-    private UUID invoiceItemId = UUID.randomUUID();
-    private UUID invoiceId = UUID.randomUUID();
-    private UUID articleId = UUID.randomUUID();
+    private UUID invoiceItemId;
+    private UUID invoiceId;
+    private UUID articleId;
     private Date dt;
     private float qta = 1;
 
@@ -37,7 +37,6 @@ public class InvoiceItemEntity implements Serializable {
     public void setArticleId(UUID articleId) {
         this.articleId = articleId;
     }
-
 
     public float getQta() {
         return qta;

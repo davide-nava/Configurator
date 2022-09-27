@@ -8,8 +8,8 @@ public class MachineEntity implements Serializable {
 
     public static final String PK = "MachineId";
     public static final String TABLE = "Machine";
-    private UUID machineId = UUID.randomUUID();
-    private UUID machineTypeId = UUID.randomUUID();
+    private UUID machineId;
+    private UUID machineTypeId;
     private String code = "";
     private String img = "";
     private String desc = "";

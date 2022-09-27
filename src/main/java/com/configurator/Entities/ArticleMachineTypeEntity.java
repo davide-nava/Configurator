@@ -7,9 +7,9 @@ public class ArticleMachineTypeEntity implements Serializable {
 
     public static final String PK = "ArticleMachineTypeId";
     public static final String TABLE = "ArticleMachineType";
-    private UUID articleMachineTypeId = UUID.randomUUID();
-    private UUID articleId = UUID.randomUUID();
-    private UUID machineTypeId = UUID.randomUUID();
+    private UUID articleMachineTypeId;
+    private UUID articleId;
+    private UUID machineTypeId;
     private float qta = 1;
 
     public UUID getArticleMachineTypeId() {

@@ -7,7 +7,7 @@ public class ArticleTypeEntity implements Serializable {
 
     public static final String PK = "ArticleTypeId";
     public static final String TABLE = "ArticleType";
-    private UUID articleTypeId = UUID.randomUUID();
+    private UUID articleTypeId;
     private String desc = "";
     private String code = "";
     private int year = 2022;

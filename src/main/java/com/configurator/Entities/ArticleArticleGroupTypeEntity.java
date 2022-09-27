@@ -7,9 +7,9 @@ public class ArticleArticleGroupTypeEntity implements Serializable {
 
     public static final String PK = "ArticleArticleGroupTypeId";
     public static final String TABLE = "ArticleArticleGroupType";
-    private UUID articleArticleGroupTypeId = UUID.randomUUID();
-    private UUID articleGroupTypeId = UUID.randomUUID();
-    private UUID articleId = UUID.randomUUID();
+    private UUID articleArticleGroupTypeId;
+    private UUID articleGroupTypeId;
+    private UUID articleId;
     private float qta = 1;
 
     public UUID getArticleArticleGroupTypeId() {

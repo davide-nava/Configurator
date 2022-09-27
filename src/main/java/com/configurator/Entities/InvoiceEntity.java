@@ -8,8 +8,8 @@ public class InvoiceEntity implements Serializable {
 
     public static final String PK = "InvoiceId";
     public static final String TABLE = "Invoice";
-    private UUID invoiceId = UUID.randomUUID();
-    private UUID customerId = UUID.randomUUID();
+    private UUID invoiceId;
+    private UUID customerId;
     private Date dt;
     private float total;
     private String nr;

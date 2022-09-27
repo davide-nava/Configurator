@@ -11,18 +11,18 @@
   <component name="ChangeListManager">
     <list default="true" id="2efb1195-015b-4db5-a1d8-c7a6c5ca5ba7" name="Changes" comment=" a">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Services/ArticleArticleGroupTypeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Services/ArticleArticleGroupTypeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleArticleGroupTypeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleArticleGroupTypeServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleGroupTypeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleGroupTypeServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleMachineServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleMachineServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleMachineTypeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleMachineTypeServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleTypeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/ArticleTypeServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/CustomerServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/CustomerServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/InvoiceItemServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/InvoiceItemServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/InvoiceServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/InvoiceServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/MachineServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/MachineServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/MachineTypeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Servlets/Dx/MachineTypeServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/ArticleArticleGroupTypeEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/ArticleArticleGroupTypeEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/ArticleEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/ArticleEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/ArticleGroupTypeEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/ArticleGroupTypeEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/ArticleMachineEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/ArticleMachineEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/ArticleMachineTypeEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/ArticleMachineTypeEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/ArticleTypeEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/ArticleTypeEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/CustomerEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/CustomerEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/InvoiceEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/InvoiceEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/InvoiceItemEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/InvoiceItemEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/MachineEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/MachineEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/MachineTypeEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/configurator/Entities/MachineTypeEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/tables/tables.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/tables/tables.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,7 +214,8 @@
       <workItem from="1664187769221" duration="2620000" />
       <workItem from="1664213305949" duration="1164000" />
       <workItem from="1664262320392" duration="1569000" />
-      <workItem from="1664266585289" duration="2247000" />
+      <workItem from="1664266585289" duration="2432000" />
+      <workItem from="1664275424946" duration="968000" />
     </task>
     <task id="LOCAL-00001" summary="ok">
       <created>1663852213144</created>
@@ -293,7 +294,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664266624084</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary=" a">
+      <created>1664269022822</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1664269022822</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

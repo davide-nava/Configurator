@@ -7,8 +7,8 @@ public class ArticleEntity implements Serializable {
 
     public static final String PK = "ArticleId";
     public static final String TABLE = "Article";
-    private UUID articleId = UUID.randomUUID();
-    private UUID articleTypeId = UUID.randomUUID();
+    private UUID articleId;
+    private UUID articleTypeId;
     private float basePrice = 1;
     private String code = "";
     private String img = "";
