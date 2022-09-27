@@ -5,7 +5,7 @@
 <%@attribute name="body_area" fragment="true" %>
 
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" data-lt-installed="true">
 <head>
 
     <jsp:include page="/shared/head.jsp"/>
@@ -15,19 +15,22 @@
     <jsp:invoke fragment="head_area"/>
 
 </head>
-<body class=" pace-done fixed-nav fixed-sidebar  ">
+<body class=" pace-done fixed-nav mini-navbar  ">
 <div class="pace  pace-inactive">
-    <div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
-    <div class="pace-progress-inner"></div>
+    <div class="pace-progress" data-progress-text="100%" data-progress="99"
+         style="transform: translate3d(100%, 0px, 0px);">
+        <div class="pace-progress-inner"></div>
+    </div>
+    <div class="pace-activity"></div>
 </div>
-    <div class="pace-activity"></div></div>
+
 <div id="wrapper">
     <nav class="navbar-default navbar-static-side" role="navigation" id="nabBarSx">
         <div class="sidebar-collapse">
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="${pageContext.request.contextPath}/index.jsp">
                             <span class="block m-t-xs font-bold">Configuratore<br/>Nava Davide<br/>Mat 001452422 </span>
                         </a>
                     </div>
@@ -41,7 +44,7 @@
                   </li>
                     --%>
                 <li>
-                    <a href="${pageContext.request.contextPath}/tables/article/list.jsp"><i class="fa fa-table"></i>
+                    <a href="${pageContext.request.contextPath}/tables/article/list.jsp"><i class="fa-solid fa-gear"></i>
                         <span class="nav-label">Articoli</span></a>
                 </li>
                 <%--
@@ -63,11 +66,11 @@
                         <span class="nav-label">Tipo articoli</span></a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/tables/customer/list.jsp"><i class="fa fa-table"></i>
+                    <a href="${pageContext.request.contextPath}/tables/customer/list.jsp"><i class="fa-solid fa-users"></i>
                         <span class="nav-label">Clienti</span></a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/tables/invoice/list.jsp"><i class="fa fa-table"></i>
+                    <a href="${pageContext.request.contextPath}/tables/invoice/list.jsp"><i class="fa-solid fa-receipt"></i>
                         <span class="nav-label">Fatture</span></a>
                 </li>
                 <%--   
@@ -92,6 +95,16 @@
     </nav>
 
     <div id="page-wrapper" class="gray-bg  ">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+
+                </div>
+
+
+            </nav>
+        </div>
         <div class="wrapper wrapper-content">
             <div class="row">
                 <div class="col-lg-12">

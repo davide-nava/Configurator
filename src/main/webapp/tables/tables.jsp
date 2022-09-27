@@ -37,8 +37,7 @@
                                         class="fa fa-table"></i> Articoli tipo gruppo articolo</a>
                             </div>
                              <div class="col-4 themed-grid-col d-grid gap-1">
-                                <a class="btn btn-primary"   href="${pageContext.request.contextPath}/tables/article/list.jsp"><i
-                                        class="fa fa-table"></i> Articoli</a>
+                                <a class="btn btn-primary"   href="${pageContext.request.contextPath}/tables/article/list.jsp"><i class="fa-solid fa-gear"></i> Articoli</a>
                             </div>
                              <div class="col-4 themed-grid-col d-grid gap-1">
                                 <a class="btn btn-primary"   href="${pageContext.request.contextPath}/tables/articlegrouptype.j/list.jsp"><i
@@ -62,11 +61,10 @@
                         <div class="row mb-3 text-center">
                              <div class="col-4 themed-grid-col d-grid gap-1">
                                 <a class="btn btn-primary"   href="${pageContext.request.contextPath}/tables/customer/list.jsp">
-                                    <i class=" fa fa-table "></i> Clienti</a>
+                                    <i class="fa-solid fa-users"></i> Clienti</a>
                             </div>
                              <div class="col-4 themed-grid-col d-grid gap-1">
-                                <a class="btn btn-primary"   href="${pageContext.request.contextPath}/tables/invoice/list.jsp"><i
-                                        class=" fa fa-table "></i> Fatture</a>
+                                <a class="btn btn-primary"   href="${pageContext.request.contextPath}/tables/invoice/list.jsp"><i class="fa-solid fa-receipt"></i> Fatture</a>
                             </div>
 
                              <div class="col-4 themed-grid-col d-grid gap-1">

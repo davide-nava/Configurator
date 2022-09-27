@@ -28,10 +28,10 @@
                                         <i class="fa fa-times"></i>
                                     </a> -->
                                    
-                                    <a class="" href="${pageContext.request.contextPath}/tables/customer/create">
+                                    <a class="btn-primary" title="aggiungi" href="${pageContext.request.contextPath}/tables/customer/create.jsp">
                                         <i class="fa-solid fa-plus"></i>
                                     </a>
-                                </div> 
+                                </div>
                             </div>
                             <div class="ibox-content ">
                                 <div class="row   ">

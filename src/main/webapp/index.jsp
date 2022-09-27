@@ -31,6 +31,12 @@
                     </div> --%>
                     <div class="ibox-content ">
                         <h1 class="text-center">Benvenuto nel configuratore</h1>
+
+                        <div class="row">
+                            <div class="col text-center mb-6 mt-6">
+                                <img alt="next" src="img/macchina/next.jpg" class="img-fluid" />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
