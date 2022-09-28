@@ -94,14 +94,17 @@
         </div>
     </nav>
 
-    <div id="page-wrapper" class="gray-bg  ">
-        <div class="row border-bottom">
+    <div id="page-wrapper" class="gray-bg  " style="padding-left: 12px; padding-right: 0px; ">
+        <div class="row border-bottom border-bottom-blue">
             <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
                     <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-
                 </div>
-
+                <ul class="nav navbar-top-links navbar-right">
+                    <li style="padding: 20px">
+                        <h1 class="text-center">Configura la tua macchina</h1>
+                    </li>
+                </ul>
 
             </nav>
         </div>

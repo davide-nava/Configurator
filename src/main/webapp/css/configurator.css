@@ -29,6 +29,11 @@ a:hover {
     border-color: rgb(30, 40, 111)!important;
 }
 
+.border-bottom-blue
+{
+    border-bottom: 1px solid rgb(30, 40, 111)!important;
+}
+
 a.btn-primary:hover, .btn-primary:hover {
     color: white!important;
     background-color: #326ed7 !important;
