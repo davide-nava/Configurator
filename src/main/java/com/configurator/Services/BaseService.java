@@ -48,7 +48,7 @@ public abstract class BaseService {
         try {
             con = getConnection();
             PreparedStatement ps = con.prepareStatement("delete from " + table + " where " + pk + "=? ");
-            ps.setString(1, id.toString());
+            ps.setString(1, id.toString().toUpperCase());
 
             ps.executeUpdate();
         } catch (SQLException ex) {

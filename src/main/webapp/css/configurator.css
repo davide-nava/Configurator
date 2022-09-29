@@ -11,7 +11,8 @@ body,
 h1,
 h2,
 h3,
-h4 {
+h4,
+.txt-blue, .ibox-title{
     color: #1e286f;
 }
 
@@ -29,6 +30,12 @@ a:hover {
     border-color: rgb(30, 40, 111)!important;
 }
 
+.ibox-tools > a.btn-primary, .ibox-tools > a.btn-danger, .ibox-tools > button.btn-danger
+{
+    padding: 4px;
+    line-height: 0px;
+}
+
 .border-bottom-blue
 {
     border-bottom: 1px solid rgb(30, 40, 111)!important;
@@ -40,7 +47,7 @@ a.btn-primary:hover, .btn-primary:hover {
     border-color: #326ed7!important;
 }
 
-.nav-header, .nav > li > a:hover, .nav > li > a:active, .pace .pace-progress
+.nav-header, .nav > li > a:hover, .nav > li > a:active, .pace .pace-progress, .active, a.active, .nav > li > a:active
 {
     background-color: rgb(30, 40, 111)!important;
     border-color: rgb(30, 40, 111)!important;

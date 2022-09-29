@@ -27,7 +27,7 @@ public class ArticleGroupTypeService extends BaseService implements IArticleGrou
             ps.setString(2, val.getDesc());
             ps.setString(3, val.getProductionOrder());
 
-            ps.setString(4, val.getArticleGroupTypeId().toString());
+            ps.setString(4, val.getArticleGroupTypeId().toString().toUpperCase());
 
             ps.executeUpdate();
 
@@ -49,7 +49,7 @@ public class ArticleGroupTypeService extends BaseService implements IArticleGrou
             PreparedStatement ps = con.prepareStatement(
                     "insert into ArticleGroupType (ArticleGroupTypeId, Code, Desc, ProductionOrder) values ( ?, ?,?, ?)");
 
-            ps.setString(1, val.getArticleGroupTypeId().toString());
+            ps.setString(1, val.getArticleGroupTypeId().toString().toUpperCase());
             ps.setString(2, val.getCode());
             ps.setString(3, val.getDesc());
             ps.setString(4, val.getProductionOrder());
@@ -84,7 +84,6 @@ public class ArticleGroupTypeService extends BaseService implements IArticleGrou
             return result;
         }
     }
-
 
     @Override
     public List<ArticleGroupTypeEntity> get() throws SQLException {
@@ -128,7 +127,7 @@ public class ArticleGroupTypeService extends BaseService implements IArticleGrou
             con = getConnection();
             PreparedStatement ps = con.prepareStatement(
                     "select * from  ArticleGroupType where ArticleGroupTypeId=? ");
-            ps.setString(1, id.toString());
+            ps.setString(1, id.toString().toUpperCase());
 
             rs = ps.executeQuery();
 

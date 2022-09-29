@@ -24,12 +24,12 @@ public class ArticleMachineService extends BaseService implements IArticleMachin
             PreparedStatement ps = con.prepareStatement(
                     "update ArticleMachine set  MachineId=?, ArticleId=?, Qta=?, Note=? where ArticleMachineId=?");
 
-            ps.setString(1, val.getMachineId().toString());
-            ps.setString(2, val.getArticleId().toString());
+            ps.setString(1, val.getMachineId().toString().toUpperCase());
+            ps.setString(2, val.getArticleId().toString().toUpperCase());
             ps.setFloat(3, val.getQta());
             ps.setString(4, val.getNote());
 
-            ps.setString(5, val.getArticleMachineId().toString());
+            ps.setString(5, val.getArticleMachineId().toString().toUpperCase());
 
             ps.executeUpdate();
 
@@ -51,9 +51,9 @@ public class ArticleMachineService extends BaseService implements IArticleMachin
             PreparedStatement ps = con.prepareStatement(
                     "insert into ArticleMachine (ArticleMachineId, MachineId, ArticleId, Qta, Note) values ( ?, ?,?, ?, ?)");
 
-            ps.setString(1, val.getArticleMachineId().toString());
-            ps.setString(2, val.getMachineId().toString());
-            ps.setString(3, val.getArticleId().toString());
+            ps.setString(1, val.getArticleMachineId().toString().toUpperCase());
+            ps.setString(2, val.getMachineId().toString().toUpperCase());
+            ps.setString(3, val.getArticleId().toString().toUpperCase());
             ps.setFloat(4, val.getQta());
             ps.setString(5, val.getNote());
 
@@ -111,7 +111,6 @@ public class ArticleMachineService extends BaseService implements IArticleMachin
         }
     }
 
-
     @Override
     public List<ArticleMachineViewModel> getViewModal() throws SQLException {
         List<ArticleMachineViewModel> result = new ArrayList<ArticleMachineViewModel>();
@@ -120,7 +119,8 @@ public class ArticleMachineService extends BaseService implements IArticleMachin
 
         try {
             con = getConnection();
-            PreparedStatement ps = con.prepareStatement("select ArticleMachine.*, (Article.Name || ' - ' || Article.Code ) as  'ArticleDesc', Machine.Desc as 'MachineDesc' from ArticleMachine inner join Machine on Machine.MachineId = ArticleMachine.MachineId inner join Article on Article.ArticleId = ArticleMachine.ArticleId ");
+            PreparedStatement ps = con.prepareStatement(
+                    "select ArticleMachine.*, (Article.Name || ' - ' || Article.Code ) as  'ArticleDesc', Machine.Desc as 'MachineDesc' from ArticleMachine inner join Machine on Machine.MachineId = ArticleMachine.MachineId inner join Article on Article.ArticleId = ArticleMachine.ArticleId ");
 
             rs = ps.executeQuery();
 
@@ -141,7 +141,6 @@ public class ArticleMachineService extends BaseService implements IArticleMachin
             return result;
         }
     }
-
 
     @Override
     public List<ArticleMachineEntity> get() throws SQLException {
@@ -186,7 +185,7 @@ public class ArticleMachineService extends BaseService implements IArticleMachin
             PreparedStatement ps = con.prepareStatement(
                     "select * from ArticleMachine where ArticleMachineId=? ");
 
-            ps.setString(1, id.toString());
+            ps.setString(1, id.toString().toUpperCase());
 
             rs = ps.executeQuery();
 
@@ -215,6 +214,5 @@ public class ArticleMachineService extends BaseService implements IArticleMachin
             printSQLException(exception);
         }
     }
-
 
 }

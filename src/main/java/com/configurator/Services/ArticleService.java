@@ -1,9 +1,5 @@
 package com.configurator.Services;
 
-import com.configurator.Entities.ArticleEntity;
-import com.configurator.Interfaces.IArticleService;
-import com.configurator.ViewModels.ArticleViewModel;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import com.configurator.Entities.ArticleEntity;
+import com.configurator.Interfaces.IArticleService;
+import com.configurator.ViewModels.ArticleViewModel;
 
 public class ArticleService extends BaseService implements IArticleService {
 
@@ -22,18 +22,18 @@ public class ArticleService extends BaseService implements IArticleService {
             con = getConnection();
 
             PreparedStatement ps = con.prepareStatement(
-                    "update Article set Img=?, Doc=?, Code=?, Name=?, Desc=?, ArticleTypeId=?, BasePrice=?,IsMachine=? where ArticleId=?");
+                    "update Article set Img=?, Doc=?, Code=?, Name=?, Desc=?, ArticleTypeId=?, BasePrice=?, IsMachine=? where ArticleId=?");
 
             ps.setString(1, val.getImg());
             ps.setString(2, val.getDoc());
             ps.setString(3, val.getCode());
             ps.setString(4, val.getName());
             ps.setString(5, val.getDesc());
-            ps.setString(6, val.getArticleTypeId().toString());
+            ps.setString(6, val.getArticleTypeId().toString().toUpperCase());
             ps.setFloat(7, val.getBasePrice());
             ps.setBoolean(8, val.getIsMachine());
 
-            ps.setString(9, val.getArticleId().toString());
+            ps.setString(9, val.getArticleId().toString().toUpperCase());
 
             ps.executeUpdate();
 
@@ -55,13 +55,13 @@ public class ArticleService extends BaseService implements IArticleService {
             PreparedStatement ps = con.prepareStatement(
                     "insert into Article ( ArticleId, Img, Doc, Code, Name, Desc, ArticleTypeId, BasePrice, IsMachine) values ( ?, ?, ?,  ?, ? , ? ,? , ?, ?)");
 
-            ps.setString(1, val.getArticleId().toString());
+            ps.setString(1, val.getArticleId().toString().toUpperCase());
             ps.setString(2, val.getImg());
             ps.setString(3, val.getDoc());
             ps.setString(4, val.getCode());
             ps.setString(5, val.getName());
             ps.setString(6, val.getDesc());
-            ps.setString(7, val.getArticleTypeId().toString());
+            ps.setString(7, val.getArticleTypeId().toString().toUpperCase());
             ps.setFloat(8, val.getBasePrice());
             ps.setBoolean(9, val.getIsMachine());
 
@@ -201,7 +201,7 @@ public class ArticleService extends BaseService implements IArticleService {
             PreparedStatement ps = con.prepareStatement(
                     "select * from Article where ArticleId=? ");
 
-            ps.setString(1, id.toString());
+            ps.setString(1, id.toString().toUpperCase());
 
             rs = ps.executeQuery();
 

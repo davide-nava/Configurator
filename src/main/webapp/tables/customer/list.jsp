@@ -12,23 +12,7 @@
                             <div class="ibox-title">
                                 <h5>Clienti</h5>
                                  <div class="ibox-tools">
-                                   <!--  <a class="collapse-link" href="">
-                                        <i class="fa fa-chevron-up"></i>
-                                    </a>
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                        <i class="fa fa-wrench"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-user">
-                                        <li><a href="#" class="dropdown-item">Config option 1</a>
-                                        </li>
-                                        <li><a href="#" class="dropdown-item">Config option 2</a>
-                                        </li>
-                                    </ul>
-                                    <a class="close-link" href="">
-                                        <i class="fa fa-times"></i>
-                                    </a> -->
-                                   
-                                    <a class="btn-primary" title="aggiungi" href="${pageContext.request.contextPath}/tables/customer/create.jsp">
+                                    <a class="btn btn-primary" title="aggiungi" href="${pageContext.request.contextPath}/tables/customer/create.jsp">
                                         <i class="fa-solid fa-plus"></i>
                                     </a>
                                 </div>
@@ -132,7 +116,7 @@
       allowSorting: false,      
       cellTemplate(container, options) {
                                        const link = $("<a>");
-                                       link.attr("href", '${pageContext.request.contextPath}/tables/customer/read.jsp?id=' + options.value)
+                                       link.attr("href", '${pageContext.request.contextPath}/customer/read?id=' + options.value)
                                        link.attr("title", 'Apri')
                                            .append($('<i>', { class: 'fa-solid fa-eye ',  }))
                                        ;
@@ -150,6 +134,14 @@
                     });
 
                     let collapsed = false;
+                </script>
+
+
+
+                <script>
+                    $(function() {
+                        $('#menuSxCustomer').addClass('active');
+                    });
                 </script>
 
             </jsp:attribute>

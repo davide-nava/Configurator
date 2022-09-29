@@ -33,7 +33,7 @@ public class MachineTypeService extends BaseService implements IMachineTypeServi
             ps.setString(8, val.getNote());
             ps.setInt(9, val.getSpindles());
 
-            ps.setString(10, val.getMachineTypeId().toString());
+            ps.setString(10, val.getMachineTypeId().toString().toUpperCase());
 
             ps.executeUpdate();
 
@@ -55,7 +55,7 @@ public class MachineTypeService extends BaseService implements IMachineTypeServi
             PreparedStatement ps = con.prepareStatement(
                     "insert into MachineType ( MachineTypeId, Desc, Code, Dt, Nr, Img, Axes, Cnc, Note, Spindles) values ( ?, ?, ?,  ?,?,?,?,?,?,?)");
 
-            ps.setString(1, val.getMachineTypeId().toString());
+            ps.setString(1, val.getMachineTypeId().toString().toUpperCase());
             ps.setString(2, val.getDesc());
             ps.setString(3, val.getCode());
             ps.setDate(4, new java.sql.Date(val.getDt().getTime()));
@@ -145,7 +145,7 @@ public class MachineTypeService extends BaseService implements IMachineTypeServi
             PreparedStatement ps = con.prepareStatement(
                     "select * from MachineType where MachineTypeId=? ");
 
-            ps.setString(1, id.toString());
+            ps.setString(1, id.toString().toUpperCase());
 
             rs = ps.executeQuery();
 
@@ -174,6 +174,5 @@ public class MachineTypeService extends BaseService implements IMachineTypeServi
             printSQLException(exception);
         }
     }
-
 
 }

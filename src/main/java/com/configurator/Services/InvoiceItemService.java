@@ -25,11 +25,11 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
                     "update InvoiceItem set  Dt=?, InvoiceId=?, ArticleId=?,  Qta=? where InvoiceItemId=?");
 
             ps.setDate(1, new java.sql.Date(val.getDt().getTime()));
-            ps.setString(2, val.getInvoiceId().toString());
-            ps.setString(3, val.getArticleId().toString());
+            ps.setString(2, val.getInvoiceId().toString().toUpperCase());
+            ps.setString(3, val.getArticleId().toString().toUpperCase());
             ps.setFloat(4, val.getQta());
 
-            ps.setString(5, val.getInvoiceItemId().toString());
+            ps.setString(5, val.getInvoiceItemId().toString().toUpperCase());
 
             ps.executeUpdate();
 
@@ -51,10 +51,10 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
             PreparedStatement ps = con.prepareStatement(
                     "insert into InvoiceItem ( InvoiceItemId, Dt, InvoiceId, ArticleId,  Qta) values ( ?, ?, ?, ?,?)");
 
-            ps.setString(1, val.getInvoiceItemId().toString());
+            ps.setString(1, val.getInvoiceItemId().toString().toUpperCase());
             ps.setDate(2, new java.sql.Date(val.getDt().getTime()));
-            ps.setString(3, val.getInvoiceId().toString());
-            ps.setString(4, val.getArticleId().toString());
+            ps.setString(3, val.getInvoiceId().toString().toUpperCase());
+            ps.setString(4, val.getArticleId().toString().toUpperCase());
             ps.setFloat(5, val.getQta());
 
             ps.executeUpdate();
@@ -119,7 +119,8 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
 
         try {
             con = getConnection();
-            PreparedStatement ps = con.prepareStatement("select InvoiceItem.*, (Article.Name || ' - ' || Article.Code ) as  'ArticleDesc', Invoice.Nr as 'InvoiceDesc'  from InvoiceItem inner join Invoice on Invoice.InvoiceId = InvoiceItem.InvoiceId inner join Article on Article.ArticleId = InvoiceItem.ArticleId   ");
+            PreparedStatement ps = con.prepareStatement(
+                    "select InvoiceItem.*, (Article.Name || ' - ' || Article.Code ) as  'ArticleDesc', Invoice.Nr as 'InvoiceDesc'  from InvoiceItem inner join Invoice on Invoice.InvoiceId = InvoiceItem.InvoiceId inner join Article on Article.ArticleId = InvoiceItem.ArticleId   ");
 
             rs = ps.executeQuery();
 
@@ -139,7 +140,6 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
             return result;
         }
     }
-
 
     @Override
     public List<InvoiceItemEntity> get() throws SQLException {
@@ -183,7 +183,7 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
             PreparedStatement ps = con.prepareStatement(
                     "select * from InvoiceItem where InvoiceItemId=? ");
 
-            ps.setString(1, id.toString());
+            ps.setString(1, id.toString().toUpperCase());
 
             rs = ps.executeQuery();
 

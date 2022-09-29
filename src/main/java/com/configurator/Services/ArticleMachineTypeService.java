@@ -24,11 +24,11 @@ public class ArticleMachineTypeService extends BaseService implements IArticleMa
             PreparedStatement ps = con.prepareStatement(
                     "update ArticleMachineType set   ArticleId=?, MachineTypeId=?, Qta=? where ArticleMachineTypeId=?");
 
-            ps.setString(1, val.getArticleId().toString());
-            ps.setString(2, val.getMachineTypeId().toString());
+            ps.setString(1, val.getArticleId().toString().toUpperCase());
+            ps.setString(2, val.getMachineTypeId().toString().toUpperCase());
             ps.setFloat(3, val.getQta());
 
-            ps.setString(4, val.getArticleMachineTypeId().toString());
+            ps.setString(4, val.getArticleMachineTypeId().toString().toUpperCase());
 
             ps.executeUpdate();
 
@@ -50,9 +50,9 @@ public class ArticleMachineTypeService extends BaseService implements IArticleMa
             PreparedStatement ps = con.prepareStatement(
                     "insert into ArticleMachineType ( ArticleMachineTypeId, ArticleId, MachineTypeId, Qta) values ( ?, ?, ?,  ?)");
 
-            ps.setString(1, val.getArticleMachineTypeId().toString());
-            ps.setString(2, val.getArticleId().toString());
-            ps.setString(3, val.getMachineTypeId().toString());
+            ps.setString(1, val.getArticleMachineTypeId().toString().toUpperCase());
+            ps.setString(2, val.getArticleId().toString().toUpperCase());
+            ps.setString(3, val.getMachineTypeId().toString().toUpperCase());
             ps.setFloat(4, val.getQta());
 
             ps.executeUpdate();
@@ -115,7 +115,8 @@ public class ArticleMachineTypeService extends BaseService implements IArticleMa
 
         try {
             con = getConnection();
-            PreparedStatement ps = con.prepareStatement("select ArticleMachineType.*, (Article.Name || ' - ' || Article.Code ) as  'ArticleDesc', MachineType.Desc as 'MachineTypeDesc' from ArticleMachineType inner join MachineType on MachineType.MachineTypeId = ArticleMachineType.MachineTypeId  inner join Article on Article.ArticleId = ArticleMachineType.ArticleId ");
+            PreparedStatement ps = con.prepareStatement(
+                    "select ArticleMachineType.*, (Article.Name || ' - ' || Article.Code ) as  'ArticleDesc', MachineType.Desc as 'MachineTypeDesc' from ArticleMachineType inner join MachineType on MachineType.MachineTypeId = ArticleMachineType.MachineTypeId  inner join Article on Article.ArticleId = ArticleMachineType.ArticleId ");
 
             rs = ps.executeQuery();
 
@@ -180,7 +181,7 @@ public class ArticleMachineTypeService extends BaseService implements IArticleMa
             PreparedStatement ps = con.prepareStatement(
                     "select * from ArticleMachineType where ArticleMachineTypeId=? ");
 
-            ps.setString(1, id.toString());
+            ps.setString(1, id.toString().toUpperCase());
 
             rs = ps.executeQuery();
 
@@ -201,7 +202,6 @@ public class ArticleMachineTypeService extends BaseService implements IArticleMa
         }
     }
 
-
     @Override
     public void delete(UUID id) {
         try {
@@ -210,6 +210,5 @@ public class ArticleMachineTypeService extends BaseService implements IArticleMa
             printSQLException(exception);
         }
     }
-
 
 }

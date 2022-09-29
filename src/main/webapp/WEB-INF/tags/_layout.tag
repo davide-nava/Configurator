@@ -35,59 +35,59 @@
                         </a>
                     </div>
                     <div class="logo-element">
-                        ND
+                        <a   href="${pageContext.request.contextPath}/index.jsp">   ND </a>
                     </div>
                 </li>
                 <%--
                    <li>
-                      <a href="${pageContext.request.contextPath}/tables/articlearticlegrouptype/list.jsp"><i class="fa fa-table"></i> <span class="nav-label">ArticleArticleGroupType</span></a>
+                      <a id="menuSxArticleArticleGroupType" href="${pageContext.request.contextPath}/tables/articlearticlegrouptype/list.jsp"><i class="fa fa-table"></i> <span class="nav-label">ArticleArticleGroupType</span></a>
                   </li>
                     --%>
                 <li>
-                    <a href="${pageContext.request.contextPath}/tables/article/list.jsp"><i class="fa-solid fa-gear"></i>
+                    <a id="menuSxArticle" href="${pageContext.request.contextPath}/tables/article/list.jsp"><i class="fa-solid fa-gear"></i>
                         <span class="nav-label">Articoli</span></a>
                 </li>
                 <%--
                    <li>
-                       <a href="${pageContext.request.contextPath}/tables/articlegrouptype.j/list.jspsp"><i class="fa fa-table"></i> <span class="nav-label">ArticleGroupType</span></a>
+                       <a id="menuSxArticleGroupType" href="${pageContext.request.contextPath}/tables/articlegrouptype.j/list.jspsp"><i class="fa fa-table"></i> <span class="nav-label">ArticleGroupType</span></a>
                    </li>
                     --%>
                 <li>
-                    <a href="${pageContext.request.contextPath}/tables/articlemachine/list.jsp"><i
+                    <a id="menuSxArticleMachine" href="${pageContext.request.contextPath}/tables/articlemachine/list.jsp"><i
                             class="fa fa-table"></i> <span class="nav-label">Articoli macchina</span></a>
                 </li>
                 <%--
                    <li>
-                       <a href="${pageContext.request.contextPath}/tables/articlemachinetype/list.jsp"><i class="fa fa-table"></i> <span class="nav-label">ArticleMachineType</span></a>
+                       <a id="menuSxArticleMachineType" href="${pageContext.request.contextPath}/tables/articlemachinetype/list.jsp"><i class="fa fa-table"></i> <span class="nav-label">ArticleMachineType</span></a>
                    </li>
                   --%>
                 <li>
-                    <a href=${pageContext.request.contextPath}/tables/articletype/list.jsp"><i class="fa fa-table"></i>
+                    <a id="menuSxArticleType" href=${pageContext.request.contextPath}/tables/articletype/list.jsp"><i class="fa fa-table"></i>
                         <span class="nav-label">Tipo articoli</span></a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/tables/customer/list.jsp"><i class="fa-solid fa-users"></i>
+                    <a id="menuSxCustomer" href="${pageContext.request.contextPath}/tables/customer/list.jsp"><i class="fa-solid fa-users"></i>
                         <span class="nav-label">Clienti</span></a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/tables/invoice/list.jsp"><i class="fa-solid fa-receipt"></i>
+                    <a id="menuSxInvoice" href="${pageContext.request.contextPath}/tables/invoice/list.jsp"><i class="fa-solid fa-receipt"></i>
                         <span class="nav-label">Fatture</span></a>
                 </li>
                 <%--   
                  <li>
-                        <a href="${pageContext.request.contextPath}/tables/invoiceitem/list.jsp"><i class="fa fa-table"></i> <span class="nav-label">InvoiceItem</span></a>
+                        <a id="menuSxInvoiceItem" href="${pageContext.request.contextPath}/tables/invoiceitem/list.jsp"><i class="fa fa-table"></i> <span class="nav-label">InvoiceItem</span></a>
                     </li> 
                     --%>
                 <li>
-                    <a href="${pageContext.request.contextPath}/tables/machine/list.jsp"><i class="fa fa-table"></i>
+                    <a id="menuSxMachine" href="${pageContext.request.contextPath}/tables/machine/list.jsp"><i class="fa fa-table"></i>
                         <span class="nav-label">Macchine</span></a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/tables/machinetype/list.jsp"><i class="fa fa-table"></i>
+                    <a id="menuSxMachineType" href="${pageContext.request.contextPath}/tables/machinetype/list.jsp"><i class="fa fa-table"></i>
                         <span class="nav-label">Tipo macchina</span></a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/tables/tables.jsp"><i class="fa fa-table"></i> <span
+                    <a id="menuSxTables" href="${pageContext.request.contextPath}/tables/tables.jsp"><i class="fa fa-table"></i> <span
                             class="nav-label">Tabelle</span></a>
                 </li>
             </ul>
@@ -102,7 +102,7 @@
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
                     <li style="padding: 20px">
-                        <h1 class="text-center">Configura la tua macchina</h1>
+                        <span class="m-r-sm welcome-message txt-blue">Configura la tua macchina</span>
                     </li>
                 </ul>
 

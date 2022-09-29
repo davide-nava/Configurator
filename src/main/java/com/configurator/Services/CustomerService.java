@@ -26,7 +26,7 @@ public class CustomerService extends BaseService implements ICustomerService {
             ps.setString(1, val.getName());
             ps.setString(2, val.getCode());
 
-            ps.setString(3, val.getCustomerId().toString());
+            ps.setString(3, val.getCustomerId().toString().toUpperCase());
 
             ps.executeUpdate();
 
@@ -48,7 +48,7 @@ public class CustomerService extends BaseService implements ICustomerService {
             PreparedStatement ps = con.prepareStatement(
                     "insert into Customer ( CustomerId, Name, Code) values ( ?, ?,    ?)");
 
-            ps.setString(1, val.getCustomerId().toString());
+            ps.setString(1, val.getCustomerId().toString().toUpperCase());
             ps.setString(2, val.getName());
             ps.setString(3, val.getCode());
 
@@ -124,7 +124,7 @@ public class CustomerService extends BaseService implements ICustomerService {
             PreparedStatement ps = con.prepareStatement(
                     "select * from Customer where CustomerId=? ");
 
-            ps.setString(1, id.toString());
+            ps.setString(1,   id.toString().toUpperCase());
 
             rs = ps.executeQuery();
 

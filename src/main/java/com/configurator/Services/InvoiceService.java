@@ -25,11 +25,11 @@ public class InvoiceService extends BaseService implements IInvoiceService {
                     "update Invoice set     Dt=?, CustomerId=?, Total=? , Nr=? where InvoiceId=?");
 
             ps.setDate(1, new java.sql.Date(val.getDt().getTime()));
-            ps.setString(2, val.getCustomerId().toString());
+            ps.setString(2, val.getCustomerId().toString().toUpperCase());
             ps.setFloat(3, val.getTotal());
             ps.setString(4, val.getNr());
 
-            ps.setString(5, val.getInvoiceId().toString());
+            ps.setString(5, val.getInvoiceId().toString().toUpperCase());
 
             ps.executeUpdate();
 
@@ -51,9 +51,9 @@ public class InvoiceService extends BaseService implements IInvoiceService {
             PreparedStatement ps = con.prepareStatement(
                     "insert into Invoice ( InvoiceId, Dt, CustomerId, Total, Nr) values ( ?, ?, ?,  ?, ?)");
 
-            ps.setString(1, val.getInvoiceId().toString());
+            ps.setString(1, val.getInvoiceId().toString().toUpperCase());
             ps.setDate(2, new java.sql.Date(val.getDt().getTime()));
-            ps.setString(3, val.getCustomerId().toString());
+            ps.setString(3, val.getCustomerId().toString().toUpperCase());
             ps.setFloat(4, val.getTotal());
             ps.setString(5, val.getNr());
 
@@ -117,7 +117,8 @@ public class InvoiceService extends BaseService implements IInvoiceService {
 
         try {
             con = getConnection();
-            PreparedStatement ps = con.prepareStatement("select Invoice.*, (Customer.Name || ' - ' || Customer.Code ) as  'CustomerDesc' from Invoice inner join Customer on Customer.CustomerId = Invoice.CustomerId");
+            PreparedStatement ps = con.prepareStatement(
+                    "select Invoice.*, (Customer.Name || ' - ' || Customer.Code ) as  'CustomerDesc' from Invoice inner join Customer on Customer.CustomerId = Invoice.CustomerId");
 
             rs = ps.executeQuery();
 
@@ -182,7 +183,7 @@ public class InvoiceService extends BaseService implements IInvoiceService {
             PreparedStatement ps = con.prepareStatement(
                     "select * from Invoice where InvoiceId=? ");
 
-            ps.setString(1, id.toString());
+            ps.setString(1, id.toString().toUpperCase());
 
             rs = ps.executeQuery();
 
@@ -211,6 +212,5 @@ public class InvoiceService extends BaseService implements IInvoiceService {
             printSQLException(exception);
         }
     }
-
 
 }

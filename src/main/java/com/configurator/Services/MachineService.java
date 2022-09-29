@@ -30,7 +30,7 @@ public class MachineService extends BaseService implements IMachineService {
             ps.setString(4, val.getDesc());
             ps.setString(5, val.getImg());
             ps.setString(6, val.getDoc());
-            ps.setString(7, val.getMachineTypeId().toString());
+            ps.setString(7, val.getMachineTypeId().toString().toUpperCase());
             ps.setFloat(8, val.getBasePrice());
             ps.setString(9, val.getNote());
             ps.setString(10, val.getProductionOrder());
@@ -40,7 +40,7 @@ public class MachineService extends BaseService implements IMachineService {
             ps.setDate(14, new java.sql.Date(val.getDtEndWarranty().getTime()));
             ps.setDate(15, new java.sql.Date(val.getDtStartWarranty().getTime()));
 
-            ps.setString(16, val.getMachineId().toString());
+            ps.setString(16, val.getMachineId().toString().toUpperCase());
 
             ps.executeUpdate();
 
@@ -62,14 +62,14 @@ public class MachineService extends BaseService implements IMachineService {
             PreparedStatement ps = con.prepareStatement(
                     "insert into Machine ( MachineId, Nr, Year, Code, Desc, Img, Doc, MachineTypeId, BasePrice, Note, ProductionOrder,  Address, DtDelivery, DtAcceptance, DtEndWarranty, DtStartWarranty) values ( ?, ?, ?,  ?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
-            ps.setString(1, val.getMachineId().toString());
+            ps.setString(1, val.getMachineId().toString().toUpperCase());
             ps.setInt(2, val.getNr());
             ps.setInt(3, val.getYear());
             ps.setString(4, val.getCode());
             ps.setString(5, val.getDesc());
             ps.setString(6, val.getImg());
             ps.setString(7, val.getDoc());
-            ps.setString(8, val.getMachineTypeId().toString());
+            ps.setString(8, val.getMachineTypeId().toString().toUpperCase());
             ps.setFloat(9, val.getBasePrice());
             ps.setString(10, val.getNote());
             ps.setString(11, val.getProductionOrder());
@@ -153,7 +153,6 @@ public class MachineService extends BaseService implements IMachineService {
         }
     }
 
-
     @Override
     public List<MachineViewModel> getViewModal() throws SQLException {
         List<MachineViewModel> result = new ArrayList<MachineViewModel>();
@@ -162,7 +161,8 @@ public class MachineService extends BaseService implements IMachineService {
 
         try {
             con = getConnection();
-            PreparedStatement ps = con.prepareStatement("select Machine.*,   MachineType.Desc as 'MachineTypeDesc'  from  Machine inner join MachineType on MachineType.MachineTypeId = Machine.MachineTypeId");
+            PreparedStatement ps = con.prepareStatement(
+                    "select Machine.*,   MachineType.Desc as 'MachineTypeDesc'  from  Machine inner join MachineType on MachineType.MachineTypeId = Machine.MachineTypeId");
 
             rs = ps.executeQuery();
 
@@ -227,7 +227,7 @@ public class MachineService extends BaseService implements IMachineService {
             PreparedStatement ps = con.prepareStatement(
                     "select * from Machine where MachineId=? ");
 
-            ps.setString(1, id.toString());
+            ps.setString(1, id.toString().toUpperCase());
 
             rs = ps.executeQuery();
 
@@ -256,6 +256,5 @@ public class MachineService extends BaseService implements IMachineService {
             printSQLException(exception);
         }
     }
-
 
 }

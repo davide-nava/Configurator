@@ -27,7 +27,7 @@ public class ArticleTypeService extends BaseService implements IArticleTypeServi
             ps.setString(2, val.getCode());
             ps.setInt(3, val.getYear());
 
-            ps.setString(4, val.getArticleTypeId().toString());
+            ps.setString(4, val.getArticleTypeId().toString().toUpperCase());
 
             ps.executeUpdate();
 
@@ -49,7 +49,7 @@ public class ArticleTypeService extends BaseService implements IArticleTypeServi
             PreparedStatement ps = con.prepareStatement(
                     "insert into ArticleType ( ArticleTypeId, Desc, Code, Year) values ( ?, ?, ?,  ?)");
 
-            ps.setString(1, val.getArticleTypeId().toString());
+            ps.setString(1, val.getArticleTypeId().toString().toUpperCase());
             ps.setString(2, val.getDesc());
             ps.setString(3, val.getCode());
             ps.setInt(4, val.getYear());
@@ -127,7 +127,7 @@ public class ArticleTypeService extends BaseService implements IArticleTypeServi
             PreparedStatement ps = con.prepareStatement(
                     "select * from ArticleType where ArticleTypeId=? ");
 
-            ps.setString(1, id.toString());
+            ps.setString(1, id.toString().toUpperCase());
 
             rs = ps.executeQuery();
 
@@ -156,6 +156,5 @@ public class ArticleTypeService extends BaseService implements IArticleTypeServi
             printSQLException(exception);
         }
     }
-
 
 }

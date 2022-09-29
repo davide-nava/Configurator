@@ -1,9 +1,5 @@
 package com.configurator.Services;
 
-import com.configurator.Entities.ArticleArticleGroupTypeEntity;
-import com.configurator.Interfaces.IArticleArticleGroupTypeService;
-import com.configurator.ViewModels.ArticleArticleGroupTypeViewModel;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import com.configurator.Entities.ArticleArticleGroupTypeEntity;
+import com.configurator.Interfaces.IArticleArticleGroupTypeService;
+import com.configurator.ViewModels.ArticleArticleGroupTypeViewModel;
 
 public class ArticleArticleGroupTypeService extends BaseService
         implements IArticleArticleGroupTypeService {
@@ -25,11 +25,11 @@ public class ArticleArticleGroupTypeService extends BaseService
             PreparedStatement ps = con.prepareStatement(
                     "update ArticleArticleGroupType set ArticleGroupTypeId=?, ArticleId=?, Qta=? where ArticleArticleGroupTypeId=?");
 
-            ps.setString(1, val.getArticleGroupTypeId().toString());
-            ps.setString(2, val.getArticleId().toString());
+            ps.setString(1, val.getArticleGroupTypeId().toString().toUpperCase());
+            ps.setString(2, val.getArticleId().toString().toUpperCase());
             ps.setFloat(3, val.getQta());
 
-            ps.setString(4, val.getArticleArticleGroupTypeId().toString());
+            ps.setString(4, val.getArticleArticleGroupTypeId().toString().toUpperCase());
 
             ps.executeUpdate();
 
@@ -51,9 +51,9 @@ public class ArticleArticleGroupTypeService extends BaseService
             PreparedStatement ps = con.prepareStatement(
                     "insert into ArticleArticleGroupType (ArticleArticleGroupTypeId, ArticleGroupTypeId, ArticleId, Qta) values ( ?, ?,?, ?)");
 
-            ps.setString(1, val.getArticleArticleGroupTypeId().toString());
-            ps.setString(2, val.getArticleGroupTypeId().toString());
-            ps.setString(3, val.getArticleId().toString());
+            ps.setString(1, val.getArticleArticleGroupTypeId().toString().toUpperCase());
+            ps.setString(2, val.getArticleGroupTypeId().toString().toUpperCase());
+            ps.setString(3, val.getArticleId().toString().toUpperCase());
             ps.setFloat(4, val.getQta());
 
             ps.executeUpdate();
@@ -116,7 +116,8 @@ public class ArticleArticleGroupTypeService extends BaseService
 
         try {
             con = getConnection();
-            PreparedStatement ps = con.prepareStatement(" select ArticleArticleGroupType.*, (Article.Name || ' - ' || Article.Code ) as  'ArticleDesc', ArticleGroupType.Desc as 'ArticleGroupTypeDesc' from ArticleArticleGroupType inner join Article on Article.ArticleId = ArticleArticleGroupType.ArticleId inner join ArticleGroupType on ArticleGroupType.ArticleGroupTypeId = ArticleArticleGroupType.ArticleGroupTypeId  ");
+            PreparedStatement ps = con.prepareStatement(
+                    " select ArticleArticleGroupType.*, (Article.Name || ' - ' || Article.Code ) as  'ArticleDesc', ArticleGroupType.Desc as 'ArticleGroupTypeDesc' from ArticleArticleGroupType inner join Article on Article.ArticleId = ArticleArticleGroupType.ArticleId inner join ArticleGroupType on ArticleGroupType.ArticleGroupTypeId = ArticleArticleGroupType.ArticleGroupTypeId  ");
 
             rs = ps.executeQuery();
 
@@ -177,7 +178,7 @@ public class ArticleArticleGroupTypeService extends BaseService
             con = getConnection();
             PreparedStatement ps = con.prepareStatement(
                     "select * from  ArticleArticleGroupType where ArticleArticleGroupTypeId=? ");
-            ps.setString(1, id.toString());
+            ps.setString(1, id.toString().toUpperCase());
 
             rs = ps.executeQuery();
 
