@@ -135,7 +135,7 @@
       allowSorting: false,      
       cellTemplate(container, options) {
                                        const link = $("<a>");
-                                       link.attr("href", '${pageContext.request.contextPath}/tables/articlearticlegrouptype/read.jsp?id=' + options.value)
+                                       link.attr("href", '${pageContext.request.contextPath}/articlearticlegrouptype/read?id=' + options.value)
                                        link.attr("title", 'Apri')
                                            .append($('<i>', { class: 'fa-solid fa-eye ',  }))
                                        ;
