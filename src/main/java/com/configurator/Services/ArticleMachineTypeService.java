@@ -108,7 +108,7 @@ public class ArticleMachineTypeService extends BaseService implements IArticleMa
     }
 
     @Override
-    public List<ArticleMachineTypeViewModel> getViewModal() throws SQLException {
+    public List<ArticleMachineTypeViewModel> getViewModel() throws SQLException {
         List<ArticleMachineTypeViewModel> result = new ArrayList<ArticleMachineTypeViewModel>();
         Connection con = null;
         ResultSet rs = null;

@@ -9,7 +9,6 @@ public class MachineTypeEntity implements Serializable {
     public static final String PK = "MachineTypeId";
     public static final String TABLE = "MachineType";
     private UUID machineTypeId;
-    private String name = "";
     private String desc = "";
     private String code = "";
     private String nr = "";
@@ -26,14 +25,6 @@ public class MachineTypeEntity implements Serializable {
 
     public void setMachineTypeId(UUID machineTypeId) {
         this.machineTypeId = machineTypeId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getDesc() {

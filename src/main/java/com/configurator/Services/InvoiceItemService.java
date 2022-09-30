@@ -78,7 +78,7 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
                 result.setInvoiceId(UUID.fromString(rs.getString("InvoiceId")));
                 result.setArticleId(UUID.fromString(rs.getString("ArticleId")));
                 result.setQta(rs.getFloat("Qta"));
-                result.setDt(rs.getDate("Dt"));
+                result.setDt(new java.sql.Date(rs.getDate("Dt").getTime()));
             }
 
         } catch (SQLException exception) {
@@ -112,7 +112,7 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
     }
 
     @Override
-    public List<InvoiceItemViewModel> getViewModal() throws SQLException {
+    public List<InvoiceItemViewModel> getViewModel() throws SQLException {
         List<InvoiceItemViewModel> result = new ArrayList<InvoiceItemViewModel>();
         Connection con = null;
         ResultSet rs = null;

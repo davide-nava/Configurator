@@ -39,9 +39,5 @@ public class MachineTypeServlet extends HttpServlet {
         }
     }
 
-    @Override
-    protected void doPost(jakarta.servlet.http.HttpServletRequest request,
-                          jakarta.servlet.http.HttpServletResponse response) throws ServletException, IOException {
 
-    }
 }

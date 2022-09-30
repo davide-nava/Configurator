@@ -75,7 +75,7 @@
 
     <div id="page-wrapper" class="gray-bg  " style="padding-left: 12px; padding-right: 0px; ">
         <div class="row border-bottom border-bottom-blue">
-            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0px; height: 62px;">
                 <div class="navbar-header">
                     <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
                 </div>

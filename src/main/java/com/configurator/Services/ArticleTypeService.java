@@ -159,7 +159,7 @@ public class ArticleTypeService extends BaseService implements IArticleTypeServi
     }
 
     @Override
-    public List<LookupViewModel> getLookupViewModal() throws SQLException {
+    public List<LookupViewModel> getLookupViewModel() throws SQLException {
         List<LookupViewModel> result = new ArrayList<LookupViewModel>();
         Connection con = null;
         ResultSet rs = null;

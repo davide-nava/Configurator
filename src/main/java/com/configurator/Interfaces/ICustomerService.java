@@ -7,6 +7,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface ICustomerService extends IBaseService<CustomerEntity> {
-    List<LookupViewModel> getLookupViewModal() throws SQLException;
+    List<LookupViewModel> getLookupViewModel() throws SQLException;
 
 }

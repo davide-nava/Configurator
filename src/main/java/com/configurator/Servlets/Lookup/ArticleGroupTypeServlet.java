@@ -26,7 +26,7 @@ public class ArticleGroupTypeServlet extends HttpServlet {
 
         List<LookupViewModel> list = null;
         try {
-            list = service.getLookupViewModal();
+            list = service.getLookupViewModel();
 
             String userJsonString = this.gson.toJson(list);
 

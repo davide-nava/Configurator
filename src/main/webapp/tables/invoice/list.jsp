@@ -110,7 +110,7 @@
                                     dataType: 'string',
                                 },
                                 {
-                                    dataField: 'customerDes',
+                                    dataField: 'customerDesc',
                                     caption: 'Cliente',
                                     dataType: 'string',
                                 },

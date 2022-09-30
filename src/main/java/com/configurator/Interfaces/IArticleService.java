@@ -9,10 +9,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface IArticleService extends IBaseService<ArticleEntity> {
-    List<ArticleViewModel> getViewModal() throws SQLException;
+    List<ArticleViewModel> getViewModel() throws SQLException;
 
     ArticleViewModel loadViewModelFromResultSet(ResultSet rs);
 
-    List<LookupViewModel> getLookupViewModal() throws SQLException;
+    List<LookupViewModel> getLookupViewModel() throws SQLException;
 
 }

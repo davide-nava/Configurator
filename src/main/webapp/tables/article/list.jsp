@@ -128,7 +128,7 @@
                                 },
                                 {
                                     dataField: 'isMachine',
-                                    caption: 'Tipo macchina',
+                                    caption: 'Macchina',
                                     dataType: 'bool',
                                     groupIndex: 0,
                                 },

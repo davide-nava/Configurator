@@ -8,7 +8,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -112,7 +114,7 @@ public class MachineTypeService extends BaseService implements IMachineTypeServi
         try {
             con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "select * from  MachineType");
+                    "select MachineTypeId, Desc, Code, Dt, Nr, Img, Axes, Cnc, Note, Spindles from MachineType");
 
             rs = ps.executeQuery();
 
@@ -144,7 +146,7 @@ public class MachineTypeService extends BaseService implements IMachineTypeServi
         try {
             con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "select * from MachineType where MachineTypeId=? ");
+                    "select MachineTypeId, Desc, Code, Dt, Nr, Img, Axes, Cnc, Note, Spindles from MachineType where MachineTypeId=? ");
 
             ps.setString(1, id.toString().toUpperCase());
 
@@ -177,7 +179,7 @@ public class MachineTypeService extends BaseService implements IMachineTypeServi
     }
 
     @Override
-    public List<LookupViewModel> getLookupViewModal() throws SQLException {
+    public List<LookupViewModel> getLookupViewModel() throws SQLException {
         List<LookupViewModel> result = new ArrayList<LookupViewModel>();
         Connection con = null;
         ResultSet rs = null;

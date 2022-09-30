@@ -129,7 +129,7 @@ public class ArticleService extends BaseService implements IArticleService {
     }
 
     @Override
-    public List<ArticleViewModel> getViewModal() throws SQLException {
+    public List<ArticleViewModel> getViewModel() throws SQLException {
         List<ArticleViewModel> result = new ArrayList<ArticleViewModel>();
         Connection con = null;
         ResultSet rs = null;
@@ -233,7 +233,7 @@ public class ArticleService extends BaseService implements IArticleService {
     }
 
     @Override
-    public List<LookupViewModel> getLookupViewModal() throws SQLException {
+    public List<LookupViewModel> getLookupViewModel() throws SQLException {
         List<LookupViewModel> result = new ArrayList<LookupViewModel>();
         Connection con = null;
         ResultSet rs = null;

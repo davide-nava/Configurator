@@ -26,7 +26,7 @@ public class UpdateServlet extends HttpServlet {
 
             tmpVal.setDesc(req.getParameter("frmEditDesc"));
             tmpVal.setCode(req.getParameter("frmEditCode"));
-            tmpVal.setDt(new SimpleDateFormat("dd/MM/yyyy").parse(req.getParameter("frmEditDt")));
+            tmpVal.setDt(new SimpleDateFormat("dd/MM/yyyy").parse(req.getParameter("frmEditDa")));
             tmpVal.setNr(req.getParameter("frmEditNr"));
             tmpVal.setImg(req.getParameter("frmEditImg"));
             tmpVal.setAxes(Integer.parseInt(req.getParameter("frmEditAxes")));

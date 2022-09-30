@@ -25,7 +25,7 @@ public class ArticleServlet extends HttpServlet {
 
         List<ArticleViewModel> list = null;
         try {
-            list = service.getViewModal();
+            list = service.getViewModel();
 
             String userJsonString = this.gson.toJson(list);
 

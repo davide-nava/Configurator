@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface IArticleArticleGroupTypeService extends IBaseService<ArticleArticleGroupTypeEntity> {
 
-    List<ArticleArticleGroupTypeViewModel> getViewModal() throws SQLException;
+    List<ArticleArticleGroupTypeViewModel> getViewModel() throws SQLException;
 
     ArticleArticleGroupTypeViewModel loadViewModelFromResultSet(ResultSet rs);
 

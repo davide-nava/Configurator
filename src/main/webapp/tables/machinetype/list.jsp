@@ -39,8 +39,6 @@
                                     url: '${pageContext.request.contextPath}/api/dx/machinetype',
                                     key: 'machineTypeId',
                                     beforeSend(request) {
-                                        // request.params.startDate = '2020-05-10';
-                                        //  request.params.endDate = '2020-05-15';
                                     },
                                 },
                             },
@@ -111,7 +109,7 @@
                                 },
                                 {
                                     dataField: 'dt',
-                                    caption: 'Dt',
+                                    caption: 'Data',
                                     dataType: 'date',
                                 },
                                 {

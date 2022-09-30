@@ -99,7 +99,7 @@
                             columns: [
                                 {
                                     dataField: 'articleGroupTypeDesc',
-                                    caption: 'Articolo tipo gruppo',
+                                    caption: 'Gruppo',
                                     dataType: 'string',
                                     groupIndex: 0,
                                 },

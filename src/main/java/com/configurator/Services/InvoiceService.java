@@ -97,8 +97,9 @@ public class InvoiceService extends BaseService implements IInvoiceService {
                 result = new InvoiceViewModel();
 
                 result.setInvoiceId(UUID.fromString(rs.getString("InvoiceId")));
-                result.setDt(rs.getDate("Dt"));
+                result.setDt(new java.sql.Date(rs.getDate("Dt").getTime()));
                 result.setCustomerId(UUID.fromString(rs.getString("CustomerId")));
+                result.setCustomerDesc(rs.getString("CustomerDesc"));
                 result.setTotal(rs.getFloat("Total"));
                 result.setNr(rs.getString("Nr"));
             }
@@ -111,7 +112,7 @@ public class InvoiceService extends BaseService implements IInvoiceService {
     }
 
     @Override
-    public List<InvoiceViewModel> getViewModal() throws SQLException {
+    public List<InvoiceViewModel> getViewModel() throws SQLException {
         List<InvoiceViewModel> result = new ArrayList<InvoiceViewModel>();
         Connection con = null;
         ResultSet rs = null;
@@ -216,7 +217,7 @@ public class InvoiceService extends BaseService implements IInvoiceService {
 
 
     @Override
-    public List<LookupViewModel> getLookupViewModal() throws SQLException {
+    public List<LookupViewModel> getLookupViewModel() throws SQLException {
         List<LookupViewModel> result = new ArrayList<LookupViewModel>();
         Connection con = null;
         ResultSet rs = null;

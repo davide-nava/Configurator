@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface IInvoiceItemService extends IBaseService<InvoiceItemEntity> {
 
-    List<InvoiceItemViewModel> getViewModal() throws SQLException;
+    List<InvoiceItemViewModel> getViewModel() throws SQLException;
 
     InvoiceItemViewModel loadViewModelFromResultSet(ResultSet rs);
 

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface IArticleMachineTypeService extends IBaseService<ArticleMachineTypeEntity> {
-    List<ArticleMachineTypeViewModel> getViewModal() throws SQLException;
+    List<ArticleMachineTypeViewModel> getViewModel() throws SQLException;
 
     ArticleMachineTypeViewModel loadViewModelFromResultSet(ResultSet rs);
 

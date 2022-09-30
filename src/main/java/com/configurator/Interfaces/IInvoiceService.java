@@ -9,9 +9,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface IInvoiceService extends IBaseService<InvoiceEntity> {
-    List<InvoiceViewModel> getViewModal() throws SQLException;
+    List<InvoiceViewModel> getViewModel() throws SQLException;
 
     InvoiceViewModel loadViewModelFromResultSet(ResultSet rs);
-    List<LookupViewModel> getLookupViewModal() throws SQLException;
+    List<LookupViewModel> getLookupViewModel() throws SQLException;
 
 }

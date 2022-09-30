@@ -94,6 +94,7 @@ public class ArticleArticleGroupTypeService extends BaseService
             if (rs != null) {
                 result = new ArticleArticleGroupTypeViewModel();
 
+                result.setArticleArticleGroupTypeId(UUID.fromString(rs.getString("ArticleArticleGroupTypeId")));
                 result.setArticleGroupTypeId(UUID.fromString(rs.getString("ArticleGroupTypeId")));
                 result.setArticleId(UUID.fromString(rs.getString("ArticleId")));
                 result.setArticleDesc(rs.getString("ArticleDesc"));
@@ -109,7 +110,7 @@ public class ArticleArticleGroupTypeService extends BaseService
     }
 
     @Override
-    public List<ArticleArticleGroupTypeViewModel> getViewModal() throws SQLException {
+    public List<ArticleArticleGroupTypeViewModel> getViewModel() throws SQLException {
         List<ArticleArticleGroupTypeViewModel> result = new ArrayList<ArticleArticleGroupTypeViewModel>();
         Connection con = null;
         ResultSet rs = null;

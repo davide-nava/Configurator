@@ -25,7 +25,7 @@ public class MachineServlet extends HttpServlet {
 
         List<MachineViewModel> list = null;
         try {
-            list = service.getViewModal();
+            list = service.getViewModel();
 
             String userJsonString = this.gson.toJson(list);
 

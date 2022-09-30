@@ -103,7 +103,7 @@
                                     $(() => {
                                         const now = new Date();
 
-                                        $('#frmEditDt').dxDateBox({
+                                        $('#frmEditData').dxDateBox({
                                             type: 'date',
                                             displayFormat: 'dd.MM.yyyy',
                                             value:  now,

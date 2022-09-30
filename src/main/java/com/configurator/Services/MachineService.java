@@ -131,6 +131,7 @@ public class MachineService extends BaseService implements IMachineService {
 
                 result.setMachineId(UUID.fromString(rs.getString("MachineId")));
                 result.setMachineTypeId(UUID.fromString(rs.getString("MachineTypeId")));
+                result.setMachineTypeDesc(rs.getString("MachineTypeDesc"));
                 result.setDesc(rs.getString("Desc"));
                 result.setYear(rs.getInt("Year"));
                 result.setDoc(rs.getString("Doc"));
@@ -155,7 +156,7 @@ public class MachineService extends BaseService implements IMachineService {
     }
 
     @Override
-    public List<MachineViewModel> getViewModal() throws SQLException {
+    public List<MachineViewModel> getViewModel() throws SQLException {
         List<MachineViewModel> result = new ArrayList<MachineViewModel>();
         Connection con = null;
         ResultSet rs = null;
@@ -260,7 +261,7 @@ public class MachineService extends BaseService implements IMachineService {
 
 
     @Override
-    public List<LookupViewModel> getLookupViewModal() throws SQLException {
+    public List<LookupViewModel> getLookupViewModel() throws SQLException {
         List<LookupViewModel> result = new ArrayList<LookupViewModel>();
         Connection con = null;
         ResultSet rs = null;
