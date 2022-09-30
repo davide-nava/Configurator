@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/articletype/create")
-public class ArticleTypeServlet extends HttpServlet {
+public class CreateServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private final ArticleTypeService service = new ArticleTypeService();

@@ -3,7 +3,6 @@
     <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
         <t:_layout title="Cliente">
-
             <jsp:attribute name="body_area">
 
                 <div class="row">
@@ -136,8 +135,6 @@
                     let collapsed = false;
                 </script>
 
-
-
                 <script>
                     $(function() {
                         $('#menuSxCustomer').addClass('active');
@@ -145,5 +142,4 @@
                 </script>
 
             </jsp:attribute>
-
         </t:_layout>

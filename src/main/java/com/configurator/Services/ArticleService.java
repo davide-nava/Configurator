@@ -11,6 +11,7 @@ import java.util.UUID;
 import com.configurator.Entities.ArticleEntity;
 import com.configurator.Interfaces.IArticleService;
 import com.configurator.ViewModels.ArticleViewModel;
+import com.configurator.ViewModels.LookupViewModel;
 
 public class ArticleService extends BaseService implements IArticleService {
 
@@ -228,6 +229,36 @@ public class ArticleService extends BaseService implements IArticleService {
             deleteExecute(ArticleEntity.TABLE, ArticleEntity.PK, id);
         } catch (SQLException exception) {
             printSQLException(exception);
+        }
+    }
+
+    @Override
+    public List<LookupViewModel> getLookupViewModal() throws SQLException {
+        List<LookupViewModel> result = new ArrayList<LookupViewModel>();
+        Connection con = null;
+        ResultSet rs = null;
+
+        try {
+            con = getConnection();
+            PreparedStatement ps = con.prepareStatement(" select  ArticleId as 'Id' ,  Code  as 'Desc' from Article");
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                result.add(loadLookupFromResultSet(rs));
+            }
+
+        } catch (SQLException exception) {
+            result = null;
+            printSQLException(exception);
+        } finally {
+            if (rs != null)
+                rs.close();
+
+            if (con != null)
+                con.close();
+
+            return result;
         }
     }
 

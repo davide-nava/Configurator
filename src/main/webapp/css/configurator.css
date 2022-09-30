@@ -191,3 +191,41 @@ body.fixed-nav #wrapper .navbar-static-side, body.fixed-nav #wrapper #page-wrapp
 {
     text-align: center!important;
 }
+
+
+
+#frmEdit.dx-htmleditor-content img {
+    vertical-align: middle;
+    padding-right: 10px;
+}
+
+#frmEdit.dx-htmleditor-content table {
+    width: 50%;
+}
+
+#frmEdit.options {
+    padding: 20px;
+    background-color: rgba(191, 191, 191, 0.15);
+    margin-top: 20px;
+}
+
+#frmEdit.caption {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+#frmEdit.option {
+    margin-top: 10px;
+    display: inline-block;
+    margin-right: 40px;
+}
+
+#frmEdit.option > .dx-selectbox,
+#frmEdit.option > .label {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#frmEdit.option > .label {
+    margin-right: 10px;
+}

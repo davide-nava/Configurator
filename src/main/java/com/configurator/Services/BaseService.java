@@ -1,9 +1,9 @@
 package com.configurator.Services;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import com.configurator.Entities.CustomerEntity;
+import com.configurator.ViewModels.LookupViewModel;
+
+import java.sql.*;
 import java.util.UUID;
 
 public abstract class BaseService {
@@ -40,6 +40,23 @@ public abstract class BaseService {
         }
 
         return conn;
+    }
+
+    public LookupViewModel loadLookupFromResultSet(ResultSet rs) {
+        LookupViewModel result = null;
+        try {
+            if (rs != null) {
+                result = new LookupViewModel();
+
+                result.setId(UUID.fromString(rs.getString("Id")));
+                result.setDesc(rs.getString("Desc"));
+            }
+
+        } catch (SQLException exception) {
+            printSQLException(exception);
+        } finally {
+            return result;
+        }
     }
 
     protected void deleteExecute(String table, String pk, UUID id) throws SQLException {

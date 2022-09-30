@@ -21,14 +21,14 @@
                                                 <label for="frmEditName">Nome</label>
                                                 <input type="text" class="form-control" id="frmEditName"
                                                        name="frmEditName" required
-                                                       placeholder="Nome" value="${tmpVal.Name}">
+                                                       placeholder="Nome" value="">
                                             </div>
 
                                             <div class="mb-3">
                                                 <label for="frmEditCode">Codice</label>
                                                 <input type="text" class="form-control" id="frmEditCode"
                                                        name="frmEditCode" required
-                                                       placeholder="Codice" value="${tmpVal.Code}">
+                                                       placeholder="Codice" value="">
                                             </div>
 
                                             <div class="mb-3">

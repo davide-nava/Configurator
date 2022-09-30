@@ -2,6 +2,7 @@ package com.configurator.Interfaces;
 
 import com.configurator.Entities.ArticleEntity;
 import com.configurator.ViewModels.ArticleViewModel;
+import com.configurator.ViewModels.LookupViewModel;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,5 +12,7 @@ public interface IArticleService extends IBaseService<ArticleEntity> {
     List<ArticleViewModel> getViewModal() throws SQLException;
 
     ArticleViewModel loadViewModelFromResultSet(ResultSet rs);
+
+    List<LookupViewModel> getLookupViewModal() throws SQLException;
 
 }

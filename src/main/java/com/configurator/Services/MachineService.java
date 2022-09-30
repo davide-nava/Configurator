@@ -2,6 +2,7 @@ package com.configurator.Services;
 
 import com.configurator.Entities.MachineEntity;
 import com.configurator.Interfaces.IMachineService;
+import com.configurator.ViewModels.LookupViewModel;
 import com.configurator.ViewModels.MachineViewModel;
 
 import java.sql.Connection;
@@ -254,6 +255,37 @@ public class MachineService extends BaseService implements IMachineService {
             deleteExecute(MachineEntity.TABLE, MachineEntity.PK, id);
         } catch (SQLException exception) {
             printSQLException(exception);
+        }
+    }
+
+
+    @Override
+    public List<LookupViewModel> getLookupViewModal() throws SQLException {
+        List<LookupViewModel> result = new ArrayList<LookupViewModel>();
+        Connection con = null;
+        ResultSet rs = null;
+
+        try {
+            con = getConnection();
+            PreparedStatement ps = con.prepareStatement("select  MachineId as 'Id', Code as 'Desc' from  Machine");
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                result.add(loadLookupFromResultSet(rs));
+            }
+
+        } catch (SQLException exception) {
+            result = null;
+            printSQLException(exception);
+        } finally {
+            if (rs != null)
+                rs.close();
+
+            if (con != null)
+                con.close();
+
+            return result;
         }
     }
 

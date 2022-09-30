@@ -61,4 +61,3 @@
 <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/configurator.css">
-

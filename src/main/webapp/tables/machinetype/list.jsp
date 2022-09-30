@@ -1,38 +1,26 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-    <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-        <t:_layout title="Cliente">
-
+<t:_layout title="Cliente">
             <jsp:attribute name="body_area">
 
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="ibox-title">
-                                <h5>Tipo macchina</h5>
-                                <!-- <div class="ibox-tools">
-                                    <a class="collapse-link" href="">
-                                        <i class="fa fa-chevron-up"></i>
+                                <h5>Tipo macchine</h5>
+                                <div class="ibox-tools">
+                                    <a class="btn btn-primary" title="aggiungi"
+                                       href="${pageContext.request.contextPath}/tables/machinetype/create.jsp">
+                                        <i class="fa-solid fa-plus"></i>
                                     </a>
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                        <i class="fa fa-wrench"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-user">
-                                        <li><a href="#" class="dropdown-item">Config option 1</a>
-                                        </li>
-                                        <li><a href="#" class="dropdown-item">Config option 2</a>
-                                        </li>
-                                    </ul>
-                                    <a class="close-link" href="">
-                                        <i class="fa fa-times"></i>
-                                    </a>
-                                </div> -->
+                                </div>
                             </div>
                             <div class="ibox-content ">
                                 <div class="row   ">
                                     <div class="col-12">
-                                    <div id="gridContainer"></div>
+                                        <div id="gridContainer"></div>
                                     </div>
                                 </div>
                             </div>
@@ -41,7 +29,7 @@
                 </div>
 
                 <script>
-                window.jsPDF = window.jspdf.jsPDF;
+                    window.jsPDF = window.jspdf.jsPDF;
 
                     $(() => {
                         $('#gridContainer').dxDataGrid({
@@ -56,19 +44,19 @@
                                     },
                                 },
                             },
-                              filterRow: {
-      visible: true,
-      applyFilter: 'auto',
-    },
-    headerFilter: {
-      visible: true,
-    },
-                             sorting: {
-      mode: 'multiple',
-    },
-                              selection: {
-       mode: 'single',
-     },
+                            filterRow: {
+                                visible: true,
+                                applyFilter: 'auto',
+                            },
+                            headerFilter: {
+                                visible: true,
+                            },
+                            sorting: {
+                                mode: 'multiple',
+                            },
+                            selection: {
+                                mode: 'single',
+                            },
                             paging: {
                                 pageSize: 20,
                             },
@@ -90,69 +78,79 @@
                             allowColumnReordering: true,
                             rowAlternationEnabled: true,
                             showBorders: true,
-                                 export: {
-                               enabled: true,
-       allowExportSelectedData: true,
-     },
- 
-     onExporting(e) {
-       const workbook = new ExcelJS.Workbook();
-       const worksheet = workbook.addWorksheet('TipoMacchina');
+                            export: {
+                                enabled: true,
+                                allowExportSelectedData: true,
+                            },
 
-       DevExpress.excelExporter.exportDataGrid({
-         component: e.component,
-         worksheet,
-         autoFilterEnabled: true,
-       }).then(() => {
-         workbook.xlsx.writeBuffer().then((buffer) => {
-         saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'TipoMacchina.xlsx');
-         });
-      });
-      e.cancel = true;
-     },
-                            columns: [  
-                            {
-                                dataField: 'name',
-                                caption: 'Nome',
-                                dataType: 'string',
-                            }, 
-                                                        {
-                                dataField: 'code',
-                                caption: 'Codice',
-                                dataType: 'string',
-                            }, 
-                                                        {
-                                dataField: 'nr',
-                                caption: 'Numero',
-                                dataType: 'string',
-                            }, 
-                                                        {
-                                dataField: 'desc',
-                                caption: 'Descrizione',
-                                dataType: 'string',
-                            }, 
-                                                        {
-                                dataField: 'dt',
-                                caption: 'Data',
-                                dataType: 'date',
-                            }, 
-                           {
-                              dataField: 'machineTypeId',
-                                caption: '',
-                                width: 40,
-                                   alignment: 'center',
-      allowFiltering: false,
-      allowSorting: false,      
-      cellTemplate(container, options) {
-                                       const link = $("<a>");
-                                       link.attr("href", '${pageContext.request.contextPath}/machinetype/read?id=' + options.value)
-                                       link.attr("title", 'Apri')
-                                           .append($('<i>', { class: 'fa-solid fa-eye ',  }))
-                                       ;
-                                       return link;
-                                   }
-                               }
-     ],
+                            onExporting(e) {
+                                const workbook = new ExcelJS.Workbook();
+                                const worksheet = workbook.addWorksheet('TipoMacchina');
+
+                                DevExpress.excelExporter.exportDataGrid({
+                                    component: e.component,
+                                    worksheet,
+                                    autoFilterEnabled: true,
+                                }).then(() => {
+                                    workbook.xlsx.writeBuffer().then((buffer) => {
+                                        saveAs(new Blob([buffer], {type: 'application/octet-stream'}), 'TipoMacchina.xlsx');
+                                    });
+                                });
+                                e.cancel = true;
+                            },
+                            columns: [
+                                {
+                                    dataField: 'code',
+                                    caption: 'Codice',
+                                    dataType: 'string',
+                                },
+                                {
+                                    dataField: 'desc',
+                                    caption: 'Desc',
+                                    dataType: 'string',
+                                },
+                                {
+                                    dataField: 'dt',
+                                    caption: 'Dt',
+                                    dataType: 'date',
+                                },
+                                {
+                                    dataField: 'nr',
+                                    caption: 'Nr',
+                                    dataType: 'string',
+                                },
+                                {
+                                    dataField: 'axes',
+                                    caption: 'Assi',
+                                    dataType: 'int',
+                                },
+                                {
+                                    dataField: 'spindles',
+                                    caption: 'Mandrini',
+                                    dataType: 'int',
+                                },
+                                {
+                                    dataField: 'cnc',
+                                    caption: 'Cnc',
+                                    dataType: 'string',
+                                },
+                                {
+                                    dataField: 'machineTypeId',
+                                    caption: '',
+                                    width: 40,
+                                    alignment: 'center',
+                                    allowFiltering: false,
+                                    allowSorting: false,
+                                    cellTemplate(container, options) {
+                                        const link = $("<a>");
+                                        link.attr("href", '${pageContext.request.contextPath}/machinetype/read?id=' + options.value)
+                                        link.attr("title", 'Apri')
+                                            .append($('<i>', {class: 'fa-solid fa-eye ',}))
+                                        ;
+                                        return link;
+                                    }
+                                }
+                            ],
                             onContentReady(e) {
                                 if (!collapsed) {
                                     collapsed = true;
@@ -165,6 +163,11 @@
                     let collapsed = false;
                 </script>
 
-            </jsp:attribute>
+                <script>
+                    $(function () {
+                        $('#menuSxMachineType').addClass('active');
+                    });
+                </script>
 
-        </t:_layout>
+            </jsp:attribute>
+</t:_layout>

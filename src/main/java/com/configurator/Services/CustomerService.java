@@ -2,6 +2,7 @@ package com.configurator.Services;
 
 import com.configurator.Entities.CustomerEntity;
 import com.configurator.Interfaces.ICustomerService;
+import com.configurator.ViewModels.LookupViewModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -153,4 +154,35 @@ public class CustomerService extends BaseService implements ICustomerService {
             printSQLException(exception);
         }
     }
+
+    @Override
+    public List<LookupViewModel> getLookupViewModal() throws SQLException {
+        List<LookupViewModel> result = new ArrayList<LookupViewModel>();
+        Connection con = null;
+        ResultSet rs = null;
+
+        try {
+            con = getConnection();
+            PreparedStatement ps = con.prepareStatement(" select  CustomerId as 'Id' ,  Code  as 'Desc' from Customer");
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                result.add(loadLookupFromResultSet(rs));
+            }
+
+        } catch (SQLException exception) {
+            result = null;
+            printSQLException(exception);
+        } finally {
+            if (rs != null)
+                rs.close();
+
+            if (con != null)
+                con.close();
+
+            return result;
+        }
+    }
+
 }

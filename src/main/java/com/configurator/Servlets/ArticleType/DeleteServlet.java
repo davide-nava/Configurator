@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/articletype/delete")
-public class ArticleTypeServlet extends HttpServlet {
+public class DeleteServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private final ArticleTypeService service = new ArticleTypeService();

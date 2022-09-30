@@ -1,6 +1,7 @@
 package com.configurator.Interfaces;
 
 import com.configurator.Entities.MachineEntity;
+import com.configurator.ViewModels.LookupViewModel;
 import com.configurator.ViewModels.MachineViewModel;
 
 import java.sql.ResultSet;
@@ -11,4 +12,7 @@ public interface IMachineService extends IBaseService<MachineEntity> {
     List<MachineViewModel> getViewModal() throws SQLException;
 
     MachineViewModel loadViewModelFromResultSet(ResultSet rs);
+
+    List<LookupViewModel> getLookupViewModal() throws SQLException;
+
 }

@@ -55,3 +55,38 @@ function createRichEdit(exportUrl, documentAsBase64) {
     if (documentAsBase64)
         richEdit.openDocument(documentAsBase64, "DocumentName", DevExpress.RichEdit.DocumentFormat.Rtf);
 }
+
+
+
+$(() => {
+    const editor = $('.html-editor').dxHtmlEditor({
+        height: 300,
+        value: markup,
+        toolbar: {
+            items: [
+                'undo', 'redo', 'separator',
+                {
+                    name: 'size',
+                    acceptedValues: ['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt'],
+                },
+                'separator', 'bold', 'italic', 'strike', 'underline', 'separator',
+                'alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'separator',
+                'orderedList', 'bulletList', 'separator',
+                {
+                    name: 'header',
+                    acceptedValues: [false, 1, 2, 3, 4, 5],
+                }, 'separator',
+                'color', 'background', 'separator',
+                'link',  'separator',
+                'clear', 'codeBlock', 'blockquote', 'separator',
+                'insertTable', 'deleteTable',
+                'insertRowAbove', 'insertRowBelow', 'deleteRow',
+                'insertColumnLeft', 'insertColumnRight', 'deleteColumn',
+            ],
+        },
+        mediaResizing: {
+            enabled: true,
+        },
+    }).dxHtmlEditor('instance');
+});
+

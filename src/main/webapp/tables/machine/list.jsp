@@ -3,7 +3,6 @@
     <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
         <t:_layout title="Cliente">
-
             <jsp:attribute name="body_area">
 
                 <div class="row">
@@ -11,23 +10,11 @@
                         <div class="ibox ">
                             <div class="ibox-title">
                                 <h5>Macchine</h5>
-                                <!-- <div class="ibox-tools">
-                                    <a class="collapse-link" href="">
-                                        <i class="fa fa-chevron-up"></i>
+                                 <div class="ibox-tools">
+                                    <a class="btn btn-primary" title="aggiungi" href="${pageContext.request.contextPath}/tables/machine/create.jsp">
+                                        <i class="fa-solid fa-plus"></i>
                                     </a>
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                        <i class="fa fa-wrench"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-user">
-                                        <li><a href="#" class="dropdown-item">Config option 1</a>
-                                        </li>
-                                        <li><a href="#" class="dropdown-item">Config option 2</a>
-                                        </li>
-                                    </ul>
-                                    <a class="close-link" href="">
-                                        <i class="fa fa-times"></i>
-                                    </a>
-                                </div> -->
+                                </div>
                             </div>
                             <div class="ibox-content ">
                                 <div class="row   ">
@@ -110,53 +97,42 @@
       });
       e.cancel = true;
      },
-                            columns: [ 
+                            columns: [
+
                                 {
-      dataField: 'img',
-                                caption: 'Immagine',
-      width: 100,
-      allowFiltering: false,
-      allowSorting: false,
-      cellTemplate(container, options) {
-        $('<div>')
-          .append($('<img>', { src: options.value }))
-          .appendTo(container);
-      },
-    },
+                                dataField: 'nr',
+                                caption: 'Nr',
+                                dataType: 'string',
+                            },
                                 {
-                                dataField: 'code',
-                                caption: 'Codice',
-                                dataType: 'string',
-                            }, 
-                                       {
-                                dataField: 'desc',
-                                caption: 'Descrizione',
-                                dataType: 'string',
-                            }, 
-                            {
+                                    dataField: 'year',
+                                    caption: 'Anno',
+                                    dataType: 'string',
+                                },
+                                {
+                                    dataField: 'code',
+                                    caption: 'Codice',
+                                    dataType: 'string',
+                                },
+                                {
+                                    dataField: 'desc',
+                                    caption: 'Desc',
+                                    dataType: 'string',
+                                },
+                                {
+                                    dataField: 'doc',
+                                    caption: 'Doc',
+                                    dataType: 'string',
+                                },
+                                {
+                                    dataField: 'productionOrder',
+                                    caption: 'ProductionOrder',
+                                    dataType: 'string',
+                                },
+                                {
                                 dataField: 'machineTypeDesc',
-                                caption: 'Tipo',
+                                caption: 'Tipo macchina',
                                 dataType: 'string',
-                            },
-                             {
-                                dataField: 'dtDelivery',
-                                caption: 'Dt consegna',
-                                dataType: 'date',
-                            },
-                             {
-                                dataField: 'dtAcceptance',
-                                caption: 'Dt accettazione',
-                                dataType: 'date',
-                            },
-                             {
-                                dataField: 'dtStartWarranty',
-                                caption: 'Dt inizio garanzia',
-                                dataType: 'date',
-                            },
-                                {
-                                dataField: 'dtEndWarranty',
-                                caption: 'Dt fine garanzia',
-                                dataType: 'date',
                             },
                            {
                               dataField: 'machineId',
@@ -187,6 +163,11 @@
                     let collapsed = false;
                 </script>
 
-            </jsp:attribute>
+                <script>
+                    $(function() {
+                        $('#menuSxMachine').addClass('active');
+                    });
+                </script>
 
+            </jsp:attribute>
         </t:_layout>

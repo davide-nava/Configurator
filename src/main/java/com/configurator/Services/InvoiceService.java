@@ -3,6 +3,7 @@ package com.configurator.Services;
 import com.configurator.Entities.InvoiceEntity;
 import com.configurator.Interfaces.IInvoiceService;
 import com.configurator.ViewModels.InvoiceViewModel;
+import com.configurator.ViewModels.LookupViewModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -210,6 +211,37 @@ public class InvoiceService extends BaseService implements IInvoiceService {
             deleteExecute(InvoiceEntity.TABLE, InvoiceEntity.PK, id);
         } catch (SQLException exception) {
             printSQLException(exception);
+        }
+    }
+
+
+    @Override
+    public List<LookupViewModel> getLookupViewModal() throws SQLException {
+        List<LookupViewModel> result = new ArrayList<LookupViewModel>();
+        Connection con = null;
+        ResultSet rs = null;
+
+        try {
+            con = getConnection();
+            PreparedStatement ps = con.prepareStatement(" select InvoiceId as 'Id', (strftime('%Y', Invoice.Dt) || ' - ' || Nr ) as 'Desc' from Invoice");
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                result.add(loadLookupFromResultSet(rs));
+            }
+
+        } catch (SQLException exception) {
+            result = null;
+            printSQLException(exception);
+        } finally {
+            if (rs != null)
+                rs.close();
+
+            if (con != null)
+                con.close();
+
+            return result;
         }
     }
 

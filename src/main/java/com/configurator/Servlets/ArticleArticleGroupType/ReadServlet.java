@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/articlearticlegrouptype/read")
-public class DeleteServlet extends HttpServlet {
+public class ReadServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private final ArticleArticleGroupTypeService service = new ArticleArticleGroupTypeService();

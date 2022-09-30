@@ -2,6 +2,7 @@ package com.configurator.Services;
 
 import com.configurator.Entities.ArticleGroupTypeEntity;
 import com.configurator.Interfaces.IArticleGroupTypeService;
+import com.configurator.ViewModels.LookupViewModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -157,4 +158,35 @@ public class ArticleGroupTypeService extends BaseService implements IArticleGrou
             printSQLException(exception);
         }
     }
+
+    @Override
+    public List<LookupViewModel> getLookupViewModal() throws SQLException {
+        List<LookupViewModel> result = new ArrayList<LookupViewModel>();
+        Connection con = null;
+        ResultSet rs = null;
+
+        try {
+            con = getConnection();
+            PreparedStatement ps = con.prepareStatement(" select  ArticleGroupTypeId as 'Id' ,  Code  as 'Desc' from ArticleGroupType");
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                result.add(loadLookupFromResultSet(rs));
+            }
+
+        } catch (SQLException exception) {
+            result = null;
+            printSQLException(exception);
+        } finally {
+            if (rs != null)
+                rs.close();
+
+            if (con != null)
+                con.close();
+
+            return result;
+        }
+    }
+
 }
