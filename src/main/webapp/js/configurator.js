@@ -61,7 +61,6 @@ function createRichEdit(exportUrl, documentAsBase64) {
 $(() => {
     const editor = $('.html-editor').dxHtmlEditor({
         height: 300,
-        value: markup,
         toolbar: {
             items: [
                 'undo', 'redo', 'separator',
@@ -90,3 +89,10 @@ $(() => {
     }).dxHtmlEditor('instance');
 });
 
+
+function prettierFormat(markup) {
+    return prettier.format(markup, {
+        parser: 'html',
+        plugins: prettierPlugins,
+    });
+}

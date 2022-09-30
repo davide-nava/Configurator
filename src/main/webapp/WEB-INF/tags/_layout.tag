@@ -38,31 +38,15 @@
                         <a   href="${pageContext.request.contextPath}/index.jsp">   ND </a>
                     </div>
                 </li>
-                <%--
-                   <li>
-                      <a id="menuSxArticleArticleGroupType" href="${pageContext.request.contextPath}/tables/articlearticlegrouptype/list.jsp"><i class="fa fa-table"></i> <span class="nav-label">ArticleArticleGroupType</span></a>
-                  </li>
-                    --%>
                 <li>
                     <a id="menuSxArticle" href="${pageContext.request.contextPath}/tables/article/list.jsp"><i class="fa-solid fa-gear"></i>
                         <span class="nav-label">Articoli</span></a>
                 </li>
-                <%--
-                   <li>
-                       <a id="menuSxArticleGroupType" href="${pageContext.request.contextPath}/tables/articlegrouptype.j/list.jspsp"><i class="fa fa-table"></i> <span class="nav-label">ArticleGroupType</span></a>
-                   </li>
-                    --%>
                 <li>
-                    <a id="menuSxArticleMachine" href="${pageContext.request.contextPath}/tables/articlemachine/list.jsp"><i
-                            class="fa fa-table"></i> <span class="nav-label">Articoli macchina</span></a>
+                    <a id="menuSxArticleMachine" href="${pageContext.request.contextPath}/tables/articlemachine/list.jsp"><i class="fa-solid fa-list"></i> <span class="nav-label">Articoli macchina</span></a>
                 </li>
-                <%--
-                   <li>
-                       <a id="menuSxArticleMachineType" href="${pageContext.request.contextPath}/tables/articlemachinetype/list.jsp"><i class="fa fa-table"></i> <span class="nav-label">ArticleMachineType</span></a>
-                   </li>
-                  --%>
                 <li>
-                    <a id="menuSxArticleType" href=${pageContext.request.contextPath}/tables/articletype/list.jsp"><i class="fa fa-table"></i>
+                    <a id="menuSxArticleType" href=${pageContext.request.contextPath}/tables/articletype/list.jsp"><i class="fa-solid fa-microchip"></i>
                         <span class="nav-label">Tipo articoli</span></a>
                 </li>
                 <li>
@@ -73,17 +57,12 @@
                     <a id="menuSxInvoice" href="${pageContext.request.contextPath}/tables/invoice/list.jsp"><i class="fa-solid fa-receipt"></i>
                         <span class="nav-label">Fatture</span></a>
                 </li>
-                <%--   
-                 <li>
-                        <a id="menuSxInvoiceItem" href="${pageContext.request.contextPath}/tables/invoiceitem/list.jsp"><i class="fa fa-table"></i> <span class="nav-label">InvoiceItem</span></a>
-                    </li> 
-                    --%>
                 <li>
-                    <a id="menuSxMachine" href="${pageContext.request.contextPath}/tables/machine/list.jsp"><i class="fa fa-table"></i>
+                    <a id="menuSxMachine" href="${pageContext.request.contextPath}/tables/machine/list.jsp"><i class="fa-solid fa-industry"></i>
                         <span class="nav-label">Macchine</span></a>
                 </li>
                 <li>
-                    <a id="menuSxMachineType" href="${pageContext.request.contextPath}/tables/machinetype/list.jsp"><i class="fa fa-table"></i>
+                    <a id="menuSxMachineType" href="${pageContext.request.contextPath}/tables/machinetype/list.jsp"><i class="fa-solid fa-microchip"></i>
                         <span class="nav-label">Tipo macchina</span></a>
                 </li>
                 <li>

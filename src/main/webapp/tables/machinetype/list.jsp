@@ -2,7 +2,7 @@
 
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<t:_layout title="Cliente">
+<t:_layout title="Tipo macchine">
             <jsp:attribute name="body_area">
 
                 <div class="row">

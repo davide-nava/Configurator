@@ -57,6 +57,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/devextreme-quill/1.5.16/dx-quill.min.js"></script>
 
 
+<script src="https://unpkg.com/turndown@7.1.1/dist/turndown.js"></script>
+<script src="https://unpkg.com/devextreme-showdown@1.0.1/dist/showdown.js"></script>
+<script src="https://unpkg.com/prettier@2.7.1/standalone.js"></script>
+<script src="https://unpkg.com/prettier@2.7.1/parser-html.js"></script>
+
 
 <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 

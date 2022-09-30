@@ -2,16 +2,16 @@
 
     <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-        <t:_layout title="Cliente">
+        <t:_layout title="Tipo articoli">
             <jsp:attribute name="body_area">
 
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox ">
                             <div class="ibox-title">
-                                <h5>Clienti</h5>
+                                <h5>Tipo articoli</h5>
                                  <div class="ibox-tools">
-                                    <a class="btn btn-primary" title="aggiungi" href="${pageContext.request.contextPath}/tables/customer/create.jsp">
+                                    <a class="btn btn-primary" title="aggiungi" href="${pageContext.request.contextPath}/tables/articletype/create.jsp">
                                         <i class="fa-solid fa-plus"></i>
                                     </a>
                                 </div>
@@ -35,11 +35,9 @@
                             dataSource: {
                                 store: {
                                     type: 'odata',
-                                    url: '${pageContext.request.contextPath}/api/dx/customer',
-                                    key: 'customerId',
+                                    url: '${pageContext.request.contextPath}/api/dx/articletype',
+                                    key: 'articleTypeId',
                                     beforeSend(request) {
-                                        // request.params.startDate = '2020-05-10';
-                                        //  request.params.endDate = '2020-05-15';
                                     },
                                 },
                             },
@@ -84,7 +82,7 @@
  
      onExporting(e) {
        const workbook = new ExcelJS.Workbook();
-       const worksheet = workbook.addWorksheet('Clienti');
+       const worksheet = workbook.addWorksheet('TipoArticolo');
 
        DevExpress.excelExporter.exportDataGrid({
          component: e.component,
@@ -92,22 +90,29 @@
          autoFilterEnabled: true,
        }).then(() => {
          workbook.xlsx.writeBuffer().then((buffer) => {
-         saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'Clienti.xlsx');
+         saveAs(new Blob([buffer], { type: 'application/octet-stream' }), 'TipoArticolo.xlsx');
          });
       });
       e.cancel = true;
      },
-                            columns: [  {
-                                dataField: 'name',
-                                caption: 'Nome',
-                                dataType: 'string',
-                            }, {
+                            columns: [
+                                {
                                 dataField: 'code',
                                 caption: 'Codice',
                                 dataType: 'string',
                             },
+                                {
+                                    dataField: 'desc',
+                                    caption: 'Descrizione',
+                                    dataType: 'string',
+                                },
+                                {
+                                    dataField: 'year',
+                                    caption: 'Anno',
+                                    dataType: 'int',
+                                },
                            {
-                              dataField: 'customerId',
+                              dataField: 'articleTypeId',
                                 caption: '',
                                 width: 40,
                                    alignment: 'center',
@@ -115,7 +120,7 @@
       allowSorting: false,      
       cellTemplate(container, options) {
                                        const link = $("<a>");
-                                       link.attr("href", '${pageContext.request.contextPath}/customer/read?id=' + options.value)
+                                       link.attr("href", '${pageContext.request.contextPath}/articletype/read?id=' + options.value)
                                        link.attr("title", 'Apri')
                                            .append($('<i>', { class: 'fa-solid fa-eye ',  }))
                                        ;
@@ -137,7 +142,7 @@
 
                 <script>
                     $(function() {
-                        $('#menuSxCustomer').addClass('active');
+                        $('#menuSxArticleType').addClass('active');
                     });
                 </script>
 
