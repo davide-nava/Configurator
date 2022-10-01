@@ -22,13 +22,12 @@ public class ArticleTypeService extends BaseService implements IArticleTypeServi
             con = getConnection();
 
             PreparedStatement ps = con.prepareStatement(
-                    "update ArticleType set   Desc=?, Code=?, Year=? where ArticleTypeId=?");
+                    "update ArticleType set   Desc=?,  Year=? where ArticleTypeId=?");
 
             ps.setString(1, val.getDesc());
-            ps.setString(2, val.getCode());
-            ps.setInt(3, val.getYear());
+            ps.setInt(2, val.getYear());
 
-            ps.setString(4, val.getArticleTypeId().toString().toUpperCase());
+            ps.setString(3, val.getArticleTypeId().toString().toUpperCase());
 
             ps.executeUpdate();
 
@@ -48,12 +47,11 @@ public class ArticleTypeService extends BaseService implements IArticleTypeServi
             con = getConnection();
 
             PreparedStatement ps = con.prepareStatement(
-                    "insert into ArticleType ( ArticleTypeId, Desc, Code, Year) values ( ?, ?, ?,  ?)");
+                    "insert into ArticleType ( ArticleTypeId, Desc,  Year) values ( ?, ?, ?,  ?)");
 
             ps.setString(1, val.getArticleTypeId().toString().toUpperCase());
             ps.setString(2, val.getDesc());
-            ps.setString(3, val.getCode());
-            ps.setInt(4, val.getYear());
+            ps.setInt(3, val.getYear());
 
             ps.executeUpdate();
 
@@ -74,7 +72,6 @@ public class ArticleTypeService extends BaseService implements IArticleTypeServi
 
                 result.setArticleTypeId(UUID.fromString(rs.getString("ArticleTypeId")));
                 result.setDesc(rs.getString("Desc"));
-                result.setCode(rs.getString("Code"));
                 result.setYear(rs.getInt("Year"));
             }
 
@@ -166,7 +163,7 @@ public class ArticleTypeService extends BaseService implements IArticleTypeServi
 
         try {
             con = getConnection();
-            PreparedStatement ps = con.prepareStatement(" select  ArticleTypeId as 'Id' ,  Code  as 'Desc' from ArticleType");
+            PreparedStatement ps = con.prepareStatement(" select  ArticleTypeId as 'Id' ,  Desc  as 'Desc' from ArticleType");
 
             rs = ps.executeQuery();
 

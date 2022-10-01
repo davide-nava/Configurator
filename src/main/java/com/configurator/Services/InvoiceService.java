@@ -143,6 +143,39 @@ public class InvoiceService extends BaseService implements IInvoiceService {
     }
 
     @Override
+    public InvoiceViewModel getViewModel(UUID id) throws SQLException {
+        InvoiceViewModel result = null;
+        Connection con = null;
+        ResultSet rs = null;
+
+        try {
+            con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "select Invoice.*, (Customer.Name || ' - ' || Customer.Code ) as  'CustomerDesc' from Invoice inner join Customer on Customer.CustomerId = Invoice.CustomerId where InvoiceId = ? ");
+
+            ps.setString(1, id.toString().toUpperCase());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                result = loadViewModelFromResultSet(rs);
+            }
+
+        } catch (SQLException exception) {
+            result = null;
+            printSQLException(exception);
+        } finally {
+            if (rs != null)
+                rs.close();
+
+            if (con != null)
+                con.close();
+
+            return result;
+        }
+    }
+
+    @Override
     public List<InvoiceEntity> get() throws SQLException {
         List<InvoiceEntity> result = new ArrayList<InvoiceEntity>();
         Connection con = null;

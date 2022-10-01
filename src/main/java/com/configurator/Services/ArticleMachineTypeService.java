@@ -139,6 +139,40 @@ public class ArticleMachineTypeService extends BaseService implements IArticleMa
     }
 
     @Override
+    public ArticleMachineTypeViewModel getViewModel(UUID id) throws SQLException {
+        ArticleMachineTypeViewModel result = null;
+        Connection con = null;
+        ResultSet rs = null;
+
+        try {
+            con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "select ArticleMachineType.*, (Article.Name || ' - ' || Article.Code ) as  'ArticleDesc', MachineType.Desc as 'MachineTypeDesc' from ArticleMachineType inner join MachineType on MachineType.MachineTypeId = ArticleMachineType.MachineTypeId  inner join Article on Article.ArticleId = ArticleMachineType.ArticleId where ArticleMachineTypeId=?");
+
+            ps.setString(1, id.toString().toUpperCase());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                result = loadViewModelFromResultSet(rs);
+            }
+
+        } catch (SQLException exception) {
+            result = null;
+            printSQLException(exception);
+        } finally {
+            if (rs != null)
+                rs.close();
+
+            if (con != null)
+                con.close();
+
+            return result;
+        }
+    }
+
+
+    @Override
     public List<ArticleMachineTypeEntity> get() throws SQLException {
         List<ArticleMachineTypeEntity> result = new ArrayList<ArticleMachineTypeEntity>();
         Connection con = null;

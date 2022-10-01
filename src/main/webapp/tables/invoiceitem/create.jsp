@@ -18,6 +18,9 @@
                                         <form id="frmEdit" method="post"
                                               action="${pageContext.request.contextPath}/invoiceitem/create">
 
+          <input type="hidden" name="frmEditInvoiceId" id="frmEditInvoiceId" > 
+          <input type="hidden" name="frmEditArticleId" id="frmEditArticleId" > 
+
                                             <div class="mb-3">
                                                 <label for="frmEditDt">Data</label>
                                                 <div id="frmEditDt" name="frmEditDt"
@@ -25,16 +28,16 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="frmEditInvoiceId">Fattura</label>
-                                                <div class="form-control" id="frmEditInvoiceId"
-                                                     name="frmEditInvoiceId" required
+                                                <label for="frmEditInvoiceIdLookup">Fattura</label>
+                                                <div class="form-control" id="frmEditInvoiceIdLookup"
+                                                     required
                                                 ></div>
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="frmEditArticleId">Articolo</label>
-                                                <div class="form-control" id="frmEditArticleId"
-                                                     name="frmEditArticleId" required
+                                                <label for="frmEditArticleIdLookup">Articolo</label>
+                                                <div class="form-control" id="frmEditArticleIdLookup"
+                                                      required
                                                 ></div>
                                             </div>
 
@@ -73,90 +76,41 @@
                                            let dataGridInvoiceId;
                                            let dataGridArticleId;
 
-                                           $('#frmEditInvoiceId').dxDropDownBox({
-                                               valueExpr: 'id',
-                                               displayExpr: 'desc',
-                                               deferRendering: false,
-                                               placeholder: 'Select a value...',
-                                               showClearButton: true,
-                                               dataSource: {
-                                                   store: {
-                                                       type: 'odata',
-                                                       url: '${pageContext.request.contextPath}/api/lookup/invoice',
-                                                       key: 'id',
-                                                   },
-                                               },
+                                           $('#frmEditInvoiceIdLookup').dxLookup({
+                                dataSource: {
+                                    store: {
+                                        type: 'odata',
+                                        url: '${pageContext.request.contextPath}/api/lookup/invoice',
+                                        key: 'id',
+                                    },
+                                },
+                                searchMode: "contains",
+                                valueExpr: 'id',
+                                displayExpr: 'desc',
+                                value: '${tmpVal.getArticleTypeId()}',
+                                onValueChanged(e) {
+                                    $('#frmEditInvoiceId').val(e.value);
+                                },
+                            });
+                                                       
 
-                                               contentTemplate(e) {
-                                                   const value = e.component.option('value');
-                                                   const $dataGridInvoiceId = $('<div>').dxDataGrid({
-                                                       dataSource: e.component.getDataSource(),
-                                                       columns: ['Desc'],
-                                                       hoverStateEnabled: true,
-                                                       paging: {enabled: true, pageSize: 10},
-                                                       filterRow: {visible: true},
-                                                       scrolling: {mode: 'virtual'},
-                                                       selection: {mode: 'single'},
-                                                       selectedRowKeys: [value],
-                                                       height: '100%',
-                                                       onSelectionChanged(selectedItems) {
-                                                           const keys = selectedItems.selectedRowKeys;
-                                                           const hasSelection = keys.length;
-                                                           e.component.option('value', hasSelection ? keys[0] : null);
-                                                       },
-                                                   });
-                                                   dataGridInvoiceId = $dataGridInvoiceId.dxDataGrid('instance');
-                                                   e.component.on('valueChanged', (args) => {
-                                                       dataGridInvoiceId.selectRows(args.value, false);
-                                                       e.component.close();
-                                                   });
-
-                                                   return $dataGridInvoiceId;
-                                               },
-                                           });
-
-                                           $('#frmEditArticleId').dxDropDownBox({
-                                               valueExpr: 'id',
-                                               displayExpr: 'desc',
-                                               deferRendering: false,
-                                               placeholder: 'Select a value...',
-                                               showClearButton: true,
-                                               dataSource: {
-                                                   store: {
-                                                       type: 'odata',
-                                                       url: '${pageContext.request.contextPath}/api/lookup/article',
-                                                       key: 'id',
-                                                   },
-                                               },
-
-                                               contentTemplate(e) {
-                                                   const value = e.component.option('value');
-                                                   const $dataGridArticleId = $('<div>').dxDataGrid({
-                                                       dataSource: e.component.getDataSource(),
-                                                       columns: ['Desc'],
-                                                       hoverStateEnabled: true,
-                                                       paging: {enabled: true, pageSize: 10},
-                                                       filterRow: {visible: true},
-                                                       scrolling: {mode: 'virtual'},
-                                                       selection: {mode: 'single'},
-                                                       selectedRowKeys: [value],
-                                                       height: '100%',
-                                                       onSelectionChanged(selectedItems) {
-                                                           const keys = selectedItems.selectedRowKeys;
-                                                           const hasSelection = keys.length;
-                                                           e.component.option('value', hasSelection ? keys[0] : null);
-                                                       },
-                                                   });
-                                                   dataGridArticleId = $dataGridArticleId.dxDataGrid('instance');
-                                                   e.component.on('valueChanged', (args) => {
-                                                       dataGridArticleId.selectRows(args.value, false);
-                                                       e.component.close();
-                                                   });
-
-                                                   return $dataGridArticleId;
-                                               },
-                                           });
-
+                                           $('#frmEditArticleIdLookup').dxLookup({
+                                dataSource: {
+                                    store: {
+                                        type: 'odata',
+                                        url: '${pageContext.request.contextPath}/api/lookup/article',
+                                        key: 'id',
+                                    },
+                                },
+                                searchMode: "contains",
+                                valueExpr: 'id',
+                                displayExpr: 'desc',
+                                value: '${tmpVal.getArticleTypeId()}',
+                                onValueChanged(e) {
+                                    $('#frmEditArticleId').val(e.value);
+                                },
+                            });
+                                                   
                                        });
 
                                        $(function () {

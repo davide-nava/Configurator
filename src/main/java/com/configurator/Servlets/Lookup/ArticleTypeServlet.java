@@ -1,6 +1,5 @@
 package com.configurator.Servlets.Lookup;
 
-import com.configurator.Entities.ArticleTypeEntity;
 import com.configurator.Services.ArticleTypeService;
 import com.configurator.ViewModels.LookupViewModel;
 import com.google.gson.Gson;
@@ -15,7 +14,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/api/dx/lookup/articletype")
+@WebServlet("/api/lookup/articletype")
 public class ArticleTypeServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -24,7 +23,6 @@ public class ArticleTypeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         List<LookupViewModel> list = null;
         try {
             list = service.getLookupViewModel();

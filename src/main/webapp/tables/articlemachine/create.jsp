@@ -18,19 +18,20 @@
                                         <form id="frmEdit" method="post"
                                               action="${pageContext.request.contextPath}/customer/create">
 
-                                            <input type="hidden" name="frmEditNote">
+                                            <input type="hidden" name="frmEditNote" id="frmEditNote" >
+                                            <input type="hidden" name="frmEditArticleId" id="frmEditArticleId" >
+                                            <input type="hidden" name="frmEditMachineId" id="frmEditMachineId" >
 
                                             <div class="mb-3">
-                                                <label for="frmEditMachineId">Macchina</label>
-                                                <div class="form-control" id="frmEditMachineId"
-                                                     name="frmEditMachineId" required
+                                                <label for="frmEditMachineIdLookup">Macchina</label>
+                                                <div class="form-control" id="frmEditMachineIdLookup" required
                                                 ></div>
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="frmEditArticleId">Articolo</label>
-                                                <div class="form-control" id="frmEditArticleId"
-                                                     name="frmEditArticleId" required
+                                                <label for="frmEditArticleIdLookup">Articolo</label>
+                                                <div class="form-control" id="frmEditArticleIdLookup"
+                                                     required
                                                 ></div>
                                             </div>
 
@@ -42,8 +43,8 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="frmEditNote">Note</label>
-                                                <div id="frmEditNote"
+                                                <label for="frmEditNoteDesc">Note</label>
+                                                <div id="frmEditNoteDesc"
                                                      class="frmEditNote form-control"></div>
                                             </div>
 
@@ -67,27 +68,15 @@
                                     });
 
                                     $(() => {
-
-                                        let dataGridMachineId;
-                                        let dataGridArticleId;
-
+ 
                                         const editorNote = $('.frmEditNote').dxHtmlEditor({
                                             height: 300,
-                                            value: ${tmpVal.getNote()},
-                                            toolbar: {
+                                            value: '${tmpVal.getNote()}',
+                                           toolbar: {
                                                 items: [
-                                                    'undo', 'redo', 'separator',
-                                                    {
-                                                        name: 'size',
-                                                        acceptedValues: ['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt'],
-                                                    },
-                                                    'separator', 'bold', 'italic', 'strike', 'underline', 'separator',
+                                                      'bold', 'italic', 'strike', 'underline', 'separator',
                                                     'alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'separator',
                                                     'orderedList', 'bulletList', 'separator',
-                                                    {
-                                                        name: 'header',
-                                                        acceptedValues: [false, 1, 2, 3, 4, 5],
-                                                    }, 'separator',
                                                     'color', 'background', 'separator',
                                                     'link', 'separator',
                                                     'clear', 'codeBlock', 'blockquote', 'separator',
@@ -98,97 +87,48 @@
                                             },
                                             mediaResizing: {
                                                 enabled: true,
-                                            },
+                                            }, 
                                             onValueChanged({component, value}) {
                                                 $('#frmEditNote').text(prettierFormat(value));
                                             },
                                         }).dxHtmlEditor('instance');
 
-                                        $('#frmEditMachineId').dxDropDownBox({
-                                            value: ${tmpVal.getMachineId()},
-                                            valueExpr: 'id',
-                                            displayExpr: 'desc',
-                                            deferRendering: false,
-                                            placeholder: 'Select a value...',
-                                            showClearButton: true,
-                                            dataSource: {
-                                                store: {
-                                                    type: 'odata',
-                                                    url: '${pageContext.request.contextPath}/api/lookup/machine',
-                                                    key: 'id',
-                                                },
-                                            },
+                                        $('#frmEditMachineIdLookup').dxLookup({
+                                dataSource: {
+                                    store: {
+                                        type: 'odata',
+                                        url: '${pageContext.request.contextPath}/api/lookup/machine',
+                                        key: 'id',
+                                    },
+                                },
+                                searchMode: "contains",
+                                valueExpr: 'id',
+                                displayExpr: 'desc',
+                                value: '${tmpVal.getArticleTypeId()}',
+                                onValueChanged(e) {
+                                    $('#frmEditMachineId').val(e.value);
+                                },
+                            });
+ 
 
-                                            contentTemplate(e) {
-                                                const value = e.component.option('value');
-                                                const $dataGridMachineId = $('<div>').dxDataGrid({
-                                                    dataSource: e.component.getDataSource(),
-                                                    columns: ['Desc'],
-                                                    hoverStateEnabled: true,
-                                                    paging: {enabled: true, pageSize: 10},
-                                                    filterRow: {visible: true},
-                                                    scrolling: {mode: 'virtual'},
-                                                    selection: {mode: 'single'},
-                                                    selectedRowKeys: [value],
-                                                    height: '100%',
-                                                    onSelectionChanged(selectedItems) {
-                                                        const keys = selectedItems.selectedRowKeys;
-                                                        const hasSelection = keys.length;
-                                                        e.component.option('value', hasSelection ? keys[0] : null);
-                                                    },
-                                                });
-                                                dataGridMachineId = $dataGridMachineId.dxDataGrid('instance');
-                                                e.component.on('valueChanged', (args) => {
-                                                    dataGridMachineId.selectRows(args.value, false);
-                                                    e.component.close();
-                                                });
+                                        $('#frmEditArticleIdLookup').dxLookup({
+                                dataSource: {
+                                    store: {
+                                        type: 'odata',
+                                        url: '${pageContext.request.contextPath}/api/lookup/article',
+                                        key: 'id',
+                                    },
+                                },
+                                searchMode: "contains",
+                                valueExpr: 'id',
+                                displayExpr: 'desc',
+                                value: '${tmpVal.getArticleTypeId()}',
+                                onValueChanged(e) {
+                                    $('#frmEditArticleId').val(e.value);
+                                },
+                            });
 
-                                                return $dataGridMachineId;
-                                            },
-                                        });
-
-                                        $('#frmEditArticleId').dxDropDownBox({
-                                            value: ${tmpVal.getInvoiceId()},
-                                            valueExpr: 'id',
-                                            displayExpr: 'desc',
-                                            deferRendering: false,
-                                            placeholder: 'Select a value...',
-                                            showClearButton: true,
-                                            dataSource: {
-                                                store: {
-                                                    type: 'odata',
-                                                    url: '${pageContext.request.contextPath}/api/lookup/article',
-                                                    key: 'id',
-                                                },
-                                            },
-
-                                            contentTemplate(e) {
-                                                const value = e.component.option('value');
-                                                const $dataGridArticleId = $('<div>').dxDataGrid({
-                                                    dataSource: e.component.getDataSource(),
-                                                    columns: ['Desc'],
-                                                    hoverStateEnabled: true,
-                                                    paging: {enabled: true, pageSize: 10},
-                                                    filterRow: {visible: true},
-                                                    scrolling: {mode: 'virtual'},
-                                                    selection: {mode: 'single'},
-                                                    selectedRowKeys: [value],
-                                                    height: '100%',
-                                                    onSelectionChanged(selectedItems) {
-                                                        const keys = selectedItems.selectedRowKeys;
-                                                        const hasSelection = keys.length;
-                                                        e.component.option('value', hasSelection ? keys[0] : null);
-                                                    },
-                                                });
-                                                dataGridArticleId = $dataGridArticleId.dxDataGrid('instance');
-                                                e.component.on('valueChanged', (args) => {
-                                                    dataGridArticleId.selectRows(args.value, false);
-                                                    e.component.close();
-                                                });
-
-                                                return $dataGridArticleId;
-                                            },
-                                        });
+ 
                                     });
 
                                 </script>

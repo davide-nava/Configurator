@@ -1,7 +1,6 @@
 package com.configurator.Servlets.Lookup;
 
 import com.configurator.Services.InvoiceService;
-import com.configurator.ViewModels.InvoiceViewModel;
 import com.configurator.ViewModels.LookupViewModel;
 import com.google.gson.Gson;
 import jakarta.servlet.ServletException;
@@ -15,7 +14,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/api/dx/lookup/invoice")
+@WebServlet("/api/lookup/invoice")
 public class InvoiceServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;

@@ -1,17 +1,17 @@
 package com.configurator.Servlets.ArticleGroupType;
 
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.UUID;
-
 import com.configurator.Entities.ArticleGroupTypeEntity;
 import com.configurator.Services.ArticleGroupTypeService;
-
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.UUID;
 
 @WebServlet("/articlegrouptype/read")
 public class ReadServlet extends HttpServlet {
@@ -26,7 +26,8 @@ public class ReadServlet extends HttpServlet {
 
             req.setAttribute("tmpVal", tmpVal);
 
-            req.getRequestDispatcher(req.getContextPath() + "/tables/articlegrouptype/edit.jsp").forward(req, resp);
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/tables/articlegrouptype/edit.jsp");
+            dispatcher.forward(req, resp);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

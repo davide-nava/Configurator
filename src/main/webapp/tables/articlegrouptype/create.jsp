@@ -18,7 +18,7 @@
                                         <form id="frmEdit" method="post"
                                               action="${pageContext.request.contextPath}/articlegrouptype/create">
 
-                                            <input type="hidden" name="frmEditDesc">
+                                            <input type="hidden" name="frmEditDesc" id="frmEditDesc" >
 
                                             <div class="mb-3">
                                                 <label for="frmEditCode">Codice</label>
@@ -33,8 +33,8 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="frmEditDesc">Descrizione</label>
-                                                <div id="frmEditDesc"
+                                                <label for="frmEditDescEditor">Descrizione</label>
+                                                <div id="frmEditDescEditor"
                                                      class="frmEditDesc form-control"></div>
                                             </div>
 
@@ -61,32 +61,23 @@
 
                                             const editorDesc = $('.frmEditDesc').dxHtmlEditor({
                                                 height: 300,
-                                                toolbar: {
-                                                    items: [
-                                                        'undo', 'redo', 'separator',
-                                                        {
-                                                            name: 'size',
-                                                            acceptedValues: ['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt'],
-                                                        },
-                                                        'separator', 'bold', 'italic', 'strike', 'underline', 'separator',
-                                                        'alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'separator',
-                                                        'orderedList', 'bulletList', 'separator',
-                                                        {
-                                                            name: 'header',
-                                                            acceptedValues: [false, 1, 2, 3, 4, 5],
-                                                        }, 'separator',
-                                                        'color', 'background', 'separator',
-                                                        'link', 'separator',
-                                                        'clear', 'codeBlock', 'blockquote', 'separator',
-                                                        'insertTable', 'deleteTable',
-                                                        'insertRowAbove', 'insertRowBelow', 'deleteRow',
-                                                        'insertColumnLeft', 'insertColumnRight', 'deleteColumn',
-                                                    ],
-                                                },
-                                                mediaResizing: {
-                                                    enabled: true,
-                                                },
-                                                onValueChanged({component, value}) {
+                                               toolbar: {
+                                                items: [
+                                                      'bold', 'italic', 'strike', 'underline', 'separator',
+                                                    'alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'separator',
+                                                    'orderedList', 'bulletList', 'separator',
+                                                    'color', 'background', 'separator',
+                                                    'link', 'separator',
+                                                    'clear', 'codeBlock', 'blockquote', 'separator',
+                                                    'insertTable', 'deleteTable',
+                                                    'insertRowAbove', 'insertRowBelow', 'deleteRow',
+                                                    'insertColumnLeft', 'insertColumnRight', 'deleteColumn',
+                                                ],
+                                            },
+                                            mediaResizing: {
+                                                enabled: true,
+                                            },
+                                             onValueChanged({component, value}) {
                                                     $('#frmEditDesc').text(prettierFormat(value));
                                                 },
                                             }).dxHtmlEditor('instance');

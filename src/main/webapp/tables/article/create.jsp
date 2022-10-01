@@ -18,7 +18,8 @@
                                         <form id="frmEdit" method="post"
                                               action="${pageContext.request.contextPath}/article/create">
 
-                                            <input type="hidden" name="frmEditDesc">
+                                            <input type="hidden" name="frmEditDesc" id="frmEditDesc">
+                                            <input type="hidden" name="frmEditArticleTypeId" id="frmEditArticleTypeId">
 
                                             <div class="mb-3">
                                                 <label for="frmEditName">Nome</label>
@@ -35,9 +36,9 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="frmEditArticleTypeId">Tipo articolo</label>
-                                                <div class="form-control" id="frmEditArticleTypeId"
-                                                     name="frmEditArticleTypeId" required
+                                                <label for="frmEditArticleTypeIdLookup">Tipo articolo</label>
+                                                <div class="form-control" id="frmEditArticleTypeIdLookup"
+                                                      required
                                                 ></div>
                                             </div>
 
@@ -70,8 +71,8 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="frmEditDesc">Note</label>
-                                                <div id="frmEditDesc"
+                                                <label for="frmEditDescEditor">Note</label>
+                                                <div id="frmEditDescEditor"
                                                      class="frmEditDesc form-control"></div>
                                             </div>
 
@@ -98,79 +99,43 @@
 
                                          const editorDesc = $('.frmEditDesc').dxHtmlEditor({
                                              height: 300,
-                                             toolbar: {
-                                                 items: [
-                                                     'undo', 'redo', 'separator',
-                                                     {
-                                                         name: 'size',
-                                                         acceptedValues: ['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt'],
-                                                     },
-                                                     'separator', 'bold', 'italic', 'strike', 'underline', 'separator',
-                                                     'alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'separator',
-                                                     'orderedList', 'bulletList', 'separator',
-                                                     {
-                                                         name: 'header',
-                                                         acceptedValues: [false, 1, 2, 3, 4, 5],
-                                                     }, 'separator',
-                                                     'color', 'background', 'separator',
-                                                     'link', 'separator',
-                                                     'clear', 'codeBlock', 'blockquote', 'separator',
-                                                     'insertTable', 'deleteTable',
-                                                     'insertRowAbove', 'insertRowBelow', 'deleteRow',
-                                                     'insertColumnLeft', 'insertColumnRight', 'deleteColumn',
-                                                 ],
-                                             },
-                                             mediaResizing: {
-                                                 enabled: true,
-                                             },
+                                            toolbar: {
+                                                items: [
+                                                      'bold', 'italic', 'strike', 'underline', 'separator',
+                                                    'alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'separator',
+                                                    'orderedList', 'bulletList', 'separator',
+                                                    'color', 'background', 'separator',
+                                                    'link', 'separator',
+                                                    'clear', 'codeBlock', 'blockquote', 'separator',
+                                                    'insertTable', 'deleteTable',
+                                                    'insertRowAbove', 'insertRowBelow', 'deleteRow',
+                                                    'insertColumnLeft', 'insertColumnRight', 'deleteColumn',
+                                                ],
+                                            },
+                                            mediaResizing: {
+                                                enabled: true,
+                                            }, 
                                              onValueChanged({component, value}) {
                                                  $('#frmEditDesc').text(prettierFormat(value));
                                              },
                                          }).dxHtmlEditor('instance');
 
-                                         let dataGridArticleTypeId;
-
-                                         $('#frmEditArticleTypeId').dxDropDownBox({
-                                             valueExpr: 'id',
-                                             displayExpr: 'desc',
-                                             deferRendering: false,
-                                             placeholder: 'Select a value...',
-                                             showClearButton: true,
-                                             dataSource: {
-                                                 store: {
-                                                     type: 'odata',
-                                                     url: '${pageContext.request.contextPath}/api/lookup/articletype',
-                                                     key: 'id',
-                                                 },
-                                             },
-
-                                             contentTemplate(e) {
-                                                 const value = e.component.option('value');
-                                                 const $dataGridArticleTypeId = $('<div>').dxDataGrid({
-                                                     dataSource: e.component.getDataSource(),
-                                                     columns: ['Desc'],
-                                                     hoverStateEnabled: true,
-                                                     paging: {enabled: true, pageSize: 10},
-                                                     filterRow: {visible: true},
-                                                     scrolling: {mode: 'virtual'},
-                                                     selection: {mode: 'single'},
-                                                     selectedRowKeys: [value],
-                                                     height: '100%',
-                                                     onSelectionChanged(selectedItems) {
-                                                         const keys = selectedItems.selectedRowKeys;
-                                                         const hasSelection = keys.length;
-                                                         e.component.option('value', hasSelection ? keys[0] : null);
-                                                     },
-                                                 });
-                                                 dataGridArticleTypeId = $dataGridArticleTypeId.dxDataGrid('instance');
-                                                 e.component.on('valueChanged', (args) => {
-                                                     dataGridArticleTypeId.selectRows(args.value, false);
-                                                     e.component.close();
-                                                 });
-
-                                                 return $dataGridArticleTypeId;
-                                             },
-                                         });
+                                         $('#frmEditArticleTypeIdLookup').dxLookup({
+                                            dataSource: {
+                                                store: {
+                                                    type: 'odata',
+                                                    url: '${pageContext.request.contextPath}/api/lookup/articletype',
+                                                    key: 'id',
+                                                },
+                                            },
+                                            searchMode: "contains",
+                                            valueExpr: 'id',
+                                            displayExpr: 'desc',
+                                            value: '${tmpVal.getArticleTypeId()}',
+                                            onValueChanged(e) {
+                                                $('#frmEditArticleTypeId').val(e.value);
+                                            },
+                                        });
 
                                      });
 

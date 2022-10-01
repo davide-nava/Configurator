@@ -24,7 +24,8 @@
                                         <form id="frmEdit" method="post"
                                               action="${pageContext.request.contextPath}/article/update">
 
-                                            <input type="hidden" name="frmEditDesc">
+                                            <input type="hidden" name="frmEditDesc" id="frmEditDesc">
+                                            <input type="hidden" name="frmEditArticleTypeId" id="frmEditArticleTypeId">
 
                                             <input type="hidden" name="frmEditArticleId"
                                                    value="${tmpVal.getArticleId()}">
@@ -45,9 +46,9 @@
 
 
                                             <div class="mb-3">
-                                                <label for="frmEditArticleTypeId">Tipo articolo</label>
-                                                <div class="form-control" id="frmEditArticleTypeId"
-                                                     name="frmEditArticleTypeId" required
+                                                <label for="frmEditArticleTypeIdLookup">Tipo articolo</label>
+                                                <div class="form-control" id="frmEditArticleTypeIdLookup"
+                                                     required
                                                 ></div>
                                             </div>
 
@@ -73,15 +74,19 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="frmEditIsMachine">Tipo macchina</label>
-                                                <input type="checkbox"  id="frmEditIsMachine"
-                                                       name="frmEditIsMachine" required
-                                                        value="${tmpVal.getIsMachine()}">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox"
+                                                           value="${tmpVal.getIsMachine()}" id="frmEditIsMachine"
+                                                           name="frmEditIsMachine" required>
+                                                    <label class="form-check-label" for="frmEditIsMachine">
+                                                        Tipo macchina
+                                                    </label>
+                                                </div>
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="frmEditDesc">Note</label>
-                                                <div id="frmEditDesc"
+                                                <label for="frmEditDescEditor">Note</label>
+                                                <div id="frmEditDescEditor"
                                                      class="frmEditDesc form-control"></div>
                                             </div>
 
@@ -101,7 +106,7 @@
 <div class="modal fade" id="frmModalDelete" tabindex="-1" aria-labelledby="frmModalDeleteLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form method="post" action="${pageContext.request.contextPath}/article/delete" >
+            <form method="post" action="${pageContext.request.contextPath}/article/delete">
                 <input type="hidden" name="frmEditArticleId"
                        value="${tmpVal.getArticleId()}">
                 <div class="modal-header">
@@ -121,7 +126,7 @@
 </div>
 
                                 <script>
-                                    $(function() {
+                                    $(function () {
                                         $('#menuSxArticle').addClass('active');
                                     });
 
@@ -129,21 +134,12 @@
 
                                         const editorDesc = $('.frmEditDesc').dxHtmlEditor({
                                             height: 300,
-                                            value: ${tmpVal.getDesc()},
-                                            toolbar: {
+                                            value: '${tmpVal.getDesc()}',
+                                           toolbar: {
                                                 items: [
-                                                    'undo', 'redo', 'separator',
-                                                    {
-                                                        name: 'size',
-                                                        acceptedValues: ['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt'],
-                                                    },
-                                                    'separator', 'bold', 'italic', 'strike', 'underline', 'separator',
+                                                      'bold', 'italic', 'strike', 'underline', 'separator',
                                                     'alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'separator',
                                                     'orderedList', 'bulletList', 'separator',
-                                                    {
-                                                        name: 'header',
-                                                        acceptedValues: [false, 1, 2, 3, 4, 5],
-                                                    }, 'separator',
                                                     'color', 'background', 'separator',
                                                     'link', 'separator',
                                                     'clear', 'codeBlock', 'blockquote', 'separator',
@@ -155,20 +151,12 @@
                                             mediaResizing: {
                                                 enabled: true,
                                             },
-                                            onValueChanged({component, value}) {
+                                              onValueChanged({component, value}) {
                                                 $('#frmEditDesc').text(prettierFormat(value));
                                             },
                                         }).dxHtmlEditor('instance');
 
-                                        let dataGridArticleTypeId;
-
-                                        $('#frmEditArticleTypeId').dxDropDownBox({
-                                            value: ${tmpVal.getArticleTypeId()},
-                                            valueExpr: 'id',
-                                            displayExpr: 'desc',
-                                            deferRendering: false,
-                                            placeholder: 'Select a value...',
-                                            showClearButton: true,
+                                        $('#frmEditArticleTypeIdLookup').dxLookup({
                                             dataSource: {
                                                 store: {
                                                     type: 'odata',
@@ -176,32 +164,12 @@
                                                     key: 'id',
                                                 },
                                             },
-
-                                            contentTemplate(e) {
-                                                const value = e.component.option('value');
-                                                const $dataGridArticleTypeId = $('<div>').dxDataGrid({
-                                                    dataSource: e.component.getDataSource(),
-                                                    columns: ['Desc'],
-                                                    hoverStateEnabled: true,
-                                                    paging: {enabled: true, pageSize: 10},
-                                                    filterRow: {visible: true},
-                                                    scrolling: {mode: 'virtual'},
-                                                    selection: {mode: 'single'},
-                                                    selectedRowKeys: [value],
-                                                    height: '100%',
-                                                    onSelectionChanged(selectedItems) {
-                                                        const keys = selectedItems.selectedRowKeys;
-                                                        const hasSelection = keys.length;
-                                                        e.component.option('value', hasSelection ? keys[0] : null);
-                                                    },
-                                                });
-                                                dataGridArticleTypeId = $dataGridArticleTypeId.dxDataGrid('instance');
-                                                e.component.on('valueChanged', (args) => {
-                                                    dataGridArticleTypeId.selectRows(args.value, false);
-                                                    e.component.close();
-                                                });
-
-                                                return $dataGridArticleTypeId;
+                                            searchMode: "contains",
+                                            valueExpr: 'id',
+                                            displayExpr: 'desc',
+                                            value: '${tmpVal.getArticleTypeId()}',
+                                            onValueChanged(e) {
+                                                $('#frmEditArticleTypeId').val(e.value);
                                             },
                                         });
 

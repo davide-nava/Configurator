@@ -17,6 +17,7 @@
 
                                         <form id="frmEdit" method="post"
                                               action="${pageContext.request.contextPath}/customer/create">
+                                            <input type="hidden" name="frmEditCustomerId"  id="frmEditCustomerId"      >
 
                                             <div class="mb-3">
                                                 <label for="frmEditDt">Data</label>
@@ -25,9 +26,9 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="frmEditCustomerId">Cliente</label>
-                                                <div class="form-control" id="frmEditCustomerId"
-                                                     name="frmEditCustomerId" required
+                                                <label for="frmEditCustomerIdLookup">Cliente</label>
+                                                <div class="form-control" id="frmEditCustomerIdLookup"
+                                                    required
                                                 ></div>
                                             </div>
 
@@ -69,14 +70,7 @@
                                             value: now,
                                         });
 
-                                        let dataGridCustomerID;
-
-                                        $('#frmEditCustomerId').dxDropDownBox({
-                                            valueExpr: 'id',
-                                            displayExpr: 'desc',
-                                            deferRendering: false,
-                                            placeholder: 'Select a value...',
-                                            showClearButton: true,
+                                        $('#frmEditCustomerIdLookup').dxLookup({
                                             dataSource: {
                                                 store: {
                                                     type: 'odata',
@@ -84,32 +78,12 @@
                                                     key: 'id',
                                                 },
                                             },
-
-                                            contentTemplate(e) {
-                                                const value = e.component.option('value');
-                                                const $dataGridCustomerID = $('<div>').dxDataGrid({
-                                                    dataSource: e.component.getDataSource(),
-                                                    columns: ['Desc'],
-                                                    hoverStateEnabled: true,
-                                                    paging: {enabled: true, pageSize: 10},
-                                                    filterRow: {visible: true},
-                                                    scrolling: {mode: 'virtual'},
-                                                    selection: {mode: 'single'},
-                                                    selectedRowKeys: [value],
-                                                    height: '100%',
-                                                    onSelectionChanged(selectedItems) {
-                                                        const keys = selectedItems.selectedRowKeys;
-                                                        const hasSelection = keys.length;
-                                                        e.component.option('value', hasSelection ? keys[0] : null);
-                                                    },
-                                                });
-                                                dataGridCustomerID = $dataGridCustomerID.dxDataGrid('instance');
-                                                e.component.on('valueChanged', (args) => {
-                                                    dataGridCustomerID.selectRows(args.value, false);
-                                                    e.component.close();
-                                                });
-
-                                                return $dataGridCustomerID;
+                                            searchMode: "contains",
+                                            valueExpr: 'id',
+                                            displayExpr: 'desc',
+                                            value: '${tmpVal.getArticleTypeId()}',
+                                            onValueChanged(e) {
+                                                $('#frmEditCustomerId').val(e.value);
                                             },
                                         });
 

@@ -142,6 +142,38 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
     }
 
     @Override
+    public InvoiceItemViewModel getViewModel(UUID id) throws SQLException {
+        InvoiceItemViewModel result = null;
+        Connection con = null;
+        ResultSet rs = null;
+
+        try {
+            con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "select InvoiceItem.*, (Article.Name || ' - ' || Article.Code ) as  'ArticleDesc', Invoice.Nr as 'InvoiceDesc'  from InvoiceItem inner join Invoice on Invoice.InvoiceId = InvoiceItem.InvoiceId inner join Article on Article.ArticleId = InvoiceItem.ArticleId  where InvoiceItemId =? ");
+
+            ps.setString(1, id.toString().toUpperCase());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                result = loadViewModelFromResultSet(rs);
+            }
+
+        } catch (SQLException exception) {
+            printSQLException(exception);
+        } finally {
+            if (rs != null)
+                rs.close();
+
+            if (con != null)
+                con.close();
+
+            return result;
+        }
+    }
+
+    @Override
     public List<InvoiceItemEntity> get() throws SQLException {
         List<InvoiceItemEntity> result = new ArrayList<InvoiceItemEntity>();
         Connection con = null;

@@ -1,5 +1,9 @@
 package com.configurator.Services;
 
+import com.configurator.Entities.ArticleArticleGroupTypeEntity;
+import com.configurator.Interfaces.IArticleArticleGroupTypeService;
+import com.configurator.ViewModels.ArticleArticleGroupTypeViewModel;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,10 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-import com.configurator.Entities.ArticleArticleGroupTypeEntity;
-import com.configurator.Interfaces.IArticleArticleGroupTypeService;
-import com.configurator.ViewModels.ArticleArticleGroupTypeViewModel;
 
 public class ArticleArticleGroupTypeService extends BaseService
         implements IArticleArticleGroupTypeService {
@@ -124,6 +124,38 @@ public class ArticleArticleGroupTypeService extends BaseService
 
             while (rs.next()) {
                 result.add(loadViewModelFromResultSet(rs));
+            }
+        } catch (SQLException exception) {
+            result = null;
+            printSQLException(exception);
+        } finally {
+            if (rs != null)
+                rs.close();
+
+            if (con != null)
+                con.close();
+
+            return result;
+        }
+    }
+
+    @Override
+    public ArticleArticleGroupTypeViewModel getViewModel(UUID id) throws SQLException {
+        ArticleArticleGroupTypeViewModel result = null;
+        Connection con = null;
+        ResultSet rs = null;
+
+        try {
+            con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    " select ArticleArticleGroupType.*, (Article.Name || ' - ' || Article.Code ) as  'ArticleDesc', ArticleGroupType.Desc as 'ArticleGroupTypeDesc' from ArticleArticleGroupType inner join Article on Article.ArticleId = ArticleArticleGroupType.ArticleId inner join ArticleGroupType on ArticleGroupType.ArticleGroupTypeId = ArticleArticleGroupType.ArticleGroupTypeId  where ArticleArticleGroupTypeId=? ");
+
+            ps.setString(1, id.toString().toUpperCase());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                result = loadViewModelFromResultSet(rs);
             }
         } catch (SQLException exception) {
             result = null;

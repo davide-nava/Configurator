@@ -1,6 +1,5 @@
 package com.configurator.Servlets.Lookup;
 
-import com.configurator.Entities.ArticleGroupTypeEntity;
 import com.configurator.Services.ArticleGroupTypeService;
 import com.configurator.ViewModels.LookupViewModel;
 import com.google.gson.Gson;
@@ -15,7 +14,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/api/dx/lookup/articlegrouptype")
+@WebServlet("/api/lookup/articlegrouptype")
 public class ArticleGroupTypeServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;

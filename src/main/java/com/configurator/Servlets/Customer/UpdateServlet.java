@@ -1,16 +1,15 @@
 package com.configurator.Servlets.Customer;
 
-import java.io.IOException;
-import java.util.UUID;
-
 import com.configurator.Entities.CustomerEntity;
 import com.configurator.Services.CustomerService;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+import java.util.UUID;
 
 @WebServlet("/customer/update")
 public class UpdateServlet extends HttpServlet {

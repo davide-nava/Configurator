@@ -3,7 +3,6 @@ package com.configurator.Servlets.Dx;
 import com.configurator.Entities.MachineTypeEntity;
 import com.configurator.Services.MachineTypeService;
 import com.google.gson.Gson;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 

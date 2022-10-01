@@ -1,5 +1,10 @@
 package com.configurator.Services;
 
+import com.configurator.Entities.ArticleEntity;
+import com.configurator.Interfaces.IArticleService;
+import com.configurator.ViewModels.ArticleViewModel;
+import com.configurator.ViewModels.LookupViewModel;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,11 +12,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-import com.configurator.Entities.ArticleEntity;
-import com.configurator.Interfaces.IArticleService;
-import com.configurator.ViewModels.ArticleViewModel;
-import com.configurator.ViewModels.LookupViewModel;
 
 public class ArticleService extends BaseService implements IArticleService {
 
@@ -143,6 +143,39 @@ public class ArticleService extends BaseService implements IArticleService {
 
             while (rs.next()) {
                 result.add(loadViewModelFromResultSet(rs));
+            }
+
+        } catch (SQLException exception) {
+            result = null;
+            printSQLException(exception);
+        } finally {
+            if (rs != null)
+                rs.close();
+
+            if (con != null)
+                con.close();
+
+            return result;
+        }
+    }
+
+    @Override
+    public ArticleViewModel getViewModel(UUID id) throws SQLException {
+        ArticleViewModel result = null;
+        Connection con = null;
+        ResultSet rs = null;
+
+        try {
+            con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    " select Article.*  , ArticleType.Desc as 'ArticleTypeDesc' from Article inner join ArticleType on ArticleType.ArticleTypeId = Article.ArticleTypeId  where ArticleId=?   ");
+
+            ps.setString(1, id.toString().toUpperCase());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                result = loadViewModelFromResultSet(rs);
             }
 
         } catch (SQLException exception) {

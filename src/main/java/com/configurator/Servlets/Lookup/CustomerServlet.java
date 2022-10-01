@@ -1,6 +1,5 @@
 package com.configurator.Servlets.Lookup;
 
-import com.configurator.Entities.CustomerEntity;
 import com.configurator.Services.CustomerService;
 import com.configurator.ViewModels.LookupViewModel;
 import com.google.gson.Gson;
@@ -15,7 +14,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/api/dx/lookup/customer")
+@WebServlet("/api/lookup/customer")
 public class CustomerServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;

@@ -18,17 +18,19 @@
                                         <form id="frmEdit" method="post"
                                               action="${pageContext.request.contextPath}/articlearticlegrouptype/create">
 
+                                            <input type="hidden" name="frmEditArticleGroupTypeId" id="frmEditArticleGroupTypeId">
+                                            <input type="hidden" name="frmEditArticleId" id="frmEditArticleId">
+
                                             <div class="mb-3">
-                                                <label for="frmEditArticleGroupTypeId">Tipo gruppo articolo</label>
-                                                <div class="form-control" id="frmEditArticleGroupTypeId"
-                                                     name="frmEditArticleGroupTypeId" required
+                                                <label for="frmEditArticleGroupTypeIdLookup">Tipo gruppo articolo</label>
+                                                <div class="form-control" id="frmEditArticleGroupTypeIdLookup"
+                                                       required
                                                 ></div>
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="frmEditArticleId">Articolo</label>
-                                                <div class="form-control" id="frmEditArticleId"
-                                                     name="frmEditArticleId" required
+                                                <label for="frmEditArticleIdLookup">Articolo</label>
+                                                <div class="form-control" id="frmEditArticleIdLookup" required
                                                 ></div>
                                             </div>
 
@@ -60,15 +62,7 @@
 
                                     $(() => {
 
-                                        let dataGridArticleGroupTypeId;
-                                        let dataGridArticleId;
-
-                                        $('#frmEditArticleGroupTypeId').dxDropDownBox({
-                                            valueExpr: 'id',
-                                            displayExpr: 'desc',
-                                            deferRendering: false,
-                                            placeholder: 'Select a value...',
-                                            showClearButton: true,
+                                        $('#frmEditArticleGroupTypeIdLookup').dxLookup({
                                             dataSource: {
                                                 store: {
                                                     type: 'odata',
@@ -76,42 +70,18 @@
                                                     key: 'id',
                                                 },
                                             },
-
-                                            contentTemplate(e) {
-                                                const value = e.component.option('value');
-                                                const $dataGridArticleGroupTypeId = $('<div>').dxDataGrid({
-                                                    dataSource: e.component.getDataSource(),
-                                                    columns: ['Desc'],
-                                                    hoverStateEnabled: true,
-                                                    paging: {enabled: true, pageSize: 10},
-                                                    filterRow: {visible: true},
-                                                    scrolling: {mode: 'virtual'},
-                                                    selection: {mode: 'single'},
-                                                    selectedRowKeys: [value],
-                                                    height: '100%',
-                                                    onSelectionChanged(selectedItems) {
-                                                        const keys = selectedItems.selectedRowKeys;
-                                                        const hasSelection = keys.length;
-                                                        e.component.option('value', hasSelection ? keys[0] : null);
-                                                    },
-                                                });
-                                                dataGridArticleGroupTypeId = $dataGridArticleGroupTypeId.dxDataGrid('instance');
-                                                e.component.on('valueChanged', (args) => {
-                                                    dataGridArticleGroupTypeId.selectRows(args.value, false);
-                                                    e.component.close();
-                                                });
-
-                                                return $dataGridArticleGroupTypeId;
+                                            searchMode: "contains",
+                                            valueExpr: 'id',
+                                            displayExpr: 'desc',
+                                            value: '${tmpVal.getArticleTypeId()}',
+                                            onValueChanged(e) {
+                                                $('#frmEditArticleGroupTypeId').val(e.value);
                                             },
                                         });
 
-                                        $('#frmEditArticleId').dxDropDownBox({
-                                            value: ${tmpVal.getArticleId()},
-                                            valueExpr: 'id',
-                                            displayExpr: 'desc',
-                                            deferRendering: false,
-                                            placeholder: 'Select a value...',
-                                            showClearButton: true,
+ 
+
+                                        $('#frmEditArticleIdLookup').dxLookup({
                                             dataSource: {
                                                 store: {
                                                     type: 'odata',
@@ -119,34 +89,15 @@
                                                     key: 'id',
                                                 },
                                             },
-
-                                            contentTemplate(e) {
-                                                const value = e.component.option('value');
-                                                const $dataGridArticleId = $('<div>').dxDataGrid({
-                                                    dataSource: e.component.getDataSource(),
-                                                    columns: ['Desc'],
-                                                    hoverStateEnabled: true,
-                                                    paging: {enabled: true, pageSize: 10},
-                                                    filterRow: {visible: true},
-                                                    scrolling: {mode: 'virtual'},
-                                                    selection: {mode: 'single'},
-                                                    selectedRowKeys: [value],
-                                                    height: '100%',
-                                                    onSelectionChanged(selectedItems) {
-                                                        const keys = selectedItems.selectedRowKeys;
-                                                        const hasSelection = keys.length;
-                                                        e.component.option('value', hasSelection ? keys[0] : null);
-                                                    },
-                                                });
-                                                dataGridArticleId = $dataGridArticleId.dxDataGrid('instance');
-                                                e.component.on('valueChanged', (args) => {
-                                                    dataGridArticleId.selectRows(args.value, false);
-                                                    e.component.close();
-                                                });
-
-                                                return $dataGridArticleId;
+                                            searchMode: "contains",
+                                            valueExpr: 'id',
+                                            displayExpr: 'desc',
+                                            value: '${tmpVal.getArticleTypeId()}',
+                                            onValueChanged(e) {
+                                                $('#frmEditArticleId').val(e.value);
                                             },
                                         });
+ 
                                     });
 
                                 </script>

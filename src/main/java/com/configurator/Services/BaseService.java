@@ -1,6 +1,5 @@
 package com.configurator.Services;
 
-import com.configurator.Entities.CustomerEntity;
 import com.configurator.ViewModels.LookupViewModel;
 
 import java.sql.*;

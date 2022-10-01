@@ -5,7 +5,7 @@
 <%@attribute name="body_area" fragment="true" %>
 
 <!DOCTYPE html>
-<html lang="it" data-lt-installed="true">
+<html lang="it" data-lt-installed="true" >
 <head>
 
     <jsp:include page="/shared/head.jsp"/>
@@ -16,6 +16,9 @@
 
 </head>
 <body class=" pace-done fixed-nav mini-navbar  ">
+<script>
+    DevExpress.localization.locale(navigator.language);
+</script>
 <div class="pace  pace-inactive">
     <div class="pace-progress" data-progress-text="100%" data-progress="99"
          style="transform: translate3d(100%, 0px, 0px);">

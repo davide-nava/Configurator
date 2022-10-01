@@ -9,7 +9,6 @@ public class ArticleTypeEntity implements Serializable {
     public static final String TABLE = "ArticleType";
     private UUID articleTypeId;
     private String desc = "";
-    private String code = "";
     private int year = 2022;
 
     public UUID getArticleTypeId() {
@@ -26,14 +25,6 @@ public class ArticleTypeEntity implements Serializable {
 
     public void setDesc(String desc) {
         this.desc = desc;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 
     public int getYear() {

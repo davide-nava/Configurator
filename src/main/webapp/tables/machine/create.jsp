@@ -18,8 +18,9 @@
                                         <form id="frmEdit" method="post"
                                               action="${pageContext.request.contextPath}/customer/create">
 
-          <input type="hidden" name="frmEditDesc" >
-                                            <input type="hidden" name="frmEditNote" >
+          <input type="hidden" name="frmEditDesc" id="frmEditDesc" > 
+                                            <input type="hidden" name="frmEditNote" id="frmEditNote" >
+                                            <input type="hidden" name="frmEditMachineTypeId" id="frmEditMachineTypeId" >
 
                                             <div class="mb-3">
                                                 <label for="frmEditNr">Numero</label>
@@ -30,9 +31,9 @@
 
 
                                             <div class="mb-3">
-                                                <label for="frmEditMachineTypeId">Tipo macchina</label>
-                                                <div class="form-control" id="frmEditMachineTypeId"
-                                                     name="frmEditMachineTypeId" required
+                                                <label for="frmEditMachineTypeIdLookup">Tipo macchina</label>
+                                                <div class="form-control" id="frmEditMachineTypeIdLookup"
+                                                     required
                                                 ></div>
                                             </div>
 
@@ -51,8 +52,8 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="frmEditDesc">Descrizione</label>
-                                                 <div   id="frmEditDesc"
+                                                <label for="frmEditDescEditor">Descrizione</label>
+                                                 <div   id="frmEditDescEditor"
                                                        class="form-control frmEditDesc"></div>                                                     
                                             </div>
 
@@ -78,8 +79,8 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="frmEditNote">Note</label>
-                                                   <div  id="frmEditNote"
+                                                <label for="frmEditNoteEditor">Note</label>
+                                                   <div  id="frmEditNoteEditor"
                                                        class="form-control frmEditNote"></div>
                                             </div>
 
@@ -160,78 +161,52 @@
                                  displayFormat: 'dd.MM.yyyy',
                                  value: now,
                              });
+ 
 
-                             let dataGridMachineTypeId;
-
-                             $('#frmEditMachineTypeId').dxDropDownBox({
-                                 valueExpr: 'id',
-                                 displayExpr: 'desc',
-                                 deferRendering: false,
-                                 placeholder: 'Select a value...',
-                                 showClearButton: true,
-                                 dataSource: {
-                                     store: {
-                                         type: 'odata',
-                                         url: '${pageContext.request.contextPath}/api/lookup/machinetype',
-                                         key: 'id',
-                                     },
-                                 },
-
-                                 contentTemplate(e) {
-                                     const value = e.component.option('value');
-                                     const $dataGridMachineTypeId = $('<div>').dxDataGrid({
-                                         dataSource: e.component.getDataSource(),
-                                         columns: ['Desc'],
-                                         hoverStateEnabled: true,
-                                         paging: {enabled: true, pageSize: 10},
-                                         filterRow: {visible: true},
-                                         scrolling: {mode: 'virtual'},
-                                         selection: {mode: 'single'},
-                                         selectedRowKeys: [value],
-                                         height: '100%',
-                                         onSelectionChanged(selectedItems) {
-                                             const keys = selectedItems.selectedRowKeys;
-                                             const hasSelection = keys.length;
-                                             e.component.option('value', hasSelection ? keys[0] : null);
-                                         },
-                                     });
-                                     dataGridMachineTypeId = $dataGridMachineTypeId.dxDataGrid('instance');
-                                     e.component.on('valueChanged', (args) => {
-                                         dataGridMachineTypeId.selectRows(args.value, false);
-                                         e.component.close();
-                                     });
-
-                                     return $dataGridMachineTypeId;
-                                 },
-                             });
+                             $('#frmEditMachineTypeIdLookup').dxLookup({
+                                            dataSource: {
+                                                store: {
+                                                    type: 'odata',
+                                                    url: '${pageContext.request.contextPath}/api/lookup/machinetype',
+                                                    key: 'id',
+                                                },
+                                            },
+                                            searchMode: "contains",
+                                            valueExpr: 'id',
+                                            displayExpr: 'desc',
+                                            value: '${tmpVal.getArticleTypeId()}',
+                                            onValueChanged(e) {
+                                                $('#frmEditMachineTypeId').val(e.value);
+                                            },
+                                        });
 
                 const editorNote = $('.frmEditNote').dxHtmlEditor({
                                             height: 300,
                                             toolbar: {
-                                                items: [
-                                                    'undo', 'redo', 'separator',
-                                                    {
-                                                        name: 'size',
-                                                        acceptedValues: ['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt'],
-                                                    },
-                                                    'separator', 'bold', 'italic', 'strike', 'underline', 'separator',
-                                                    'alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'separator',
-                                                    'orderedList', 'bulletList', 'separator',
-                                                    {
-                                                        name: 'header',
-                                                        acceptedValues: [false, 1, 2, 3, 4, 5],
-                                                    }, 'separator',
-                                                    'color', 'background', 'separator',
-                                                    'link', 'separator',
-                                                    'clear', 'codeBlock', 'blockquote', 'separator',
-                                                    'insertTable', 'deleteTable',
-                                                    'insertRowAbove', 'insertRowBelow', 'deleteRow',
-                                                    'insertColumnLeft', 'insertColumnRight', 'deleteColumn',
-                                                ],
-                                            },
-                                            mediaResizing: {
-                                                enabled: true,
-                                            },
+                                            items: [
+                                                'undo', 'redo', 'separator',
+                                                {
+                                                    name: 'size',
+                                                    acceptedValues: ['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt'],
+                                                },
+                                                'separator', 'bold', 'italic', 'strike', 'underline', 'separator',
+                                                'alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'separator',
+                                                'orderedList', 'bulletList', 'separator',
+                                                {
+                                                    name: 'header',
+                                                    acceptedValues: [false, 1, 2, 3, 4, 5],
+                                                }, 'separator',
+                                                'color', 'background', 'separator',
+                                                'link', 'separator',
+                                                'clear', 'codeBlock', 'blockquote', 'separator',
+                                                'insertTable', 'deleteTable',
+                                                'insertRowAbove', 'insertRowBelow', 'deleteRow',
+                                                'insertColumnLeft', 'insertColumnRight', 'deleteColumn',
+                                            ],
+                                        },
+                                        mediaResizing: {
+                                            enabled: true,
+                                        },
                                             onValueChanged({ component, value }) {
                                                 $('#frmEditNote').text(prettierFormat(value) );
                                             },
@@ -240,30 +215,30 @@
                                         const editorDesc = $('.frmEditDesc').dxHtmlEditor({
                                             height: 300,
                                             toolbar: {
-                                                items: [
-                                                    'undo', 'redo', 'separator',
-                                                    {
-                                                        name: 'size',
-                                                        acceptedValues: ['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt'],
-                                                    },
-                                                    'separator', 'bold', 'italic', 'strike', 'underline', 'separator',
-                                                    'alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'separator',
-                                                    'orderedList', 'bulletList', 'separator',
-                                                    {
-                                                        name: 'header',
-                                                        acceptedValues: [false, 1, 2, 3, 4, 5],
-                                                    }, 'separator',
-                                                    'color', 'background', 'separator',
-                                                    'link', 'separator',
-                                                    'clear', 'codeBlock', 'blockquote', 'separator',
-                                                    'insertTable', 'deleteTable',
-                                                    'insertRowAbove', 'insertRowBelow', 'deleteRow',
-                                                    'insertColumnLeft', 'insertColumnRight', 'deleteColumn',
-                                                ],
-                                            },
-                                            mediaResizing: {
-                                                enabled: true,
-                                            },
+                                            items: [
+                                                'undo', 'redo', 'separator',
+                                                {
+                                                    name: 'size',
+                                                    acceptedValues: ['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt'],
+                                                },
+                                                'separator', 'bold', 'italic', 'strike', 'underline', 'separator',
+                                                'alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'separator',
+                                                'orderedList', 'bulletList', 'separator',
+                                                {
+                                                    name: 'header',
+                                                    acceptedValues: [false, 1, 2, 3, 4, 5],
+                                                }, 'separator',
+                                                'color', 'background', 'separator',
+                                                'link', 'separator',
+                                                'clear', 'codeBlock', 'blockquote', 'separator',
+                                                'insertTable', 'deleteTable',
+                                                'insertRowAbove', 'insertRowBelow', 'deleteRow',
+                                                'insertColumnLeft', 'insertColumnRight', 'deleteColumn',
+                                            ],
+                                        },
+                                        mediaResizing: {
+                                            enabled: true,
+                                        },
                                             onValueChanged({ component, value }) {
                                                 $('#frmEditDesc').text(prettierFormat(value) );
                                             },

@@ -27,8 +27,8 @@
                                             <input type="hidden" name="frmEditMachineTypeId"
                                                    value="${tmpVal.getMachineTypeId()}">
 
-                                            <input type="hidden" name="frmEditDesc">
-                                            <input type="hidden" name="frmEditNote">
+                                            <input type="hidden" name="frmEditDesc" id="frmEditDesc">
+                                            <input type="hidden" name="frmEditNote" id="frmEditNote">
 
                                             <div class="mb-3">
                                                 <label for="frmEditCode">Codice</label>
@@ -38,8 +38,8 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="frmEditDesc">Descrizione</label>
-                                                <div id="frmEditDesc"
+                                                <label for="frmEditDescEditor">Descrizione</label>
+                                                <div id="frmEditDescEditor"
                                                      class="form-control frmEditDesc"></div>
                                             </div>
 
@@ -90,8 +90,8 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="frmEditNote">Note</label>
-                                                <div id="frmEditNote"
+                                                <label for="frmEditNoteEditor">Note</label>
+                                                <div id="frmEditNoteEditor"
                                                      class="frmEditNote form-control"></div>
                                             </div>
 
@@ -147,32 +147,32 @@
 
                                      const editorNote = $('.frmEditNote').dxHtmlEditor({
                                          height: 300,
-                                         value: ${tmpVal.getNote()},
+                                         value: '${tmpVal.getNote()}',
                                          toolbar: {
-                                             items: [
-                                                 'undo', 'redo', 'separator',
-                                                 {
-                                                     name: 'size',
-                                                     acceptedValues: ['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt'],
-                                                 },
-                                                 'separator', 'bold', 'italic', 'strike', 'underline', 'separator',
-                                                 'alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'separator',
-                                                 'orderedList', 'bulletList', 'separator',
-                                                 {
-                                                     name: 'header',
-                                                     acceptedValues: [false, 1, 2, 3, 4, 5],
-                                                 }, 'separator',
-                                                 'color', 'background', 'separator',
-                                                 'link', 'separator',
-                                                 'clear', 'codeBlock', 'blockquote', 'separator',
-                                                 'insertTable', 'deleteTable',
-                                                 'insertRowAbove', 'insertRowBelow', 'deleteRow',
-                                                 'insertColumnLeft', 'insertColumnRight', 'deleteColumn',
-                                             ],
-                                         },
-                                         mediaResizing: {
-                                             enabled: true,
-                                         },
+                                            items: [
+                                                'undo', 'redo', 'separator',
+                                                {
+                                                    name: 'size',
+                                                    acceptedValues: ['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt'],
+                                                },
+                                                'separator', 'bold', 'italic', 'strike', 'underline', 'separator',
+                                                'alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'separator',
+                                                'orderedList', 'bulletList', 'separator',
+                                                {
+                                                    name: 'header',
+                                                    acceptedValues: [false, 1, 2, 3, 4, 5],
+                                                }, 'separator',
+                                                'color', 'background', 'separator',
+                                                'link', 'separator',
+                                                'clear', 'codeBlock', 'blockquote', 'separator',
+                                                'insertTable', 'deleteTable',
+                                                'insertRowAbove', 'insertRowBelow', 'deleteRow',
+                                                'insertColumnLeft', 'insertColumnRight', 'deleteColumn',
+                                            ],
+                                        },
+                                        mediaResizing: {
+                                            enabled: true,
+                                        },
                                          onValueChanged({component, value}) {
                                              $('#frmEditNote').text(prettierFormat(value));
                                          },
@@ -180,32 +180,32 @@
 
                                      const editorDesc = $('.frmEditDesc').dxHtmlEditor({
                                          height: 300,
-                                         value: ${tmpVal.getDesc()},
+                                         value: '${tmpVal.getDesc()}',
                                          toolbar: {
-                                             items: [
-                                                 'undo', 'redo', 'separator',
-                                                 {
-                                                     name: 'size',
-                                                     acceptedValues: ['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt'],
-                                                 },
-                                                 'separator', 'bold', 'italic', 'strike', 'underline', 'separator',
-                                                 'alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'separator',
-                                                 'orderedList', 'bulletList', 'separator',
-                                                 {
-                                                     name: 'header',
-                                                     acceptedValues: [false, 1, 2, 3, 4, 5],
-                                                 }, 'separator',
-                                                 'color', 'background', 'separator',
-                                                 'link', 'separator',
-                                                 'clear', 'codeBlock', 'blockquote', 'separator',
-                                                 'insertTable', 'deleteTable',
-                                                 'insertRowAbove', 'insertRowBelow', 'deleteRow',
-                                                 'insertColumnLeft', 'insertColumnRight', 'deleteColumn',
-                                             ],
-                                         },
-                                         mediaResizing: {
-                                             enabled: true,
-                                         },
+                                            items: [
+                                                'undo', 'redo', 'separator',
+                                                {
+                                                    name: 'size',
+                                                    acceptedValues: ['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt'],
+                                                },
+                                                'separator', 'bold', 'italic', 'strike', 'underline', 'separator',
+                                                'alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'separator',
+                                                'orderedList', 'bulletList', 'separator',
+                                                {
+                                                    name: 'header',
+                                                    acceptedValues: [false, 1, 2, 3, 4, 5],
+                                                }, 'separator',
+                                                'color', 'background', 'separator',
+                                                'link', 'separator',
+                                                'clear', 'codeBlock', 'blockquote', 'separator',
+                                                'insertTable', 'deleteTable',
+                                                'insertRowAbove', 'insertRowBelow', 'deleteRow',
+                                                'insertColumnLeft', 'insertColumnRight', 'deleteColumn',
+                                            ],
+                                        },
+                                        mediaResizing: {
+                                            enabled: true,
+                                        },
                                          onValueChanged({component, value}) {
                                              $('#frmEditDesc').text(prettierFormat(value));
                                          },

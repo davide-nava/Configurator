@@ -57,39 +57,6 @@ function createRichEdit(exportUrl, documentAsBase64) {
 }
 
 
-
-$(() => {
-    const editor = $('.html-editor').dxHtmlEditor({
-        height: 300,
-        toolbar: {
-            items: [
-                'undo', 'redo', 'separator',
-                {
-                    name: 'size',
-                    acceptedValues: ['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt'],
-                },
-                'separator', 'bold', 'italic', 'strike', 'underline', 'separator',
-                'alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'separator',
-                'orderedList', 'bulletList', 'separator',
-                {
-                    name: 'header',
-                    acceptedValues: [false, 1, 2, 3, 4, 5],
-                }, 'separator',
-                'color', 'background', 'separator',
-                'link',  'separator',
-                'clear', 'codeBlock', 'blockquote', 'separator',
-                'insertTable', 'deleteTable',
-                'insertRowAbove', 'insertRowBelow', 'deleteRow',
-                'insertColumnLeft', 'insertColumnRight', 'deleteColumn',
-            ],
-        },
-        mediaResizing: {
-            enabled: true,
-        },
-    }).dxHtmlEditor('instance');
-});
-
-
 function prettierFormat(markup) {
     return prettier.format(markup, {
         parser: 'html',

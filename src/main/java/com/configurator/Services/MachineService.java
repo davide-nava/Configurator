@@ -187,6 +187,39 @@ public class MachineService extends BaseService implements IMachineService {
     }
 
     @Override
+    public MachineViewModel getViewModel(UUID id) throws SQLException {
+        MachineViewModel result = null;
+        Connection con = null;
+        ResultSet rs = null;
+
+        try {
+            con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "select Machine.*,   MachineType.Desc as 'MachineTypeDesc'  from  Machine inner join MachineType on MachineType.MachineTypeId = Machine.MachineTypeId where MachineId=? ");
+
+            ps.setString(1, id.toString().toUpperCase());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                result = loadViewModelFromResultSet(rs);
+            }
+
+        } catch (SQLException exception) {
+            result = null;
+            printSQLException(exception);
+        } finally {
+            if (rs != null)
+                rs.close();
+
+            if (con != null)
+                con.close();
+
+            return result;
+        }
+    }
+
+    @Override
     public List<MachineEntity> get() throws SQLException {
         List<MachineEntity> result = new ArrayList<MachineEntity>();
         Connection con = null;

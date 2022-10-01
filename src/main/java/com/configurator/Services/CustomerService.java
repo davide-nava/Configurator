@@ -125,7 +125,7 @@ public class CustomerService extends BaseService implements ICustomerService {
             PreparedStatement ps = con.prepareStatement(
                     "select * from Customer where CustomerId=? ");
 
-            ps.setString(1,   id.toString().toUpperCase());
+            ps.setString(1, id.toString().toUpperCase());
 
             rs = ps.executeQuery();
 

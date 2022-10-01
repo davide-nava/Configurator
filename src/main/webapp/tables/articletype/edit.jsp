@@ -24,21 +24,23 @@
                                         <form id="frmEdit" method="post"
                                               action="${pageContext.request.contextPath}/articletype/update">
 
-       <input type="hidden" name="frmEditDesc" >
+       <input type="hidden" name="frmEditDesc" id="frmEditDesc" >
 
                                             <input type="hidden" name="frmEditArticleTypeId"
                                                    value="${tmpVal.getArticleTypeId()}">
 
-                                            <div class="mb-3">
+
+                                       <div class="mb-3">
                                                 <label for="frmEditCode">Codice</label>
                                                 <input type="text" class="form-control" id="frmEditCode"
                                                        name="frmEditCode" required
-                                                       placeholder="Codice" value="${tmpVal.getCode()}">
+                                                       placeholder="Codice">
                                             </div>
-
-                                            <div class="mb-3">
-                                                <label for="frmEditDesc">Codice</label>
-                                                <div id="frmEditDesc" class="frmEditDesc form-control"></div>
+                                            
+                            <div class="mb-3">
+                                                <label for="frmEditDescEditor">Descrizione</label>
+                                                <div id="frmEditDescEditor"
+                                                     class="frmEditDesc form-control"></div>
                                             </div>
 
                                             <div class="mb-3">
@@ -92,7 +94,7 @@
 
                                     const editorDesc = $('.frmEditDesc').dxHtmlEditor({
                                         height: 300,
-                                        value: ${tmpVal.getDesc()},
+                                        value: '${tmpVal.getDesc()}',
                                         toolbar: {
                                             items: [
                                                 'undo', 'redo', 'separator',

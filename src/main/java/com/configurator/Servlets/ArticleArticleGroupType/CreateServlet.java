@@ -1,16 +1,15 @@
 package com.configurator.Servlets.ArticleArticleGroupType;
 
-import java.io.IOException;
-import java.util.UUID;
-
 import com.configurator.Entities.ArticleArticleGroupTypeEntity;
 import com.configurator.Services.ArticleArticleGroupTypeService;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+import java.util.UUID;
 
 @WebServlet("/articlearticlegrouptype/create")
 public class CreateServlet extends HttpServlet {

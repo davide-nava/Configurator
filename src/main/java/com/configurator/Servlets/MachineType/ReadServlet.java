@@ -1,17 +1,17 @@
 package com.configurator.Servlets.MachineType;
 
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.UUID;
-
 import com.configurator.Entities.MachineTypeEntity;
 import com.configurator.Services.MachineTypeService;
-
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.UUID;
 
 @WebServlet("/machinetype/read")
 public class ReadServlet extends HttpServlet {
@@ -26,8 +26,8 @@ public class ReadServlet extends HttpServlet {
 
             req.setAttribute("tmpVal", tmpVal);
 
-            req.getRequestDispatcher(req.getContextPath() + "/tables/machinetype/edit.jsp").forward(req, resp);
-
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/tables/machinetype/edit.jsp");
+            dispatcher.forward(req, resp);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

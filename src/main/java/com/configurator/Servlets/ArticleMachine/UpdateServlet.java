@@ -1,16 +1,15 @@
 package com.configurator.Servlets.ArticleMachine;
 
-import java.io.IOException;
-import java.util.UUID;
-
 import com.configurator.Entities.ArticleMachineEntity;
 import com.configurator.Services.ArticleMachineService;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+import java.util.UUID;
 
 @WebServlet("/articlemachine/update")
 public class UpdateServlet extends HttpServlet {

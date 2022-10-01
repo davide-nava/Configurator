@@ -24,7 +24,7 @@
                                         <form id="frmEdit" method="post"
                                               action="${pageContext.request.contextPath}/articlegrouptype/update">
 
-                                            <input type="hidden" name="frmEditDesc">
+                                            <input type="hidden" name="frmEditDesc" id="frmEditDesc">
 
                                             <input type="hidden" name="frmEditArticleGroupTypeId"
                                                    value="${tmpVal.getArticleGroupTypeId()}">
@@ -44,8 +44,8 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="frmEditDesc">Descrizione</label>
-                                                <div id="frmEditDesc"
+                                                <label for="frmEditDescEditor">Descrizione</label>
+                                                <div id="frmEditDescEditor"
                                                      class="frmEditDesc form-control"></div>
                                             </div>
 
@@ -93,21 +93,12 @@
 
                                         const editorDesc = $('.frmEditDesc').dxHtmlEditor({
                                             height: 300,
-                                            value: ${tmpVal.getDesc()},
-                                            toolbar: {
+                                            value: '${tmpVal.getDesc()}',
+                                           toolbar: {
                                                 items: [
-                                                    'undo', 'redo', 'separator',
-                                                    {
-                                                        name: 'size',
-                                                        acceptedValues: ['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt'],
-                                                    },
-                                                    'separator', 'bold', 'italic', 'strike', 'underline', 'separator',
+                                                      'bold', 'italic', 'strike', 'underline', 'separator',
                                                     'alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'separator',
                                                     'orderedList', 'bulletList', 'separator',
-                                                    {
-                                                        name: 'header',
-                                                        acceptedValues: [false, 1, 2, 3, 4, 5],
-                                                    }, 'separator',
                                                     'color', 'background', 'separator',
                                                     'link', 'separator',
                                                     'clear', 'codeBlock', 'blockquote', 'separator',
@@ -119,7 +110,7 @@
                                             mediaResizing: {
                                                 enabled: true,
                                             },
-                                            onValueChanged({component, value}) {
+                                              onValueChanged({component, value}) {
                                                 $('#frmEditDesc').text(prettierFormat(value));
                                             },
                                         }).dxHtmlEditor('instance');

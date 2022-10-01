@@ -16,9 +16,9 @@
                                     <div class="col ">
 
                                         <form id="frmEdit" method="post"
-                                              action="${pageContext.request.contextPath}/customer/create">
+                                              action="${pageContext.request.contextPath}/articletype/create">
 
-                                            <input type="hidden" name="frmEditDesc">
+                                            <input type="hidden" name="frmEditDesc" id="frmEditDesc" >
 
                                             <div class="mb-3">
                                                 <label for="frmEditCode">Codice</label>
@@ -27,9 +27,10 @@
                                                        placeholder="Codice">
                                             </div>
 
-                                            <div class="mb-3">
-                                                <label for="frmEditDesc">Codice</label>
-                                                <div id="frmEditDesc" class="frmEditDesc form-control"></div>
+<div class="mb-3">
+                                                <label for="frmEditDescEditor">Descrizione</label>
+                                                <div id="frmEditDescEditor"
+                                                     class="frmEditDesc form-control"></div>
                                             </div>
 
                                             <div class="mb-3">
@@ -55,28 +56,19 @@
 
                                 <script>
                                     $(function () {
-                                        $('#menuSxCustomer').addClass('active');
+                                        $('#menuSxArticleType').addClass('active');
                                     });
 
                                     $(() => {
 
                                         const editorDesc = $('.frmEditDesc').dxHtmlEditor({
                                             height: 300,
-                                            value: ${tmpVal.getDesc()},
-                                            toolbar: {
+                                            value: '${tmpVal.getDesc()}',
+                                          toolbar: {
                                                 items: [
-                                                    'undo', 'redo', 'separator',
-                                                    {
-                                                        name: 'size',
-                                                        acceptedValues: ['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt'],
-                                                    },
-                                                    'separator', 'bold', 'italic', 'strike', 'underline', 'separator',
+                                                      'bold', 'italic', 'strike', 'underline', 'separator',
                                                     'alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'separator',
                                                     'orderedList', 'bulletList', 'separator',
-                                                    {
-                                                        name: 'header',
-                                                        acceptedValues: [false, 1, 2, 3, 4, 5],
-                                                    }, 'separator',
                                                     'color', 'background', 'separator',
                                                     'link', 'separator',
                                                     'clear', 'codeBlock', 'blockquote', 'separator',
@@ -88,6 +80,7 @@
                                             mediaResizing: {
                                                 enabled: true,
                                             },
+                                            
                                             onValueChanged({component, value}) {
                                                 $('#frmEditDesc').text(prettierFormat(value));
                                             },

@@ -2,6 +2,7 @@ package com.configurator.Servlets.Customer;
 
 import com.configurator.Entities.CustomerEntity;
 import com.configurator.Services.CustomerService;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -26,7 +27,8 @@ public class ReadServlet extends HttpServlet {
 
             req.setAttribute("tmpVal", tmpVal);
 
-            req.getRequestDispatcher( req.getContextPath() +"/tables/customer/edit.jsp").forward(req, resp);
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/tables/customer/edit.jsp");
+            dispatcher.forward(req, resp);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
