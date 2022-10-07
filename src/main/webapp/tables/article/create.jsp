@@ -50,13 +50,6 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="frmEditImg">Immagine</label>
-                                                <input type="text" class="form-control" id="frmEditImg"
-                                                       name="frmEditImg" required
-                                                       placeholder="1" >
-                                            </div>
-
-                                            <div class="mb-3">
                                                 <label for="frmEditBasePrice">Prezzo base</label>
                                                 <input type="number" class="form-control" id="frmEditBasePrice"
                                                        name="frmEditBasePrice" required

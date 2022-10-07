@@ -67,13 +67,6 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="frmEditImg">Immagine</label>
-                                                <input type="text" class="form-control" id="frmEditImg"
-                                                       name="frmEditImg"
-                                                       placeholder="immagine" value="${tmpVal.getImg()}">
-                                            </div>
-
-                                            <div class="mb-3">
                                                 <label for="frmEditDoc">Documentazione</label>
                                                 <input type="text" class="form-control" id="frmEditDoc"
                                                        name="frmEditDoc" required

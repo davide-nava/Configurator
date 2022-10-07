@@ -58,14 +58,6 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="frmEditImg">Immagine</label>
-                                                <input type="text" class="form-control" id="frmEditImg"
-                                                       value="${tmpVal.getImg()}"
-                                                       name="frmEditImg"
-                                                       placeholder="Immagine">
-                                            </div>
-
-                                            <div class="mb-3">
                                                 <label for="frmEditAxes">Assi</label>
                                                 <input type="number" class="form-control" id="frmEditAxes"
                                                        value="${tmpVal.getAxes()}"

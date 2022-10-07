@@ -14,7 +14,6 @@ create table ArticleType
         primary key
         unique,
     Desc          TEXT    not null,
-    Code          TEXT    not null,
     Year          INTEGER not null
 );
 
@@ -23,16 +22,15 @@ create table Article
     ArticleId     TEXT not null
         primary key
         unique,
-    Img           TEXT,
     Doc           TEXT,
     Code          TEXT not null,
     Name          TEXT not null,
     Desc          TEXT not null,
-    IsMachine INTEGER  not null  default 0,
     ArticleTypeId TEXT not null
         references ArticleType
             on delete cascade,
-    BasePrice     NUMERIC
+    BasePrice     NUMERIC,
+    IsMachine     INTEGER
 );
 
 create table ArticleArticleGroupType
@@ -60,14 +58,30 @@ create table Customer
 
 create table Invoice
 (
-    InvoiceId  TEXT not null
+    InvoiceId  TEXT    not null
         primary key
         unique,
-    Dt         TEXT not null,
-    CustomerId TEXT not null
+    Dt         NUMERIC not null,
+    CustomerId TEXT    not null
         references Customer
             on delete cascade,
-    Total      NUMERIC default 0
+    Total      NUMERIC default 0,
+    Nr         TEXT
+);
+
+create table InvoiceItem
+(
+    InvoiceItemId TEXT    not null
+        primary key
+        unique,
+    Dt            NUMERIC not null,
+    InvoiceId     TEXT    not null
+        references Invoice
+            on delete cascade,
+    ArticleId     TEXT
+        references Article
+            on delete cascade,
+    Qta           NUMERIC default 1
 );
 
 create table MachineType
@@ -77,9 +91,8 @@ create table MachineType
         unique,
     Desc          TEXT,
     Code          TEXT,
-    Dt            TEXT,
+    Dt            NUMERIC,
     Nr            TEXT,
-    Img           TEXT,
     Axes          INTEGER,
     Cnc           TEXT,
     Note          INTEGER,
@@ -109,7 +122,6 @@ create table Machine
     Year            INTEGER not null,
     Code            TEXT    not null,
     Desc            TEXT,
-    Img             TEXT,
     Doc             TEXT,
     MachineTypeId   TEXT    not null
         references MachineType,
@@ -117,10 +129,10 @@ create table Machine
     Note            TEXT,
     ProductionOrder TEXT,
     Address         TEXT,
-    DtDelivery      TEXT,
-    DtAcceptance    TEXT,
-    DtEndWarranty   TEXT,
-    DtStartWarranty TEXT
+    DtDelivery      NUMERIC,
+    DtAcceptance    NUMERIC,
+    DtEndWarranty   NUMERIC,
+    DtStartWarranty NUMERIC
 );
 
 create table ArticleMachine
@@ -136,20 +148,5 @@ create table ArticleMachine
             on delete cascade,
     Qta              NUMERIC default 1,
     Note             TEXT
-);
-
-create table InvoiceItem
-(
-    InvoiceItemId TEXT not null
-        primary key
-        unique,
-    Dt            TEXT not null,
-    InvoiceId     TEXT not null
-        references Invoice
-            on delete cascade,
-    ArticleId     TEXT
-        references Article
-            on delete cascade,
-    Qta           NUMERIC default 1
 );
 
