@@ -171,36 +171,41 @@
 
                                     $(() => {
 
+                                        const dtStartWarranty = new Date('${tmpVal.getDtStartWarranty()}');
+                                        const dtEndWarranty = new Date('${tmpVal.getDtEndWarranty()}');
+                                        const dtAcceptance = new Date('${tmpVal.getDtAcceptance()}');
+                                        const dtDelivery = new Date('${tmpVal.getDtDelivery()}');
+
                                         $('#frmEditDtStartWarrantyDx').dxDateBox({
                                             type: 'date',
                                             displayFormat: 'dd.MM.yyyy',
-                                            value: ${tmpVal.getDtStartWarranty()},
+                                            value: dtStartWarranty,
                                             onValueChanged(data) {
-                                                $('#frmEditDtStartWarranty').val(data.value.toString("yyyy-MM-dd"));
+                                                $('#frmEditDtStartWarranty').val(data.value.toISOString());
                                             },
                                         });
                                         $('#frmEditDtEndWarrantyDx').dxDateBox({
                                             type: 'date',
                                             displayFormat: 'dd.MM.yyyy',
-                                            value: ${tmpVal.getDtEndWarranty()},
+                                            value: dtEndWarranty,
                                             onValueChanged(data) {
-                                                $('#frmEditDtEndWarranty').val(data.value.toString("yyyy-MM-dd"));
+                                                $('#frmEditDtEndWarranty').val(data.value.toISOString());
                                             },
                                         });
                                         $('#frmEditDtAcceptanceDx').dxDateBox({
                                             type: 'date',
                                             displayFormat: 'dd.MM.yyyy',
-                                            value: ${tmpVal.getDtAcceptance()},
+                                            value: dtAcceptance,
                                             onValueChanged(data) {
-                                                $('#frmEditDtAcceptance').val(data.value.toString("yyyy-MM-dd"));
+                                                $('#frmEditDtAcceptance').val(data.value.toISOString());
                                             },
                                         });
                                         $('#frmEditDtDeliveryDx').dxDateBox({
                                             type: 'date',
                                             displayFormat: 'dd.MM.yyyy',
-                                            value: ${tmpVal.getDtDelivery()},
+                                            value: dtDelivery,
                                             onValueChanged(data) {
-                                                $('#frmEditDtDelivery').val(data.value.toString("yyyy-MM-dd"));
+                                                $('#frmEditDtDelivery').val(data.value.toISOString());
                                             },
                                         });
 
@@ -223,7 +228,6 @@
                                         }).dxValidator({
                                             validationRules: [{ type: 'required' }]
                                         });
-
 
                                     });
                                 </script>

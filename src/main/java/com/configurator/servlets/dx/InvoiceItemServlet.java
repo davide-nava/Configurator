@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "InvoiceItemServlet", urlPatterns = {"/api/dx/invoiceitem"})
+@WebServlet("/api/dx/invoiceitem")
 public class InvoiceItemServlet extends BaseServlet {
 
     private static final long serialVersionUID = 1L;

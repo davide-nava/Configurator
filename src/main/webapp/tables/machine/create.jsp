@@ -31,7 +31,6 @@
                                                        placeholder="Nr">
                                             </div>
 
-
                                             <div class="mb-3">
                                                 <label for="frmEditMachineTypeIdLookup">Tipo macchina</label>
                                                 <div class="form-control" id="frmEditMachineTypeIdLookup"
@@ -136,17 +135,17 @@
                          $(() => {
                              const now = new Date();
 
-                             $('#frmEditDtStartWarranty').val(now.toString("yyyy-MM-dd"));
-                             $('#frmEditDtEndWarranty').val(now.toString("yyyy-MM-dd"));
-                             $('#frmEditDtAcceptance').val(now.toString("yyyy-MM-dd"));
-                             $('#frmEditDtDelivery').val(now.toString("yyyy-MM-dd"));
+                             $('#frmEditDtStartWarranty').val(now.toISOString());
+                             $('#frmEditDtEndWarranty').val(now.toISOString());
+                             $('#frmEditDtAcceptance').val(now.toISOString());
+                             $('#frmEditDtDelivery').val(now.toISOString());
 
                              $('#frmEditDtStartWarrantyDx').dxDateBox({
                                  type: 'date',
                                  displayFormat: 'dd.MM.yyyy',
                                  value: now,
                                  onValueChanged(data) {
-                                     $('#frmEditDtStartWarranty').val(data.value.toString("yyyy-MM-dd"));
+                                     $('#frmEditDtStartWarranty').val(data.value.toISOString());
                                  },
                              });
                              $('#frmEditDtEndWarrantyDx').dxDateBox({
@@ -154,7 +153,7 @@
                                  displayFormat: 'dd.MM.yyyy',
                                  value: now,
                                  onValueChanged(data) {
-                                     $('#frmEditDtEndWarranty').val(data.value.toString("yyyy-MM-dd"));
+                                     $('#frmEditDtEndWarranty').val(data.value.toISOString());
                                  },
                              });
                              $('#frmEditDtAcceptanceDx').dxDateBox({
@@ -162,7 +161,7 @@
                                  displayFormat: 'dd.MM.yyyy',
                                  value: now,
                                  onValueChanged(data) {
-                                     $('#frmEditDtAcceptance').val(data.value.toString("yyyy-MM-dd"));
+                                     $('#frmEditDtAcceptance').val(data.value.toISOString());
                                  },
                              });
                              $('#frmEditDtDeliveryDx').dxDateBox({
@@ -170,7 +169,7 @@
                                  displayFormat: 'dd.MM.yyyy',
                                  value: now,
                                  onValueChanged(data) {
-                                     $('#frmEditDtDelivery').val(data.value.toString("yyyy-MM-dd"));
+                                     $('#frmEditDtDelivery').val(data.value.toISOString());
                                  },
                              });
 

@@ -11,8 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
-@WebServlet("/machinetype/create")
+@WebServlet( "/machinetype/create")
 public class CreateServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -22,10 +23,11 @@ public class CreateServlet extends HttpServlet {
     protected void doPost(@NotNull HttpServletRequest req, @NotNull HttpServletResponse resp) {
         try {
             MachineTypeEntity tmpVal = new MachineTypeEntity();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
             tmpVal.setDesc(req.getParameter("frmEditDesc"));
             tmpVal.setCode(req.getParameter("frmEditCode"));
-            tmpVal.setDt(new SimpleDateFormat("dd/MM/yyyy").parse(req.getParameter("frmEditDt")));
+            tmpVal.setDt(new Date(sdf.parse(req.getParameter("frmEditDt")).getTime()));
             tmpVal.setNr(req.getParameter("frmEditNr"));
             tmpVal.setAxes(Integer.parseInt(req.getParameter("frmEditAxes")));
             tmpVal.setCnc(req.getParameter("frmEditCnc"));

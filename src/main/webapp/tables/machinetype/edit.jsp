@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@page import="java.util.*" %>
 
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
@@ -26,9 +25,9 @@
 
                                             <input type="hidden" name="frmEditMachineTypeId"
                                                    value="${tmpVal.getMachineTypeId()}">
+                                            <input type="hidden" name="frmEditDt" id="frmEditDt"
+                                                   value="${tmpVal.getDt()}">
 
-                                            <input type="hidden" name="frmEditDesc" id="frmEditDesc">
-                                            <input type="hidden" name="frmEditNote" id="frmEditNote">
 
                                             <div class="mb-3">
                                                 <label for="frmEditCode">Codice</label>
@@ -38,14 +37,15 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="frmEditDescEditor">Descrizione</label>
-                                                <div id="frmEditDescEditor"
-                                                     class="form-control frmEditDesc"></div>
+                                                <label for="frmEditDesc">Descrizione</label>
+                                                <textarea id="frmEditDesc" name="frmEditDesc" rows="5"
+                                                          style="height: 250px;"
+                                                          class="form-control text-start">${tmpVal.getDesc()}</textarea>
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="frmEditDt">Data</label>
-                                                <div id="frmEditDt" name="frmEditDt" class="form-control"
+                                                <label for="frmEditDtDx">Data</label>
+                                                <div id="frmEditDtDx" name="frmEditDtDx" class="form-control"
                                                      required></div>
                                             </div>
 
@@ -82,9 +82,10 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="frmEditNoteEditor">Note</label>
-                                                <div id="frmEditNoteEditor"
-                                                     class="frmEditNote form-control"></div>
+                                                <label for="frmEditNote">Note</label>
+                                                <textarea id="frmEditNote" name="frmEditNote" rows="5"
+                                                          style="height: 250px;"
+                                                          class="form-control text-start">${tmpVal.getNote()}</textarea>
                                             </div>
 
                                             <div class="d-grid gap-1">
@@ -131,77 +132,16 @@
 
                                  $(() => {
 
-                                     $('#frmEditDt').dxDateBox({
+                                     const dt  = new Date('${tmpVal.getDt()}');
+
+                                     $('#frmEditDtDx').dxDateBox({
                                          type: 'date',
                                          displayFormat: 'dd.MM.yyyy',
-                                         value: ${tmpVal.getDt()},
+                                         value: dt,
+                                         onValueChanged(data) {
+                                             $('#frmEditDt').val(data.value.toISOString());
+                                         },
                                      });
-
-                                     const editorNote = $('.frmEditNote').dxHtmlEditor({
-                                         height: 300,
-                                         value: '${tmpVal.getNote()}',
-                                         toolbar: {
-                                            items: [
-                                                'undo', 'redo', 'separator',
-                                                {
-                                                    name: 'size',
-                                                    acceptedValues: ['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt'],
-                                                },
-                                                'separator', 'bold', 'italic', 'strike', 'underline', 'separator',
-                                                'alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'separator',
-                                                'orderedList', 'bulletList', 'separator',
-                                                {
-                                                    name: 'header',
-                                                    acceptedValues: [false, 1, 2, 3, 4, 5],
-                                                }, 'separator',
-                                                'color', 'background', 'separator',
-                                                'link', 'separator',
-                                                'clear', 'codeBlock', 'blockquote', 'separator',
-                                                'insertTable', 'deleteTable',
-                                                'insertRowAbove', 'insertRowBelow', 'deleteRow',
-                                                'insertColumnLeft', 'insertColumnRight', 'deleteColumn',
-                                            ],
-                                        },
-                                        mediaResizing: {
-                                            enabled: true,
-                                        },
-                                         onValueChanged({component, value}) {
-                                             $('#frmEditNote').text(prettierFormat(value));
-                                         },
-                                     }).dxHtmlEditor('instance');
-
-                                     const editorDesc = $('.frmEditDesc').dxHtmlEditor({
-                                         height: 300,
-                                         value: '${tmpVal.getDesc()}',
-                                         toolbar: {
-                                            items: [
-                                                'undo', 'redo', 'separator',
-                                                {
-                                                    name: 'size',
-                                                    acceptedValues: ['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt'],
-                                                },
-                                                'separator', 'bold', 'italic', 'strike', 'underline', 'separator',
-                                                'alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'separator',
-                                                'orderedList', 'bulletList', 'separator',
-                                                {
-                                                    name: 'header',
-                                                    acceptedValues: [false, 1, 2, 3, 4, 5],
-                                                }, 'separator',
-                                                'color', 'background', 'separator',
-                                                'link', 'separator',
-                                                'clear', 'codeBlock', 'blockquote', 'separator',
-                                                'insertTable', 'deleteTable',
-                                                'insertRowAbove', 'insertRowBelow', 'deleteRow',
-                                                'insertColumnLeft', 'insertColumnRight', 'deleteColumn',
-                                            ],
-                                        },
-                                        mediaResizing: {
-                                            enabled: true,
-                                        },
-                                         onValueChanged({component, value}) {
-                                             $('#frmEditDesc').text(prettierFormat(value));
-                                         },
-                                     }).dxHtmlEditor('instance');
 
                                  });
 
