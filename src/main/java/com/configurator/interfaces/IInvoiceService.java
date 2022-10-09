@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface IInvoiceService extends IBaseService<InvoiceEntity> {
+
     List<InvoiceViewModel> getViewModel() throws SQLException;
 
     InvoiceViewModel getViewModel(UUID id) throws SQLException;

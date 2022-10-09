@@ -8,11 +8,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.UUID;
-
 @WebServlet("/machinetype/read")
 public class ReadServlet extends HttpServlet {
 
@@ -20,7 +20,7 @@ public class ReadServlet extends HttpServlet {
     private final MachineTypeService service = new MachineTypeService();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(@NotNull HttpServletRequest req, @NotNull HttpServletResponse resp) throws IOException {
         try {
             MachineTypeEntity tmpVal = service.get(UUID.fromString(req.getParameter("id")));
 
@@ -28,7 +28,7 @@ public class ReadServlet extends HttpServlet {
 
             RequestDispatcher dispatcher = req.getRequestDispatcher("/tables/machinetype/edit.jsp");
             dispatcher.forward(req, resp);
-        } catch (SQLException e) {
+        } catch (ServletException | SQLException e) {
             throw new RuntimeException(e);
         }
     }

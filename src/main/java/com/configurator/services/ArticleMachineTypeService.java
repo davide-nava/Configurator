@@ -3,6 +3,7 @@ package com.configurator.services;
 import com.configurator.entities.ArticleMachineTypeEntity;
 import com.configurator.interfaces.IArticleMachineTypeService;
 import com.configurator.viewModels.ArticleMachineTypeViewModel;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +16,7 @@ import java.util.UUID;
 public class ArticleMachineTypeService extends BaseService implements IArticleMachineTypeService {
 
     @Override
-    public void update(ArticleMachineTypeEntity val) {
+    public void update(@NotNull ArticleMachineTypeEntity val) {
 
         try (Connection con = getConnection()) {
 
@@ -36,7 +37,7 @@ public class ArticleMachineTypeService extends BaseService implements IArticleMa
     }
 
     @Override
-    public void insert(ArticleMachineTypeEntity val) {
+    public void insert(@NotNull ArticleMachineTypeEntity val) {
 
         try (Connection con = getConnection()) {
 
@@ -116,11 +117,13 @@ public class ArticleMachineTypeService extends BaseService implements IArticleMa
             result = null;
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;
@@ -128,7 +131,7 @@ public class ArticleMachineTypeService extends BaseService implements IArticleMa
     }
 
     @Override
-    public ArticleMachineTypeViewModel getViewModel(UUID id) throws SQLException {
+    public ArticleMachineTypeViewModel getViewModel(@NotNull UUID id) throws SQLException {
         ArticleMachineTypeViewModel result = null;
         Connection con = null;
         ResultSet rs = null;
@@ -149,16 +152,17 @@ public class ArticleMachineTypeService extends BaseService implements IArticleMa
         } catch (SQLException exception) {
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;
     }
-
 
     @Override
     public List<ArticleMachineTypeEntity> get() throws SQLException {
@@ -181,11 +185,13 @@ public class ArticleMachineTypeService extends BaseService implements IArticleMa
             result = null;
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;
@@ -193,7 +199,7 @@ public class ArticleMachineTypeService extends BaseService implements IArticleMa
     }
 
     @Override
-    public ArticleMachineTypeEntity get(UUID id) throws SQLException {
+    public ArticleMachineTypeEntity get(@NotNull UUID id) throws SQLException {
 
         ArticleMachineTypeEntity result = null;
         Connection con = null;
@@ -215,11 +221,13 @@ public class ArticleMachineTypeService extends BaseService implements IArticleMa
         } catch (SQLException exception) {
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;

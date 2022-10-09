@@ -3,6 +3,7 @@ package com.configurator.services;
 import com.configurator.entities.CustomerEntity;
 import com.configurator.interfaces.ICustomerService;
 import com.configurator.viewModels.LookupViewModel;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +16,7 @@ import java.util.UUID;
 public class CustomerService extends BaseService implements ICustomerService {
 
     @Override
-    public void update(CustomerEntity val) {
+    public void update(@NotNull CustomerEntity val) {
 
         try (Connection con = getConnection()) {
 
@@ -35,7 +36,7 @@ public class CustomerService extends BaseService implements ICustomerService {
     }
 
     @Override
-    public void insert(CustomerEntity val) {
+    public void insert(@NotNull CustomerEntity val) {
 
         try (Connection con = getConnection()) {
 
@@ -92,11 +93,13 @@ public class CustomerService extends BaseService implements ICustomerService {
             result = null;
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;
@@ -104,7 +107,7 @@ public class CustomerService extends BaseService implements ICustomerService {
     }
 
     @Override
-    public CustomerEntity get(UUID id) throws SQLException {
+    public CustomerEntity get(@NotNull UUID id) throws SQLException {
 
         CustomerEntity result = null;
         Connection con = null;
@@ -126,11 +129,13 @@ public class CustomerService extends BaseService implements ICustomerService {
         } catch (SQLException exception) {
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;
@@ -162,11 +167,13 @@ public class CustomerService extends BaseService implements ICustomerService {
             result = null;
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;

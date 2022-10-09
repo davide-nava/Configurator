@@ -8,11 +8,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.UUID;
-
 @WebServlet("/article/read")
 public class ReadServlet extends HttpServlet {
 
@@ -20,7 +20,7 @@ public class ReadServlet extends HttpServlet {
     private final ArticleService service = new ArticleService();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(@NotNull HttpServletRequest req, @NotNull HttpServletResponse resp) throws IOException {
         try {
             ArticleEntity tmpVal = service.getViewModel(UUID.fromString(req.getParameter("id")));
 
@@ -29,7 +29,7 @@ public class ReadServlet extends HttpServlet {
             RequestDispatcher dispatcher = req.getRequestDispatcher("/tables/article/edit.jsp");
             dispatcher.forward(req, resp);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ServletException e) {
             throw new RuntimeException(e);
         }
     }

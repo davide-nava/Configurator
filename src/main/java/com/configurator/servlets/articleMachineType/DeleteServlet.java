@@ -5,10 +5,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.UUID;
-
 @WebServlet("/articlemachinetype/delete")
 public class DeleteServlet extends HttpServlet {
 
@@ -16,7 +16,7 @@ public class DeleteServlet extends HttpServlet {
     private final ArticleMachineTypeService service = new ArticleMachineTypeService();
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+    protected void doPost(@NotNull HttpServletRequest req, @NotNull HttpServletResponse resp) {
         try {
             service.delete(UUID.fromString(req.getParameter("frmEditArticleMachineTypeId")));
 

@@ -25,5 +25,4 @@ public class InvoiceItemViewModel extends InvoiceItemEntity implements Serializa
         this.articleDesc = articleDesc;
     }
 
-
 }

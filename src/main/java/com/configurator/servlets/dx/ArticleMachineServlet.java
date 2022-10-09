@@ -1,44 +1,30 @@
 package com.configurator.servlets.dx;
 
 import com.configurator.services.ArticleMachineService;
-import com.configurator.viewModels.ArticleMachineViewModel;
+import com.configurator.servlets.BaseServlet;
 import com.google.gson.Gson;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.List;
 
-@WebServlet("/api/dx/articlemachine")
-public class ArticleMachineServlet extends HttpServlet {
+@WebServlet(  name = "ArticleMachineServlet", urlPatterns = {"/api/dx/articlemachine"})
+public class ArticleMachineServlet extends BaseServlet {
 
     private static final long serialVersionUID = 1L;
     private final ArticleMachineService service = new ArticleMachineService();
     private final Gson gson = new Gson();
 
     @Override
-    protected void doGet(HttpServletRequest request,
-                         HttpServletResponse response) throws IOException {
-
-        List<ArticleMachineViewModel> list;
+    protected void doGet(@NotNull HttpServletRequest request, @NotNull HttpServletResponse response) throws IOException {
         try {
-            list = service.getViewModel();
-
-            String userJsonString = this.gson.toJson(list);
-
-            PrintWriter out = response.getWriter();
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            out.print(userJsonString);
-            out.flush();
+            super.FlushJson(response, this.gson.toJson(service.getViewModel()));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-
 
 }

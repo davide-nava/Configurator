@@ -48,6 +48,8 @@
 
 <script src="https://cdn3.devexpress.com/jslib/22.1.5/js/dx.all.js"></script>
 
+<script src="https://unpkg.com/devextreme-aspnet-data@2.8.6/js/dx.aspnet.data.js"></script>
+
 <script src="https://cdn3.devexpress.com/jslib/22.1.5/js/localization/dx.messages.en.js"></script>
 <script src="https://cdn3.devexpress.com/jslib/22.1.5/js/localization/dx.messages.it.js"></script>
 

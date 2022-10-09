@@ -4,6 +4,7 @@ import com.configurator.entities.MachineEntity;
 import com.configurator.interfaces.IMachineService;
 import com.configurator.viewModels.LookupViewModel;
 import com.configurator.viewModels.MachineViewModel;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +17,7 @@ import java.util.UUID;
 public class MachineService extends BaseService implements IMachineService {
 
     @Override
-    public void update(MachineEntity val) {
+    public void update(@NotNull MachineEntity val) {
 
         try (Connection con = getConnection()) {
 
@@ -48,7 +49,7 @@ public class MachineService extends BaseService implements IMachineService {
     }
 
     @Override
-    public void insert(MachineEntity val) {
+    public void insert(@NotNull MachineEntity val) {
 
         try (Connection con = getConnection()) {
 
@@ -160,18 +161,20 @@ public class MachineService extends BaseService implements IMachineService {
             result = null;
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
         }
 
         return result;
     }
 
     @Override
-    public MachineViewModel getViewModel(UUID id) throws SQLException {
+    public MachineViewModel getViewModel(@NotNull UUID id) throws SQLException {
         MachineViewModel result = null;
         Connection con = null;
         ResultSet rs = null;
@@ -192,11 +195,13 @@ public class MachineService extends BaseService implements IMachineService {
         } catch (SQLException exception) {
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
         }
         return result;
     }
@@ -222,18 +227,20 @@ public class MachineService extends BaseService implements IMachineService {
             result = null;
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
         }
 
         return result;
     }
 
     @Override
-    public MachineEntity get(UUID id) throws SQLException {
+    public MachineEntity get(@NotNull UUID id) throws SQLException {
 
         MachineEntity result = null;
         Connection con = null;
@@ -255,11 +262,13 @@ public class MachineService extends BaseService implements IMachineService {
         } catch (SQLException exception) {
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
         }
 
         return result;
@@ -269,7 +278,6 @@ public class MachineService extends BaseService implements IMachineService {
     public void delete(UUID id) {
         deleteExecute(MachineEntity.TABLE, MachineEntity.PK, id);
     }
-
 
     @Override
     public List<LookupViewModel> getLookupViewModel() throws SQLException {
@@ -291,11 +299,13 @@ public class MachineService extends BaseService implements IMachineService {
             result = null;
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
         }
 
         return result;

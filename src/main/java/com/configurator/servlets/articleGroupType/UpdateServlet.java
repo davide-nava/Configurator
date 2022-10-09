@@ -6,9 +6,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
-
 @WebServlet("/articlegrouptype/update")
 public class UpdateServlet extends HttpServlet {
 
@@ -16,7 +16,7 @@ public class UpdateServlet extends HttpServlet {
     private final ArticleGroupTypeService service = new ArticleGroupTypeService();
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+    protected void doPost(@NotNull HttpServletRequest req, @NotNull HttpServletResponse resp) {
         try {
             ArticleGroupTypeEntity tmpVal = service.get(UUID.fromString(req.getParameter("frmEditArticleGroupTypeId")));
 

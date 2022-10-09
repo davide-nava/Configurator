@@ -6,10 +6,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.UUID;
-
 @WebServlet("/invoice/update")
 public class UpdateServlet extends HttpServlet {
 
@@ -17,7 +20,7 @@ public class UpdateServlet extends HttpServlet {
     private final InvoiceService service = new InvoiceService();
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+    protected void doPost(@NotNull HttpServletRequest req, @NotNull HttpServletResponse resp) {
         try {
             InvoiceEntity tmpVal = service.get(UUID.fromString(req.getParameter("frmEditInvoiceId")));
 
@@ -31,7 +34,7 @@ public class UpdateServlet extends HttpServlet {
             service.update(tmpVal);
 
             resp.sendRedirect(req.getContextPath() + "/tables/invoice/list.jsp");
-        } catch (Exception ex) {
+        } catch (IOException | NumberFormatException | SQLException | ParseException ex) {
             throw new RuntimeException(ex);
         }
     }

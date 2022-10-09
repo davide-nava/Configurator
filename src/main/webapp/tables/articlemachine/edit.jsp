@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@page import="java.util.*" %>
 
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
@@ -24,11 +23,10 @@
                                         <form id="frmEdit" method="post"
                                               action="${pageContext.request.contextPath}/articlemachine/update">
 
-                                            <input type="hidden" name="frmEditNote" id="frmEditNote">
-                                            <input type="hidden" name="frmEditMachineId" id="frmEditMachineId">
-                                            <input type="hidden" name="frmEditArticleId" id="frmEditArticleId">
+                                            <input type="hidden" name="frmEditMachineId" id="frmEditMachineId" value="${tmpVal.getMachineId()}">
+                                            <input type="hidden" name="frmEditArticleId" id="frmEditArticleId" value="${tmpVal.getArticleId()}">
 
-                                            <input type="hidden" name="frmEditArticleMachineId"
+                                            <input type="hidden" name="frmEditArticleMachineId" id="frmEditArticleMachineId"
                                                    value="${tmpVal.getArticleMachineId()}">
 
                                             <div class="mb-3">
@@ -46,14 +44,14 @@
                                             <div class="mb-3">
                                                 <label for="frmEditQta">Qta</label>
                                                 <input type="number" class="form-control" id="frmEditQta"
-                                                       name="frmEditQta" required
+                                                       name="frmEditQta" required step="0.01"
                                                        placeholder="1" value="${tmpVal.getQta()}">
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="frmEditNoteDesc">Note</label>
-                                                <div id="frmEditNoteDesc"
-                                                     class="frmEditNote form-control"></div>
+                                                <label for="frmEditNote">Note</label>
+                                                <textarea id="frmEditNote" name="frmEditNote" rows="5" style="height: 250px;"
+                                                          class="form-control text-start">${tmpVal.getNote()}</textarea>
                                             </div>
 
                                             <div class="d-grid gap-1">
@@ -98,65 +96,46 @@
 
                                     $(() => {
 
-                                        const editorNote = $('.frmEditNote').dxHtmlEditor({
-                                        height: 300,
-                                        value: '${tmpVal.getNote()}',
-                                      toolbar: {
-                                                items: [
-                                                      'bold', 'italic', 'strike', 'underline', 'separator',
-                                                    'alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'separator',
-                                                    'orderedList', 'bulletList', 'separator',
-                                                    'color', 'background', 'separator',
-                                                    'link', 'separator',
-                                                    'clear', 'codeBlock', 'blockquote', 'separator',
-                                                    'insertTable', 'deleteTable',
-                                                    'insertRowAbove', 'insertRowBelow', 'deleteRow',
-                                                    'insertColumnLeft', 'insertColumnRight', 'deleteColumn',
-                                                ],
+                                        $('#frmEditMachineIdLookup').dxSelectBox({
+                                            dataSource: '${pageContext.request.contextPath}/api/lookup/machine',
+                                            searchMode: "contains",
+                                            valueExpr: 'id',
+                                            displayExpr: 'desc',
+                                            searchEnabled: true,
+                                            value: '${tmpVal.getMachineId()}',
+                                            onValueChanged(e) {
+                                                $('#frmEditMachineId').val(e.value);
                                             },
-                                            mediaResizing: {
-                                                enabled: true,
-                                            }, 
-                                        onValueChanged({component, value}) {
-                                            $('#frmEditNote').text(prettierFormat(value));
-                                        },
-                                    }).dxHtmlEditor('instance');
+                                            onInitialized: function (e) {
+                                                const v = e.component.option("value");
+                                                if (v === null) {
+                                                    e.component.option("value", "${tmpVal.getMachineId()}");
+                                                }
+                                            }
+                                        }).dxValidator({
+                                            validationRules: [{ type: 'required' }]
+                                        });
 
-                                        $('#frmEditMachineIdLookup').dxLookup({
-                                dataSource: {
-                                    store: {
-                                        type: 'odata',
-                                        url: '${pageContext.request.contextPath}/api/lookup/machine',
-                                        key: 'id',
-                                    },
-                                },
-                                searchMode: "contains",
-                                valueExpr: 'id',
-                                displayExpr: 'desc',
-                                value: '${tmpVal.getArticleTypeId()}',
-                                onValueChanged(e) {
-                                    $('#frmEditMachineId').val(e.value);
-                                },
-                            });
- 
+                                        $('#frmEditArticleIdLookup').dxSelectBox({
+                                            dataSource: '${pageContext.request.contextPath}/api/lookup/article',
+                                            searchMode: "contains",
+                                            valueExpr: 'id',
+                                            displayExpr: 'desc',
+                                            searchEnabled: true,
+                                            value: '${tmpVal.getArticleId()}',
+                                            onValueChanged(e) {
+                                                $('#frmEditArticleId').val(e.value);
+                                            },
+                                            onInitialized: function (e) {
+                                                const v = e.component.option("value");
+                                                if (v === null) {
+                                                    e.component.option("value", "${tmpVal.getArticleId()}");
+                                                }
+                                            }
+                                        }).dxValidator({
+                                            validationRules: [{ type: 'required' }]
+                                        });
 
-                                        $('#frmEditArticleIdLookup').dxLookup({
-                                dataSource: {
-                                    store: {
-                                        type: 'odata',
-                                        url: '${pageContext.request.contextPath}/api/lookup/article',
-                                        key: 'id',
-                                    },
-                                },
-                                searchMode: "contains",
-                                valueExpr: 'id',
-                                displayExpr: 'desc',
-                                value: '${tmpVal.getArticleTypeId()}',
-                                onValueChanged(e) {
-                                    $('#frmEditArticleId').val(e.value);
-                                },
-                            });
-                                                    
                                     });
 
                                 </script>

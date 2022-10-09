@@ -3,6 +3,7 @@ package com.configurator.services;
 import com.configurator.entities.InvoiceItemEntity;
 import com.configurator.interfaces.IInvoiceItemService;
 import com.configurator.viewModels.InvoiceItemViewModel;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +16,7 @@ import java.util.UUID;
 public class InvoiceItemService extends BaseService implements IInvoiceItemService {
 
     @Override
-    public void update(InvoiceItemEntity val) {
+    public void update(@NotNull InvoiceItemEntity val) {
 
         try (Connection con = getConnection()) {
 
@@ -37,7 +38,7 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
     }
 
     @Override
-    public void insert(InvoiceItemEntity val) {
+    public void insert(@NotNull InvoiceItemEntity val) {
 
         try (Connection con = getConnection()) {
 
@@ -119,11 +120,13 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
         } catch (SQLException exception) {
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;
@@ -131,7 +134,7 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
     }
 
     @Override
-    public InvoiceItemViewModel getViewModel(UUID id) throws SQLException {
+    public InvoiceItemViewModel getViewModel(@NotNull UUID id) throws SQLException {
         InvoiceItemViewModel result = null;
         Connection con = null;
         ResultSet rs = null;
@@ -152,11 +155,13 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
         } catch (SQLException exception) {
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;
@@ -183,18 +188,20 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
         } catch (SQLException exception) {
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
         }
         return result;
 
     }
 
     @Override
-    public InvoiceItemEntity get(UUID id) throws SQLException {
+    public InvoiceItemEntity get(@NotNull UUID id) throws SQLException {
 
         InvoiceItemEntity result = null;
         Connection con = null;
@@ -216,11 +223,13 @@ public class InvoiceItemService extends BaseService implements IInvoiceItemServi
         } catch (SQLException exception) {
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;

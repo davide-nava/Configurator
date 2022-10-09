@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface IMachineService extends IBaseService<MachineEntity> {
+
     List<MachineViewModel> getViewModel() throws SQLException;
 
     MachineViewModel getViewModel(UUID id) throws SQLException;

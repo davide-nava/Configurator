@@ -24,28 +24,19 @@
                                         <form id="frmEdit" method="post"
                                               action="${pageContext.request.contextPath}/articletype/update">
 
-       <input type="hidden" name="frmEditDesc" id="frmEditDesc" >
-
                                             <input type="hidden" name="frmEditArticleTypeId"
                                                    value="${tmpVal.getArticleTypeId()}">
 
-
-                                       <div class="mb-3">
-                                                <label for="frmEditCode">Codice</label>
-                                                <input type="text" class="form-control" id="frmEditCode"
-                                                       name="frmEditCode" required
-                                                       placeholder="Codice">
-                                            </div>
-                                            
-                            <div class="mb-3">
-                                                <label for="frmEditDescEditor">Descrizione</label>
-                                                <div id="frmEditDescEditor"
-                                                     class="frmEditDesc form-control"></div>
+                                            <div class="mb-3">
+                                                <label for="frmEditDesc">Descrizione</label>
+                                                <textarea id="frmEditDesc" name="frmEditDesc" rows="5"
+                                                          style="height: 250px;"
+                                                          class="form-control text-start">${tmpVal.getDesc()}</textarea>
                                             </div>
 
                                             <div class="mb-3">
                                                 <label for="frmEditYear">Anno</label>
-                                                <input type="text" class="form-control" id="frmEditYear"
+                                                <input type="number" class="form-control" id="frmEditYear"
                                                        name="frmEditYear" required
                                                        placeholder="2022" value="${tmpVal.getYear()}">
                                             </div>
@@ -66,7 +57,7 @@
 <div class="modal fade" id="frmModalDelete" tabindex="-1" aria-labelledby="frmModalDeleteLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form method="post" action="${pageContext.request.contextPath}/articletype/delete" >
+            <form method="post" action="${pageContext.request.contextPath}/articletype/delete">
                 <input type="hidden" name="frmEditArticleTypeId"
                        value="${tmpVal.getArticleTypeId()}">
                 <div class="modal-header">
@@ -86,46 +77,10 @@
 </div>
 
                                 <script>
-                                    $(function() {
+                                    $(function () {
                                         $('#menuSxArticleType').addClass('active');
                                     });
 
-                                    $(() => {
-
-                                    const editorDesc = $('.frmEditDesc').dxHtmlEditor({
-                                        height: 300,
-                                        value: '${tmpVal.getDesc()}',
-                                        toolbar: {
-                                            items: [
-                                                'undo', 'redo', 'separator',
-                                                {
-                                                    name: 'size',
-                                                    acceptedValues: ['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt'],
-                                                },
-                                                'separator', 'bold', 'italic', 'strike', 'underline', 'separator',
-                                                'alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'separator',
-                                                'orderedList', 'bulletList', 'separator',
-                                                {
-                                                    name: 'header',
-                                                    acceptedValues: [false, 1, 2, 3, 4, 5],
-                                                }, 'separator',
-                                                'color', 'background', 'separator',
-                                                'link', 'separator',
-                                                'clear', 'codeBlock', 'blockquote', 'separator',
-                                                'insertTable', 'deleteTable',
-                                                'insertRowAbove', 'insertRowBelow', 'deleteRow',
-                                                'insertColumnLeft', 'insertColumnRight', 'deleteColumn',
-                                            ],
-                                        },
-                                        mediaResizing: {
-                                            enabled: true,
-                                        },
-                                        onValueChanged({component, value}) {
-                                            $('#frmEditDesc').text(prettierFormat(value));
-                                        },
-                                    }).dxHtmlEditor('instance');
-
-                                    });
                                 </script>
 
             </jsp:attribute>

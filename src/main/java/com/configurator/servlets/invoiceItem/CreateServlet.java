@@ -6,10 +6,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.UUID;
-
 @WebServlet("/invoiceitem/create")
 public class CreateServlet extends HttpServlet {
 
@@ -17,7 +19,7 @@ public class CreateServlet extends HttpServlet {
     private final InvoiceItemService service = new InvoiceItemService();
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+    protected void doPost(@NotNull HttpServletRequest req, @NotNull HttpServletResponse resp) {
         try {
             InvoiceItemEntity tmpVal = new InvoiceItemEntity();
 
@@ -31,7 +33,7 @@ public class CreateServlet extends HttpServlet {
             service.insert(tmpVal);
 
             resp.sendRedirect(req.getContextPath() + "/tables/invoiceitem/list.jsp");
-        } catch (Exception ex) {
+        } catch (IOException | NumberFormatException | ParseException ex) {
             throw new RuntimeException(ex);
         }
     }

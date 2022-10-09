@@ -3,6 +3,7 @@ package com.configurator.services;
 import com.configurator.entities.ArticleArticleGroupTypeEntity;
 import com.configurator.interfaces.IArticleArticleGroupTypeService;
 import com.configurator.viewModels.ArticleArticleGroupTypeViewModel;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +17,7 @@ public class ArticleArticleGroupTypeService extends BaseService
         implements IArticleArticleGroupTypeService {
 
     @Override
-    public void update(ArticleArticleGroupTypeEntity val) {
+    public void update(@NotNull ArticleArticleGroupTypeEntity val) {
 
         try (Connection con = getConnection()) {
 
@@ -37,7 +38,7 @@ public class ArticleArticleGroupTypeService extends BaseService
     }
 
     @Override
-    public void insert(ArticleArticleGroupTypeEntity val) {
+    public void insert(@NotNull ArticleArticleGroupTypeEntity val) {
 
         try (Connection con = getConnection()) {
 
@@ -114,18 +115,20 @@ public class ArticleArticleGroupTypeService extends BaseService
         } catch (SQLException exception) {
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
         }
         return result;
 
     }
 
     @Override
-    public ArticleArticleGroupTypeViewModel getViewModel(UUID id) throws SQLException {
+    public ArticleArticleGroupTypeViewModel getViewModel(@NotNull UUID id) throws SQLException {
         ArticleArticleGroupTypeViewModel result = null;
         Connection con = null;
         ResultSet rs = null;
@@ -145,11 +148,13 @@ public class ArticleArticleGroupTypeService extends BaseService
         } catch (SQLException exception) {
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
         }
         return result;
 
@@ -174,11 +179,13 @@ public class ArticleArticleGroupTypeService extends BaseService
             result = null;
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
         }
 
         return result;
@@ -186,7 +193,7 @@ public class ArticleArticleGroupTypeService extends BaseService
     }
 
     @Override
-    public ArticleArticleGroupTypeEntity get(UUID id) throws SQLException {
+    public ArticleArticleGroupTypeEntity get(@NotNull UUID id) throws SQLException {
 
         ArticleArticleGroupTypeEntity result = null;
         Connection con = null;
@@ -207,11 +214,13 @@ public class ArticleArticleGroupTypeService extends BaseService
         } catch (SQLException exception) {
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
         }
 
         return result;

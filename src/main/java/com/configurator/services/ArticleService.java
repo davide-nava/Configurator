@@ -4,6 +4,7 @@ import com.configurator.entities.ArticleEntity;
 import com.configurator.interfaces.IArticleService;
 import com.configurator.viewModels.ArticleViewModel;
 import com.configurator.viewModels.LookupViewModel;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +17,7 @@ import java.util.UUID;
 public class ArticleService extends BaseService implements IArticleService {
 
     @Override
-    public void update(ArticleEntity val) {
+    public void update(@NotNull ArticleEntity val) {
 
         try (Connection con = getConnection()) {
 
@@ -41,7 +42,7 @@ public class ArticleService extends BaseService implements IArticleService {
     }
 
     @Override
-    public void insert(ArticleEntity val) {
+    public void insert(@NotNull ArticleEntity val) {
 
         try (Connection con = getConnection()) {
 
@@ -133,11 +134,13 @@ public class ArticleService extends BaseService implements IArticleService {
             result = null;
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;
@@ -145,7 +148,7 @@ public class ArticleService extends BaseService implements IArticleService {
     }
 
     @Override
-    public ArticleViewModel getViewModel(UUID id) throws SQLException {
+    public ArticleViewModel getViewModel(@NotNull UUID id) throws SQLException {
         ArticleViewModel result = null;
         Connection con = null;
         ResultSet rs = null;
@@ -166,11 +169,13 @@ public class ArticleService extends BaseService implements IArticleService {
         } catch (SQLException exception) {
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;
@@ -198,11 +203,13 @@ public class ArticleService extends BaseService implements IArticleService {
             result = null;
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;
@@ -210,7 +217,7 @@ public class ArticleService extends BaseService implements IArticleService {
     }
 
     @Override
-    public ArticleEntity get(UUID id) throws SQLException {
+    public ArticleEntity get(@NotNull UUID id) throws SQLException {
 
         ArticleEntity result = null;
         Connection con = null;
@@ -232,11 +239,13 @@ public class ArticleService extends BaseService implements IArticleService {
         } catch (SQLException exception) {
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;
@@ -268,11 +277,13 @@ public class ArticleService extends BaseService implements IArticleService {
             result = null;
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;

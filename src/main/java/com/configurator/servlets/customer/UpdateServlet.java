@@ -6,9 +6,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.UUID;
-
 @WebServlet("/customer/update")
 public class UpdateServlet extends HttpServlet {
 
@@ -16,7 +18,7 @@ public class UpdateServlet extends HttpServlet {
     private final CustomerService service = new CustomerService();
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+    protected void doPost(@NotNull HttpServletRequest req, @NotNull HttpServletResponse resp) {
         try {
             CustomerEntity tmpVal = service.get(UUID.fromString(req.getParameter("frmEditCustomerId")));
 
@@ -27,7 +29,7 @@ public class UpdateServlet extends HttpServlet {
             service.update(tmpVal);
 
             resp.sendRedirect(req.getContextPath() + "/tables/customer/list.jsp");
-        } catch (Exception ex) {
+        } catch (IOException | SQLException ex) {
             throw new RuntimeException(ex);
         }
     }

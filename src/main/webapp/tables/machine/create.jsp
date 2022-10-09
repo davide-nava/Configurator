@@ -16,11 +16,13 @@
                                     <div class="col ">
 
                                         <form id="frmEdit" method="post"
-                                              action="${pageContext.request.contextPath}/customer/create">
+                                              action="${pageContext.request.contextPath}/machine/create">
 
-          <input type="hidden" name="frmEditDesc" id="frmEditDesc" > 
-                                            <input type="hidden" name="frmEditNote" id="frmEditNote" >
-                                            <input type="hidden" name="frmEditMachineTypeId" id="frmEditMachineTypeId" >
+                                            <input type="hidden" name="frmEditMachineTypeId" id="frmEditMachineTypeId">
+                                            <input type="hidden" name="frmEditDtDelivery" id="frmEditDtDelivery" >
+                                            <input type="hidden" name="frmEditDtAcceptance" id="frmEditDtAcceptance" >
+                                            <input type="hidden" name="frmEditDtStartWarranty" id="frmEditDtStartWarranty" >
+                                            <input type="hidden" name="frmEditDtEndWarranty" id="frmEditDtEndWarranty" >
 
                                             <div class="mb-3">
                                                 <label for="frmEditNr">Numero</label>
@@ -39,7 +41,7 @@
 
                                             <div class="mb-3">
                                                 <label for="frmEditYear">Anno</label>
-                                                <input type="text" class="form-control" id="frmEditYear"
+                                                <input type="number" class="form-control" id="frmEditYear"
                                                        name="frmEditYear" required
                                                        placeholder="2022">
                                             </div>
@@ -52,16 +54,9 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="frmEditDescEditor">Descrizione</label>
-                                                 <div   id="frmEditDescEditor"
-                                                       class="form-control frmEditDesc"></div>                                                     
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label for="frmEditImg">Immagine</label>
-                                                <input type="text" class="form-control" id="frmEditImg"
-                                                       name="frmEditImg"
-                                                       placeholder="immagine">
+                                                <label for="frmEditDesc">Descrizione</label>
+                                                <textarea id="frmEditDesc" name="frmEditDesc" rows="5" style="height: 250px;"
+                                                          class="form-control text-start"></textarea>
                                             </div>
 
                                             <div class="mb-3">
@@ -79,9 +74,9 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="frmEditNoteEditor">Note</label>
-                                                   <div  id="frmEditNoteEditor"
-                                                       class="form-control frmEditNote"></div>
+                                                <label for="frmEditNote">Note</label>
+                                                <textarea id="frmEditNote" name="frmEditNote" rows="5" style="height: 250px;"
+                                                          class="form-control text-start"></textarea>
                                             </div>
 
                                             <div class="mb-3">
@@ -98,24 +93,24 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="frmEditDtDelivery">Dt consegna</label>
-                                                <div id="frmEditDtDelivery" name="frmEditDtDelivery"
+                                                <label for="frmEditDtDeliveryDx">Dt consegna</label>
+                                                <div id="frmEditDtDeliveryDx"
                                                      class="form-control" required></div>
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="frmEditDtAcceptance">Dt accettazione</label>
-                                                <div id="frmEditDtAcceptance" name="frmEditDtAcceptance"
+                                                <label for="frmEditDtAcceptanceDx">Dt accettazione</label>
+                                                <div id="frmEditDtAcceptanceDx"
                                                      class="form-control" required></div>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="frmEditDtStartWarranty">Dt inizio garanzia</label>
-                                                <div id="frmEditDtStartWarranty" name="frmEditDtStartWarranty"
+                                                <label for="frmEditDtStartWarrantyDx">Dt inizio garanzia</label>
+                                                <div id="frmEditDtStartWarrantyDx"
                                                      class="form-control" required></div>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="frmEditDtEndWarranty">Dt fine garanzia</label>
-                                                <div id="frmEditDtEndWarranty" name="frmEditDtEndWarranty"
+                                                <label for="frmEditDtEndWarrantyDx">Dt fine garanzia</label>
+                                                <div id="frmEditDtEndWarrantyDx"
                                                      class="form-control" required></div>
                                             </div>
 
@@ -141,108 +136,57 @@
                          $(() => {
                              const now = new Date();
 
-                             $('#frmEditDtStartWarranty').dxDateBox({
-                                 type: 'date',
-                                 displayFormat: 'dd.MM.yyyy',
-                                 value: now,
-                             });
-                             $('#frmEditDtEndWarranty').dxDateBox({
-                                 type: 'date',
-                                 displayFormat: 'dd.MM.yyyy',
-                                 value: now,
-                             });
-                             $('#frmEditDtAcceptance').dxDateBox({
-                                 type: 'date',
-                                 displayFormat: 'dd.MM.yyyy',
-                                 value: now,
-                             });
-                             $('#frmEditDtDelivery').dxDateBox({
-                                 type: 'date',
-                                 displayFormat: 'dd.MM.yyyy',
-                                 value: now,
-                             });
- 
+                             $('#frmEditDtStartWarranty').val(now.toString("yyyy-MM-dd"));
+                             $('#frmEditDtEndWarranty').val(now.toString("yyyy-MM-dd"));
+                             $('#frmEditDtAcceptance').val(now.toString("yyyy-MM-dd"));
+                             $('#frmEditDtDelivery').val(now.toString("yyyy-MM-dd"));
 
-                             $('#frmEditMachineTypeIdLookup').dxLookup({
-                                            dataSource: {
-                                                store: {
-                                                    type: 'odata',
-                                                    url: '${pageContext.request.contextPath}/api/lookup/machinetype',
-                                                    key: 'id',
-                                                },
-                                            },
-                                            searchMode: "contains",
-                                            valueExpr: 'id',
-                                            displayExpr: 'desc',
-                                            value: '${tmpVal.getArticleTypeId()}',
-                                            onValueChanged(e) {
-                                                $('#frmEditMachineTypeId').val(e.value);
-                                            },
-                                        });
+                             $('#frmEditDtStartWarrantyDx').dxDateBox({
+                                 type: 'date',
+                                 displayFormat: 'dd.MM.yyyy',
+                                 value: now,
+                                 onValueChanged(data) {
+                                     $('#frmEditDtStartWarranty').val(data.value.toString("yyyy-MM-dd"));
+                                 },
+                             });
+                             $('#frmEditDtEndWarrantyDx').dxDateBox({
+                                 type: 'date',
+                                 displayFormat: 'dd.MM.yyyy',
+                                 value: now,
+                                 onValueChanged(data) {
+                                     $('#frmEditDtEndWarranty').val(data.value.toString("yyyy-MM-dd"));
+                                 },
+                             });
+                             $('#frmEditDtAcceptanceDx').dxDateBox({
+                                 type: 'date',
+                                 displayFormat: 'dd.MM.yyyy',
+                                 value: now,
+                                 onValueChanged(data) {
+                                     $('#frmEditDtAcceptance').val(data.value.toString("yyyy-MM-dd"));
+                                 },
+                             });
+                             $('#frmEditDtDeliveryDx').dxDateBox({
+                                 type: 'date',
+                                 displayFormat: 'dd.MM.yyyy',
+                                 value: now,
+                                 onValueChanged(data) {
+                                     $('#frmEditDtDelivery').val(data.value.toString("yyyy-MM-dd"));
+                                 },
+                             });
 
-                const editorNote = $('.frmEditNote').dxHtmlEditor({
-                                            height: 300,
-                                            toolbar: {
-                                            items: [
-                                                'undo', 'redo', 'separator',
-                                                {
-                                                    name: 'size',
-                                                    acceptedValues: ['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt'],
-                                                },
-                                                'separator', 'bold', 'italic', 'strike', 'underline', 'separator',
-                                                'alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'separator',
-                                                'orderedList', 'bulletList', 'separator',
-                                                {
-                                                    name: 'header',
-                                                    acceptedValues: [false, 1, 2, 3, 4, 5],
-                                                }, 'separator',
-                                                'color', 'background', 'separator',
-                                                'link', 'separator',
-                                                'clear', 'codeBlock', 'blockquote', 'separator',
-                                                'insertTable', 'deleteTable',
-                                                'insertRowAbove', 'insertRowBelow', 'deleteRow',
-                                                'insertColumnLeft', 'insertColumnRight', 'deleteColumn',
-                                            ],
-                                        },
-                                        mediaResizing: {
-                                            enabled: true,
-                                        },
-                                            onValueChanged({ component, value }) {
-                                                $('#frmEditNote').text(prettierFormat(value) );
-                                            },
-                                        }).dxHtmlEditor('instance');
+                             $('#frmEditMachineTypeIdLookup').dxSelectBox({
+                                 dataSource: '${pageContext.request.contextPath}/api/lookup/machinetype',
+                                 searchMode: "contains",
+                                 valueExpr: 'id',
+                                 displayExpr: 'desc',
+                                 searchEnabled: true,
+                                 onValueChanged(e) {
+                                     $('#frmEditMachineTypeId').val(e.value);
+                                 },
 
-                                        const editorDesc = $('.frmEditDesc').dxHtmlEditor({
-                                            height: 300,
-                                            toolbar: {
-                                            items: [
-                                                'undo', 'redo', 'separator',
-                                                {
-                                                    name: 'size',
-                                                    acceptedValues: ['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt'],
-                                                },
-                                                'separator', 'bold', 'italic', 'strike', 'underline', 'separator',
-                                                'alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'separator',
-                                                'orderedList', 'bulletList', 'separator',
-                                                {
-                                                    name: 'header',
-                                                    acceptedValues: [false, 1, 2, 3, 4, 5],
-                                                }, 'separator',
-                                                'color', 'background', 'separator',
-                                                'link', 'separator',
-                                                'clear', 'codeBlock', 'blockquote', 'separator',
-                                                'insertTable', 'deleteTable',
-                                                'insertRowAbove', 'insertRowBelow', 'deleteRow',
-                                                'insertColumnLeft', 'insertColumnRight', 'deleteColumn',
-                                            ],
-                                        },
-                                        mediaResizing: {
-                                            enabled: true,
-                                        },
-                                            onValueChanged({ component, value }) {
-                                                $('#frmEditDesc').text(prettierFormat(value) );
-                                            },
-                                        }).dxHtmlEditor('instance');
+                             }).dxValidator({
+                                 validationRules: [{ type: 'required' }]
+                             });
 
 
                          });

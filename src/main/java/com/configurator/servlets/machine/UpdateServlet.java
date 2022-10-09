@@ -6,8 +6,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 @WebServlet("/machine/update")
@@ -17,9 +22,11 @@ public class UpdateServlet extends HttpServlet {
     private final MachineService service = new MachineService();
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+    protected void doPost(@NotNull HttpServletRequest req, @NotNull HttpServletResponse resp) {
         try {
             MachineEntity tmpVal = service.get(UUID.fromString(req.getParameter("frmEditMachineId")));
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
             tmpVal.setNr(Integer.parseInt(req.getParameter("frmEditNr")));
             tmpVal.setYear(Integer.parseInt(req.getParameter("frmEditYear")));
@@ -31,18 +38,15 @@ public class UpdateServlet extends HttpServlet {
             tmpVal.setNote(req.getParameter("frmEditNote"));
             tmpVal.setProductionOrder(req.getParameter("frmEditProductionOrder"));
             tmpVal.setAddress(req.getParameter("frmEditAddress"));
-            tmpVal.setDtDelivery(new SimpleDateFormat("dd/MM/yyyy").parse(req.getParameter("frmEditDtDelivery")));
-            tmpVal.setDtAcceptance(new SimpleDateFormat("dd/MM/yyyy").parse(req.getParameter("frmEditDtAcceptance")));
-            tmpVal.setDtEndWarranty(new SimpleDateFormat("dd/MM/yyyy").parse(req.getParameter("frmEditDtEndWarranty")));
-            tmpVal.setDtStartWarranty(
-                    new SimpleDateFormat("dd/MM/yyyy").parse(req.getParameter("frmEditDtStartWarranty")));
-
-            tmpVal.setMachineId(UUID.fromString(req.getParameter("frmEditMachineId")));
+            tmpVal.setDtDelivery(new Date(sdf.parse(req.getParameter("frmEditDtDelivery")).getTime()));
+            tmpVal.setDtAcceptance(new Date(sdf.parse(req.getParameter("frmEditDtAcceptance")).getTime()));
+            tmpVal.setDtEndWarranty(new Date(sdf.parse(req.getParameter("frmEditDtEndWarranty")).getTime()));
+            tmpVal.setDtStartWarranty(new Date(sdf.parse(req.getParameter("frmEditDtStartWarranty")).getTime()));
 
             service.update(tmpVal);
 
             resp.sendRedirect(req.getContextPath() + "/tables/machine/list.jsp");
-        } catch (Exception ex) {
+        } catch (IOException | NumberFormatException | SQLException | ParseException ex) {
             throw new RuntimeException(ex);
         }
     }

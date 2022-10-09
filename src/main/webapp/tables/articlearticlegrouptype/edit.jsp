@@ -24,8 +24,8 @@
                                         <form id="frmEdit" method="post"
                                               action="${pageContext.request.contextPath}/articlearticlegrouptype/update">
 
-                                            <input type="hidden" name="frmEditArticleId" id="frmEditArticleId">
-                                            <input type="hidden" name="frmEditArticleGroupTypeId" id="frmEditArticleGroupTypeId">
+                                            <input type="hidden" name="frmEditArticleId" id="frmEditArticleId" value="${tmpVal.getArticleId()}">
+                                            <input type="hidden" name="frmEditArticleGroupTypeId" id="frmEditArticleGroupTypeId" value="${tmpVal.getArticleGroupTypeId()}">
 
                                             <input type="hidden" name="frmEditArticleArticleGroupTypeId"
                                                    value="${tmpVal.getArticleArticleGroupTypeId()}">
@@ -92,42 +92,46 @@
 
                                 $(() => {
   
-                                    $('#frmEditArticleGroupTypeIdLookup').dxLookup({
-                                            dataSource: {
-                                                store: {
-                                                    type: 'odata',
-                                                    url: '${pageContext.request.contextPath}/api/lookup/articlegrouptype',
-                                                    key: 'id',
-                                                },
-                                            },
-                                            searchMode: "contains",
-                                            valueExpr: 'id',
-                                            displayExpr: 'desc',
-                                            value: '${tmpVal.getArticleTypeId()}',
-                                            onValueChanged(e) {
-                                                $('#frmEditArticleGroupTypeId').val(e.value);
-                                            },
-                                        });
+                                    $('#frmEditArticleGroupTypeIdLookup').dxSelectBox({
+                                        dataSource: '${pageContext.request.contextPath}/api/lookup/articlegrouptype',
+                                        searchMode: "contains",
+                                        valueExpr: 'id',
+                                        displayExpr: 'desc',
+                                        searchEnabled: true,
+                                        value: '${tmpVal.getArticleTypeId()}',
+                                        onValueChanged(e) {
+                                            $('#frmEditArticleGroupTypeId').val(e.value);
+                                        },
+                                        onInitialized: function (e) {
+                                            const v = e.component.option("value");
+                                            if (v === null) {
+                                                e.component.option("value", "${tmpVal.getArticleGroupTypeId()}");
+                                            }
+                                        }
+                                    }).dxValidator({
+                                        validationRules: [{ type: 'required' }]
+                                    });
 
- 
+                                    $('#frmEditArticleIdLookup').dxSelectBox({
+                                        dataSource: '${pageContext.request.contextPath}/api/lookup/article',
+                                        searchMode: "contains",
+                                        valueExpr: 'id',
+                                        displayExpr: 'desc',
+                                        searchEnabled: true,
+                                        value: '${tmpVal.getArticleTypeId()}',
+                                        onValueChanged(e) {
+                                            $('#frmEditArticleId').val(e.value);
+                                        },
+                                        onInitialized: function (e) {
+                                            const v = e.component.option("value");
+                                            if (v === null) {
+                                                e.component.option("value", "${tmpVal.getArticleId()}");
+                                            }
+                                        }
+                                    }).dxValidator({
+                                        validationRules: [{ type: 'required' }]
+                                    });
 
-                                    $('#frmEditArticleIdLookup').dxLookup({
-                                            dataSource: {
-                                                store: {
-                                                    type: 'odata',
-                                                    url: '${pageContext.request.contextPath}/api/lookup/article',
-                                                    key: 'id',
-                                                },
-                                            },
-                                            searchMode: "contains",
-                                            valueExpr: 'id',
-                                            displayExpr: 'desc',
-                                            value: '${tmpVal.getArticleTypeId()}',
-                                            onValueChanged(e) {
-                                                $('#frmEditArticleId').val(e.value);
-                                            },
-                                        });
- 
                                 });
 
                             </script>

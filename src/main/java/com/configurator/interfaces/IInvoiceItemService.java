@@ -16,5 +16,4 @@ public interface IInvoiceItemService extends IBaseService<InvoiceItemEntity> {
 
     InvoiceItemViewModel loadViewModelFromResultSet(ResultSet rs);
 
-
 }

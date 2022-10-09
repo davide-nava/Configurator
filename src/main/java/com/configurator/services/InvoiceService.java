@@ -4,6 +4,7 @@ import com.configurator.entities.InvoiceEntity;
 import com.configurator.interfaces.IInvoiceService;
 import com.configurator.viewModels.InvoiceViewModel;
 import com.configurator.viewModels.LookupViewModel;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +17,7 @@ import java.util.UUID;
 public class InvoiceService extends BaseService implements IInvoiceService {
 
     @Override
-    public void update(InvoiceEntity val) {
+    public void update(@NotNull InvoiceEntity val) {
 
         try (Connection con = getConnection()) {
 
@@ -38,7 +39,7 @@ public class InvoiceService extends BaseService implements IInvoiceService {
     }
 
     @Override
-    public void insert(InvoiceEntity val) {
+    public void insert(@NotNull InvoiceEntity val) {
 
         try (Connection con = getConnection()) {
 
@@ -120,18 +121,20 @@ public class InvoiceService extends BaseService implements IInvoiceService {
             result = null;
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;
     }
 
     @Override
-    public InvoiceViewModel getViewModel(UUID id) throws SQLException {
+    public InvoiceViewModel getViewModel(@NotNull UUID id) throws SQLException {
         InvoiceViewModel result = null;
         Connection con = null;
         ResultSet rs = null;
@@ -152,11 +155,13 @@ public class InvoiceService extends BaseService implements IInvoiceService {
         } catch (SQLException exception) {
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;
@@ -184,11 +189,13 @@ public class InvoiceService extends BaseService implements IInvoiceService {
             result = null;
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;
@@ -196,7 +203,7 @@ public class InvoiceService extends BaseService implements IInvoiceService {
     }
 
     @Override
-    public InvoiceEntity get(UUID id) throws SQLException {
+    public InvoiceEntity get(@NotNull UUID id) throws SQLException {
 
         InvoiceEntity result = null;
         Connection con = null;
@@ -218,11 +225,13 @@ public class InvoiceService extends BaseService implements IInvoiceService {
         } catch (SQLException exception) {
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;
@@ -233,7 +242,6 @@ public class InvoiceService extends BaseService implements IInvoiceService {
     public void delete(UUID id) {
         deleteExecute(InvoiceEntity.TABLE, InvoiceEntity.PK, id);
     }
-
 
     @Override
     public List<LookupViewModel> getLookupViewModel() throws SQLException {
@@ -255,11 +263,13 @@ public class InvoiceService extends BaseService implements IInvoiceService {
             result = null;
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;

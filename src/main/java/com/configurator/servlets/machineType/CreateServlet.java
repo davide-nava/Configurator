@@ -2,14 +2,16 @@ package com.configurator.servlets.machineType;
 
 import com.configurator.entities.MachineTypeEntity;
 import com.configurator.services.MachineTypeService;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import org.jetbrains.annotations.NotNull;
 
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.UUID;
-
 @WebServlet("/machinetype/create")
 public class CreateServlet extends HttpServlet {
 
@@ -17,7 +19,7 @@ public class CreateServlet extends HttpServlet {
     private final MachineTypeService service = new MachineTypeService();
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+    protected void doPost(@NotNull HttpServletRequest req, @NotNull HttpServletResponse resp) {
         try {
             MachineTypeEntity tmpVal = new MachineTypeEntity();
 
@@ -35,7 +37,7 @@ public class CreateServlet extends HttpServlet {
             service.insert(tmpVal);
 
             resp.sendRedirect(req.getContextPath() + "/tables/machinetype/list.jsp");
-        } catch (Exception ex) {
+        } catch (IOException | NumberFormatException | ParseException ex) {
             throw new RuntimeException(ex);
         }
     }

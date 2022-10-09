@@ -115,22 +115,16 @@
                                     dataField: 'desc',
                                     caption: 'Descrizione',
                                     dataType: 'string',
+                                    cellTemplate(container, options) {
+                                        $('<div>')
+                                            .append( options.value )
+                                            .appendTo(container);
+                                    },
                                 },
                                 {
                                     dataField: 'articleTypeDesc',
                                     caption: 'Tipo articolo',
                                     dataType: 'string',
-                                },
-                                {
-                                    dataField: 'basePrice',
-                                    caption: 'BasePrice',
-                                    dataType: 'float',
-                                },
-                                {
-                                    dataField: 'isMachine',
-                                    caption: 'Macchina',
-                                    dataType: 'bool',
-                                    groupIndex: 0,
                                 },
                                 {
                                     dataField: 'articleId',

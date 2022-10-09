@@ -1,6 +1,7 @@
 package com.configurator.services;
 
 import com.configurator.viewModels.LookupViewModel;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.*;
 import java.util.UUID;
@@ -9,7 +10,7 @@ public abstract class BaseService {
 
     private static final String connUrl = "jdbc:sqlite:C:/dev/Configurator/DB/configurator.db";
 
-    public static void printSQLException(SQLException ex) {
+    public static void printSQLException(@NotNull SQLException ex) {
         for (Throwable e : ex) {
             if (e instanceof SQLException) {
                 e.printStackTrace(System.err);
@@ -54,7 +55,7 @@ public abstract class BaseService {
         return result;
     }
 
-    protected void deleteExecute(String table, String pk, UUID id) {
+    protected void deleteExecute(String table, String pk, @NotNull UUID id) {
 
         try (Connection con = getConnection()) {
             PreparedStatement ps = con.prepareStatement("delete from " + table + " where " + pk + "=? ");

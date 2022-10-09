@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface IArticleMachineService extends IBaseService<ArticleMachineEntity> {
+
     List<ArticleMachineViewModel> getViewModel() throws SQLException;
 
     ArticleMachineViewModel getViewModel(UUID id) throws SQLException;

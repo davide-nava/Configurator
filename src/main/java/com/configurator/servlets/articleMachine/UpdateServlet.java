@@ -6,9 +6,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
-
 @WebServlet("/articlemachine/update")
 public class UpdateServlet extends HttpServlet {
 
@@ -16,7 +16,7 @@ public class UpdateServlet extends HttpServlet {
     private final ArticleMachineService service = new ArticleMachineService();
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+    protected void doPost(@NotNull HttpServletRequest req, @NotNull HttpServletResponse resp) {
         try {
             ArticleMachineEntity tmpVal = service.get(UUID.fromString(req.getParameter("frmEditArticleMachineId")));
 
@@ -24,8 +24,6 @@ public class UpdateServlet extends HttpServlet {
             tmpVal.setArticleId(UUID.fromString(req.getParameter("frmEditArticleId")));
             tmpVal.setQta(Float.parseFloat(req.getParameter("frmEditQta")));
             tmpVal.setNote(req.getParameter("frmEditNote"));
-
-            tmpVal.setArticleMachineId(UUID.fromString(req.getParameter("frmEditArticleMachineId")));
 
             service.update(tmpVal);
 

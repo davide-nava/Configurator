@@ -13,7 +13,6 @@ public interface IBaseService<T> {
 
     List<T> get() throws SQLException;
 
-
     T get(UUID id) throws SQLException;
 
     T loadEntityFromResultSet(ResultSet rs);

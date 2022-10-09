@@ -1,36 +1,25 @@
 package com.configurator.servlets.lookup;
 
 import com.configurator.services.ArticleGroupTypeService;
-import com.configurator.viewModels.LookupViewModel;
-import com.google.gson.Gson;
+import com.configurator.servlets.BaseServlet;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.List;
 
 @WebServlet("/api/lookup/articlegrouptype")
-public class ArticleGroupTypeServlet extends HttpServlet {
+public class ArticleGroupTypeServlet extends BaseServlet {
 
-    private static final long serialVersionUID = 1L;
     private final ArticleGroupTypeService service = new ArticleGroupTypeService();
-    private final Gson gson = new Gson();
+    private static final long serialVersionUID = 1L;
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    @Override
+    protected void doGet(@NotNull HttpServletRequest request, @NotNull HttpServletResponse response) throws IOException {
         try {
-            List<LookupViewModel> list = service.getLookupViewModel();
-
-            String userJsonString = this.gson.toJson(list);
-
-            PrintWriter out = response.getWriter();
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            out.print(userJsonString);
-            out.flush();
+            super.GetLookupViewModel(response, service.getLookupViewModel());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

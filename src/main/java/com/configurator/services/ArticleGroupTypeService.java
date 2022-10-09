@@ -3,6 +3,7 @@ package com.configurator.services;
 import com.configurator.entities.ArticleGroupTypeEntity;
 import com.configurator.interfaces.IArticleGroupTypeService;
 import com.configurator.viewModels.LookupViewModel;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +16,7 @@ import java.util.UUID;
 public class ArticleGroupTypeService extends BaseService implements IArticleGroupTypeService {
 
     @Override
-    public void update(ArticleGroupTypeEntity val) {
+    public void update(@NotNull ArticleGroupTypeEntity val) {
 
         try (Connection con = getConnection()) {
 
@@ -36,7 +37,7 @@ public class ArticleGroupTypeService extends BaseService implements IArticleGrou
     }
 
     @Override
-    public void insert(ArticleGroupTypeEntity val) {
+    public void insert(@NotNull ArticleGroupTypeEntity val) {
 
         try (Connection con = getConnection()) {
 
@@ -96,11 +97,13 @@ public class ArticleGroupTypeService extends BaseService implements IArticleGrou
             result = null;
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;
@@ -108,7 +111,7 @@ public class ArticleGroupTypeService extends BaseService implements IArticleGrou
     }
 
     @Override
-    public ArticleGroupTypeEntity get(UUID id) throws SQLException {
+    public ArticleGroupTypeEntity get(@NotNull UUID id) throws SQLException {
 
         ArticleGroupTypeEntity result = new ArticleGroupTypeEntity();
         Connection con = null;
@@ -130,11 +133,13 @@ public class ArticleGroupTypeService extends BaseService implements IArticleGrou
             result = null;
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;
@@ -166,11 +171,13 @@ public class ArticleGroupTypeService extends BaseService implements IArticleGrou
             result = null;
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;

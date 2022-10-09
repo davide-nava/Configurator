@@ -6,9 +6,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
 import java.util.UUID;
-
 @WebServlet("/articletype/create")
 public class CreateServlet extends HttpServlet {
 
@@ -16,7 +17,7 @@ public class CreateServlet extends HttpServlet {
     private final ArticleTypeService service = new ArticleTypeService();
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
+    protected void doPost(@NotNull HttpServletRequest req, @NotNull HttpServletResponse resp) {
         try {
             ArticleTypeEntity tmpVal = new ArticleTypeEntity();
 
@@ -28,7 +29,7 @@ public class CreateServlet extends HttpServlet {
             service.insert(tmpVal);
 
             resp.sendRedirect(req.getContextPath() + "/tables/articletype/list.jsp");
-        } catch (Exception ex) {
+        } catch (IOException | NumberFormatException ex) {
             throw new RuntimeException(ex);
         }
     }

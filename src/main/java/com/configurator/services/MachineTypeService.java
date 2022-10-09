@@ -3,6 +3,7 @@ package com.configurator.services;
 import com.configurator.entities.MachineTypeEntity;
 import com.configurator.interfaces.IMachineTypeService;
 import com.configurator.viewModels.LookupViewModel;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +16,7 @@ import java.util.UUID;
 public class MachineTypeService extends BaseService implements IMachineTypeService {
 
     @Override
-    public void update(MachineTypeEntity val) {
+    public void update(@NotNull MachineTypeEntity val) {
 
         try (Connection con = getConnection()) {
 
@@ -41,7 +42,7 @@ public class MachineTypeService extends BaseService implements IMachineTypeServi
     }
 
     @Override
-    public void insert(MachineTypeEntity val) {
+    public void insert(@NotNull MachineTypeEntity val) {
 
         try (Connection con = getConnection()) {
 
@@ -110,18 +111,20 @@ public class MachineTypeService extends BaseService implements IMachineTypeServi
             result = null;
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;
     }
 
     @Override
-    public MachineTypeEntity get(UUID id) throws SQLException {
+    public MachineTypeEntity get(@NotNull UUID id) throws SQLException {
 
         MachineTypeEntity result = null;
         Connection con = null;
@@ -143,11 +146,13 @@ public class MachineTypeService extends BaseService implements IMachineTypeServi
         } catch (SQLException exception) {
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;
@@ -179,11 +184,13 @@ public class MachineTypeService extends BaseService implements IMachineTypeServi
             result = null;
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;

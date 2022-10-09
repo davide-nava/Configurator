@@ -18,24 +18,15 @@
                                         <form id="frmEdit" method="post"
                                               action="${pageContext.request.contextPath}/articletype/create">
 
-                                            <input type="hidden" name="frmEditDesc" id="frmEditDesc" >
-
                                             <div class="mb-3">
-                                                <label for="frmEditCode">Codice</label>
-                                                <input type="text" class="form-control" id="frmEditCode"
-                                                       name="frmEditCode" required
-                                                       placeholder="Codice">
-                                            </div>
-
-<div class="mb-3">
-                                                <label for="frmEditDescEditor">Descrizione</label>
-                                                <div id="frmEditDescEditor"
-                                                     class="frmEditDesc form-control"></div>
+                                                <label for="frmEditDesc">Descrizione</label>
+                                                <textarea id="frmEditDesc" name="frmEditDesc" rows="5" style="height: 250px;"
+                                                          class="form-control text-start"></textarea>
                                             </div>
 
                                             <div class="mb-3">
                                                 <label for="frmEditYear">Anno</label>
-                                                <input type="text" class="form-control" id="frmEditYear"
+                                                <input type="number" class="form-control" id="frmEditYear"
                                                        name="frmEditYear" required
                                                        placeholder="2022">
                                             </div>
@@ -57,35 +48,6 @@
                                 <script>
                                     $(function () {
                                         $('#menuSxArticleType').addClass('active');
-                                    });
-
-                                    $(() => {
-
-                                        const editorDesc = $('.frmEditDesc').dxHtmlEditor({
-                                            height: 300,
-                                            value: '${tmpVal.getDesc()}',
-                                          toolbar: {
-                                                items: [
-                                                      'bold', 'italic', 'strike', 'underline', 'separator',
-                                                    'alignLeft', 'alignCenter', 'alignRight', 'alignJustify', 'separator',
-                                                    'orderedList', 'bulletList', 'separator',
-                                                    'color', 'background', 'separator',
-                                                    'link', 'separator',
-                                                    'clear', 'codeBlock', 'blockquote', 'separator',
-                                                    'insertTable', 'deleteTable',
-                                                    'insertRowAbove', 'insertRowBelow', 'deleteRow',
-                                                    'insertColumnLeft', 'insertColumnRight', 'deleteColumn',
-                                                ],
-                                            },
-                                            mediaResizing: {
-                                                enabled: true,
-                                            },
-                                            
-                                            onValueChanged({component, value}) {
-                                                $('#frmEditDesc').text(prettierFormat(value));
-                                            },
-                                        }).dxHtmlEditor('instance');
-
                                     });
 
                                 </script>

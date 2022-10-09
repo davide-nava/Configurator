@@ -3,6 +3,7 @@ package com.configurator.services;
 import com.configurator.entities.ArticleTypeEntity;
 import com.configurator.interfaces.IArticleTypeService;
 import com.configurator.viewModels.LookupViewModel;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +16,7 @@ import java.util.UUID;
 public class ArticleTypeService extends BaseService implements IArticleTypeService {
 
     @Override
-    public void update(ArticleTypeEntity val) {
+    public void update(@NotNull ArticleTypeEntity val) {
 
         try (Connection con = getConnection()) {
 
@@ -35,7 +36,7 @@ public class ArticleTypeService extends BaseService implements IArticleTypeServi
     }
 
     @Override
-    public void insert(ArticleTypeEntity val) {
+    public void insert(@NotNull ArticleTypeEntity val) {
 
         try (Connection con = getConnection()) {
 
@@ -92,11 +93,13 @@ public class ArticleTypeService extends BaseService implements IArticleTypeServi
             result = null;
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;
@@ -104,7 +107,7 @@ public class ArticleTypeService extends BaseService implements IArticleTypeServi
     }
 
     @Override
-    public ArticleTypeEntity get(UUID id) throws SQLException {
+    public ArticleTypeEntity get(@NotNull UUID id) throws SQLException {
 
         ArticleTypeEntity result = null;
         Connection con = null;
@@ -126,11 +129,13 @@ public class ArticleTypeService extends BaseService implements IArticleTypeServi
         } catch (SQLException exception) {
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;
@@ -162,11 +167,13 @@ public class ArticleTypeService extends BaseService implements IArticleTypeServi
             result = null;
             printSQLException(exception);
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
+            }
 
-            if (con != null)
+            if (con != null) {
                 con.close();
+            }
 
         }
         return result;
