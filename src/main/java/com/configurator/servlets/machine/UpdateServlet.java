@@ -34,6 +34,7 @@ public class UpdateServlet extends HttpServlet {
             tmpVal.setDesc(req.getParameter("frmEditDesc"));
             tmpVal.setDoc(req.getParameter("frmEditDoc"));
             tmpVal.setMachineTypeId(UUID.fromString(req.getParameter("frmEditMachineTypeId")));
+            tmpVal.setCustomerId(UUID.fromString(req.getParameter("frmEditCustomerId")));
             tmpVal.setBasePrice(Float.parseFloat(req.getParameter("frmEditBasePrice")));
             tmpVal.setNote(req.getParameter("frmEditNote"));
             tmpVal.setProductionOrder(req.getParameter("frmEditProductionOrder"));

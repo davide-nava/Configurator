@@ -143,6 +143,11 @@
                                     }
                                 }
                             ],
+                            summary: {
+                                totalItems: [{
+                                    column: 'code',
+                                    summaryType: 'count',
+                                }, ],},
                             onContentReady(e) {
                                 if (!collapsed) {
                                     collapsed = true;

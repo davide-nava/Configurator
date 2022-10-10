@@ -56,34 +56,6 @@ create table Customer
     Code       TEXT
 );
 
-create table Invoice
-(
-    InvoiceId  TEXT    not null
-        primary key
-        unique,
-    Dt         NUMERIC not null,
-    CustomerId TEXT    not null
-        references Customer
-            on delete cascade,
-    Total      NUMERIC default 0,
-    Nr         TEXT
-);
-
-create table InvoiceItem
-(
-    InvoiceItemId TEXT    not null
-        primary key
-        unique,
-    Dt            NUMERIC not null,
-    InvoiceId     TEXT    not null
-        references Invoice
-            on delete cascade,
-    ArticleId     TEXT
-        references Article
-            on delete cascade,
-    Qta           NUMERIC default 1
-);
-
 create table MachineType
 (
     MachineTypeId TEXT not null
@@ -132,7 +104,10 @@ create table Machine
     DtDelivery      NUMERIC,
     DtAcceptance    NUMERIC,
     DtEndWarranty   NUMERIC,
-    DtStartWarranty NUMERIC
+    DtStartWarranty NUMERIC,
+    CustomerId      TEXT
+        references Customer
+            on delete cascade
 );
 
 create table ArticleMachine

@@ -13,21 +13,16 @@ import java.sql.SQLException;
 import java.util.UUID;
 @WebServlet("/articlearticlegrouptype/update")
 public class UpdateServlet extends HttpServlet {
-
     private static final long serialVersionUID = 1L;
     private final ArticleArticleGroupTypeService service = new ArticleArticleGroupTypeService();
-
     @Override
     protected void doPost(@NotNull HttpServletRequest req, @NotNull HttpServletResponse resp) {
         try {
-            ArticleArticleGroupTypeEntity tmpVal = service
-                    .get(UUID.fromString(req.getParameter("frmEditArticleArticleGroupTypeId")));
+            ArticleArticleGroupTypeEntity tmpVal = service.get(UUID.fromString(req.getParameter("frmEditArticleArticleGroupTypeId")));
 
             tmpVal.setArticleGroupTypeId(UUID.fromString(req.getParameter("frmEditArticleGroupTypeId")));
             tmpVal.setArticleId(UUID.fromString(req.getParameter("frmEditArticleId")));
             tmpVal.setQta(Float.parseFloat(req.getParameter("frmEditQta")));
-
-            tmpVal.setArticleArticleGroupTypeId(UUID.fromString(req.getParameter("frmEditArticleArticleGroupTypeId")));
 
             service.update(tmpVal);
 
@@ -36,5 +31,4 @@ public class UpdateServlet extends HttpServlet {
             throw new RuntimeException(ex);
         }
     }
-
 }

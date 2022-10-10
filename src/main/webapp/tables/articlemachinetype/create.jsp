@@ -30,15 +30,15 @@
 
                                             <div class="mb-3">
                                                 <label for="frmEditMachineTypeIdLookup">Tipo macchina</label>
-                                                <div class="form-control" id="frmEditMachineTypeIdLookup"  required
+                                                <div class="form-control" id="frmEditMachineTypeIdLookup" required
                                                 ></div>
                                             </div>
 
                                             <div class="mb-3">
                                                 <label for="frmEditQta">Qta</label>
-                                                <input type="text" class="form-control" id="frmEditQta"
-                                                       name="frmEditQta" required
-                                                       placeholder="1" >
+                                                <input type="number" class="form-control" id="frmEditQta"
+                                                       name="frmEditQta" required step="0.01"
+                                                       placeholder="1">
                                             </div>
 
                                             <div class="d-grid gap-1">
@@ -56,42 +56,34 @@
                 </div>
 
                                   <script>
-                                      $(function() {
+                                      $(function () {
                                           $('#menuSxArticleMachineType').addClass('active');
- 
-                                          $('#frmEditArticleIdLookup').dxLookup({
-                                dataSource: {
-                                    store: {
-                                        type: 'odata',
-                                        url: '${pageContext.request.contextPath}/api/lookup/article',
-                                        key: 'id',
-                                    },
-                                },
-                                searchMode: "contains",
-                                valueExpr: 'id',
-                                displayExpr: 'desc',
-                                value: '${tmpVal.getArticleTypeId()}',
-                                onValueChanged(e) {
-                                    $('#frmEditArticleId').val(e.value);
-                                },
-                            });
 
-                                          $('#frmEditMachineTypeIdLookup').dxLookup({
-                                dataSource: {
-                                    store: {
-                                        type: 'odata',
-                                        url: '${pageContext.request.contextPath}/api/lookup/machinetype',
-                                        key: 'id',
-                                    },
-                                },
-                                searchMode: "contains",
-                                valueExpr: 'id',
-                                displayExpr: 'desc',
-                                value: '${tmpVal.getArticleTypeId()}',
-                                onValueChanged(e) {
-                                    $('#frmEditMachineTypeId').val(e.value);
-                                },
-                            });
+                                          $('#frmEditArticleIdLookup').dxSelectBox({
+                                              dataSource: '${pageContext.request.contextPath}/api/lookup/article',
+                                              searchMode: "contains",
+                                              valueExpr: 'id',
+                                              displayExpr: 'desc',
+                                              searchEnabled: true,
+                                              onValueChanged(e) {
+                                                  $('#frmEditArticleId').val(e.value);
+                                              },
+                                          }).dxValidator({
+                                              validationRules: [{type: 'required'}]
+                                          });
+
+                                          $('#frmEditMachineTypeIdLookup').dxSelectBox({
+                                              dataSource: '${pageContext.request.contextPath}/api/lookup/machinetype',
+                                              searchMode: "contains",
+                                              valueExpr: 'id',
+                                              displayExpr: 'desc',
+                                              searchEnabled: true,
+                                              onValueChanged(e) {
+                                                  $('#frmEditMachineTypeId').val(e.value);
+                                              },
+                                          }).dxValidator({
+                                              validationRules: [{type: 'required'}]
+                                          });
 
                                       });
                                   </script>

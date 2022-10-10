@@ -65,6 +65,7 @@ public class ArticleArticleGroupTypeService extends BaseService
             if (rs != null) {
                 result = new ArticleArticleGroupTypeEntity();
 
+                result.setArticleArticleGroupTypeId(UUID.fromString(rs.getString("ArticleArticleGroupTypeId")));
                 result.setArticleGroupTypeId(UUID.fromString(rs.getString("ArticleGroupTypeId")));
                 result.setArticleId(UUID.fromString(rs.getString("ArticleId")));
                 result.setQta(rs.getFloat("Qta"));

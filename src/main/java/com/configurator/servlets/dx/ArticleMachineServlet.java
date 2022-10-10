@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(  name = "ArticleMachineServlet", urlPatterns = {"/api/dx/articlemachine"})
+@WebServlet(  "/api/dx/articlemachine")
 public class ArticleMachineServlet extends BaseServlet {
 
     private static final long serialVersionUID = 1L;

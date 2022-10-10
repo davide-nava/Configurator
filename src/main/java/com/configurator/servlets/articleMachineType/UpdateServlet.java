@@ -18,14 +18,11 @@ public class UpdateServlet extends HttpServlet {
     @Override
     protected void doPost(@NotNull HttpServletRequest req, @NotNull HttpServletResponse resp) {
         try {
-            ArticleMachineTypeEntity tmpVal = service
-                    .get(UUID.fromString(req.getParameter("frmEditArticleMachineTypeId")));
+            ArticleMachineTypeEntity tmpVal = service.get(UUID.fromString(req.getParameter("frmEditArticleMachineTypeId")));
 
             tmpVal.setArticleId(UUID.fromString(req.getParameter("frmEditArticleId")));
             tmpVal.setMachineTypeId(UUID.fromString(req.getParameter("frmEditMachineTypeId")));
             tmpVal.setQta(Float.parseFloat(req.getParameter("frmEditQta")));
-
-            tmpVal.setArticleMachineTypeId(UUID.fromString(req.getParameter("frmEditArticleMachineTypeId")));
 
             service.update(tmpVal);
 
@@ -34,5 +31,4 @@ public class UpdateServlet extends HttpServlet {
             throw new RuntimeException(ex);
         }
     }
-
 }

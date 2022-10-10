@@ -113,6 +113,44 @@ public class ArticleService extends BaseService implements IArticleService {
         return result;
     }
 
+    public List<ArticleViewModel> getViewModelByCustomerId(@NotNull UUID id) throws SQLException {
+        List<ArticleViewModel> result = new ArrayList<>();
+        Connection con = null;
+        ResultSet rs = null;
+
+        try {
+            con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    " select Article.*  , ArticleType.Desc as 'ArticleTypeDesc' from Article \n" +
+                            "inner join ArticleType on ArticleType.ArticleTypeId = Article.ArticleTypeId \n" +
+                            "inner join ArticleMachine on ArticleMachine.ArticleId = ArticleMachine.ArticleId \n" +
+                            "inner join Machine on Machine.MachineId = Machine.MachineId where  CustomerId =?    ");
+
+            ps.setString(1, id.toString().toUpperCase());
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                result.add(loadViewModelFromResultSet(rs));
+            }
+
+        } catch (SQLException exception) {
+            result = null;
+            printSQLException(exception);
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+
+            if (con != null) {
+                con.close();
+            }
+
+        }
+        return result;
+
+    }
+
     @Override
     public List<ArticleViewModel> getViewModel() throws SQLException {
         List<ArticleViewModel> result = new ArrayList<>();

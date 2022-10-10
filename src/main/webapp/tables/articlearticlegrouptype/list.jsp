@@ -130,6 +130,11 @@
                                     }
                                 }
                             ],
+                            summary: {
+                                totalItems: [{
+                                    column: 'articleGroupTypeDesc',
+                                    summaryType: 'count',
+                                }, ],},
                             onContentReady(e) {
                                 if (!collapsed) {
                                     collapsed = true;

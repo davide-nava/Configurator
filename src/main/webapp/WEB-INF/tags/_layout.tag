@@ -57,10 +57,6 @@
                                 <span class="nav-label">Clienti</span></a>
                         </li>
                         <li>
-                            <a id="menuSxInvoice" href="${pageContext.request.contextPath}/tables/invoice/list.jsp"><i class="fa-solid fa-receipt"></i>
-                                <span class="nav-label">Fatture</span></a>
-                        </li>
-                        <li>
                             <a id="menuSxMachine" href="${pageContext.request.contextPath}/tables/machine/list.jsp"><i class="fa-solid fa-industry"></i>
                                 <span class="nav-label">Macchine</span></a>
                         </li>

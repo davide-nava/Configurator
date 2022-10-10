@@ -22,7 +22,7 @@ public class MachineService extends BaseService implements IMachineService {
         try (Connection con = getConnection()) {
 
             PreparedStatement ps = con.prepareStatement(
-                    "update Machine set Nr=?, Year=?, Code=?, Desc=?, Doc=?, MachineTypeId=?, BasePrice=?, Note=?, ProductionOrder=?,  Address=?, DtDelivery=?, DtAcceptance=?, DtEndWarranty=?, DtStartWarranty=? where MachineId=?");
+                    "update Machine set Nr=?, Year=?, Code=?, Desc=?, Doc=?, MachineTypeId=?, BasePrice=?, Note=?, ProductionOrder=?,  Address=?, DtDelivery=?, DtAcceptance=?, DtEndWarranty=?, DtStartWarranty=?, CustomerId=? where MachineId=?");
 
             ps.setInt(1, val.getNr());
             ps.setInt(2, val.getYear());
@@ -38,8 +38,9 @@ public class MachineService extends BaseService implements IMachineService {
             ps.setDate(12, new java.sql.Date(val.getDtAcceptance().getTime()));
             ps.setDate(13, new java.sql.Date(val.getDtEndWarranty().getTime()));
             ps.setDate(14, new java.sql.Date(val.getDtStartWarranty().getTime()));
+            ps.setString(15, val.getCustomerId().toString().toUpperCase());
 
-            ps.setString(15, val.getMachineId().toString().toUpperCase());
+            ps.setString(16, val.getMachineId().toString().toUpperCase());
 
             ps.executeUpdate();
 
@@ -54,7 +55,7 @@ public class MachineService extends BaseService implements IMachineService {
         try (Connection con = getConnection()) {
 
             PreparedStatement ps = con.prepareStatement(
-                    "insert into Machine ( MachineId, Nr, Year, Code, Desc, Doc, MachineTypeId, BasePrice, Note, ProductionOrder,  Address, DtDelivery, DtAcceptance, DtEndWarranty, DtStartWarranty) values ( ?, ?, ?,  ?,?,?,?,?,?,?,?,?,?,?,?)");
+                    "insert into Machine ( MachineId, Nr, Year, Code, Desc, Doc, MachineTypeId, BasePrice, Note, ProductionOrder,  Address, DtDelivery, DtAcceptance, DtEndWarranty, DtStartWarranty, CustomerId) values ( ?, ?, ?,  ?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
             ps.setString(1, val.getMachineId().toString().toUpperCase());
             ps.setInt(2, val.getNr());
@@ -71,6 +72,7 @@ public class MachineService extends BaseService implements IMachineService {
             ps.setDate(13, new java.sql.Date(val.getDtAcceptance().getTime()));
             ps.setDate(14, new java.sql.Date(val.getDtEndWarranty().getTime()));
             ps.setDate(15, new java.sql.Date(val.getDtStartWarranty().getTime()));
+            ps.setString(16, val.getCustomerId().toString().toUpperCase());
 
             ps.executeUpdate();
 
@@ -101,6 +103,7 @@ public class MachineService extends BaseService implements IMachineService {
                 result.setDtAcceptance(rs.getDate("DtAcceptance"));
                 result.setDtEndWarranty(rs.getDate("DtEndWarranty"));
                 result.setDtStartWarranty(rs.getDate("DtStartWarranty"));
+                result.setCustomerId(UUID.fromString(rs.getString("CustomerId")));
             }
 
         } catch (SQLException exception) {
@@ -132,11 +135,47 @@ public class MachineService extends BaseService implements IMachineService {
                 result.setDtAcceptance(rs.getDate("DtAcceptance"));
                 result.setDtEndWarranty(rs.getDate("DtEndWarranty"));
                 result.setDtStartWarranty(rs.getDate("DtStartWarranty"));
+                result.setCustomerId(UUID.fromString(rs.getString("CustomerId")));
+                result.setCustomerDesc(rs.getString("CustomerDesc"));
             }
 
         } catch (SQLException exception) {
             printSQLException(exception);
         }
+        return result;
+    }
+
+    public List<MachineViewModel> getViewModelByCustomerId(@NotNull UUID id) throws SQLException {
+        List<MachineViewModel> result = new ArrayList<>();
+        Connection con = null;
+        ResultSet rs = null;
+
+        try {
+            con = getConnection();
+            PreparedStatement ps = con.prepareStatement(
+                    "select Machine.*,   MachineType.Desc as 'MachineTypeDesc', Customer.Code as 'CustomerDesc'  from  Machine inner join MachineType on MachineType.MachineTypeId = Machine.MachineTypeId inner join Customer on Customer.CustomerId = Machine.CustomerId where Machine.CustomerId = ?");
+
+            ps.setString(1, id.toString().toUpperCase());
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                result.add(loadViewModelFromResultSet(rs));
+            }
+
+        } catch (SQLException exception) {
+            result = null;
+            printSQLException(exception);
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+
+            if (con != null) {
+                con.close();
+            }
+        }
+
         return result;
     }
 
@@ -149,7 +188,7 @@ public class MachineService extends BaseService implements IMachineService {
         try {
             con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "select Machine.*,   MachineType.Desc as 'MachineTypeDesc'  from  Machine inner join MachineType on MachineType.MachineTypeId = Machine.MachineTypeId");
+                    "select Machine.*,   MachineType.Desc as 'MachineTypeDesc', Customer.Code as 'CustomerDesc'  from  Machine inner join MachineType on MachineType.MachineTypeId = Machine.MachineTypeId inner join Customer on Customer.CustomerId = Machine.CustomerId");
 
             rs = ps.executeQuery();
 
@@ -182,7 +221,7 @@ public class MachineService extends BaseService implements IMachineService {
         try {
             con = getConnection();
             PreparedStatement ps = con.prepareStatement(
-                    "select Machine.*,   MachineType.Desc as 'MachineTypeDesc'  from  Machine inner join MachineType on MachineType.MachineTypeId = Machine.MachineTypeId where MachineId=? ");
+                    "select Machine.*,   MachineType.Desc as 'MachineTypeDesc', Customer.Code as 'CustomerDesc'  from  Machine inner join MachineType on MachineType.MachineTypeId = Machine.MachineTypeId inner join Customer on Customer.CustomerId = Machine.CustomerId where MachineId=? ");
 
             ps.setString(1, id.toString().toUpperCase());
 

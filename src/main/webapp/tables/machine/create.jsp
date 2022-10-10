@@ -18,6 +18,7 @@
                                         <form id="frmEdit" method="post"
                                               action="${pageContext.request.contextPath}/machine/create">
 
+                                            <input type="hidden" name="frmEditCustomerId" id="frmEditCustomerId">
                                             <input type="hidden" name="frmEditMachineTypeId" id="frmEditMachineTypeId">
                                             <input type="hidden" name="frmEditDtDelivery" id="frmEditDtDelivery" >
                                             <input type="hidden" name="frmEditDtAcceptance" id="frmEditDtAcceptance" >
@@ -30,6 +31,8 @@
                                                        name="frmEditNr" required
                                                        placeholder="Nr">
                                             </div>
+
+
 
                                             <div class="mb-3">
                                                 <label for="frmEditMachineTypeIdLookup">Tipo macchina</label>
@@ -56,6 +59,13 @@
                                                 <label for="frmEditDesc">Descrizione</label>
                                                 <textarea id="frmEditDesc" name="frmEditDesc" rows="5" style="height: 250px;"
                                                           class="form-control text-start"></textarea>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="frmEditCustomerIdLookup">Cliente</label>
+                                                <div class="form-control" id="frmEditCustomerIdLookup"
+                                                     required
+                                                ></div>
                                             </div>
 
                                             <div class="mb-3">
@@ -185,6 +195,26 @@
 
                              }).dxValidator({
                                  validationRules: [{ type: 'required' }]
+                             });
+
+                             $('#frmEditCustomerIdLookup').dxSelectBox({
+                                 dataSource: '${pageContext.request.contextPath}/api/lookup/customer',
+                                 searchMode: "contains",
+                                 valueExpr: 'id',
+                                 displayExpr: 'desc',
+                                 searchEnabled: true,
+                                 value: '${tmpVal.getCustomerId()}',
+                                 onValueChanged(e) {
+                                     $('#frmEditCustomerId').val(e.value);
+                                 },
+                                 onInitialized: function (e) {
+                                     const v = e.component.option("value");
+                                     if (v === null) {
+                                         e.component.option("value", "${tmpVal.getCustomerId()}");
+                                     }
+                                 }
+                             }).dxValidator({
+                                 validationRules: [{type: 'required'}]
                              });
 
 

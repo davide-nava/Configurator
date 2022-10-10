@@ -24,15 +24,19 @@
                                         <form id="frmEdit" method="post"
                                               action="${pageContext.request.contextPath}/articlearticlegrouptype/update">
 
-                                            <input type="hidden" name="frmEditArticleId" id="frmEditArticleId" value="${tmpVal.getArticleId()}">
-                                            <input type="hidden" name="frmEditArticleGroupTypeId" id="frmEditArticleGroupTypeId" value="${tmpVal.getArticleGroupTypeId()}">
+                                            <input type="hidden" name="frmEditArticleId" id="frmEditArticleId"
+                                                   value="${tmpVal.getArticleId()}">
+                                            <input type="hidden" name="frmEditArticleGroupTypeId"
+                                                   id="frmEditArticleGroupTypeId"
+                                                   value="${tmpVal.getArticleGroupTypeId()}">
 
                                             <input type="hidden" name="frmEditArticleArticleGroupTypeId"
                                                    value="${tmpVal.getArticleArticleGroupTypeId()}">
 
                                             <div class="mb-3">
-                                                <label for="frmEditArticleGroupTypeIdLookup">Tipo gruppo articolo</label>
-                                                <div class="form-control" id="frmEditArticleGroupTypeIdLookup"  required
+                                                <label for="frmEditArticleGroupTypeIdLookup">Tipo gruppo
+                                                    articolo</label>
+                                                <div class="form-control" id="frmEditArticleGroupTypeIdLookup" required
                                                 ></div>
                                             </div>
 
@@ -46,7 +50,7 @@
                                             <div class="mb-3">
                                                 <label for="frmEditQta">Qta</label>
                                                 <input type="number" class="form-control" id="frmEditQta"
-                                                       name="frmEditQta" required
+                                                       name="frmEditQta" required step="0.01"
                                                        placeholder="1" value="${tmpVal.getQta()}">
                                             </div>
 
@@ -66,7 +70,7 @@
 <div class="modal fade" id="frmModalDelete" tabindex="-1" aria-labelledby="frmModalDeleteLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form method="post" action="${pageContext.request.contextPath}/articlearticlegrouptype/delete" >
+            <form method="post" action="${pageContext.request.contextPath}/articlearticlegrouptype/delete">
                 <input type="hidden" name="frmEditArticleArticleGroupTypeId"
                        value="${tmpVal.getArticleArticleGroupTypeId()}">
                 <div class="modal-header">
@@ -86,31 +90,11 @@
 </div>
 
                             <script>
-                                $(function() {
+                                $(function () {
                                     $('#menuSxArticleArticleGroupType').addClass('active');
                                 });
 
                                 $(() => {
-  
-                                    $('#frmEditArticleGroupTypeIdLookup').dxSelectBox({
-                                        dataSource: '${pageContext.request.contextPath}/api/lookup/articlegrouptype',
-                                        searchMode: "contains",
-                                        valueExpr: 'id',
-                                        displayExpr: 'desc',
-                                        searchEnabled: true,
-                                        value: '${tmpVal.getArticleTypeId()}',
-                                        onValueChanged(e) {
-                                            $('#frmEditArticleGroupTypeId').val(e.value);
-                                        },
-                                        onInitialized: function (e) {
-                                            const v = e.component.option("value");
-                                            if (v === null) {
-                                                e.component.option("value", "${tmpVal.getArticleGroupTypeId()}");
-                                            }
-                                        }
-                                    }).dxValidator({
-                                        validationRules: [{ type: 'required' }]
-                                    });
 
                                     $('#frmEditArticleIdLookup').dxSelectBox({
                                         dataSource: '${pageContext.request.contextPath}/api/lookup/article',
@@ -118,7 +102,6 @@
                                         valueExpr: 'id',
                                         displayExpr: 'desc',
                                         searchEnabled: true,
-                                        value: '${tmpVal.getArticleTypeId()}',
                                         onValueChanged(e) {
                                             $('#frmEditArticleId').val(e.value);
                                         },
@@ -126,6 +109,25 @@
                                             const v = e.component.option("value");
                                             if (v === null) {
                                                 e.component.option("value", "${tmpVal.getArticleId()}");
+                                            }
+                                        }
+                                    }).dxValidator({
+                                        validationRules: [{ type: 'required' }]
+                                    });
+
+                                    $('#frmEditArticleGroupTypeIdLookup').dxSelectBox({
+                                        dataSource: '${pageContext.request.contextPath}/api/lookup/articlegrouptype',
+                                        searchMode: "contains",
+                                        valueExpr: 'id',
+                                        displayExpr: 'desc',
+                                        searchEnabled: true,
+                                        onValueChanged(e) {
+                                            $('#frmEditArticleId').val(e.value);
+                                        },
+                                        onInitialized: function (e) {
+                                            const v = e.component.option("value");
+                                            if (v === null) {
+                                                e.component.option("value", "${tmpVal.getArticleGroupTypeId()}");
                                             }
                                         }
                                     }).dxValidator({

@@ -9,6 +9,7 @@ public class MachineEntity implements Serializable {
     public static final String PK = "MachineId";
     public static final String TABLE = "Machine";
     private UUID machineId;
+    private UUID customerId;
     private UUID machineTypeId;
     private String code = "";
     private String desc = "";
@@ -30,6 +31,14 @@ public class MachineEntity implements Serializable {
 
     public void setMachineId(UUID machineId) {
         this.machineId = machineId;
+    }
+
+    public UUID getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(UUID customerId) {
+        this.customerId = customerId;
     }
 
     public UUID getMachineTypeId() {

@@ -121,6 +121,12 @@
                                     dataType: 'string',
                                 },
                                 {
+                                    dataField: 'customerDesc',
+                                    caption: 'Cliente',
+                                    dataType: 'string',
+                                    groupIndex:0
+                                },
+                                {
                                     dataField: 'doc',
                                     caption: 'Doc',
                                     dataType: 'string',
@@ -152,6 +158,21 @@
                                     }
                                 }
                             ],
+                            summary: {
+                                totalItems: [{
+                                    column: 'nr',
+                                    summaryType: 'count',
+                                }, ],},
+                            sortByGroupSummaryInfo: [{
+                                summaryItem: 'count',
+                            }],
+                            summary: {
+                                groupItems: [{
+                                    column: 'nr',
+                                    summaryType: 'count',
+                                    displayFormat: '{0} macchine',
+                                }, ],
+                            },
                             onContentReady(e) {
                                 if (!collapsed) {
                                     collapsed = true;

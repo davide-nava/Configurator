@@ -130,6 +130,11 @@
                                     }
                                 }
                             ],
+                            summary: {
+                                totalItems: [{
+                                    column: 'machineDesc',
+                                    summaryType: 'count',
+                                }, ],},
                             onContentReady(e) {
                                 if (!collapsed) {
                                     collapsed = true;

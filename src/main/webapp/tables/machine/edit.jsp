@@ -26,13 +26,17 @@
                                             <input type="hidden" name="frmEditMachineTypeId" id="frmEditMachineTypeId"
                                                    value="${tmpVal.getMachineTypeId()}">
                                             <input type="hidden" name="frmEditDtDelivery" id="frmEditDtDelivery"
-                                                   value="${tmpVal.getDtDelivery()}">
+                                            >
                                             <input type="hidden" name="frmEditDtAcceptance" id="frmEditDtAcceptance"
-                                                   value="${tmpVal.getDtAcceptance()}">
+                                            >
                                             <input type="hidden" name="frmEditDtStartWarranty"
-                                                   id="frmEditDtStartWarranty" value="${tmpVal.getDtStartWarranty()}">
+                                                   id="frmEditDtStartWarranty">
                                             <input type="hidden" name="frmEditDtEndWarranty" id="frmEditDtEndWarranty"
-                                                   value="${tmpVal.getDtEndWarranty()}">
+                                            >
+
+
+                                            <input type="hidden" name="frmEditCustomerId" id="frmEditCustomerId"
+                                                   value="${tmpVal.getCustomerId()}">
 
                                             <input type="hidden" name="frmEditMachineId"
                                                    value="${tmpVal.getMachineId()}">
@@ -71,6 +75,13 @@
                                                 <textarea id="frmEditDesc" name="frmEditDesc" rows="5"
                                                           style="height: 250px;"
                                                           class="form-control text-start">${tmpVal.getDesc()}</textarea>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="frmEditCustomerIdLookup">Cliente</label>
+                                                <div class="form-control" id="frmEditCustomerIdLookup"
+                                                     required
+                                                ></div>
                                             </div>
 
                                             <div class="mb-3">
@@ -176,6 +187,11 @@
                                         const dtAcceptance = new Date('${tmpVal.getDtAcceptance()}');
                                         const dtDelivery = new Date('${tmpVal.getDtDelivery()}');
 
+                                        $('#frmEditDtStartWarranty').val(dtStartWarranty.toISOString());
+                                        $('#frmEditDtEndWarranty').val(dtEndWarranty.toISOString());
+                                        $('#frmEditDtAcceptance').val(dtAcceptance.toISOString());
+                                        $('#frmEditDtDelivery').val(dtDelivery.toISOString());
+
                                         $('#frmEditDtStartWarrantyDx').dxDateBox({
                                             type: 'date',
                                             displayFormat: 'dd.MM.yyyy',
@@ -226,7 +242,27 @@
                                                 }
                                             }
                                         }).dxValidator({
-                                            validationRules: [{ type: 'required' }]
+                                            validationRules: [{type: 'required'}]
+                                        });
+
+                                        $('#frmEditCustomerIdLookup').dxSelectBox({
+                                            dataSource: '${pageContext.request.contextPath}/api/lookup/customer',
+                                            searchMode: "contains",
+                                            valueExpr: 'id',
+                                            displayExpr: 'desc',
+                                            searchEnabled: true,
+                                            value: '${tmpVal.getCustomerId()}',
+                                            onValueChanged(e) {
+                                                $('#frmEditCustomerId').val(e.value);
+                                            },
+                                            onInitialized: function (e) {
+                                                const v = e.component.option("value");
+                                                if (v === null) {
+                                                    e.component.option("value", "${tmpVal.getCustomerId()}");
+                                                }
+                                            }
+                                        }).dxValidator({
+                                            validationRules: [{type: 'required'}]
                                         });
 
                                     });

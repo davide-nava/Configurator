@@ -93,22 +93,19 @@
 
             $(() => {
 
-                $('#frmEditArticleTypeIdLookup').dxLookup({
-                    dataSource: {
-                        store: {
-                            type: 'odata',
-                            url: '${pageContext.request.contextPath}/api/lookup/articletype',
-                            key: 'id',
-                        },
-                    },
+                $('#frmEditArticleTypeIdLookup').dxSelectBox({
+                    dataSource: '${pageContext.request.contextPath}/api/lookup/articletype',
                     searchMode: "contains",
                     valueExpr: 'id',
                     displayExpr: 'desc',
-                    value: '${tmpVal.getArticleTypeId()}',
+                    searchEnabled: true,
                     onValueChanged(e) {
                         $('#frmEditArticleTypeId').val(e.value);
                     },
+                }).dxValidator({
+                    validationRules: [{ type: 'required' }]
                 });
+
 
                 $('#frmEditIsMachineDx').dxCheckBox({
                     onValueChanged(data) {

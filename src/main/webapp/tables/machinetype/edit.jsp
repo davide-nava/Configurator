@@ -25,9 +25,7 @@
 
                                             <input type="hidden" name="frmEditMachineTypeId"
                                                    value="${tmpVal.getMachineTypeId()}">
-                                            <input type="hidden" name="frmEditDt" id="frmEditDt"
-                                                   value="${tmpVal.getDt()}">
-
+                                            <input type="hidden" name="frmEditDt" id="frmEditDt">
 
                                             <div class="mb-3">
                                                 <label for="frmEditCode">Codice</label>
@@ -132,7 +130,8 @@
 
                                  $(() => {
 
-                                     const dt  = new Date('${tmpVal.getDt()}');
+                                     const dt = new Date('${tmpVal.getDt()}');
+                                     $('#frmEditDt').val(dt.toISOString());
 
                                      $('#frmEditDtDx').dxDateBox({
                                          type: 'date',

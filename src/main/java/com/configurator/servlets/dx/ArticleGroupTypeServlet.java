@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet( name = "ArticleGroupTypeServlet", urlPatterns = {"/api/dx/articlegrouptype"})
+@WebServlet( "/api/dx/articlegrouptype")
 public class ArticleGroupTypeServlet extends BaseServlet {
 
     private static final long serialVersionUID = 1L;

@@ -2,12 +2,12 @@ package com.configurator.servlets.machineType;
 
 import com.configurator.entities.MachineTypeEntity;
 import com.configurator.services.MachineTypeService;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.jetbrains.annotations.NotNull;
 
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,7 +21,7 @@ public class CreateServlet extends HttpServlet {
 
     @Override
     protected void doPost(@NotNull HttpServletRequest req, @NotNull HttpServletResponse resp) {
-        try {
+            try {
             MachineTypeEntity tmpVal = new MachineTypeEntity();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 

@@ -129,7 +129,6 @@
                     valueExpr: 'id',
                     displayExpr: 'desc',
                     searchEnabled: true,
-                    value: '${tmpVal.getArticleTypeId()}',
                     onValueChanged(e) {
                         $('#frmEditArticleTypeId').val(e.value);
                     },

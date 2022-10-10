@@ -18,13 +18,15 @@
                                         <form id="frmEdit" method="post"
                                               action="${pageContext.request.contextPath}/articlearticlegrouptype/create">
 
-                                            <input type="hidden" name="frmEditArticleGroupTypeId" id="frmEditArticleGroupTypeId">
+                                            <input type="hidden" name="frmEditArticleGroupTypeId"
+                                                   id="frmEditArticleGroupTypeId">
                                             <input type="hidden" name="frmEditArticleId" id="frmEditArticleId">
 
                                             <div class="mb-3">
-                                                <label for="frmEditArticleGroupTypeIdLookup">Tipo gruppo articolo</label>
+                                                <label for="frmEditArticleGroupTypeIdLookup">Tipo gruppo
+                                                    articolo</label>
                                                 <div class="form-control" id="frmEditArticleGroupTypeIdLookup"
-                                                       required
+                                                     required
                                                 ></div>
                                             </div>
 
@@ -37,7 +39,7 @@
                                             <div class="mb-3">
                                                 <label for="frmEditQta">Qta</label>
                                                 <input type="number" class="form-control" id="frmEditQta"
-                                                       name="frmEditQta" required
+                                                       name="frmEditQta" required step="0.01"
                                                        placeholder="1">
                                             </div>
 
@@ -62,42 +64,32 @@
 
                                     $(() => {
 
-                                        $('#frmEditArticleGroupTypeIdLookup').dxLookup({
-                                            dataSource: {
-                                                store: {
-                                                    type: 'odata',
-                                                    url: '${pageContext.request.contextPath}/api/lookup/articlegrouptype',
-                                                    key: 'id',
-                                                },
-                                            },
+                                        $('#frmEditArticleIdLookup').dxSelectBox({
+                                            dataSource: '${pageContext.request.contextPath}/api/lookup/article',
                                             searchMode: "contains",
                                             valueExpr: 'id',
                                             displayExpr: 'desc',
-                                            value: '${tmpVal.getArticleTypeId()}',
-                                            onValueChanged(e) {
-                                                $('#frmEditArticleGroupTypeId').val(e.value);
-                                            },
-                                        });
-
- 
-
-                                        $('#frmEditArticleIdLookup').dxLookup({
-                                            dataSource: {
-                                                store: {
-                                                    type: 'odata',
-                                                    url: '${pageContext.request.contextPath}/api/lookup/article',
-                                                    key: 'id',
-                                                },
-                                            },
-                                            searchMode: "contains",
-                                            valueExpr: 'id',
-                                            displayExpr: 'desc',
-                                            value: '${tmpVal.getArticleTypeId()}',
+                                            searchEnabled: true,
                                             onValueChanged(e) {
                                                 $('#frmEditArticleId').val(e.value);
                                             },
+                                        }).dxValidator({
+                                            validationRules: [{ type: 'required' }]
                                         });
- 
+
+                                        $('#frmEditArticleGroupTypeIdLookup').dxSelectBox({
+                                            dataSource: '${pageContext.request.contextPath}/api/lookup/articlegrouptype',
+                                            searchMode: "contains",
+                                            valueExpr: 'id',
+                                            displayExpr: 'desc',
+                                            searchEnabled: true,
+                                            onValueChanged(e) {
+                                                $('#frmEditArticleGroupTypeId').val(e.value);
+                                            },
+                                        }).dxValidator({
+                                            validationRules: [{ type: 'required' }]
+                                        });
+
                                     });
 
                                 </script>
